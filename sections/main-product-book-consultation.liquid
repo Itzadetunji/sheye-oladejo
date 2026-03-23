@@ -1,0 +1,454 @@
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    /* padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px; */
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .book-consultation-{{ section.id }} {
+    background: rgb(var(--color-background));
+  }
+
+  .book-consultation-{{ section.id }} .page-width {
+    /* max-width: 90rem; */
+    margin-inline: auto;
+  }
+
+  .book-consultation-{{ section.id }}__hero {
+    position: relative;
+    min-height: clamp(24rem, 58vw, 40rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .book-consultation-{{ section.id }}__hero-media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .book-consultation-{{ section.id }}__hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .book-consultation-{{ section.id }}__hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.35));
+    pointer-events: none;
+  }
+
+  .book-consultation-{{ section.id }}__hero-heading {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .book-consultation-{{ section.id }}__hero-title {
+    margin: 0;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+    font-size: clamp(2.2rem, 4.8vw, 4.2rem);
+    text-align: center;
+  }
+
+  .book-consultation-{{ section.id }}__magic-icon {
+    width: 28px;
+    height: 28px;
+    animation: flicker 1.4s ease-in-out infinite;
+    animation-delay: 2s;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    stroke: #ffffff;
+  }
+
+  .book-consultation-{{ section.id }}__placeholder,
+  .book-consultation-{{ section.id }} .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .book-consultation-{{ section.id }}__placeholder {
+    background: rgba(var(--color-foreground), 0.06);
+  }
+
+  .book-consultation-{{ section.id }}__callout {
+    min-height: 12rem;
+    background: {{ settings.color_accent_porcelain | default: '#F3EDE8' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .book-consultation-{{ section.id }}__callout-heading {
+    margin: 0;
+    font-size: clamp(1.9rem, 4.3vw, 3.5rem);
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    line-height: 1.2;
+  }
+
+  .book-consultation-{{ section.id }}__cluster {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-consultation-{{ section.id }}__cluster-item {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+  }
+
+  .book-consultation-{{ section.id }}__intro-group {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: 0;
+  }
+
+  .book-consultation-{{ section.id }}__image-wrap {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+  }
+
+  .book-consultation-{{ section.id }}__image-wrap .book-consultation-{{ section.id }}__image-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .book-consultation-{{ section.id }}__image-placeholder {
+    width: 100%;
+    min-height: 22rem;
+    background: rgba(var(--color-foreground), 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book-consultation-{{ section.id }}__image-placeholder .placeholder-svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .book-consultation-{{ section.id }}__intro {
+    text-align: left;
+    padding: clamp(2.2rem, 6vw, 5.5rem) clamp(1.8rem, 5vw, 4rem);
+    min-height: clamp(22rem, 54vw, 38rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .book-consultation-{{ section.id }}__title {
+    margin: 0 0 1.5rem;
+    font-size: 2rem;
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+
+  .book-consultation-{{ section.id }}__price {
+    margin: 0 0 2rem;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+  }
+
+  .book-consultation-{{ section.id }}__body {
+    max-width: 52rem;
+    margin-bottom: 2.4rem;
+    color: rgba(var(--color-foreground), 0.8);
+    line-height: 1.7;
+  }
+
+  .book-consultation-{{ section.id }} .product-form__buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .book-consultation-{{ section.id }} .product-form__submit {
+    min-height: 3.5rem;
+    padding-inline: 2.8rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .book-consultation-{{ section.id }}__calendar {
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    background: rgba(var(--color-foreground), 0.03);
+    padding: 1.75rem;
+  }
+
+  .book-consultation-{{ section.id }}__calendar-placeholder {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(var(--color-foreground), 0.7);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      /* padding-top: {{ section.settings.padding_top }}px; */
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .book-consultation-{{ section.id }}__intro-group {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      align-items: stretch;
+    }
+
+    .book-consultation-{{ section.id }}__image-wrap {
+      min-height: 0;
+      height: 100%;
+    }
+
+    .book-consultation-{{ section.id }}__image-wrap .book-consultation-{{ section.id }}__image-img {
+      position: absolute;
+      inset: 0;
+    }
+
+    .book-consultation-{{ section.id }}__image-placeholder {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .book-consultation-{{ section.id }}__cluster {
+      flex-direction: row;
+    }
+
+    .book-consultation-{{ section.id }}__cluster-item {
+      height: 720px;
+      max-height: 720px;
+    }
+  }
+
+  @keyframes flicker {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    40% {
+      opacity: 0.6;
+      transform: scale(0.96);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+  }
+{%- endstyle -%}
+
+<section class="book-consultation-{{ section.id }} section-{{ section.id }}-padding">
+  <div class="book-consultation-{{ section.id }}__hero tile tile--hero">
+    <div class="book-consultation-{{ section.id }}__hero-media">
+      {%- if section.settings.hero_image != blank -%}
+        {%- assign hero_image_class = 'book-consultation-' | append: section.id | append: '__hero-image' -%}
+        {{
+          section.settings.hero_image
+          | image_url: width: 1920
+          | image_tag: loading: 'eager', class: hero_image_class, sizes: '100vw', widths: '750, 1100, 1500, 1920'
+        }}
+      {%- else -%}
+        <div class="book-consultation-{{ section.id }}__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="book-consultation-{{ section.id }}__hero-heading">
+      <h1 class="book-consultation-{{ section.id }}__hero-title">
+        {{ section.settings.hero_title | escape }}
+      </h1>
+    </div>
+  </div>
+
+  <div class="page-width">
+    <div class="book-consultation-{{ section.id }}__intro-group">
+      <div class="book-consultation-{{ section.id }}__image-wrap">
+        {%- if section.settings.image != blank -%}
+          {%- assign image_class = 'book-consultation-' | append: section.id | append: '__image-img' -%}
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              class: image_class,
+              widths: '400, 550, 700, 900',
+              sizes: '(min-width: 990px) 50vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="book-consultation-{{ section.id }}__image-placeholder">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="book-consultation-{{ section.id }}__intro">
+        <h1 class="book-consultation-{{ section.id }}__title">{{ product.title | escape }}</h1>
+
+        <div class="book-consultation-{{ section.id }}__price">
+          {% render 'price', product: product, use_variant: true, show_badges: false %}
+        </div>
+
+        {%- if product.description != blank -%}
+          <div class="book-consultation-{{ section.id }}__body rte">
+            {{ product.description }}
+          </div>
+        {%- endif -%}
+
+        {%- assign product_form_id = 'book-consultation-form-' | append: section.id -%}
+        <product-form class="product-form" data-section-id="{{ section.id }}">
+          {%- form 'product',
+            product,
+            id: product_form_id,
+            class: 'form',
+            novalidate: 'novalidate',
+            data-type: 'add-to-cart-form'
+          -%}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ product.selected_or_first_available_variant.id }}"
+              {% if product.selected_or_first_available_variant == null
+                or product.selected_or_first_available_variant.available == false
+              %}
+                disabled
+              {% endif %}
+            >
+            <input type="hidden" name="quantity" value="1">
+
+            <div class="product-form__buttons">
+              <button
+                type="submit"
+                name="add"
+                class="product-form__submit button button--secondary"
+                {% if product.selected_or_first_available_variant == null
+                  or product.selected_or_first_available_variant.available == false
+                %}
+                  disabled
+                {% endif %}
+              >
+                <span>{{ section.settings.button_label | escape }}</span>
+              </button>
+            </div>
+          {%- endform -%}
+        </product-form>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-consultation-{{ section.id }}__callout">
+    <h2 class="book-consultation-{{ section.id }}__callout-heading">
+      {{ section.settings.callout_text | escape }}
+    </h2>
+  </div>
+
+  <div class="about-founder__inner page-width">
+    <div class="book-consultation-{{ section.id }}__cluster">
+      <div class="book-consultation-{{ section.id }}__cluster-item book-consultation-{{ section.id }}__cluster-item--a">
+        <div class="book-consultation-{{ section.id }}__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      </div>
+      <div class="book-consultation-{{ section.id }}__cluster-item book-consultation-{{ section.id }}__cluster-item--b">
+        <div class="book-consultation-{{ section.id }}__placeholder">
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Book consultation product",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero title",
+      "default": "Book Consultation"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left column image"
+    },
+    {
+      "type": "text",
+      "id": "callout_text",
+      "label": "Callout text",
+      "default": "Feel the Magic in Every Conversation"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Fallback button label",
+      "default": "Book now"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Book consultation product"
+    }
+  ]
+}
+{% endschema %}

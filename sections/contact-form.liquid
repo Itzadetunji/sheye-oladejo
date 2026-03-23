@@ -1,0 +1,390 @@
+{{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="contact page-width section-{{ section.id }}-padding">
+    <div class="contact-custom__intro">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="contact-custom__heading {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.heading }}
+        </h2>
+      {%- else -%}
+        <h2 class="visually-hidden">{{ 'templates.contact.form.title' | t }}</h2>
+      {%- endif -%}
+      <div class="contact-custom__info-list">
+        {%- if section.settings.info_email != blank -%}
+          <p class="contact-custom__info">{{ section.settings.info_email | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.info_phone != blank -%}
+          <p class="contact-custom__info">{{ section.settings.info_phone | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.info_weekday != blank -%}
+          <p class="contact-custom__info">{{ section.settings.info_weekday | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.info_weekend != blank -%}
+          <p class="contact-custom__info">{{ section.settings.info_weekend | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- liquid
+      assign contact_form_class = 'isolate'
+      if settings.animations_reveal_on_scroll
+        assign contact_form_class = 'isolate scroll-trigger animate--slide-in'
+      endif
+    -%}
+    {%- form 'contact', id: 'ContactForm', class: contact_form_class -%}
+      {%- if form.posted_successfully? -%}
+        <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+          {{- 'icon-success.svg' | inline_asset_content -}}
+          {{ 'templates.contact.form.post_success' | t }}
+        </h2>
+      {%- elsif form.errors -%}
+        <div class="form__message">
+          <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+            {{- 'icon-error.svg' | inline_asset_content -}}
+            {{ 'templates.contact.form.error_heading' | t }}
+          </h2>
+        </div>
+        <ul class="form-status-list caption-large" role="list">
+          <li>
+            <a href="#ContactForm-email" class="link">
+              {{ form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email }}
+            </a>
+          </li>
+        </ul>
+      {%- endif -%}
+      <div class="contact-custom__fields contact-custom__fields--split">
+        <div class="contact-custom__field">
+          <label class="visually-hidden" for="ContactForm-firstname">{{ section.settings.first_name_label | escape }}</label>
+          <input
+            class="contact-custom__input"
+            autocomplete="given-name"
+            type="text"
+            id="ContactForm-firstname"
+            name="contact[first_name]"
+            value="{% if customer %}{{ customer.first_name }}{% endif %}"
+            placeholder="{{ section.settings.first_name_label | escape }}"
+          >
+        </div>
+        <div class="contact-custom__field">
+          <label class="visually-hidden" for="ContactForm-lastname">{{ section.settings.last_name_label | escape }}</label>
+          <input
+            class="contact-custom__input"
+            autocomplete="family-name"
+            type="text"
+            id="ContactForm-lastname"
+            name="contact[last_name]"
+            value="{% if customer %}{{ customer.last_name }}{% endif %}"
+            placeholder="{{ section.settings.last_name_label | escape }}"
+          >
+        </div>
+      </div>
+
+      <div class="contact-custom__field{% if form.errors contains 'email' %} contact-custom__field--error{% endif %}">
+        <label class="visually-hidden" for="ContactForm-email">
+          {{- section.settings.email_label | escape -}}
+          <span aria-hidden="true">*</span>
+        </label>
+        <input
+          autocomplete="email"
+          type="email"
+          id="ContactForm-email"
+          class="contact-custom__input"
+          name="contact[email]"
+          spellcheck="false"
+          autocapitalize="off"
+          value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+          aria-required="true"
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+            aria-describedby="ContactForm-email-error"
+          {% endif %}
+          placeholder="{{ section.settings.email_label | escape }}"
+        >
+        {%- if form.errors contains 'email' -%}
+          <small class="contact__field-error" id="ContactForm-email-error">
+            <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+            <span class="form__message">
+              <span class="svg-wrapper">
+                {{- 'icon-error.svg' | inline_asset_content -}}
+              </span>
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </span>
+          </small>
+        {%- endif -%}
+      </div>
+
+      <div class="contact-custom__field">
+        <label class="visually-hidden" for="ContactForm-phone">{{ section.settings.phone_label | escape }}</label>
+        <input
+          type="tel"
+          id="ContactForm-phone"
+          class="contact-custom__input"
+          autocomplete="tel"
+          name="contact[phone]"
+          value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"
+          placeholder="{{ section.settings.phone_label | escape }}"
+        >
+      </div>
+
+      <div class="contact-custom__field">
+        <label class="visually-hidden" for="ContactForm-body">{{ section.settings.message_label | escape }}</label>
+        <textarea
+          rows="7"
+          id="ContactForm-body"
+          class="contact-custom__input contact-custom__textarea"
+          name="contact[body]"
+          placeholder="{{ section.settings.message_label | escape }}"
+        >{{- form.body -}}</textarea>
+      </div>
+
+      <div class="contact__button contact-custom__button">
+        <button type="submit" class="button button--primary">
+          {{ section.settings.submit_label | escape }}
+        </button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+<style>
+  .contact-custom__intro {
+    text-align: center;
+    margin: 0 auto 3.2rem;
+    max-width: 46rem;
+  }
+  .contact-custom__heading {
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+  }
+  .contact-custom__info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .contact-custom__info {
+    margin: 0;
+    color: rgba(var(--color-foreground), 0.72);
+    line-height: 1.6;
+    font-size: 18px;
+  }
+  .contact form {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .contact-custom__fields--split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media screen and (min-width: 750px) {
+    .contact-custom__fields--split {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+  .contact-custom__field {
+    margin-bottom: 0.5rem;
+  }
+  .contact-custom__input {
+    width: 100%;
+    border: 1px solid rgba(var(--color-foreground), 0.4);
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    min-height: 3.4rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 18px;
+    line-height: 1.3;
+    outline: none;
+    box-shadow: none;
+  }
+  .contact-custom__input:focus,
+  .contact-custom__input:focus-visible {
+    border: 1px solid rgba(var(--color-foreground), 0.85);
+    outline: none;
+    box-shadow: none;
+  }
+  .contact-custom__input::placeholder {
+    color: rgba(var(--color-foreground), 0.58);
+  }
+  .contact-custom__textarea {
+    min-height: 6rem;
+    resize: vertical;
+  }
+  .contact-custom__button {
+    margin-top: 0.8rem;
+  }
+  .contact-custom__button .button {
+    min-height: 3.4rem;
+    padding: 0.55rem 1.2rem;
+    font-size: 1.15rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "t:sections.contact-form.name",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "CONTACT US",
+      "label": "t:sections.contact-form.settings.title.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        },
+        {
+          "value": "hxxl",
+          "label": "t:sections.all.heading_size.options__5.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Contact information"
+    },
+    {
+      "type": "text",
+      "id": "info_email",
+      "label": "Info line 1",
+      "default": "Email: info@sheyeoladejo.com"
+    },
+    {
+      "type": "text",
+      "id": "info_phone",
+      "label": "Info line 2",
+      "default": "Tel: 234 707 207 1466"
+    },
+    {
+      "type": "text",
+      "id": "info_weekday",
+      "label": "Info line 3",
+      "default": "Monday - Friday: 9am - 6pm"
+    },
+    {
+      "type": "text",
+      "id": "info_weekend",
+      "label": "Info line 4",
+      "default": "Saturday: 10am - 2pm"
+    },
+    {
+      "type": "header",
+      "content": "Form labels"
+    },
+    {
+      "type": "text",
+      "id": "first_name_label",
+      "label": "First name placeholder",
+      "default": "First name"
+    },
+    {
+      "type": "text",
+      "id": "last_name_label",
+      "label": "Last name placeholder",
+      "default": "Last name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone placeholder",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message placeholder",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "submit_label",
+      "label": "Submit button label",
+      "default": "Send"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 64
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.contact-form.presets.name"
+    }
+  ]
+}
+{% endschema %}

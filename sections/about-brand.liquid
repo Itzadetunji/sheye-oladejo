@@ -1,0 +1,212 @@
+{%- style -%}
+  .about-brand-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .about-brand-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="about-brand about-brand-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" aria-labelledby="about-brand-heading-{{ section.id }}">
+  <div class="about-brand__inner page-width">
+    <div class="about-brand__grid">
+      <div class="about-brand__text">
+        <h2 id="about-brand-heading-{{ section.id }}" class="about-brand__heading">
+          {{ section.settings.heading | default: 'OUR CREATIVE STORY' | escape }}
+        </h2>
+        <div class="about-brand__content">
+          {%- if section.settings.quote != blank -%}
+            <blockquote class="about-brand__quote">
+              {%- assign lines = section.settings.quote | split: '
+' -%}
+              {%- for line in lines -%}
+                {%- assign trimmed = line | strip -%}
+                {%- if trimmed != '' -%}<p>{{ trimmed | escape }}</p>{%- endif -%}
+              {%- endfor -%}
+            </blockquote>
+          {%- endif -%}
+          {%- if section.settings.attribution != blank -%}
+            <cite class="about-brand__attribution">{{ section.settings.attribution | escape }}</cite>
+          {%- endif -%}
+        </div>
+      </div>
+      <div class="about-brand__media about-brand__media--portrait">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag: loading: 'lazy', class: 'about-brand__image', widths: '400, 550, 700, 900', sizes: '(min-width: 990px) 50vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="about-brand__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-brand {
+    background-color: rgb(var(--color-background));
+  }
+  .about-brand__inner {
+    margin: 0 auto;
+  }
+  .about-brand__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+  }
+  .about-brand__text,
+  .about-brand__media {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  @media screen and (min-width: 990px) {
+    .about-brand__grid {
+      flex-wrap: nowrap;
+      gap: 4rem;
+    }
+    .about-brand__text {
+      flex: 0 1 50%;
+      max-width: 50%;
+      order: 1;
+    }
+    .about-brand__media {
+      flex: 0 1 50%;
+      max-width: 50%;
+      order: 2;
+    }
+  }
+  .about-brand__text {
+    text-align: left;
+  }
+  .about-brand__content {
+    padding-left: 1.25rem;
+  }
+  .about-brand__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    margin: 0 0 1.5rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .about-brand__quote {
+    font-family: var(--font-body-family);
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    line-height: 1.7;
+    color: rgba(var(--color-foreground), 0.85);
+    margin: 0 0 1.25rem;
+    font-style: normal;
+  }
+  .about-brand__quote p { margin: 0 0 0.5em; }
+  .about-brand__quote p:last-child { margin-bottom: 0; }
+  .about-brand__attribution {
+    font-family: var(--font-body-family);
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    color: rgba(var(--color-foreground), 0.7);
+    font-style: normal;
+    display: block;
+    text-align: center;
+  }
+  .about-brand__media {
+    position: relative;
+    width: 100%;
+  }
+  .about-brand__media--portrait {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+  .about-brand__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .about-brand__placeholder {
+    aspect-ratio: 3 / 4;
+    background: rgba(var(--color-foreground), 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-brand__placeholder .placeholder-svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "About the brand",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "OUR CREATIVE STORY"
+    },
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote / body text",
+      "default": "SheyeOladejo is, above all, a story of life and the lives of those who write it. A collective community, an eternal co-creation, and a deep understanding that nothing is possible without one another, to improve all that can be and offer you the most beautiful pieces."
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "OluwaSheye Oladejo — Founder of SheyeOladejo"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

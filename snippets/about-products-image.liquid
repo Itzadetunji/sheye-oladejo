@@ -1,0 +1,17 @@
+{%- comment -%} Renders image or placeholder for about-products block. Expects: block (image block) {%- endcomment -%}
+{%- if block.settings.image != blank -%}
+  {{
+    block.settings.image
+    | image_url: width: 600
+    | image_tag: loading: 'lazy', class: 'about-products__img', sizes: '(min-width: 990px) 25vw, 50vw'
+  }}
+{%- else -%}
+  <img
+    class="about-products__img"
+    src="https://picsum.photos/seed/about{{ block.id }}/500/500"
+    alt=""
+    width="500"
+    height="500"
+    loading="lazy"
+  >
+{%- endif -%}

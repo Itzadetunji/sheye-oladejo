@@ -1,0 +1,126 @@
+{%- assign refund_link = settings.product_meta_refund_link | default: '/policies/refund-policy' -%}
+{%- assign contact_link = settings.product_meta_contact_link | default: '/pages/contact' -%}
+{%- assign primary_color = settings.color_primary | default: '#1D1D1B' -%}
+
+<div class="product__meta-links" style="--product-meta-text-color: {{ primary_color }};">
+  {%- comment -%} Desktop / tablet layout (also visible on mobile) {%- endcomment -%}
+  <div class="product__meta-links-contact-share">
+    <div class="product__meta-links-row">
+      <span class="svg-wrapper">{{- 'icon-return.svg' | inline_asset_content -}}</span>
+      <a href="{{ refund_link }}">
+        {{- settings.product_meta_refund_text | default: 'Hassle-free returns within 30 days.' -}}
+      </a>
+    </div>
+
+    <div class="Clean_Size_Chart"></div>
+  </div>
+  <div class="product__meta-links-contact-share">
+    <div class="product__meta-links-row">
+      <span class="svg-wrapper">{{- 'icon-chat-bubble.svg' | inline_asset_content -}}</span>
+      <a href="{{ contact_link }}">{{ settings.product_meta_contact_text | default: 'Have a Question? Ask Us!' }}</a>
+    </div>
+    <div class="product__meta-share">
+      <a
+        href="{{ canonical_url | default: request.origin | append: request.path }}"
+        class="product__meta-share-trigger"
+        data-share-url="{{ canonical_url | default: request.origin | append: request.path }}"
+        aria-label="{{ settings.product_meta_share_label | default: 'Share' }}"
+      >
+        {{ settings.product_meta_share_label | default: 'Share' }}
+      </a>
+      <ul class="list-unstyled list-social" role="list">
+        {%- if settings.social_facebook_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-facebook.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">Facebook</span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_twitter_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-twitter.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">X</span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_tiktok_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-tiktok.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">TikTok</span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+
+  {%- comment -%} Mobile layout: size chart + share on the same row {%- endcomment -%}
+  <div class="product__meta-links-mobile-row large-up-hide medium-hide">
+    <div class="Clean_Size_Chart"></div>
+    <div class="product__meta-share">
+      <a
+        href="{{ canonical_url | default: request.origin | append: request.path }}"
+        class="product__meta-share-trigger"
+        data-share-url="{{ canonical_url | default: request.origin | append: request.path }}"
+        aria-label="{{ settings.product_meta_share_label | default: 'Share' }}"
+      >
+        {{ settings.product_meta_share_label | default: 'Share' }}
+      </a>
+      <ul class="list-unstyled list-social" role="list">
+        {%- if settings.social_facebook_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_facebook_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-facebook.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">Facebook</span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if settings.social_twitter_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_twitter_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-twitter.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">X</span>
+            </a>
+          </li>
+        {%- endif -%}
+        {%- if settings.social_tiktok_link != blank -%}
+          <li class="list-social__item">
+            <a href="{{ settings.social_tiktok_link }}" class="link list-social__link">
+              <span class="svg-wrapper">{{- 'icon-tiktok.svg' | inline_asset_content -}}</span>
+              <span class="visually-hidden">TikTok</span>
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const shareTrigger = document.querySelector('.product__meta-share-trigger');
+    if (!shareTrigger || shareTrigger.dataset.bound === 'true') return;
+
+    shareTrigger.dataset.bound = 'true';
+    shareTrigger.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const shareUrl = shareTrigger.dataset.shareUrl || window.location.href;
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: document.title, url: shareUrl });
+        } catch (error) {}
+        return;
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          await navigator.clipboard.writeText(shareUrl);
+        } catch (error) {}
+      }
+    });
+  })();
+</script>

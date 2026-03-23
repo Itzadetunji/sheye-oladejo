@@ -1,0 +1,325 @@
+{%- style -%}
+  .policy-content-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .policy-content-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign policy = section.settings.policy_type
+  assign use_blocks = false
+  if section.blocks.size > 0
+    assign use_blocks = true
+  endif
+-%}
+
+<section class="policy-content policy-content-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="policy-content__inner page-width">
+    {%- if use_blocks -%}
+      <h1 class="policy-content__heading">{{ section.settings.heading | default: page.title | escape }}</h1>
+      {%- for block in section.blocks -%}
+        <div class="policy-content__block" {{ block.shopify_attributes }}>
+          {%- if block.settings.title != blank -%}
+            <h2 class="policy-content__subheading">{{ block.settings.title | escape }}</h2>
+          {%- endif -%}
+          {%- if block.settings.content != blank -%}
+            <div class="policy-content__rte policy-content__rte--text">
+              {%- assign paras = block.settings.content | split: '
+' -%}
+              {%- for p in paras -%}
+                {%- assign trimmed = p | strip -%}
+                {%- if trimmed != '' -%}
+                  <p>{{ trimmed | escape }}</p>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- comment -%} Default policy content (plain text) rendered in liquid {%- endcomment -%}
+      {%- if policy == 'returns_and_exchanges' -%}
+        {%- assign policy_heading = 'Returns and exchanges' -%}
+        {%- capture policy_body -%}
+## RETURNS AND EXCHANGES
+
+SheyeOladejo accepts returns on ready-to-wear items within 5 working days of purchase and offers exchanges when pieces are returned in good condition with no stains or tears.
+
+Returns are not accepted on custom orders (ready-to-wear or bridal), items bought on sale, or items marked as final sale.
+
+For all returns and exchanges, the customer bears the delivery cost of shipping. The customer is responsible for ensuring the item reaches our processing unit. Once an item for return is received, we acknowledge receipt and ship the exchanged item to the customer.
+
+For other issues with your order, contact us at info@sheyeoladejo.com.
+
+## RETURN POLICY
+
+- We accept exchanges and offer store credit for full-priced items in good condition, sent back within 5 working days after receiving your order.
+- The customer bears the delivery cost for all exchanges.
+- Delivery charges are refunded only when goods are faulty. Please allow 3 business days for a refund to be processed on approved damaged merchandise.
+- All custom sizing sales are final.
+- All sale items are final.
+- Items approved by the client after fittings and brought back for alterations will incur an alteration cost.
+
+## REFUNDS
+
+SheyeOladejo does not offer refunds but can offer store credit for items returned in good condition within the 5-day return window.
+        {%- endcapture -%}
+      {%- elsif policy == 'privacy_policy' -%}
+        {%- assign policy_heading = 'Privacy policy' -%}
+        {%- capture policy_body -%}
+SheyeOladejo is completely committed to protecting the privacy of our site visitors and customers. We will not disclose information about our customers to third parties except where it is part of providing a service to you.
+
+## CONSENT
+
+Your consent is important to us. We will never sell your name, address, e-mail address, credit card information or any other personal information to any third party without your consent.
+
+## COMMUNICATION & MARKETING
+
+If you have made a purchase from our store, we may occasionally update you on our latest products, news and special offers via e-mail if you opt-in to receive e-mail marketing communications from us. You can opt-out at any time.
+
+## WEBSITE STATISTICS
+
+We may record statistics about the number of visitors to this website or number of purchases made for improvement purposes, to help improve our services and provide the most appropriate products.
+
+## PROTECTING YOUR SECURITY
+
+We may use personal information provided by you in order to fulfill necessary anti-fraud checks. This information may be disclosed to a credit reference or fraud prevention agency, which may keep a record of that information. This is done only to confirm identity for security purposes.
+
+## THIRD PARTY WEBSITES
+
+Our site may contain links to and from other websites. If you follow a link to any of these websites, please note that they have their own privacy policies and we do not accept any liability for these policies.
+        {%- endcapture -%}
+      {%- elsif policy == 'payment_policy' -%}
+        {%- assign policy_heading = 'Payment policy' -%}
+        {%- capture policy_body -%}
+## PAYMENT POLICY
+
+Orders are processed only after payment has been confirmed.
+
+We accept bank transfer to our Naira, UK, US and EUR accounts, as well as credit and debit card payments.
+
+NGN Account: SheyeOladejo Global Ventures, GTBANK, 0228230011
+USD Account: SheyeOladejo Global Ventures, GTBANK, 0547249536
+EUR Account: SheyeOladejo Global Ventures, GTBANK, 0547250358
+GBP Account: SheyeOladejo Global Ventures, GTBANK, 0547250341
+
+## SIZING
+
+Are your pieces true to size?
+
+Some styles may run true-to-size, run-large, or run-small. Please check product descriptions or product-specific size guides for style-specific size variations, or contact customer care for sizing assistance.
+
+## ALTERATIONS
+
+- We strongly advise custom size clients to come in for a fitting or send images or videos of the pieces on them for virtual fittings if they cannot come to the studio.
+- Custom sizing is at an additional cost of $30.
+- Alterations on non-custom orders are at an additional cost of $30.
+        {%- endcapture -%}
+      {%- elsif policy == 'delivery_policy' -%}
+        {%- assign policy_heading = 'Delivery policy' -%}
+        {%- capture policy_body -%}
+## DELIVERY POLICY
+
+Orders are processed within 2 to 5 business days after payment confirmation.
+
+Delivery timelines vary by destination and shipping method selected at checkout. During high-volume periods, processing and transit may take longer than usual.
+
+## LOCAL DELIVERY (NIGERIA)
+
+Estimated delivery for local orders is 2 to 7 business days after dispatch. You will receive tracking information once your order has been shipped.
+
+## INTERNATIONAL SHIPPING
+
+International shipping timelines vary by country and courier. Customers are responsible for customs duties, taxes, and import fees applicable in their destination country.
+
+## FAILED DELIVERY ATTEMPTS
+
+If delivery fails because of incorrect address details or repeated missed delivery attempts, additional delivery charges may apply for re-dispatch.
+
+## SUPPORT
+
+For delivery-related enquiries, please contact us at info@sheyeoladejo.com with your order number.
+        {%- endcapture -%}
+      {%- else -%}
+        {%- assign policy_heading = page.title | default: 'Policy' -%}
+        {%- assign policy_body = '' -%}
+      {%- endif -%}
+
+      <h1 class="policy-content__heading">{{ section.settings.heading | default: policy_heading | escape }}</h1>
+
+      {%- if policy_body != blank -%}
+        <div class="policy-content__rte policy-content__rte--text">
+          {%- assign segments = policy_body | split: '
+' -%}
+          {%- assign in_list = false -%}
+          {%- for line in segments -%}
+            {%- assign trimmed = line | strip -%}
+            {%- if trimmed == '' -%}
+              {%- if in_list -%}
+                </ul>
+                {%- assign in_list = false -%}
+              {%- endif -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- assign line_start = trimmed | slice: 0, 2 -%}
+            {%- assign line_start_three = trimmed | slice: 0, 3 -%}
+            {%- if line_start_three == '## ' -%}
+              {%- if in_list -%}
+                </ul>
+                {%- assign in_list = false -%}
+              {%- endif -%}
+              {%- assign heading_text = trimmed | remove_first: '## ' | strip -%}
+              <h2 class="policy-content__subheading">{{ heading_text | escape }}</h2>
+            {%- elsif line_start == '- ' -%}
+              {%- unless in_list -%}
+                <ul class="policy-content__list">
+                  {%- assign in_list = true -%}
+              {%- endunless -%}
+              {%- assign li_text = trimmed | remove_first: '- ' | strip -%}
+              <li>{{ li_text | escape }}</li>
+            {%- else -%}
+              {%- if in_list -%}
+                </ul>
+                {%- assign in_list = false -%}
+              {%- endif -%}
+              <p>{{ trimmed | escape }}</p>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if in_list -%}</ul>{%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .policy-content__inner {
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+  .policy-content__heading {
+    margin: 0 0 2rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    text-align: center;
+  }
+  .policy-content__block {
+    margin-bottom: 2rem;
+  }
+  .policy-content__subheading {
+    margin: 0 0 0.8rem;
+    font-family: var(--font-heading-family);
+    font-size: clamp(1rem, 2.2vw, 1.7rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
+  .policy-content__rte {
+    color: rgba(var(--color-foreground), 0.9);
+    line-height: 1.8;
+  }
+  .policy-content__rte p,
+  .policy-content__rte .policy-content__list {
+    margin: 0 0 0.8rem;
+  }
+  .policy-content__rte .policy-content__list {
+    padding-left: 1.5rem;
+  }
+  .policy-content__rte li {
+    margin-bottom: 0.25rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Policy content",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "policy_type",
+      "label": "Policy page (when using default content)",
+      "default": "returns_and_exchanges",
+      "options": [
+        { "value": "returns_and_exchanges", "label": "Returns and exchanges" },
+        { "value": "privacy_policy", "label": "Privacy policy" },
+        { "value": "payment_policy", "label": "Payment policy" },
+        { "value": "delivery_policy", "label": "Delivery policy" }
+      ],
+      "info": "Used when no content blocks are added. Add blocks in the theme editor to override with custom content (plain text)."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Page heading"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 128
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 128
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section title"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content (plain text; one paragraph per line)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Policy content",
+      "settings": {
+        "policy_type": "returns_and_exchanges"
+      }
+    }
+  ]
+}
+{% endschema %}

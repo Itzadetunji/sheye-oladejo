@@ -1,0 +1,196 @@
+<section
+  class="book-appointment-or-couture book-appointment-or-couture--{{ section.id }}"
+  aria-label="{{ section.settings.section_heading | default: 'Book appointment or couture' | escape }}"
+>
+  <div class="book-appointment-or-couture__grid">
+    <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--left">
+      {%- if section.settings.image_left != blank -%}
+        {{
+          section.settings.image_left
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            class: 'book-appointment-or-couture__img',
+            sizes: '50vw',
+            widths: '375, 550, 750, 1100, 1200'
+        }}
+      {%- else -%}
+        <div class="book-appointment-or-couture__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+      <a
+        href="{{ section.settings.left_button_link | default: '/shop' }}"
+        class="book-appointment-or-couture__btn button"
+      >
+        {{ section.settings.left_button_text | default: 'BESPOKE SERVICES' | escape }}
+      </a>
+    </div>
+
+    <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--right">
+      {%- if section.settings.image_right != blank -%}
+        {{
+          section.settings.image_right
+          | image_url: width: 1200
+          | image_tag:
+            loading: 'lazy',
+            class: 'book-appointment-or-couture__img',
+            sizes: '50vw',
+            widths: '375, 550, 750, 1100, 1200'
+        }}
+      {%- else -%}
+        <div class="book-appointment-or-couture__placeholder">
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+      <a
+        href="{{ section.settings.right_button_link | default: '/book-consultation' }}"
+        class="book-appointment-or-couture__btn button"
+      >
+        {{ section.settings.right_button_text | default: 'BRIDAL COUTURE' | escape }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{%- style -%}
+  .book-appointment-or-couture--{{ section.id }} {
+    --book-appointment-bg: {{ section.settings.background_color }};
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__tile {
+    position: relative;
+    min-height: 30rem;
+    overflow: hidden;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  @media screen and (max-width: 749px) {
+    .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn {
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      min-height: auto;
+    }
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__placeholder {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__placeholder .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    display: block;
+  }
+
+  @media screen and (min-width: 750px) {
+    .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__grid {
+      grid-template-columns: 1fr 1fr;
+      min-height: clamp(28rem, 50vw, 42rem);
+    }
+
+    .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__tile {
+      min-height: clamp(28rem, 50vw, 42rem);
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Appointment & Couture",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading (for accessibility)",
+      "default": "Book appointment or couture"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Left image"
+    },
+    {
+      "type": "text",
+      "id": "left_button_text",
+      "label": "Left button text",
+      "default": "COUTURE"
+    },
+    {
+      "type": "url",
+      "id": "left_button_link",
+      "label": "Left button link",
+      "info": "Defaults to /shop if empty"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Right image"
+    },
+    {
+      "type": "text",
+      "id": "right_button_text",
+      "label": "Right button text",
+      "default": "READY TO WEAR"
+    },
+    {
+      "type": "url",
+      "id": "right_button_link",
+      "label": "Right button link",
+      "info": "Defaults to /book-consultation if empty"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F3EDE8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Appointment & Couture"
+    }
+  ]
+}
+{% endschema %}

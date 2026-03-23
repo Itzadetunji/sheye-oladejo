@@ -1,0 +1,16 @@
+.related-products {
+	display: block;
+}
+
+.related-products__heading {
+	margin: 0 0 3rem;
+	text-transform: uppercase;
+}
+
+.related-products__heading--center {
+	text-align: center;
+}
+
+.related-products__block + .related-products__block {
+	margin-top: 4rem;
+}

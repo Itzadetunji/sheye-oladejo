@@ -1,0 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "collection-1-boca-magic",
+      "settings": {
+        "hero_title": "Boca Magic",
+        "intro_heading": "Boca Magic",
+        "intro_body_1": "The Boca Magic Collection comes alive with music, laughter, and pulsating dance steps, inspired by the vibrant neighborhood of La Boca in Buenos Aires.",
+        "intro_body_2": "Designed to inspire fresh confidence in women, this collection reflects bright colors, romantic energy, and spontaneous delight.",
+        "callout_text": "Feel the Magic in Every Piece with Boca",
+        "canvas_color": "#b7ac9f",
+        "text_color": "#1e1e1e",
+        "muted_text_color": "#4a4a4a"
+      }
+    }
+  },
+  "order": ["main"]
+}

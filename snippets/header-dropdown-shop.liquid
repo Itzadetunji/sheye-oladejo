@@ -1,0 +1,33 @@
+{% comment %}
+  Hover dropdown content for the SHOP nav item.
+  Edit this file to change links and images for the Shop mega menu.
+{% endcomment %}
+<div class="header-expanded-ui__discover">
+  <h3 class="header-expanded-ui__heading">READY-TO-WEAR</h3>
+  <ul class="header-expanded-ui__list" role="list">
+    <li><a href="{{ routes.all_products_collection_url }}?filter.p.m.custom.tops=1" class="header-expanded-ui__link link">TOPS</a></li>
+    <li><a href="{{ routes.collections_url }}/dresses" class="header-expanded-ui__link link">DRESSES</a></li>
+    <li><a href="{{ routes.collections_url }}/knitwear" class="header-expanded-ui__link link">KNITWEAR</a></li>
+    <li><a href="{{ routes.collections_url }}/pants" class="header-expanded-ui__link link">PANTS</a></li>
+    <li><a href="{{ routes.collections_url }}/denim" class="header-expanded-ui__link link">DENIM</a></li>
+    <li><a href="{{ routes.collections_url }}/jackets-coats" class="header-expanded-ui__link link">JACKETS &amp; COATS</a></li>
+    <li><a href="{{ routes.collections_url }}/skirts-shorts" class="header-expanded-ui__link link">SKIRTS &amp; SHORTS</a></li>
+    <li><a href="{{ routes.collections_url }}/t-shirts-sweatshirts" class="header-expanded-ui__link link">T-SHIRTS &amp; SWEATSHIRTS</a></li>
+    <li><a href="{{ routes.collections_url }}/swimwear" class="header-expanded-ui__link link">SWIMWEAR</a></li>
+    <li><a href="{{ routes.collections_url }}/scarves" class="header-expanded-ui__link link">SCARVES</a></li>
+  </ul>
+</div>
+<div class="header-expanded-ui__images">
+  <a href="{{ routes.collections_url }}/new" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">NEW IN</div>
+    <span class="header-expanded-ui__card-overlay">NEW IN</span>
+  </a>
+  <a href="{{ routes.collections_url }}/best-sellers" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">BEST SELLERS</div>
+    <span class="header-expanded-ui__card-overlay">BEST SELLERS</span>
+  </a>
+  <a href="{{ routes.collections_url }}/last-chance" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">LAST CHANCE</div>
+    <span class="header-expanded-ui__card-overlay">LAST CHANCE</span>
+  </a>
+</div>

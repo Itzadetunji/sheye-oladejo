@@ -1,0 +1,29 @@
+{% comment %}
+  Hover dropdown content for the BEST SELLERS nav item.
+  Edit this file to change links and images for the Best Sellers mega menu.
+{% endcomment %}
+<div class="header-expanded-ui__discover">
+  <h3 class="header-expanded-ui__heading">BEST SELLERS</h3>
+  <ul class="header-expanded-ui__list" role="list">
+    <li><a href="{{ routes.collections_url }}/best-sellers" class="header-expanded-ui__link link">ALL BEST SELLERS</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers?filter.p.product_type=DRESSES" class="header-expanded-ui__link link">DRESSES</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers?filter.p.product_type=TOPS" class="header-expanded-ui__link link">TOPS</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers?filter.p.product_type=KNITWEAR" class="header-expanded-ui__link link">KNITWEAR</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers?filter.p.product_type=ACCESSORIES" class="header-expanded-ui__link link">ACCESSORIES</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers?filter.p.product_type=SHOES" class="header-expanded-ui__link link">SHOES</a></li>
+  </ul>
+</div>
+<div class="header-expanded-ui__images">
+  <a href="{{ routes.collections_url }}/best-sellers" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">SHOP BEST SELLERS</div>
+    <span class="header-expanded-ui__card-overlay">SHOP BEST SELLERS</span>
+  </a>
+  <a href="{{ routes.collections_url }}/new" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">NEW IN</div>
+    <span class="header-expanded-ui__card-overlay">NEW IN</span>
+  </a>
+  <a href="{{ routes.collections_url }}" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">COLLECTIONS</div>
+    <span class="header-expanded-ui__card-overlay">COLLECTIONS</span>
+  </a>
+</div>

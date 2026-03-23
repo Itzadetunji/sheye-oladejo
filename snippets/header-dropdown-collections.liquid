@@ -1,0 +1,30 @@
+{% comment %}
+  Hover dropdown content for the COLLECTIONS nav item.
+  Edit this file to change links and images for the Collections mega menu.
+{% endcomment %}
+<div class="header-expanded-ui__discover">
+  <h3 class="header-expanded-ui__heading">COLLECTIONS</h3>
+  <ul class="header-expanded-ui__list" role="list">
+    <li><a href="{{ routes.collections_url }}" class="header-expanded-ui__link link">ALL COLLECTIONS</a></li>
+    <li><a href="{{ routes.collections_url }}/new" class="header-expanded-ui__link link">NEW ARRIVALS</a></li>
+    <li><a href="{{ routes.collections_url }}/best-sellers" class="header-expanded-ui__link link">BEST SELLERS</a></li>
+    <li><a href="{{ routes.collections_url }}/dresses" class="header-expanded-ui__link link">DRESSES</a></li>
+    <li><a href="{{ routes.collections_url }}/accessories" class="header-expanded-ui__link link">ACCESSORIES</a></li>
+    <li><a href="{{ routes.collections_url }}/shoes" class="header-expanded-ui__link link">SHOES</a></li>
+    <li><a href="{{ routes.collections_url }}/leather-goods" class="header-expanded-ui__link link">LEATHER GOODS</a></li>
+  </ul>
+</div>
+<div class="header-expanded-ui__images">
+  <a href="{{ routes.collections_url }}/new" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">NEW</div>
+    <span class="header-expanded-ui__card-overlay">NEW</span>
+  </a>
+  <a href="{{ routes.collections_url }}/best-sellers" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">BEST SELLERS</div>
+    <span class="header-expanded-ui__card-overlay">BEST SELLERS</span>
+  </a>
+  <a href="{{ routes.collections_url }}" class="header-expanded-ui__card">
+    <div class="header-expanded-ui__card-placeholder">VIEW ALL</div>
+    <span class="header-expanded-ui__card-overlay">VIEW ALL</span>
+  </a>
+</div>

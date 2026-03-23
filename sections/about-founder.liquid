@@ -1,0 +1,178 @@
+{%- style -%}
+  .about-founder-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .about-founder-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="about-founder about-founder-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" aria-labelledby="about-founder-heading-{{ section.id }}">
+  <div class="about-founder__inner page-width">
+    <div class="about-founder__grid">
+      <div class="about-founder__media about-founder__media--portrait">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 900
+            | image_tag: loading: 'lazy', class: 'about-founder__image', widths: '400, 550, 700, 900', sizes: '(min-width: 990px) 50vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="about-founder__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+        {%- endif -%}
+      </div>
+      <div class="about-founder__text">
+        <h2 id="about-founder-heading-{{ section.id }}" class="about-founder__heading">
+          {{ section.settings.heading | default: 'A STORY OF SOLIDARITY' | escape }}
+        </h2>
+        {%- if section.settings.body != blank -%}
+          <div class="about-founder__body">
+            {%- assign lines = section.settings.body | split: '
+' -%}
+            {%- for line in lines -%}
+              {%- assign trimmed = line | strip -%}
+              {%- if trimmed != '' -%}<p>{{ trimmed | escape }}</p>{%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-founder {
+    background-color: rgb(var(--color-background));
+  }
+  .about-founder__inner { margin: 0 auto; }
+  .about-founder__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: start;
+  }
+  .about-founder__media,
+  .about-founder__text {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  @media screen and (min-width: 990px) {
+    .about-founder__grid {
+      flex-wrap: nowrap;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-founder__media {
+      flex: 0 1 50%;
+      max-width: 50%;
+      order: 1;
+    }
+    .about-founder__text {
+      flex: 0 1 50%;
+      max-width: 50%;
+      order: 2;
+    }
+  }
+  .about-founder__text {
+    text-align: left;
+  }
+  .about-founder__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    margin: 0 0 1.5rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .about-founder__body {
+    font-family: var(--font-body-family);
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    line-height: 1.7;
+    color: rgba(var(--color-foreground), 0.85);
+    text-align: center;
+  }
+  .about-founder__body p { margin: 0 0 1em; }
+  .about-founder__body p:last-child { margin-bottom: 0; }
+  .about-founder__body a { text-decoration: underline; }
+  .about-founder__media { width: 100%; }
+  .about-founder__media--portrait { aspect-ratio: 3 / 4; overflow: hidden; }
+  .about-founder__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .about-founder__placeholder {
+    aspect-ratio: 3 / 4;
+    background: rgba(var(--color-foreground), 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-founder__placeholder .placeholder-svg { width: 60%; height: 60%; opacity: 0.3; }
+</style>
+
+{% schema %}
+{
+  "name": "Meet the founder",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A STORY OF SOLIDARITY"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body text",
+      "default": "OluwaSheye Oladejo founded SheyeOladejo with a vision of creating a more equitable future, where craftsmanship, personal connection, and sustainability are at the heart of every piece.\n\nSince its founding, we have been dedicated to offering exceptional quality and a personalized experience for every client.\n\nDiscover more about our story and values."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ]
+}
+{% endschema %}

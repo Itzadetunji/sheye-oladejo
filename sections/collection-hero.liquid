@@ -1,0 +1,195 @@
+{%- style -%}
+  .collection-hero-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .collection-hero-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign primary_dark = settings.color_primary | default: '#1D1D1B' -%}
+
+<section
+  class="collection-hero collection-hero-{{ section.id }}"
+  aria-labelledby="collection-hero-heading-{{ section.id }}"
+  style="background-color: {{ primary_dark }};"
+>
+  <div class="collection-hero__media">
+    {%- if section.settings.video != blank -%}
+      {{
+        section.settings.video
+        | video_tag:
+          image_size: '1920x',
+          autoplay: true,
+          loop: true,
+          controls: false,
+          muted: true,
+          class: 'collection-hero__video'
+      }}
+    {%- elsif section.settings.video_url != blank -%}
+      {%- liquid
+        assign video_id = section.settings.video_url.id
+        if section.settings.video_url.type == 'youtube'
+          assign video_src = 'https://www.youtube.com/embed/' | append: video_id | append: '?autoplay=1&mute=1&loop=1&playlist=' | append: video_id | append: '&controls=0&showinfo=0&rel=0'
+        else
+          assign video_src = 'https://player.vimeo.com/video/' | append: video_id | append: '?autoplay=1&muted=1&loop=1&background=1'
+        endif
+      -%}
+      <iframe
+        class="collection-hero__iframe"
+        src="{{ video_src }}"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        title="{{ section.settings.heading | escape }}"
+      ></iframe>
+    {%- elsif section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 1920
+        | image_tag: loading: 'eager', class: 'collection-hero__image', sizes: '100vw', widths: '750, 1100, 1500, 1920'
+      }}
+    {%- endif -%}
+    <div class="collection-hero__overlay" style="background-color: {{ primary_dark }}; opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+  </div>
+
+  <div class="collection-hero__content">
+    <h1 id="collection-hero-heading-{{ section.id }}" class="collection-hero__heading">
+      {{ section.settings.heading | default: 'A STORY OF SOLIDARITY' | escape }}
+    </h1>
+  </div>
+</section>
+
+<style>
+  .collection-hero {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .collection-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+  .collection-hero__video,
+  .collection-hero__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .collection-hero__iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100%;
+    min-width: 177.78vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+  }
+  .collection-hero__overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .collection-hero__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .collection-hero__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection hero",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A STORY OF SOLIDARITY"
+    },
+    {
+      "type": "header",
+      "content": "Background media"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (used if no video set)"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Video (uploaded). Loops without sound or controls."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube or Vimeo). Loops without controls.",
+      "accept": ["youtube", "vimeo"]
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Dark overlay on media",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection hero"
+    }
+  ]
+}
+{% endschema %}

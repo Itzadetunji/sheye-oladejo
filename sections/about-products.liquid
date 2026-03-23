@@ -1,0 +1,317 @@
+{%- style -%}
+  .about-products-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .about-products-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- assign blocks = section.blocks -%}
+{%- assign accent_linen = settings.color_accent_linen | default: '#EDE9CA' -%}
+{%- assign padding_color = settings.color_accent_grey | default: '#D5D0CD' -%}
+
+<section class="about-products about-products-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" aria-labelledby="about-products-heading-{{ section.id }}">
+  <div class="about-products__inner page-width">
+    <h2 id="about-products-heading-{{ section.id }}" class="about-products__title visually-hidden">Our products</h2>
+    <div class="about-products__masonry">
+      {%- comment -%} Col 1: 25%, 50%, 24% — blocks 0, 3, 6 {%- endcomment -%}
+      <div class="about-products__col">
+        {%- for i in (0..2) -%}
+          {%- assign idx = 0 -%}
+          {%- if i == 0 -%}{%- assign idx = 0 -%}
+          {%- elsif i == 1 -%}{%- assign idx = 3 -%}
+          {%- else -%}{%- assign idx = 6 -%}
+          {%- endif -%}
+          {%- assign block = blocks[idx] -%}
+          {%- if block.type == 'image' -%}
+            <div class="about-products__cell about-products__cell--img" {{ block.shopify_attributes }}>
+              {%- render 'about-products-image', block: block -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- comment -%} Col 2: 25% (img), 40% (tagline), 30% (img), 38% (img pad) — blocks 2, 1, 4, 7 — tagline in top-middle below first image {%- endcomment -%}
+      <div class="about-products__col">
+        {%- assign tagline_block = blocks[1] -%}
+        {%- if tagline_block.type == 'tagline' -%}
+          <div class="about-products__cell about-products__cell--tagline" style="background-color: {{ accent_linen }};" {{ tagline_block.shopify_attributes }}>
+            {%- if tagline_block.settings.quote != blank -%}
+              <p class="about-products__tagline-quote">{{ tagline_block.settings.quote | escape }}</p>
+            {%- endif -%}
+            <p class="about-products__tagline-main">{{ tagline_block.settings.heading | default: 'TIMELESS FEMINITY, SCULPTERED IN COUTURE' | escape }}</p>
+            {%- if tagline_block.settings.subheading != blank -%}
+              <p class="about-products__tagline-sub">{{ tagline_block.settings.subheading | escape }}</p>
+            {%- endif -%}
+            {%- if tagline_block.settings.button_label != blank and tagline_block.settings.button_link != blank -%}
+              <a href="{{ tagline_block.settings.button_link }}" class="about-products__tagline-button" aria-label="{{ tagline_block.settings.button_label | escape }}">
+                <span class="about-products__play-icon" aria-hidden="true">▶</span>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+        {%- assign block4 = blocks[4] -%}
+        {%- if block4.type == 'image' -%}
+          <div class="about-products__cell about-products__cell--img" {{ block4.shopify_attributes }}>
+            {%- render 'about-products-image', block: block4 -%}
+          </div>
+        {%- endif -%}
+        {%- assign block7 = blocks[7] -%}
+        {%- if block7.type == 'image' -%}
+          <div class="about-products__cell about-products__cell--img about-products__cell--padded" {{ block7.shopify_attributes }}>
+            <div class="about-products__cell-pad" style="background-color: {{ padding_color }};">
+              {%- render 'about-products-image', block: block7 -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Col 3: 30%, 38% — blocks 5, 8 (items 6, 9) {%- endcomment -%}
+      <div class="about-products__col">
+        {%- assign col3_indices = "5,8" | split: "," -%}
+        {%- for i in (0..1) -%}
+          {%- assign idx = col3_indices[i] | plus: 0 -%}
+          {%- if idx < blocks.size -%}
+            {%- assign block = blocks[idx] -%}
+            {%- if block.type == 'image' -%}
+              <div class="about-products__cell about-products__cell--img{% if i == 0 %} about-products__cell--padded{% endif %}" {{ block.shopify_attributes }}>
+                {%- if i == 0 -%}
+                  <div class="about-products__cell-pad" style="background-color: {{ padding_color }};">
+                    {%- render 'about-products-image', block: block -%}
+                  </div>
+                {%- else -%}
+                  {%- render 'about-products-image', block: block -%}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-products { background-color: rgb(var(--color-background)); }
+  .about-products__inner { margin: 0 auto; }
+
+  .about-products__masonry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  @media screen and (min-width: 750px) {
+    .about-products__masonry {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+  @media screen and (min-width: 990px) {
+    .about-products__masonry {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      height: 1529px;
+    }
+    .about-products__col {
+      display: grid;
+      gap: 1rem;
+      min-height: 0;
+      height: 100%;
+    }
+    .about-products__col:nth-child(1) {
+      grid-template-rows: 25fr 50fr 24fr;
+    }
+    .about-products__col:nth-child(2) {
+      grid-template-rows: 40fr 30fr 30fr;
+    }
+    .about-products__col:nth-child(3) {
+      grid-template-rows: 30fr 38fr;
+    }
+  }
+
+  .about-products__cell {
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+  }
+  .about-products__cell--img {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  .about-products__cell--padded .about-products__cell-pad {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .about-products__cell--padded .about-products__cell-pad img,
+  .about-products__cell--img .about-products__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .about-products__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-products__cell--tagline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .about-products__tagline-quote {
+    font-family: var(--font-body-family);
+    font-size: 0.594rem;
+    font-style: italic;
+    color: rgba(var(--color-foreground), 0.85);
+    margin: 0 0 0.5rem;
+  }
+  .about-products__tagline-main {
+    font-family: var(--font-heading-family);
+    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+    margin: 0 0 0.25rem;
+  }
+  .about-products__tagline-sub {
+    font-size: 0.5625rem;
+    letter-spacing: 0.03em;
+    color: rgba(var(--color-foreground), 0.75);
+    margin: 0 0 0.75rem;
+  }
+  .about-products__play-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+  }
+  .about-products__tagline-button {
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Our products",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (optional – uses placeholder if blank)"
+        }
+      ]
+    },
+    {
+      "type": "tagline",
+      "name": "Tagline / podcast block",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "quote",
+          "label": "Quote (optional)"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Tagline",
+          "default": "TIMELESS FEMINITY, SCULPTERED IN COUTURE"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading (optional)"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label (for accessibility)"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our products",
+      "blocks": [
+        { "type": "image" },
+        { "type": "tagline" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" },
+        { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}
