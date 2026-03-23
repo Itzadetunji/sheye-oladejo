@@ -1,3 +1,26 @@
+/*
+ * Alternating 3-2 layout on mobile / tablet (<990px, flex layout):
+ * Theme naming vs desktop grid (6 columns):
+ * - grid__item--span-2 → each spans 2 cols → 3 products per row on desktop
+ * - grid__item--span-3 → each spans 3 cols → 2 products per row on desktop
+ * Mobile:
+ * - was 3-up (span-2) → 2 per row
+ * - was 2-up (span-3) → 1 per row
+ */
+@media screen and (max-width: 989px) {
+	.product-grid--alternating-3-2 .grid__item--span-2 {
+		width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		flex: 0 0 calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+	}
+
+	.product-grid--alternating-3-2 .grid__item--span-3 {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
+	}
+}
+
 /* Alternating 3-2 row layout for collections/all */
 @media screen and (min-width: 990px) {
 	.product-grid--alternating-3-2 {
@@ -138,4 +161,11 @@
 .collection__view-all {
 	text-transform: uppercase;
 	margin-top: 4rem;
+}
+
+/* Product cards align from the left on small screens; desktop often centers the grid group */
+@media screen and (max-width: 749px) {
+	.collection .product-grid {
+		justify-content: flex-start;
+	}
 }

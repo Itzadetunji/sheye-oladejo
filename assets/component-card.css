@@ -547,10 +547,14 @@
 	flex-grow: 1;
 }
 
+/* Portrait media: aspect ratio preserved while resizing; height capped at 640px (Sezane-style) */
 .card--stacked-product {
 	display: flex;
 	flex-direction: column;
-	height: 650px;
+	height: auto;
+	min-height: 0;
+	position: relative;
+	overflow: hidden;
 }
 
 .card--stacked-product.card--media .card__inner.ratio::before {
@@ -562,14 +566,18 @@
 	min-height: 0;
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 }
 
 .card--stacked-product .card__inner .card__media {
 	position: relative;
-	flex: 1 1 auto;
+	flex: 0 1 auto;
 	width: 100%;
-	margin: 0;
+	max-width: min(100%, 480px);
+	margin-left: 0;
+	margin-right: auto;
 	aspect-ratio: 3 / 4;
+	max-height: 640px;
 	overflow: hidden;
 }
 
@@ -588,6 +596,33 @@
 	object-position: top center;
 }
 
+/* Mobile: card + image area use full grid column width; 3:4 drives height (no 480px / 640px cap) */
+@media screen and (max-width: 749px) {
+	.product-card-wrapper {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.card--stacked-product {
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.card--stacked-product .card__inner {
+		align-items: stretch;
+		width: 100%;
+	}
+
+	.card--stacked-product .card__inner .card__media {
+		width: 100%;
+		max-width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+		max-height: none;
+		align-self: stretch;
+	}
+}
+
 .card--stacked-product.card--media .card__inner .card__content {
 	display: none;
 }
@@ -595,20 +630,78 @@
 .card--stacked-product > .card__content {
 	margin-top: 1rem;
 	padding: 0;
+	width: 100%;
+}
+
+.card__heading a {
+	font-weight: 600;
+	padding: 0 0.75rem;
+}
+
+/* Stacked product: name on first line, price on second (mobile); "NAME — PRICE" on desktop */
+@media screen and (max-width: 749px) {
+	.card--stacked-product .card__heading-link {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+		text-align: left;
+	}
+
+	.card--stacked-product .card__heading-link .card__heading-line {
+		display: block;
+	}
+
+	/* No hover overlay / pointer swap on touch — bottom card content stays active */
+	.card-wrapper:hover .card--stacked-product .card-hover-info,
+	.card-wrapper:focus-within .card--stacked-product .card-hover-info {
+		opacity: 0 !important;
+		transform: translateY(10px) !important;
+		pointer-events: none !important;
+	}
+
+	.card-wrapper:hover .card--stacked-product > .card__content,
+	.card-wrapper:focus-within .card--stacked-product > .card__content {
+		pointer-events: auto !important;
+	}
+}
+
+@media screen and (min-width: 750px) {
+	.card--stacked-product .card__heading-link {
+		display: inline;
+	}
+
+	.card--stacked-product .card__heading-line {
+		display: inline;
+	}
+
+	.card--stacked-product .card__heading-line--title::after {
+		content: " — ";
+	}
 }
 
 .card--stacked-product > .card__content .card__information {
-	text-align: center;
+	text-align: left;
 	padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+	.card--stacked-product .card__inner {
+		align-items: center;
+	}
+
+	.card--stacked-product .card__inner .card__media {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.card--stacked-product > .card__content .card__information {
+		text-align: center;
+	}
 }
 
 .card--stacked-product > .card__content .card-information {
 	display: none;
-}
-
-.card--stacked-product {
-	position: relative;
-	overflow: hidden;
 }
 
 .card--stacked-product .card-hover-info {

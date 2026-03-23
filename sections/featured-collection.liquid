@@ -43,13 +43,26 @@
   }
 
   #collection-{{ section.id }} .product-grid {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 750px) {
+    #collection-{{ section.id }} .product-grid {
+      justify-content: center;
+    }
   }
 
   #collection-{{ section.id }} .card__heading,
   #collection-{{ section.id }} .card__heading a {
     text-transform: uppercase;
-    text-align: center;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    #collection-{{ section.id }} .card__heading,
+    #collection-{{ section.id }} .card__heading a {
+      text-align: center;
+    }
   }
 {%- endstyle -%}
 

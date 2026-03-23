@@ -182,7 +182,7 @@
     container-name: appointment-couture-carousel;
     flex: 1 1 auto;
     min-width: 0;
-    min-height: 480px;
+    min-height: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -207,18 +207,15 @@
     align-self: stretch;
   }
 
-  /* ≤1024px: one slide per view; >1024px: two slides (default above) */
-  @media screen and (max-width: 1024px) {
-    .appointment-couture-carousel__slide {
-      flex: 0 0 100cqi;
-    }
-  }
-
   .appointment-couture-carousel__media {
     position: relative;
     width: 100%;
-    min-height: 480px;
+    max-width: min(100%, 480px);
+    margin-inline: auto;
     aspect-ratio: 3 / 4;
+    max-height: 640px;
+    min-height: 0;
+    height: auto;
     border-radius: 0.25rem;
     flex-shrink: 0;
     overflow: hidden;
@@ -258,9 +255,46 @@
     cursor: not-allowed;
   }
 
+  /* ≤1024px: one slide; arrows overlaid; full-width media (no carousel padding / media bg) */
   @media screen and (max-width: 1024px) {
+    .appointment-couture-carousel {
+      position: relative;
+      display: block;
+      padding: 0;
+      gap: 0;
+    }
+
+    .appointment-couture-carousel__viewport {
+      width: 100%;
+      flex: none;
+    }
+
+    .appointment-couture-carousel__slide {
+      flex: 0 0 100cqi;
+    }
+
     .appointment-couture-carousel__media {
-      min-height: 480px;
+      max-width: min(100%, 480px);
+      max-height: 640px;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .appointment-couture-carousel__btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      flex: none;
+      align-self: auto;
+    }
+
+    .appointment-couture-carousel__btn--prev {
+      left: 0.25rem;
+    }
+
+    .appointment-couture-carousel__btn--next {
+      right: 0.25rem;
     }
   }
 </style>
