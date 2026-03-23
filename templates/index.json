@@ -15,7 +15,7 @@
 				"heading": {
 					"type": "heading",
 					"settings": {
-						"heading": "TIMELESS FEMININITY SCULPTERED IN COUTURE",
+						"heading": "TIMELESS FEMININITY SCULPTERED IN COUTURE.",
 						"heading_size": "h0"
 					}
 				},
@@ -109,5 +109,10 @@
 			}
 		}
 	},
-	"order": ["image_banner", "book_appointment_or_couture", "latest_collection", "featured_collection"]
+	"order": [
+		"image_banner",
+		"book_appointment_or_couture",
+		"latest_collection",
+		"featured_collection"
+	]
 }

@@ -15,7 +15,10 @@
 {%- assign accent_linen = settings.color_accent_linen | default: '#EDE9CA' -%}
 {%- assign padding_color = settings.color_accent_grey | default: '#D5D0CD' -%}
 
-<section class="about-products about-products-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" aria-labelledby="about-products-heading-{{ section.id }}">
+<section
+  class="about-products about-products-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  aria-labelledby="about-products-heading-{{ section.id }}"
+>
   <div class="about-products__inner page-width">
     <h2 id="about-products-heading-{{ section.id }}" class="about-products__title visually-hidden">Our products</h2>
     <div class="about-products__masonry">
@@ -23,9 +26,12 @@
       <div class="about-products__col">
         {%- for i in (0..2) -%}
           {%- assign idx = 0 -%}
-          {%- if i == 0 -%}{%- assign idx = 0 -%}
-          {%- elsif i == 1 -%}{%- assign idx = 3 -%}
-          {%- else -%}{%- assign idx = 6 -%}
+          {%- if i == 0 -%}
+            {%- assign idx = 0 -%}
+          {%- elsif i == 1 -%}
+            {%- assign idx = 3 -%}
+          {%- else -%}
+            {%- assign idx = 6 -%}
           {%- endif -%}
           {%- assign block = blocks[idx] -%}
           {%- if block.type == 'image' -%}
@@ -40,16 +46,26 @@
       <div class="about-products__col">
         {%- assign tagline_block = blocks[1] -%}
         {%- if tagline_block.type == 'tagline' -%}
-          <div class="about-products__cell about-products__cell--tagline" style="background-color: {{ accent_linen }};" {{ tagline_block.shopify_attributes }}>
+          <div
+            class="about-products__cell about-products__cell--tagline"
+            style="background-color: {{ accent_linen }};"
+            {{ tagline_block.shopify_attributes }}
+          >
             {%- if tagline_block.settings.quote != blank -%}
               <p class="about-products__tagline-quote">{{ tagline_block.settings.quote | escape }}</p>
             {%- endif -%}
-            <p class="about-products__tagline-main">{{ tagline_block.settings.heading | default: 'TIMELESS FEMINITY, SCULPTERED IN COUTURE' | escape }}</p>
+            <p class="about-products__tagline-main">
+              {{ tagline_block.settings.heading | default: 'TIMELESS FEMINITY, SCULPTERED IN COUTURE' | escape }}
+            </p>
             {%- if tagline_block.settings.subheading != blank -%}
               <p class="about-products__tagline-sub">{{ tagline_block.settings.subheading | escape }}</p>
             {%- endif -%}
             {%- if tagline_block.settings.button_label != blank and tagline_block.settings.button_link != blank -%}
-              <a href="{{ tagline_block.settings.button_link }}" class="about-products__tagline-button" aria-label="{{ tagline_block.settings.button_label | escape }}">
+              <a
+                href="{{ tagline_block.settings.button_link }}"
+                class="about-products__tagline-button"
+                aria-label="{{ tagline_block.settings.button_label | escape }}"
+              >
                 <span class="about-products__play-icon" aria-hidden="true">▶</span>
               </a>
             {%- endif -%}
@@ -63,7 +79,10 @@
         {%- endif -%}
         {%- assign block7 = blocks[7] -%}
         {%- if block7.type == 'image' -%}
-          <div class="about-products__cell about-products__cell--img about-products__cell--padded" {{ block7.shopify_attributes }}>
+          <div
+            class="about-products__cell about-products__cell--img about-products__cell--padded"
+            {{ block7.shopify_attributes }}
+          >
             <div class="about-products__cell-pad" style="background-color: {{ padding_color }};">
               {%- render 'about-products-image', block: block7 -%}
             </div>
@@ -73,13 +92,16 @@
 
       {%- comment -%} Col 3: 30%, 38% — blocks 5, 8 (items 6, 9) {%- endcomment -%}
       <div class="about-products__col">
-        {%- assign col3_indices = "5,8" | split: "," -%}
+        {%- assign col3_indices = '5,8' | split: ',' -%}
         {%- for i in (0..1) -%}
           {%- assign idx = col3_indices[i] | plus: 0 -%}
           {%- if idx < blocks.size -%}
             {%- assign block = blocks[idx] -%}
             {%- if block.type == 'image' -%}
-              <div class="about-products__cell about-products__cell--img{% if i == 0 %} about-products__cell--padded{% endif %}" {{ block.shopify_attributes }}>
+              <div
+                class="about-products__cell about-products__cell--img{% if i == 0 %} about-products__cell--padded{% endif %}"
+                {{ block.shopify_attributes }}
+              >
                 {%- if i == 0 -%}
                   <div class="about-products__cell-pad" style="background-color: {{ padding_color }};">
                     {%- render 'about-products-image', block: block -%}
@@ -97,8 +119,12 @@
 </section>
 
 <style>
-  .about-products { background-color: rgb(var(--color-background)); }
-  .about-products__inner { margin: 0 auto; }
+  .about-products {
+    background-color: rgb(var(--color-background));
+  }
+  .about-products__inner {
+    margin: 0 auto;
+  }
 
   .about-products__masonry {
     display: grid;
@@ -277,7 +303,7 @@
           "type": "text",
           "id": "heading",
           "label": "Tagline",
-          "default": "TIMELESS FEMINITY, SCULPTERED IN COUTURE"
+          "default": "TIMELESS FEMINITY, SCULPTERED IN COUTURE."
         },
         {
           "type": "text",

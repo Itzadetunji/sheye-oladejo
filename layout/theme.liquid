@@ -302,9 +302,24 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+
+    {%- if template.name == 'collection' -%}
+      {%- style -%}
+        body.template-collection #MainContent {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+        @media screen and (min-width: 750px) {
+          body.template-collection #MainContent {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+          }
+        }
+      {%- endstyle -%}
+    {%- endif -%}
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if template.name == 'page' and template.suffix == 'about' %} template-about{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if template.name == 'page' and template.suffix == 'about' %} template-about{% endif %}{% if template.name == 'collection' %} template-collection{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

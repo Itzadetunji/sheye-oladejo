@@ -36,7 +36,17 @@
 
 <style>
   .about-values { background-color: rgb(var(--color-background)); }
-  .about-values__inner { margin: 0 auto; }
+  .about-values__inner {
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media screen and (min-width: 750px) {
+    .about-values__inner {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
   .about-values__heading {
     font-family: var(--font-heading-family);
     font-size: clamp(1.4rem, 5vw, 2.2rem);

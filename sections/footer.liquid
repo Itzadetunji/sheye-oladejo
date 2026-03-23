@@ -30,31 +30,47 @@
               class="footer-custom__logo-img"
               width="160"
               loading="lazy"
+              decoding="async"
             >
           </a>
         </div>
       </div>
 
       <div class="footer-custom__col">
-        <h2 class="footer-custom__heading">Need Help?</h2>
+        <h2 class="footer-custom__heading">{{ section.settings.help_column_heading | escape }}</h2>
         <div class="footer-custom__group">
-          <a href="{{ section.settings.link_faq }}" class="footer-custom__link">FAQ</a>
-          <a href="{{ section.settings.link_returns }}" class="footer-custom__link">Want to make a return?</a>
-          <a href="{{ section.settings.link_privacy }}" class="footer-custom__link">Privacy Policy</a>
-          <a href="{{ section.settings.link_payment }}" class="footer-custom__link">Payment Policy</a>
-          <a href="{{ section.settings.link_delivery }}" class="footer-custom__link">Delivery Policy</a>
-          <a href="{{ section.settings.link_contact }}" class="footer-custom__link">Contact</a>
+          <a
+            href="{{ section.settings.link_consultation }}"
+            class="footer-custom__link footer-custom__link__book-consultation"
+          >
+            {{ section.settings.label_consultation | escape }}
+          </a>
+          <a href="{{ section.settings.link_faq }}" class="footer-custom__link">
+            {{- section.settings.label_faq | escape -}}
+          </a>
+          <a href="{{ section.settings.link_returns }}" class="footer-custom__link">
+            {{- section.settings.label_returns | escape -}}
+          </a>
+          <a href="{{ section.settings.link_privacy }}" class="footer-custom__link">
+            {{- section.settings.label_privacy | escape -}}
+          </a>
+          <a href="{{ section.settings.link_payment }}" class="footer-custom__link">
+            {{- section.settings.label_payment | escape -}}
+          </a>
+          <a href="{{ section.settings.link_delivery }}" class="footer-custom__link">
+            {{- section.settings.label_delivery | escape -}}
+          </a>
         </div>
         <div class="footer-custom__group">
-          <p class="footer-custom__subheading">Contact:</p>
+          <p class="footer-custom__subheading">{{ section.settings.contact_subheading | escape }}</p>
           <p class="footer-custom__text">
-            Email:
+            {{ section.settings.label_email_prefix | escape }}:
             <a href="mailto:{{ section.settings.email }}" class="footer-custom__link footer-custom__link--inline">
               {{- section.settings.email -}}
             </a>
           </p>
           <p class="footer-custom__text">
-            WhatsApp:
+            {{ section.settings.label_whatsapp_prefix | escape }}:
             <a
               href="https://wa.me/{{ section.settings.whatsapp_number | remove: ' ' | remove: '+' }}"
               class="footer-custom__link footer-custom__link--inline"
@@ -65,22 +81,20 @@
             </a>
           </p>
           <p class="footer-custom__text">
-            Instagram:
+            {{ section.settings.label_instagram_prefix | escape }}:
             <a
               href="{{ section.settings.instagram_url }}"
               class="footer-custom__link footer-custom__link--inline"
               target="_blank"
               rel="noopener"
-              >@sheyeoladejo</a
             >
+              {{- section.settings.instagram_display | escape -}}
+            </a>
           </p>
         </div>
       </div>
 
       <div class="footer-custom__col">
-        <div class="footer-custom__group">
-          <a href="{{ section.settings.link_consultation }}" class="footer-custom__link">Book A Consultation</a>
-        </div>
         <div class="footer-custom__group">
           <h3 class="footer-custom__subheading">Categories</h3>
           <a href="{{ section.settings.link_dresses }}" class="footer-custom__link">Dresses</a>
@@ -190,7 +204,7 @@
     }
   }
   .footer-custom__heading {
-    margin: 0 0 1.6rem;
+    margin: 0 0 1.5rem;
     font-size: 14px;
     line-height: 1.2;
     font-weight: 700;
@@ -266,6 +280,9 @@
   .footer-custom__locale {
     margin-top: 0.2rem;
   }
+  {% comment %} .footer-custom__link__book-consultation {
+    text-transform: uppercase;
+  } {% endcomment %}
   .footer-custom__col--logo {
     display: flex;
     align-items: flex-start;
@@ -312,7 +329,84 @@
     },
     {
       "type": "header",
-      "content": "Help & policy links (2nd column)"
+      "content": "Need Help column — text"
+    },
+    {
+      "type": "text",
+      "id": "help_column_heading",
+      "label": "Column heading",
+      "default": "Need Help?"
+    },
+    {
+      "type": "text",
+      "id": "label_consultation",
+      "label": "Book consultation link",
+      "default": "Book A Consultation"
+    },
+    {
+      "type": "text",
+      "id": "label_faq",
+      "label": "FAQ link",
+      "default": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "label_returns",
+      "label": "Returns link",
+      "default": "Want to make a return?"
+    },
+    {
+      "type": "text",
+      "id": "label_privacy",
+      "label": "Privacy Policy link",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "label_payment",
+      "label": "Payment Policy link",
+      "default": "Payment Policy"
+    },
+    {
+      "type": "text",
+      "id": "label_delivery",
+      "label": "Delivery Policy link",
+      "default": "Delivery Policy"
+    },
+    {
+      "type": "text",
+      "id": "contact_subheading",
+      "label": "Contact block heading",
+      "default": "Contact"
+    },
+    {
+      "type": "text",
+      "id": "label_email_prefix",
+      "label": "Email label (before address)",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "label_whatsapp_prefix",
+      "label": "WhatsApp label",
+      "default": "WhatsApp"
+    },
+    {
+      "type": "text",
+      "id": "label_instagram_prefix",
+      "label": "Instagram label",
+      "default": "Instagram"
+    },
+    {
+      "type": "text",
+      "id": "instagram_display",
+      "label": "Instagram display text",
+      "default": "@sheyeoladejo",
+      "info": "Shown as the link text (e.g. Instagram handle)."
+    },
+    {
+      "type": "header",
+      "content": "Need Help column — URLs"
     },
     {
       "type": "text",
@@ -358,12 +452,12 @@
     },
     {
       "type": "header",
-      "content": "Contact (2nd column)"
+      "content": "Need Help column — contact details"
     },
     {
       "type": "text",
       "id": "email",
-      "label": "Email",
+      "label": "Email address",
       "default": "info@sheyeoladejo.com"
     },
     {

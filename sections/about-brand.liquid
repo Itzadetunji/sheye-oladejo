@@ -11,7 +11,10 @@
   }
 {%- endstyle -%}
 
-<section class="about-brand about-brand-{{ section.id }} color-{{ section.settings.color_scheme }} gradient" aria-labelledby="about-brand-heading-{{ section.id }}">
+<section
+  class="about-brand about-brand-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  aria-labelledby="about-brand-heading-{{ section.id }}"
+>
   <div class="about-brand__inner page-width">
     <div class="about-brand__grid">
       <div class="about-brand__text">
@@ -25,7 +28,9 @@
 ' -%}
               {%- for line in lines -%}
                 {%- assign trimmed = line | strip -%}
-                {%- if trimmed != '' -%}<p>{{ trimmed | escape }}</p>{%- endif -%}
+                {%- if trimmed != '' -%}
+                  <p>{{ trimmed | escape }}</p>
+                {%- endif -%}
               {%- endfor -%}
             </blockquote>
           {%- endif -%}
@@ -39,7 +44,11 @@
           {{
             section.settings.image
             | image_url: width: 900
-            | image_tag: loading: 'lazy', class: 'about-brand__image', widths: '400, 550, 700, 900', sizes: '(min-width: 990px) 50vw, 100vw'
+            | image_tag:
+              loading: 'lazy',
+              class: 'about-brand__image',
+              widths: '400, 550, 700, 900',
+              sizes: '(min-width: 990px) 50vw, 100vw'
           }}
         {%- else -%}
           <div class="about-brand__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
@@ -61,6 +70,10 @@
     flex-wrap: wrap;
     gap: 2rem;
     align-items: center;
+  }
+  .about-brand__text {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
   .about-brand__text,
   .about-brand__media {
@@ -86,9 +99,6 @@
   .about-brand__text {
     text-align: left;
   }
-  .about-brand__content {
-    padding-left: 1.25rem;
-  }
   .about-brand__heading {
     font-family: var(--font-heading-family);
     font-size: clamp(1.4rem, 5vw, 2.2rem);
@@ -107,9 +117,20 @@
     color: rgba(var(--color-foreground), 0.85);
     margin: 0 0 1.25rem;
     font-style: normal;
+    padding-left: 0;
+    padding-right: 0;
   }
-  .about-brand__quote p { margin: 0 0 0.5em; }
-  .about-brand__quote p:last-child { margin-bottom: 0; }
+  @media screen and (min-width: 750px) {
+    .about-brand__quote {
+      padding: 0;
+    }
+  }
+  .about-brand__quote p {
+    margin: 0 0 0.5em;
+  }
+  .about-brand__quote p:last-child {
+    margin-bottom: 0;
+  }
   .about-brand__attribution {
     font-family: var(--font-body-family);
     font-size: clamp(0.7rem, 1.5vw, 0.85rem);
