@@ -1,0 +1,65 @@
+{% comment %}
+  Renders the two-up carousel for appointment-couture cards.
+  @param {array} slides - blocks (left_carousel_slide or right_carousel_slide)
+  @param {string} carousel_uid - unique id suffix for a11y
+  @param {number} interval_ms - autoplay interval in ms (default 3000)
+{% endcomment %}
+{%- assign interval_ms = interval_ms | default: 3000 -%}
+{%- if slides != blank and slides.size > 0 -%}
+  <div
+    class="book-appointment-or-couture__carousel appointment-couture-carousel"
+    data-appointment-carousel
+    data-carousel-interval="{{ interval_ms }}"
+    id="AppointmentCarousel--{{ carousel_uid }}"
+  >
+    <button
+      type="button"
+      class="appointment-couture-carousel__btn appointment-couture-carousel__btn--prev"
+      data-carousel-prev
+      aria-controls="AppointmentCarouselTrack--{{ carousel_uid }}"
+      aria-label="Previous slides"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <div
+      class="appointment-couture-carousel__viewport"
+      data-carousel-viewport
+      id="AppointmentCarouselTrack--{{ carousel_uid }}"
+    >
+      <div class="appointment-couture-carousel__track" data-carousel-track>
+        {%- for block in slides -%}
+          {%- assign ph_i = forloop.index0 | modulo: 3 -%}
+          <div
+            class="appointment-couture-carousel__slide"
+            data-carousel-slide
+            {{ block.shopify_attributes }}
+          >
+            <div class="appointment-couture-carousel__media">
+              {%- case ph_i -%}
+                {%- when 0 -%}
+                  {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg appointment-couture-carousel__placeholder-svg' }}
+                {%- when 1 -%}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg appointment-couture-carousel__placeholder-svg' }}
+                {%- else -%}
+                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg appointment-couture-carousel__placeholder-svg' }}
+              {%- endcase -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <button
+      type="button"
+      class="appointment-couture-carousel__btn appointment-couture-carousel__btn--next"
+      data-carousel-next
+      aria-controls="AppointmentCarouselTrack--{{ carousel_uid }}"
+      aria-label="Next slides"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+{%- endif -%}

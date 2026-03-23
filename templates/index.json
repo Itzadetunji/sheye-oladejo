@@ -75,6 +75,50 @@
 		},
 		"book_appointment_or_couture": {
 			"type": "appointment-couture",
+			"blocks": {
+				"ac_l1": {
+					"type": "left_carousel_slide",
+					"settings": {}
+				},
+				"ac_l2": {
+					"type": "left_carousel_slide",
+					"settings": {}
+				},
+				"ac_l3": {
+					"type": "left_carousel_slide",
+					"settings": {}
+				},
+				"ac_l4": {
+					"type": "left_carousel_slide",
+					"settings": {}
+				},
+				"ac_r1": {
+					"type": "right_carousel_slide",
+					"settings": {}
+				},
+				"ac_r2": {
+					"type": "right_carousel_slide",
+					"settings": {}
+				},
+				"ac_r3": {
+					"type": "right_carousel_slide",
+					"settings": {}
+				},
+				"ac_r4": {
+					"type": "right_carousel_slide",
+					"settings": {}
+				}
+			},
+			"block_order": [
+				"ac_l1",
+				"ac_l2",
+				"ac_l3",
+				"ac_l4",
+				"ac_r1",
+				"ac_r2",
+				"ac_r3",
+				"ac_r4"
+			],
 			"settings": {
 				"section_heading": "Book appointment or couture",
 				"image_left": "",
