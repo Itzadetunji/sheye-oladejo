@@ -2,14 +2,6 @@
   .faq-grid-{{ section.id }} {
     padding-top: 8rem;
     padding-bottom: 8rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  @media screen and (min-width: 750px) {
-    .faq-grid-{{ section.id }} {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
-    }
   }
 {%- endstyle -%}
 
@@ -139,17 +131,7 @@
 </section>
 
 <style>
-  .faq-grid__inner {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  @media screen and (min-width: 750px) {
-    .faq-grid__inner {
-      max-width: 90rem;
-    }
-  }
-
+  /* Inner uses .page-width: inherit global max-width (1440px) + horizontal padding from base.css */
   .faq-grid__heading {
     margin: 0 0 2rem;
     font-family: var(--font-heading-family);

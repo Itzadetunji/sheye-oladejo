@@ -11,67 +11,69 @@
   class="book-appointment-or-couture book-appointment-or-couture--{{ section.id }}"
   aria-label="{{ section.settings.section_heading | default: 'Book appointment or couture' | escape }}"
 >
-  <div class="book-appointment-or-couture__grid">
-    <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--left">
-      <div class="book-appointment-or-couture__hero">
-        {%- if section.settings.image_left != blank -%}
-          {{
-            section.settings.image_left
-            | image_url: width: 1200
-            | image_tag:
-              loading: 'lazy',
-              class: 'book-appointment-or-couture__img',
-              sizes: '50vw',
-              widths: '375, 550, 750, 1100, 1200'
-          }}
-        {%- else -%}
-          <div class="book-appointment-or-couture__placeholder">
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
-        <a
-          href="{{ section.settings.left_button_link | default: '/shop' }}"
-          class="book-appointment-or-couture__btn button"
-        >
-          {{ section.settings.left_button_text | default: 'BESPOKE SERVICES' | escape }}
-        </a>
+  <div class="page-width">
+    <div class="book-appointment-or-couture__grid">
+      <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--left">
+        <div class="book-appointment-or-couture__hero">
+          {%- if section.settings.image_left != blank -%}
+            {{
+              section.settings.image_left
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: 'book-appointment-or-couture__img',
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          {%- else -%}
+            <div class="book-appointment-or-couture__placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+          <a
+            href="{{ section.settings.left_button_link | default: '/shop' }}"
+            class="book-appointment-or-couture__btn button"
+          >
+            {{ section.settings.left_button_text | default: 'BESPOKE SERVICES' | escape }}
+          </a>
+        </div>
+        {%- render 'appointment-couture-carousel',
+          slides: left_carousel_blocks,
+          carousel_uid: carousel_left_uid,
+          interval_ms: 2000
+        -%}
       </div>
-      {%- render 'appointment-couture-carousel',
-        slides: left_carousel_blocks,
-        carousel_uid: carousel_left_uid,
-        interval_ms: 2000
-      -%}
-    </div>
 
-    <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--right">
-      <div class="book-appointment-or-couture__hero">
-        {%- if section.settings.image_right != blank -%}
-          {{
-            section.settings.image_right
-            | image_url: width: 1200
-            | image_tag:
-              loading: 'lazy',
-              class: 'book-appointment-or-couture__img',
-              sizes: '50vw',
-              widths: '375, 550, 750, 1100, 1200'
-          }}
-        {%- else -%}
-          <div class="book-appointment-or-couture__placeholder">
-            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-          </div>
-        {%- endif -%}
-        <a
-          href="{{ section.settings.right_button_link | default: '/book-consultation' }}"
-          class="book-appointment-or-couture__btn button"
-        >
-          {{ section.settings.right_button_text | default: 'BRIDAL COUTURE' | escape }}
-        </a>
+      <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--right">
+        <div class="book-appointment-or-couture__hero">
+          {%- if section.settings.image_right != blank -%}
+            {{
+              section.settings.image_right
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: 'book-appointment-or-couture__img',
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          {%- else -%}
+            <div class="book-appointment-or-couture__placeholder">
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+          <a
+            href="{{ section.settings.right_button_link | default: '/book-consultation' }}"
+            class="book-appointment-or-couture__btn button"
+          >
+            {{ section.settings.right_button_text | default: 'BRIDAL COUTURE' | escape }}
+          </a>
+        </div>
+        {%- render 'appointment-couture-carousel',
+          slides: right_carousel_blocks,
+          carousel_uid: carousel_right_uid,
+          interval_ms: 3000
+        -%}
       </div>
-      {%- render 'appointment-couture-carousel',
-        slides: right_carousel_blocks,
-        carousel_uid: carousel_right_uid,
-        interval_ms: 3000
-      -%}
     </div>
   </div>
 </section>

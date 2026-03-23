@@ -128,7 +128,7 @@
         --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
         --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
 
-        --page-width: {{ settings.page_width | divided_by: 10 }}rem;
+        --page-width: 1440px;
         --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
 
         --product-card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
@@ -303,23 +303,9 @@
       }
     </script>
 
-    {%- if template.name == 'collection' -%}
-      {%- style -%}
-        body.template-collection #MainContent {
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-        }
-        @media screen and (min-width: 750px) {
-          body.template-collection #MainContent {
-            padding-left: 2.5rem;
-            padding-right: 2.5rem;
-          }
-        }
-      {%- endstyle -%}
-    {%- endif -%}
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if template.name == 'page' and template.suffix == 'about' %} template-about{% endif %}{% if template.name == 'collection' %} template-collection{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if template.name == 'index' %} template-index{% endif %}{% if template.name == 'page' and template.suffix == 'about' %} template-about{% endif %}{% if template.name == 'collection' %} template-collection{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

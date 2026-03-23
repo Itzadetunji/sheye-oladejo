@@ -81,11 +81,13 @@
 .page-width {
 	max-width: var(--page-width);
 	margin: 0 auto;
-	/* padding: 0 16px; */
+	padding-left: 1rem;
+	padding-right: 1rem;
+	box-sizing: border-box;
 }
 
 .template-about #MainContent .page-width {
-	max-width: 1440px;
+	max-width: var(--page-width);
 }
 
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
@@ -97,8 +99,11 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 .page-width-desktop {
-	padding: 0;
+	max-width: var(--page-width);
 	margin: 0 auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	box-sizing: border-box;
 }
 
 .utility-bar__grid.page-width {
@@ -107,44 +112,37 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 }
 
 @media screen and (min-width: 750px) {
-	.page-width {
-		/* padding-left: 40px; */
-		/* padding-right: 40px; */
+	.page-width,
+	.page-width-desktop {
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
 	}
 
 	.header.page-width,
 	.utility-bar__grid.page-width {
-		padding-left: 40px;
-		padding-right: 40px;
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
 	}
 
 	.page-width--narrow {
 		padding: 0 9rem;
 	}
 
-	.page-width-desktop {
-		padding: 0;
-	}
-
 	.page-width-tablet {
-		padding: 0 5rem;
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
 	}
 }
 
 @media screen and (min-width: 990px) {
 	.header:not(.drawer-menu).page-width {
-		padding-left: 40px;
-		padding-right: 40px;
+		padding-left: 2.5rem;
+		padding-right: 2.5rem;
 	}
 
 	.page-width--narrow {
 		max-width: 72.6rem;
 		padding: 0;
-	}
-
-	.page-width-desktop {
-		max-width: var(--page-width);
-		padding: 0 5rem;
 	}
 }
 

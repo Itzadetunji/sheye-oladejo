@@ -573,7 +573,7 @@
 	position: relative;
 	flex: 0 1 auto;
 	width: 100%;
-	max-width: min(100%, 480px);
+	max-width: 100%;
 	margin-left: 0;
 	margin-right: auto;
 	aspect-ratio: 3 / 4;
@@ -915,4 +915,25 @@
 	.grid__item:nth-child(8n) .product-card-wrapper:hover .shape--blob {
 		clip-path: polygon(var(--shape--blob-5));
 	}
+}
+
+/* Product cards: transparent image area (no theme gradient / grey media fill behind photos) */
+.product-card-wrapper .card.gradient,
+.product-card-wrapper .card__inner.gradient {
+	background: transparent !important;
+	background-attachment: unset;
+}
+
+.product-card-wrapper .card__media.gradient {
+	background: transparent !important;
+	background-attachment: unset;
+}
+
+.product-card-wrapper .card__media .media,
+.product-card-wrapper .card .media {
+	background-color: transparent !important;
+}
+
+.product-card-wrapper .card__media-skeleton {
+	background-color: transparent;
 }

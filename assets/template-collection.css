@@ -36,7 +36,8 @@
 	}
 
 	/* First item of a new 5-cycle when it is the last grid item (e.g. 6th, 11th product) */
-	.product-grid--alternating-3-2 .grid__item--span-2:nth-child(5n + 1):last-child {
+	.product-grid--alternating-3-2
+	.grid__item--span-2:nth-child(5n + 1):last-child {
 		width: 100% !important;
 		max-width: 100% !important;
 		flex: 0 0 100% !important;
