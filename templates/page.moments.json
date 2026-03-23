@@ -1,23 +1,19 @@
 /*
  * ------------------------------------------------------------
- * Moments page: grid of products using moment-card (image carousel, no price/hover).
- * Assign a collection in the Moments grid section (e.g. smart collection by tag "moments").
+ * Moments page: same hero block as /collections (typography + padding), solid
+ * primary dark background — no image/video unless added in the theme editor.
  * ------------------------------------------------------------
  */
 {
 	"sections": {
-		"moments_grid": {
-			"type": "moments-grid",
+		"collection_hero": {
+			"type": "collection-hero",
 			"settings": {
-				"heading": "Moments",
-				"subheading": "",
-				"heading_alignment": "center",
-				"products_per_page": 24,
-				"color_scheme": "scheme-1",
-				"padding_top": 36,
-				"padding_bottom": 48
+				"heading": "MOMENTS",
+				"padding_top": 80,
+				"padding_bottom": 80
 			}
 		}
 	},
-	"order": ["moments_grid"]
+	"order": ["collection_hero"]
 }
