@@ -547,7 +547,7 @@
 	flex-grow: 1;
 }
 
-/* Portrait media: aspect ratio preserved while resizing; height capped at 640px (Sezane-style) */
+/* Portrait media: aspect ratio drives layout (aspect-ratio on .card__media) */
 .card--stacked-product {
 	display: flex;
 	flex-direction: column;
@@ -577,7 +577,6 @@
 	margin-left: 0;
 	margin-right: auto;
 	aspect-ratio: 3 / 4;
-	max-height: 640px;
 	overflow: hidden;
 }
 
@@ -596,8 +595,8 @@
 	object-position: top center;
 }
 
-/* Mobile: card + image area use full grid column width; 3:4 drives height (no 480px / 640px cap) */
-@media screen and (max-width: 749px) {
+/* Below desktop breakpoint: card + image use full grid column width (tablet 750–989 included) */
+@media screen and (max-width: 989px) {
 	.product-card-wrapper {
 		width: 100%;
 		max-width: 100%;
@@ -685,7 +684,13 @@
 	padding: 0;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 750px) and (max-width: 989px) {
+	.card--stacked-product > .card__content .card__information {
+		text-align: center;
+	}
+}
+
+@media screen and (min-width: 990px) {
 	.card--stacked-product .card__inner {
 		align-items: center;
 	}

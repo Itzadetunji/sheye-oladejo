@@ -4,14 +4,42 @@
  * - grid__item--span-2 → each spans 2 cols → 3 products per row on desktop
  * - grid__item--span-3 → each spans 3 cols → 2 products per row on desktop
  * Mobile:
- * - was 3-up (span-2) → 2 per row
+ * - was 3-up (span-2) → 2 per row; 3rd in each trio (5n+3) full width
  * - was 2-up (span-3) → 1 per row
+ * - lone first-of-cycle span-2 at end of list (5n+1:last-child) → full width
  */
 @media screen and (max-width: 989px) {
+	/* Flex-wrap: avoid justify-content:center on flex rows (breaks alternating rhythm).
+	   No .collection ancestor required (e.g. main list collections page). */
+	.product-grid--alternating-3-2 {
+		justify-content: flex-start !important;
+	}
+
 	.product-grid--alternating-3-2 .grid__item--span-2 {
 		width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
 		max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
 		flex: 0 0 calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+	}
+
+	/* Third item in each 5-item cycle is the lone wrap on a 2-col row → full width */
+	.product-grid--alternating-3-2 .grid__item--span-2:nth-child(5n + 3) {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
+	}
+
+	/* Single product (or lone span-2) should not stay half-width */
+	.product-grid--alternating-3-2 .grid__item--span-2:only-child {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
+	}
+
+	/* First item of a new 5-cycle when it is the last grid item (e.g. 6th, 11th product) */
+	.product-grid--alternating-3-2 .grid__item--span-2:nth-child(5n + 1):last-child {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
 	}
 
 	.product-grid--alternating-3-2 .grid__item--span-3 {
@@ -44,9 +72,21 @@
 		grid-column: span 3;
 	}
 
+	/* One product in the grid: span full width instead of 2/6 columns */
+	.product-grid--alternating-3-2 .grid__item--span-2:only-child {
+		grid-column: 1 / -1;
+	}
+
 	.product-grid--alternating-3-2 {
 		margin-left: 0;
 	}
+}
+
+/* Cards fill each cell; keeps images aligned in the alternating 3 / 2 rhythm */
+.product-grid--alternating-3-2 .grid__item .product-card-wrapper {
+	width: 100%;
+	max-width: 100%;
+	min-width: 0;
 }
 
 @media screen and (max-width: 749px) {
@@ -129,7 +169,8 @@
 .collection__title.title-wrapper {
 	margin-bottom: 5rem;
 }
-.collection__title h2 {
+.collection__title h2,
+.collection__title h1 {
 	font-size: 2rem;
 	text-transform: uppercase;
 	font-weight: bold;

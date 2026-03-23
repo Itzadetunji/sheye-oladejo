@@ -1,12 +1,14 @@
 {%- style -%}
   .faq-grid-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   @media screen and (min-width: 750px) {
     .faq-grid-{{ section.id }} {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
   }
 {%- endstyle -%}
@@ -138,11 +140,11 @@
 
 <style>
   .faq-grid__inner {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 750px) {
     .faq-grid__inner {
       max-width: 90rem;
     }
@@ -243,30 +245,6 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "Section padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 128,
-      "step": 4,
-      "unit": "px",
-      "label": "Top padding",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 128,
-      "step": 4,
-      "unit": "px",
-      "label": "Bottom padding",
-      "default": 48
     }
   ],
   "blocks": [

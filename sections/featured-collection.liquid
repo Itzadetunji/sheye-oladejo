@@ -46,7 +46,8 @@
     justify-content: flex-start;
   }
 
-  @media screen and (min-width: 750px) {
+  /* Match CSS grid breakpoint (990px); centering flex rows at 750–989px breaks alternating 3-2 */
+  @media screen and (min-width: 990px) {
     #collection-{{ section.id }} .product-grid {
       justify-content: center;
     }

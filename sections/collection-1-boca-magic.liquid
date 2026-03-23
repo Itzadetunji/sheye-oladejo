@@ -1,4 +1,6 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
 <section
   class="collection-1-boca collection-1-boca--{{ section.id }}"
   aria-labelledby="collection-1-boca-title-{{ section.id }}"
@@ -134,20 +136,37 @@
   {%- assign boca_collection = collections['boca-magic-products'] -%}
   {%- if boca_collection != blank and boca_collection.products.size > 0 -%}
     <div class="collection-1-boca__products">
-      <div class="collection-1-boca__products-inner page-width">
+      <div class="collection-1-boca__products-inner page-width collection">
         <ul
-          class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--1-col-tablet-down grid--3-col-desktop"
+          id="Collection1ProductGrid-{{ section.id }}"
+          class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} product-grid--alternating-3-2"
           role="list"
         >
           {%- assign skip_card_product_styles = false -%}
           {%- for product in boca_collection.products limit: 3 -%}
-            <li class="grid__item">
+            {% assign lazy_load = false %}
+            {% if forloop.index > 2 %}
+              {% assign lazy_load = true %}
+            {% endif %}
+            {% assign cycle_index = forloop.index0 | modulo: 5 %}
+            {% if cycle_index == 3 or cycle_index == 4 %}
+              {% assign span_class = 'grid__item--span-3' %}
+            {% else %}
+              {% assign span_class = 'grid__item--span-2' %}
+            {% endif %}
+            <li class="grid__item {{ span_class }}">
               {% render 'card-product',
                 card_product: product,
-                lazy_load: true,
+                media_aspect_ratio: 'adapt',
+                image_shape: 'default',
+                lazy_load: lazy_load,
+                show_secondary_image: false,
                 show_vendor: false,
+                show_rating: false,
                 skip_styles: skip_card_product_styles,
-                section_id: section.id
+                section_id: section.id,
+                quick_add: 'none',
+                skip_skeleton: true
               %}
             </li>
             {%- assign skip_card_product_styles = true -%}
@@ -376,6 +395,30 @@
 
   .collection-1-boca--{{ section.id }} .collection-1-boca__products .product-grid {
     margin-bottom: 2rem;
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-1-boca--{{ section.id }} .collection-1-boca__products .product-grid {
+      justify-content: center;
+    }
+  }
+
+  .collection-1-boca--{{ section.id }} .collection-1-boca__products .card__heading,
+  .collection-1-boca--{{ section.id }} .collection-1-boca__products .card__heading a {
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    .collection-1-boca--{{ section.id }} .collection-1-boca__products .card__heading,
+    .collection-1-boca--{{ section.id }} .collection-1-boca__products .card__heading a {
+      text-align: center;
+    }
+  }
+
+  .collection-1-boca--{{ section.id }} .collection-1-boca__products .product-grid .ratio {
+    --ratio-percent: 133.333% !important;
   }
 
   .collection-1-boca--{{ section.id }} .collection-1-boca__products-cta {

@@ -64,6 +64,11 @@
       text-align: center;
     }
   }
+
+  /* 3:4 image frame (width:height); images use object-fit cover from card styles */
+  #latest-collection-{{ section.id }} .product-grid .ratio {
+    --ratio-percent: 133.333% !important;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -72,16 +77,6 @@
   if products_to_display > products_limit
     assign products_to_display = products_limit
     assign more_in_collection = true
-  endif
-
-  assign use_alternating_layout = false
-  assign show_mobile_slider = false
-  assign show_desktop_slider = false
-
-  assign max_columns_to_show = section.settings.columns_mobile | plus: 0
-  assign columns_desktop_int = 3
-  if columns_desktop_int > max_columns_to_show
-    assign max_columns_to_show = columns_desktop_int
   endif
 -%}
 
@@ -93,7 +88,7 @@
     id="latest-collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
@@ -117,7 +112,7 @@
       <ul
         id="Slider-latest-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--3-col-desktop{% if section.settings.collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} product-grid--alternating-3-2{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         role="list"
       >
         {% assign skip_card_product_styles = false %}
@@ -128,8 +123,14 @@
             {% if forloop.index > 2 %}
               {% assign lazy_load = true %}
             {% endif %}
+            {% assign cycle_index = forloop.index0 | modulo: 5 %}
+            {% if cycle_index == 3 or cycle_index == 4 %}
+              {% assign span_class = 'grid__item--span-3' %}
+            {% else %}
+              {% assign span_class = 'grid__item--span-2' %}
+            {% endif %}
             <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              class="grid__item {{ span_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
@@ -153,8 +154,14 @@
           {%- endfor -%}
         {%- else -%}
           {%- for i in (1..3) -%}
+            {% assign cycle_index = forloop.index0 | modulo: 5 %}
+            {% if cycle_index == 3 or cycle_index == 4 %}
+              {% assign span_class = 'grid__item--span-3' %}
+            {% else %}
+              {% assign span_class = 'grid__item--span-2' %}
+            {% endif %}
             <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              class="grid__item {{ span_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
@@ -215,7 +222,7 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "info": "Shows 3 products from the selected collection"
+      "info": "Shows 3 products from the collection. Same alternating layout as the main collection grid (3 per row, then 2 per row). On small screens, 3-up rows become 2 per row; 2-up rows become 1 per row."
     },
     {
       "type": "header",
@@ -427,26 +434,6 @@
         {
           "value": "bulk",
           "label": "Bulk"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Mobile"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "Columns on mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "1 column"
-        },
-        {
-          "value": "2",
-          "label": "2 columns"
         }
       ]
     },

@@ -2,11 +2,15 @@
   .policy-content-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   @media screen and (min-width: 750px) {
     .policy-content-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
     }
   }
 {%- endstyle -%}
@@ -202,6 +206,8 @@ For delivery-related enquiries, please contact us at info@sheyeoladejo.com with 
   .policy-content__inner {
     max-width: 90rem;
     margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
   }
   .policy-content__heading {
     margin: 0 0 2rem;

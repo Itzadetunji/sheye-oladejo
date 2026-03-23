@@ -22,9 +22,7 @@
       "settings": {
         "heading": "FAQs",
         "open_first": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 32,
-        "padding_bottom": 48
+        "color_scheme": "scheme-1"
       }
     }
   },
