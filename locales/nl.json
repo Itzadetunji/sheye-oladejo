@@ -336,6 +336,9 @@
       "empty": "Geen producten gevonden",
       "use_fewer_filters_html": "Minder filters gebruiken of <a class=\"{{ class }}\" href=\"{{ link }}\">alles verwijderen</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Video laden: {{ description }}"
     },

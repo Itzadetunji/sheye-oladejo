@@ -336,6 +336,9 @@
       "empty": "Ingen produkter funnet",
       "use_fewer_filters_html": "Bruk færre filtre eller <a class=\"{{ class }}\" href=\"{{ link }}\">fjern alle</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Last inn video: {{ description }}"
     },

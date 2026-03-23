@@ -2622,6 +2622,10 @@ input[type="checkbox"] {
 	background: rgba(var(--color-foreground), 0.5);
 }
 
+.header__icon--account {
+	white-space: nowrap;
+}
+
 .header__icon--account shop-user-avatar {
 	--shop-avatar-size: 2.8rem;
 }

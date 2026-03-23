@@ -377,7 +377,10 @@
       "padding": {
         "section_padding_heading": "Padding",
         "padding_top": "Oben",
-        "padding_bottom": "Unten"
+        "padding_bottom": "Unten",
+        "mobile_padding_heading": "Mobile padding",
+        "mobile_padding_top": "Top (screens under 750px)",
+        "mobile_padding_bottom": "Bottom (screens under 750px)"
       },
       "spacing": "Abstand",
       "colors": {

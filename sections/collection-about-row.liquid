@@ -1,4 +1,4 @@
-{{ 'section-about-founder-shared.css' | asset_url | stylesheet_tag }}
+{{ 'row-content-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .collection-about-row-{{ section.id }} {
@@ -15,55 +15,21 @@
 
 <section
   class="about-founder collection-about-row-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
-  aria-labelledby="collection-about-row-heading-{{ section.id }}"
+  aria-labelledby="row-content-card-heading-{{ section.id }}"
 >
-  <div class="about-founder__inner page-width">
-    {%- if section.settings.link != blank -%}
-      <a href="{{ section.settings.link }}" class="about-founder__link">
-    {%- endif -%}
-    <div class="about-founder__grid{% if section.settings.reverse_layout %} about-founder__grid--reverse{% endif %}">
-      <div class="about-founder__media about-founder__media--portrait">
-        {%- if section.settings.image != blank -%}
-          {{
-            section.settings.image
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: 'about-founder__image',
-              widths: '400, 550, 700, 900',
-              sizes: '(min-width: 990px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="about-founder__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}</div>
-        {%- endif -%}
-      </div>
-      <div class="about-founder__text">
-        <h2 id="collection-about-row-heading-{{ section.id }}" class="about-founder__heading">
-          {{ section.settings.heading | default: 'A STORY OF SOLIDARITY' | escape }}
-        </h2>
-        {%- if section.settings.body != blank -%}
-          <div class="about-founder__body">
-            {%- assign lines = section.settings.body | split: '
-' -%}
-            {%- for line in lines -%}
-              {%- assign trimmed = line | strip -%}
-              {%- if trimmed != '' -%}
-                <p>{{ trimmed | escape }}</p>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-    {%- if section.settings.link != blank -%}
-      </a>
-    {%- endif -%}
-  </div>
+  {% render 'row-content-card',
+    image: section.settings.image,
+    heading: section.settings.heading,
+    body: section.settings.body,
+    link: section.settings.link,
+    reverse_layout: section.settings.reverse_layout,
+    unique_id: section.id
+  %}
 </section>
 
 {% schema %}
 {
-  "name": "Collection about row",
+  "name": "Content card row",
   "tag": "section",
   "class": "section",
   "disabled_on": { "groups": ["header", "footer"] },
@@ -71,13 +37,13 @@
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "Title",
       "default": "A STORY OF SOLIDARITY"
     },
     {
       "type": "textarea",
       "id": "body",
-      "label": "Body text"
+      "label": "Description"
     },
     {
       "type": "image_picker",
@@ -87,7 +53,7 @@
     {
       "type": "url",
       "id": "link",
-      "label": "Link destination (optional)"
+      "label": "Link (optional — entire row is clickable when set)"
     },
     {
       "type": "checkbox",
@@ -128,7 +94,7 @@
   ],
   "presets": [
     {
-      "name": "Collection about row"
+      "name": "Content card row"
     }
   ]
 }

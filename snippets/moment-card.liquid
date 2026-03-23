@@ -1,0 +1,137 @@
+{% comment %}
+  Moment card — like stacked product card: 3:4 media, title link; carousel of product images; no price, no hover panel.
+  @param product {Object} Product
+  @param section_id {String}
+  @param lazy_load {Boolean} default true for below-fold
+  @param skip_styles {Boolean} Load CSS/JS only when false
+{% endcomment %}
+{%- liquid
+  assign lazy_load = lazy_load | default: true
+  assign skip_styles = skip_styles | default: false
+  assign uid = section_id | append: '-' | append: product.id
+  assign image_count = 0
+  for m in product.media
+    if m.media_type == 'image'
+      assign image_count = image_count | plus: 1
+    endif
+  endfor
+  assign has_image = false
+  if image_count > 0
+    assign has_image = true
+  endif
+  assign show_carousel_nav = false
+  if image_count > 1
+    assign show_carousel_nav = true
+  endif
+-%}
+{%- unless skip_styles -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-moment-card.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'moment-card-carousel.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+<div class="card-wrapper moment-card-wrapper product-card-wrapper">
+  <div
+    class="
+      card card--{{ settings.card_style }}
+      moment-card
+      card--media
+      card--stacked-product
+      {% if settings.card_style == 'card' %}color-{{ settings.card_color_scheme }} gradient{% endif %}
+    "
+  >
+    <div class="card__inner ratio">
+      {%- if has_image -%}
+        <div class="card__media color-{{ settings.card_color_scheme }} gradient">
+          <div
+            class="moment-card-carousel media media--transparent"
+            data-moment-carousel
+            id="MomentCarousel--{{ uid }}"
+          >
+            <button
+              type="button"
+              class="moment-card-carousel__btn moment-card-carousel__btn--prev"
+              data-moment-carousel-prev
+              aria-controls="MomentCarouselViewport--{{ uid }}"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+              {% unless show_carousel_nav %}hidden{% endunless %}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div
+              class="moment-card-carousel__viewport"
+              data-moment-carousel-viewport
+              id="MomentCarouselViewport--{{ uid }}"
+            >
+              <div class="moment-card-carousel__track" data-moment-carousel-track>
+                {%- assign moment_first_img = true -%}
+                {%- for media in product.media -%}
+                  {%- if media.media_type == 'image' -%}
+                    <div class="moment-card-carousel__slide" data-moment-carousel-slide>
+                      {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                      <img
+                        srcset="
+                          {%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
+                          {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
+                          {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
+                          {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
+                          {{ media | image_url }} {{ media.width }}w
+                        "
+                        src="{{ media | image_url: width: 533 }}"
+                        sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                        alt="{{ media.alt | default: product.title | escape }}"
+                        class="motion-reduce"
+                        {% if lazy_load and moment_first_img == false %}loading="lazy"{% endif %}
+                        width="{{ media.width }}"
+                        height="{{ media.height }}"
+                      >
+                      {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+                    </div>
+                    {%- assign moment_first_img = false -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+            <button
+              type="button"
+              class="moment-card-carousel__btn moment-card-carousel__btn--next"
+              data-moment-carousel-next
+              aria-controls="MomentCarouselViewport--{{ uid }}"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+              {% unless show_carousel_nav %}hidden{% endunless %}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="card__media color-{{ settings.card_color_scheme }} gradient">
+          <div class="media media--transparent">
+            <div class="moment-card-carousel__slide moment-card-carousel__slide--placeholder">
+              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="card__content">
+      <div class="card__information">
+        <h3 class="card__heading h5" id="title-moment-{{ uid }}">
+          <a
+            href="{{ product.url }}"
+            id="MomentCardLink-{{ uid }}"
+            class="full-unstyled-link card__heading-link"
+            aria-label="{{ product.title | escape }}"
+          >
+            <span class="card__heading-line card__heading-line--title">{{ product.title | upcase }}</span>
+          </a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

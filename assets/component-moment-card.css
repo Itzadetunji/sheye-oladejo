@@ -1,0 +1,128 @@
+/**
+ * Moment card — product-style layout, image carousel, no price / no hover overlay.
+ * Relies on component-card.css for .card--stacked-product frame.
+ */
+
+.moment-card-wrapper.card-wrapper {
+	position: relative;
+}
+
+/* Kill stacked product hover overlay and keep title row always usable */
+.moment-card-wrapper .card--stacked-product .card-hover-info {
+	display: none !important;
+}
+
+.moment-card-wrapper:hover .card--stacked-product > .card__content,
+.moment-card-wrapper:focus-within .card--stacked-product > .card__content {
+	pointer-events: auto !important;
+}
+
+.moment-card-wrapper .card--stacked-product > .card__content {
+	pointer-events: auto !important;
+}
+
+/* No em dash / second line (price removed) */
+.moment-card .card__heading-line--title::after {
+	content: none !important;
+}
+
+.moment-card .card__heading-link {
+	display: block;
+	text-align: inherit;
+}
+
+/* Carousel inside .card__media */
+.moment-card-carousel {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: stretch;
+	gap: 0;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+}
+
+.moment-card-carousel__viewport {
+	overflow-x: auto;
+	overflow-y: hidden;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	min-height: 0;
+}
+
+.moment-card-carousel__viewport::-webkit-scrollbar {
+	display: none;
+}
+
+.moment-card-carousel__track {
+	display: flex;
+	height: 100%;
+	min-height: 0;
+}
+
+.moment-card-carousel__slide {
+	flex: 0 0 100%;
+	width: 100%;
+	min-width: 100%;
+	height: 100%;
+	scroll-snap-align: start;
+	scroll-snap-stop: always;
+}
+
+.moment-card-carousel__slide img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+	vertical-align: middle;
+}
+
+.moment-card-carousel__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	min-width: 2rem;
+	padding: 0;
+	border: none;
+	background: rgba(var(--color-background), 0.85);
+	color: rgb(var(--color-foreground));
+	cursor: pointer;
+	z-index: 2;
+	transition: opacity 0.2s ease;
+}
+
+.moment-card-carousel__btn:hover:not(:disabled) {
+	opacity: 0.85;
+}
+
+.moment-card-carousel__btn:disabled {
+	opacity: 0.25;
+	cursor: default;
+}
+
+.moment-card-carousel__btn[hidden] {
+	display: none !important;
+}
+
+.moment-card-carousel__btn svg {
+	display: block;
+}
+
+.moment-card-carousel__slide--placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+	background: rgba(var(--color-foreground), 0.04);
+}
+
+.moment-card-carousel__slide--placeholder .placeholder-svg {
+	width: 50%;
+	height: auto;
+	opacity: 0.35;
+}

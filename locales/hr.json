@@ -346,6 +346,9 @@
       "empty": "Nije pronađen nijedan proizvod",
       "use_fewer_filters_html": "Upotrijebi manje filtara ili <a class=\"{{ class }}\" href=\"{{ link }}\">ukloni sve</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Učitaj videozapis: {{ description }}"
     },

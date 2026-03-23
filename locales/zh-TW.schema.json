@@ -377,7 +377,10 @@
       "padding": {
         "section_padding_heading": "邊框間距",
         "padding_top": "頂部",
-        "padding_bottom": "底部"
+        "padding_bottom": "底部",
+        "mobile_padding_heading": "Mobile padding",
+        "mobile_padding_top": "Top (screens under 750px)",
+        "mobile_padding_bottom": "Bottom (screens under 750px)"
       },
       "spacing": "間距",
       "colors": {

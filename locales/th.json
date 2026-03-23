@@ -336,6 +336,9 @@
       "empty": "ไม่พบสินค้า",
       "use_fewer_filters_html": "ใช้ตัวกรองให้น้อยลง หรือ<a class=\"{{ class }}\" href=\"{{ link }}\">ลบทั้งหมด</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "โหลดวิดีโอ: {{ description }}"
     },

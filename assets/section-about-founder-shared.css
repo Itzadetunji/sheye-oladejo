@@ -1,4 +1,4 @@
-/* Shared by sections/about-founder.liquid and sections/collection-about-row.liquid */
+/* Layout primitives for row content card; loaded via assets/row-content-card.css */
 
 .about-founder {
 	background-color: rgb(var(--color-background));

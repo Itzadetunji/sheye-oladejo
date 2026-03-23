@@ -1,0 +1,57 @@
+{%- comment -%}
+  Row content card: image, title, description, optional link.
+  Parameters:
+  - image: image object (optional)
+  - heading: string (optional)
+  - body: string (optional; newline-separated paragraphs)
+  - link: URL string (optional; wraps row in a single link when set)
+  - reverse_layout: boolean (optional)
+  - unique_id: string (required for unique heading id)
+{%- endcomment -%}
+{%- liquid
+  assign uid = unique_id | default: 'card'
+  assign heading_id = 'row-content-card-heading-' | append: uid
+  assign heading_out = heading | default: 'A STORY OF SOLIDARITY'
+-%}
+<div class="row-content-card about-founder__inner page-width">
+  {%- if link != blank -%}
+    <a href="{{ link }}" class="about-founder__link">
+  {%- endif -%}
+  <div class="about-founder__grid{% if reverse_layout %} about-founder__grid--reverse{% endif %}">
+    <div class="about-founder__media about-founder__media--portrait">
+      {%- if image != blank -%}
+        {{
+          image
+          | image_url: width: 900
+          | image_tag:
+            loading: 'lazy',
+            class: 'about-founder__image',
+            widths: '400, 550, 700, 900',
+            sizes: '(min-width: 990px) 50vw, 100vw'
+        }}
+      {%- else -%}
+        <div class="about-founder__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+      {%- endif -%}
+    </div>
+    <div class="about-founder__text">
+      <h2 id="{{ heading_id }}" class="about-founder__heading">
+        {{ heading_out | escape }}
+      </h2>
+      {%- if body != blank -%}
+        <div class="about-founder__body">
+          {%- assign lines = body | split: '
+' -%}
+          {%- for line in lines -%}
+            {%- assign trimmed = line | strip -%}
+            {%- if trimmed != '' -%}
+              <p>{{ trimmed | escape }}</p>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- if link != blank -%}
+    </a>
+  {%- endif -%}
+</div>

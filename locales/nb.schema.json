@@ -377,7 +377,10 @@
       "padding": {
         "section_padding_heading": "Marg",
         "padding_top": "Topp",
-        "padding_bottom": "Bunn"
+        "padding_bottom": "Bunn",
+        "mobile_padding_heading": "Mobile padding",
+        "mobile_padding_top": "Top (screens under 750px)",
+        "mobile_padding_bottom": "Bottom (screens under 750px)"
       },
       "spacing": "Mellomrom",
       "colors": {

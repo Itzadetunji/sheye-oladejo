@@ -336,6 +336,9 @@
       "empty": "Δεν βρέθηκαν προϊόντα",
       "use_fewer_filters_html": "Χρησιμοποιήστε λιγότερα φίλτρα ή <a class=\"{{ class }}\" href=\"{{ link }}\">καταργήστε τα όλα</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Φόρτωση βίντεο: {{ description }}"
     },

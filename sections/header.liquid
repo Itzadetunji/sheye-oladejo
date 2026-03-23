@@ -134,10 +134,12 @@
   }
 </style>
 
-{%- assign primary_dark = settings.color_primary | default: '#1D1D1B' -%}
 {%- style -%}
   .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 16px {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 16px;
+    padding-top: {{ section.settings.mobile_padding_top }}px;
+    padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .section-header {
@@ -150,6 +152,8 @@
       margin-bottom: {{ section.settings.margin_bottom }}px;
     }
     .header {
+      padding-top: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px;
       padding-left: 40px;
       padding-right: 40px;
     }
@@ -943,6 +947,30 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.header.settings.margin_bottom.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.mobile_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.mobile_padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 36,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.mobile_padding_bottom",
       "default": 0
     },
     {

@@ -1,4 +1,4 @@
-{{ 'section-about-founder-shared.css' | asset_url | stylesheet_tag }}
+{{ 'row-content-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .about-founder-{{ section.id }} {
@@ -15,44 +15,15 @@
 
 <section
   class="about-founder about-founder-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
-  aria-labelledby="about-founder-heading-{{ section.id }}"
+  aria-labelledby="row-content-card-heading-{{ section.id }}"
 >
-  <div class="about-founder__inner page-width">
-    <div class="about-founder__grid">
-      <div class="about-founder__media about-founder__media--portrait">
-        {%- if section.settings.image != blank -%}
-          {{
-            section.settings.image
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: 'about-founder__image',
-              widths: '400, 550, 700, 900',
-              sizes: '(min-width: 990px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="about-founder__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}</div>
-        {%- endif -%}
-      </div>
-      <div class="about-founder__text">
-        <h2 id="about-founder-heading-{{ section.id }}" class="about-founder__heading">
-          {{ section.settings.heading | default: 'A STORY OF SOLIDARITY' | escape }}
-        </h2>
-        {%- if section.settings.body != blank -%}
-          <div class="about-founder__body">
-            {%- assign lines = section.settings.body | split: '
-' -%}
-            {%- for line in lines -%}
-              {%- assign trimmed = line | strip -%}
-              {%- if trimmed != '' -%}
-                <p>{{ trimmed | escape }}</p>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-  </div>
+  {% render 'row-content-card',
+    image: section.settings.image,
+    heading: section.settings.heading,
+    body: section.settings.body,
+    reverse_layout: false,
+    unique_id: section.id
+  %}
 </section>
 
 {% schema %}

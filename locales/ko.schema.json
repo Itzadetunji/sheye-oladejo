@@ -377,7 +377,10 @@
       "padding": {
         "section_padding_heading": "패딩",
         "padding_top": "위쪽",
-        "padding_bottom": "아래쪽"
+        "padding_bottom": "아래쪽",
+        "mobile_padding_heading": "Mobile padding",
+        "mobile_padding_top": "Top (screens under 750px)",
+        "mobile_padding_bottom": "Bottom (screens under 750px)"
       },
       "spacing": "간격",
       "colors": {

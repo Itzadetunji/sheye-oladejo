@@ -356,6 +356,9 @@
       "empty": "Nerasta jokių gaminių",
       "use_fewer_filters_html": "Naudoti mažiau filtrų arba <a class=\"{{ class }}\" href=\"{{ link }}\">pašalinti viską</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Įkelti vaizdo įrašą „{{ description }}“"
     },

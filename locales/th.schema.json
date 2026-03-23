@@ -377,7 +377,10 @@
       "padding": {
         "section_padding_heading": "ระยะห่าง",
         "padding_top": "ด้านบน",
-        "padding_bottom": "ด้านล่าง"
+        "padding_bottom": "ด้านล่าง",
+        "mobile_padding_heading": "Mobile padding",
+        "mobile_padding_top": "Top (screens under 750px)",
+        "mobile_padding_bottom": "Bottom (screens under 750px)"
       },
       "spacing": "การเว้นระยะห่าง",
       "colors": {

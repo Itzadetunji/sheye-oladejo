@@ -336,6 +336,9 @@
       "empty": "Tidak ada produk yang ditemukan",
       "use_fewer_filters_html": "Gunakan lebih sedikit filter atau <a class=\"{{ class }}\" href=\"{{ link }}\">hapus semua</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Muat video: {{ description }}"
     },

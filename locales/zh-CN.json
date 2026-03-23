@@ -336,6 +336,9 @@
       "empty": "未找到产品",
       "use_fewer_filters_html": "减少使用的筛选条件数量或<a class=\"{{ class }}\" href=\"{{ link }}\">删除所有筛选条件</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "加载视频：{{ description }}"
     },

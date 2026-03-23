@@ -356,6 +356,9 @@
       "empty": "Nenašli sa žiadne produkty",
       "use_fewer_filters_html": "Použite menej filtrov alebo <a class=\"{{ class }}\" href=\"{{ link }}\">všetky odstráňte</a>"
     },
+    "moments_grid": {
+      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+    },
     "video": {
       "load_video": "Načítať video: {{ description }}"
     },
