@@ -39,14 +39,14 @@
 					"type": "nav_link",
 					"settings": {
 						"label": "MOMENTS",
-						"link": "/collections/moments"
+						"link": "/moments"
 					}
 				},
 				"nav_about": {
 					"type": "nav_link",
 					"settings": {
 						"label": "ABOUT",
-						"link": "/pages/about"
+						"link": "/about"
 					}
 				}
 			},
