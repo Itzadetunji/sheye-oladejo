@@ -10,25 +10,6 @@ product-info {
 	gap: 0;
 }
 
-.product-breadcrumbs {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	margin: 0 0 1.6rem;
-	padding: 0 1rem;
-	text-transform: uppercase;
-}
-
-.product-breadcrumbs a,
-.product-breadcrumbs span {
-	color: rgba(var(--color-foreground), 0.75);
-	text-decoration: none;
-}
-
-.product-breadcrumbs a:hover {
-	text-decoration: underline;
-}
-
 .related-products__block--collection
 	.related-products__collection-grid
 	.product-grid {

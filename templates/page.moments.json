@@ -1,19 +1,20 @@
 /*
  * ------------------------------------------------------------
- * Moments page: same hero block as /collections (typography + padding), solid
- * primary dark background — no image/video unless added in the theme editor.
+ * Moments page: hero-secondary in a product-style section shell — section
+ * padding, inner column max 1440px with responsive horizontal padding.
  * ------------------------------------------------------------
  */
 {
 	"sections": {
-		"collection_hero": {
-			"type": "collection-hero",
+		"hero": {
+			"type": "hero-secondary",
 			"settings": {
 				"heading": "MOMENTS",
-				"padding_top": 80,
-				"padding_bottom": 80
+				"inner_layout": "page",
+				"padding_top": 36,
+				"padding_bottom": 12
 			}
 		}
 	},
-	"order": ["collection_hero"]
+	"order": ["hero"]
 }

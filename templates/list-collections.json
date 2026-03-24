@@ -10,10 +10,9 @@
 {
 	"sections": {
 		"collection_hero": {
-			"type": "collection-hero",
+			"type": "hero-secondary",
 			"settings": {
 				"heading": "A STORY OF SOLIDARITY",
-				"overlay_opacity": 40,
 				"padding_top": 80,
 				"padding_bottom": 80
 			}

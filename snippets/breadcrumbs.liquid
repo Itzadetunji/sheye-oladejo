@@ -1,0 +1,25 @@
+{%- liquid
+  assign breadcrumbs_class = class | default: 'breadcrumbs'
+  assign breadcrumbs_label = aria_label | default: 'Breadcrumb'
+-%}
+
+<nav class="{{ breadcrumbs_class }} caption" aria-label="{{ breadcrumbs_label }}">
+  <a href="{{ routes.root_url }}">Home</a>
+  <span aria-hidden="true"> / </span>
+
+  {%- if template_type == 'product' and product != blank -%}
+    {%- if product.collections.first != blank -%}
+      <a href="{{ product.collections.first.url }}">{{ product.collections.first.title | escape }}</a>
+      <span aria-hidden="true"> / </span>
+    {%- endif -%}
+    <span>{{ product.title | escape }}</span>
+  {%- elsif template_type == 'collection' and collection != blank -%}
+    <a href="{{ routes.collections_url }}">Collections</a>
+    <span aria-hidden="true"> / </span>
+    <span>{{ collection.title | escape }}</span>
+  {%- elsif page != blank -%}
+    <span>{{ page.title | escape }}</span>
+  {%- elsif current_title != blank -%}
+    <span>{{ current_title | escape }}</span>
+  {%- endif -%}
+</nav>

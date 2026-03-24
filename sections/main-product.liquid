@@ -10,6 +10,7 @@
   {% endif %}
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'component-breadcrumbs.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
@@ -74,15 +75,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
-    <nav class="product-breadcrumbs caption" aria-label="Breadcrumb">
-      <a href="{{ routes.root_url }}">Home</a>
-      <span aria-hidden="true"> / </span>
-      {%- if product.collections.first != blank -%}
-        <a href="{{ product.collections.first.url }}">{{ product.collections.first.title | escape }}</a>
-        <span aria-hidden="true"> / </span>
-      {%- endif -%}
-      <span>{{ product.title | escape }}</span>
-    </nav>
+    {% render 'breadcrumbs', template_type: 'product', product: product %}
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
