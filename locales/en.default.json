@@ -346,7 +346,10 @@
       "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
     },
     "moments_grid": {
-      "select_collection": "Choose a collection in the Moments grid section settings to show products here."
+      "select_collection": "Choose at least one collection under “Collections”, or a fallback collection. Tag cards need a collection for links and images.",
+      "no_tags": "No product tags were found on products in the link collection. Add tags in Shopify admin or use “Tag” blocks with specific tag names.",
+      "add_tag_blocks": "Add “Tag” blocks to this section and type each Shopify product tag exactly as it appears in admin (e.g. Funeral, Baddie). Or leave blocks empty to auto-list every tag on products in your chosen collection.",
+      "tag_card_link": "View products with tag {{ tag }}"
     },
     "video": {
       "load_video": "Load video: {{ description }}"

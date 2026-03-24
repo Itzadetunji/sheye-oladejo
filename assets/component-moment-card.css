@@ -21,9 +21,18 @@
 	pointer-events: auto !important;
 }
 
-/* No em dash / second line (price removed) */
+/* No em dash / second line (price removed from visible stacked row) */
 .moment-card .card__heading-line--title::after {
 	content: none !important;
+}
+
+.moment-card.card--stacked-product > .card__content .card__heading-line--price {
+	display: none !important;
+}
+
+.moment-tag-card .card-hover-info__price:empty {
+	display: none;
+	margin: 0;
 }
 
 .moment-card .card__heading-link {

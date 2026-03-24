@@ -1,0 +1,246 @@
+{% comment %}
+  Moment card for a Shopify product tag (title = tag, not a product).
+  @param tag {String}
+  @param link_collection {Collection} Collection used for ?filter.p.tag= URLs
+  @param source_collections {Array} collection_list — products in these collections supply carousel images (optional)
+  @param fallback_collection {Collection} Used for images when source_collections is empty (optional)
+  @param section_id {String}
+  @param tag_index {Number}
+  @param lazy_load {Boolean}
+  @param skip_styles {Boolean}
+{% endcomment %}
+{%- liquid
+  assign lazy_load = lazy_load | default: true
+  assign skip_styles = skip_styles | default: false
+  assign uid = section_id | append: '-tag-' | append: tag_index
+  assign encoded_tag = tag | url_encode
+  if link_collection != blank
+    assign tag_url = link_collection.url | append: '?filter.p.tag=' | append: encoded_tag
+  else
+    assign tag_url = routes.all_products_collection_url | append: '?filter.p.tag=' | append: encoded_tag
+  endif
+
+  assign image_count = 0
+  if source_collections != blank and source_collections.size > 0
+    for coll in source_collections
+      for product in coll.products
+        if product.tags contains tag
+          for m in product.media
+            if m.media_type == 'image'
+              assign image_count = image_count | plus: 1
+            endif
+          endfor
+        endif
+      endfor
+    endfor
+  else
+    assign img_source = fallback_collection
+    if img_source != blank
+      for product in img_source.products
+        if product.tags contains tag
+          for m in product.media
+            if m.media_type == 'image'
+              assign image_count = image_count | plus: 1
+            endif
+          endfor
+        endif
+      endfor
+    endif
+  endif
+
+  assign has_image = false
+  if image_count > 0
+    assign has_image = true
+  endif
+  assign show_carousel_nav = false
+  if image_count > 1
+    assign show_carousel_nav = true
+  endif
+-%}
+{%- unless skip_styles -%}
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-moment-card.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'moment-card-carousel.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+<div class="card-wrapper product-card-wrapper underline-links-hover moment-card-wrapper">
+  <div
+    class="
+      card card--{{ settings.card_style }}
+      moment-card
+      moment-tag-card
+      card--media
+      card--extend-height
+      card--stacked-product
+      {% if settings.card_style == 'card' %}color-{{ settings.card_color_scheme }} gradient{% endif %}
+    "
+    style="--ratio-percent: 133.333%;"
+  >
+    <div
+      class="card__inner ratio{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+      style="--ratio-percent: 133.333%;"
+    >
+      {%- if has_image -%}
+        <div class="card__media color-{{ settings.card_color_scheme }} gradient">
+          <div
+            class="moment-card-carousel media media--transparent"
+            data-moment-carousel
+            id="MomentCarousel--{{ uid }}"
+          >
+            <button
+              type="button"
+              class="moment-card-carousel__btn moment-card-carousel__btn--prev"
+              data-moment-carousel-prev
+              aria-controls="MomentCarouselViewport--{{ uid }}"
+              aria-label="{{ 'general.slider.previous_slide' | t }}"
+              {% unless show_carousel_nav %}hidden{% endunless %}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div
+              class="moment-card-carousel__viewport"
+              data-moment-carousel-viewport
+              id="MomentCarouselViewport--{{ uid }}"
+            >
+              <div class="moment-card-carousel__track" data-moment-carousel-track>
+                {%- assign moment_first_img = true -%}
+                {%- if source_collections != blank and source_collections.size > 0 -%}
+                  {%- for coll in source_collections -%}
+                    {%- for product in coll.products -%}
+                      {%- if product.tags contains tag -%}
+                        {%- for media in product.media -%}
+                          {%- if media.media_type == 'image' -%}
+                            <div class="moment-card-carousel__slide" data-moment-carousel-slide>
+                              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                              <img
+                                srcset="
+                                  {%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
+                                  {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
+                                  {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
+                                  {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
+                                  {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
+                                  {{ media | image_url }} {{ media.width }}w
+                                "
+                                src="{{ media | image_url: width: 533 }}"
+                                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                alt="{{ media.alt | default: tag | escape }}"
+                                class="motion-reduce"
+                                {% if lazy_load and moment_first_img == false %}loading="lazy"{% endif %}
+                                width="{{ media.width }}"
+                                height="{{ media.height }}"
+                              >
+                              {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+                            </div>
+                            {%- assign moment_first_img = false -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endfor -%}
+                {%- elsif fallback_collection != blank -%}
+                  {%- for product in fallback_collection.products -%}
+                    {%- if product.tags contains tag -%}
+                      {%- for media in product.media -%}
+                        {%- if media.media_type == 'image' -%}
+                          <div class="moment-card-carousel__slide" data-moment-carousel-slide>
+                            {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
+                            <img
+                              srcset="
+                                {%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
+                                {%- if media.width >= 360 -%}{{ media | image_url: width: 360 }} 360w,{%- endif -%}
+                                {%- if media.width >= 533 -%}{{ media | image_url: width: 533 }} 533w,{%- endif -%}
+                                {%- if media.width >= 720 -%}{{ media | image_url: width: 720 }} 720w,{%- endif -%}
+                                {%- if media.width >= 940 -%}{{ media | image_url: width: 940 }} 940w,{%- endif -%}
+                                {{ media | image_url }} {{ media.width }}w
+                              "
+                              src="{{ media | image_url: width: 533 }}"
+                              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                              alt="{{ media.alt | default: tag | escape }}"
+                              class="motion-reduce"
+                              {% if lazy_load and moment_first_img == false %}loading="lazy"{% endif %}
+                              width="{{ media.width }}"
+                              height="{{ media.height }}"
+                            >
+                            {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
+                          </div>
+                          {%- assign moment_first_img = false -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+            </div>
+            <button
+              type="button"
+              class="moment-card-carousel__btn moment-card-carousel__btn--next"
+              data-moment-carousel-next
+              aria-controls="MomentCarouselViewport--{{ uid }}"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+              {% unless show_carousel_nav %}hidden{% endunless %}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      {%- else -%}
+        <div class="card__media color-{{ settings.card_color_scheme }} gradient">
+          <div class="media media--transparent">
+            <div class="moment-card-carousel__slide moment-card-carousel__slide--placeholder">
+              {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="card__content">
+        <div class="card__information">
+          <h3 class="card__heading">
+            <a
+              href="{{ tag_url }}"
+              id="StandardCardNoMediaLink-{{ uid }}"
+              class="full-unstyled-link card__heading-link"
+              aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}"
+            >
+              <span class="card__heading-line card__heading-line--title">{{ tag | upcase }}</span>
+              <span class="card__heading-line card__heading-line--price"></span>
+            </a>
+          </h3>
+        </div>
+        <div class="card__badge {{ settings.badge_position }}"></div>
+      </div>
+      <div class="card-hover-info">
+        <h3 class="card-hover-info__title">
+          <a href="{{ tag_url }}" class="full-unstyled-link" aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}">
+            {{ tag | upcase }}
+          </a>
+        </h3>
+        <p class="card-hover-info__price"></p>
+      </div>
+    </div>
+
+    <div class="card__content">
+      <div class="card__information">
+        <h3
+          class="card__heading{% if has_image or settings.card_style == 'standard' %} h5{% endif %}"
+          {% if has_image or settings.card_style == 'card' %}
+            id="title-{{ uid }}"
+          {% endif %}
+        >
+          <a
+            href="{{ tag_url }}"
+            id="CardLink-{{ uid }}"
+            class="full-unstyled-link card__heading-link"
+            aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}"
+          >
+            <span class="card__heading-line card__heading-line--title">{{ tag | upcase }}</span>
+            <span class="card__heading-line card__heading-line--price"></span>
+          </a>
+        </h3>
+      </div>
+      <div class="card__badge {{ settings.badge_position }}"></div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,7 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-moment-card.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'moment-card-carousel.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -10,6 +13,29 @@
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .product-grid {
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .product-grid {
+      justify-content: center;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .card__heading,
+  #shopify-section-{{ section.id }} .card__heading a {
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .card__heading,
+    #shopify-section-{{ section.id }} .card__heading a {
+      text-align: center;
     }
   }
 
@@ -63,24 +89,71 @@
       </header>
     {%- endif -%}
 
-    {%- assign moments_collection = section.settings.collection -%}
-    {%- if moments_collection == blank -%}
+    {%- liquid
+      assign src_collections = section.settings.source_collections
+      assign legacy_collection = section.settings.collection
+      assign auto_collection = collections['all']
+      assign link_collection = src_collections.first | default: legacy_collection | default: auto_collection
+    -%}
+
+    {%- liquid
+      assign all_tags_string = ''
+      assign all_tags_lookup = '|'
+
+      if src_collections != blank and src_collections.size > 0
+        for coll in src_collections
+          for t in coll.all_tags
+            assign t_marker = '|' | append: t | append: '|'
+            unless all_tags_lookup contains t_marker
+              assign all_tags_lookup = all_tags_lookup | append: t | append: '|'
+              if all_tags_string != ''
+                assign all_tags_string = all_tags_string | append: '|||'
+              endif
+              assign all_tags_string = all_tags_string | append: t
+            endunless
+          endfor
+        endfor
+      elsif legacy_collection != blank
+        for t in legacy_collection.all_tags
+          if all_tags_string != ''
+            assign all_tags_string = all_tags_string | append: '|||'
+          endif
+          assign all_tags_string = all_tags_string | append: t
+        endfor
+      else
+        for t in auto_collection.all_tags
+          if all_tags_string != ''
+            assign all_tags_string = all_tags_string | append: '|||'
+          endif
+          assign all_tags_string = all_tags_string | append: t
+        endfor
+      endif
+
+      assign unique_tags = all_tags_string | split: '|||'
+    -%}
+
+    {%- if unique_tags.size == 0 -%}
       <div class="moments-grid__empty center">
         <p>{{ 'sections.moments_grid.select_collection' | t }}</p>
       </div>
     {%- else -%}
-      {%- paginate moments_collection.products by section.settings.products_per_page -%}
-        {%- if moments_collection.products.size == 0 -%}
-          <div class="moments-grid__empty center">
-            <p>{{ 'sections.collection_template.empty' | t }}</p>
-          </div>
-        {%- else -%}
+      <div
+        class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        {% if settings.animations_reveal_on_scroll %}
+          data-cascade
+        {% endif %}
+      >
+        <div class="collection">
           <ul
-            class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} product-grid--alternating-3-2"
+            id="product-grid"
+            data-id="{{ section.id }}"
+            class="
+              grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} product-grid--alternating-3-2
+              {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}
+            "
             role="list"
           >
-            {%- assign skip_moment_styles = false -%}
-            {%- for product in moments_collection.products -%}
+            {%- for tag in unique_tags limit: section.settings.max_tags -%}
               {%- assign lazy_load = false -%}
               {%- if forloop.index > 2 -%}
                 {%- assign lazy_load = true -%}
@@ -91,23 +164,28 @@
               {%- else -%}
                 {%- assign span_class = 'grid__item--span-2' -%}
               {%- endif -%}
-              <li class="grid__item {{ span_class }}">
-                {% render 'moment-card',
-                  product: product,
+              <li
+                class="grid__item {{ span_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {% render 'moment-tag-card',
+                  tag: tag,
+                  link_collection: link_collection,
+                  source_collections: src_collections,
+                  fallback_collection: legacy_collection,
                   section_id: section.id,
+                  tag_index: forloop.index,
                   lazy_load: lazy_load,
-                  skip_styles: skip_moment_styles
+                  skip_styles: true
                 %}
               </li>
-              {%- assign skip_moment_styles = true -%}
             {%- endfor -%}
           </ul>
-
-          {%- if paginate.pages > 1 -%}
-            {% render 'pagination', paginate: paginate, anchor: '' %}
-          {%- endif -%}
-        {%- endif -%}
-      {%- endpaginate -%}
+        </div>
+      </div>
     {%- endif -%}
   </div>
 </div>
@@ -120,9 +198,17 @@
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
     {
+      "type": "collection_list",
+      "id": "source_collections",
+      "label": "Collections",
+      "limit": 20,
+      "info": "Pick one or more collections. Every unique product tag across these collections becomes a card."
+    },
+    {
       "type": "collection",
       "id": "collection",
-      "label": "Moments collection"
+      "label": "Fallback collection",
+      "info": "Used when Collections above is empty."
     },
     {
       "type": "text",
@@ -147,12 +233,13 @@
     },
     {
       "type": "range",
-      "id": "products_per_page",
-      "min": 8,
+      "id": "max_tags",
+      "min": 4,
       "max": 48,
       "step": 4,
       "default": 24,
-      "label": "Products per page"
+      "label": "Maximum tag cards",
+      "info": "Limits how many tag cards are shown."
     },
     {
       "type": "color_scheme",
