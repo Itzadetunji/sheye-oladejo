@@ -1,30 +1,31 @@
 {% comment %}
-  Moment card for a Shopify product tag.
-  Image sourced from metaobject type "moment_tag" — handle must match the handleized tag name.
-  @param tag {String}
-  @param link_collection {Collection} Collection used for ?filter.p.tag= URLs
+  Moment card driven by section-provided values.
+  @param title {String} Card title
+  @param tag {String} Product tag to filter by
+  @param card_image {MediaImage} Card image
   @param section_id {String}
-  @param tag_index {Number}
+  @param card_index {Number}
   @param lazy_load {Boolean}
   @param skip_styles {Boolean}
 {% endcomment %}
 {%- liquid
   assign lazy_load = lazy_load | default: true
   assign skip_styles = skip_styles | default: false
-  assign uid = section_id | append: '-tag-' | append: tag_index
-  assign encoded_tag = tag | url_encode
-  if link_collection != blank
-    assign tag_url = link_collection.url | append: '?filter.p.tag=' | append: encoded_tag
-  else
-    assign tag_url = routes.all_products_collection_url | append: '?filter.p.tag=' | append: encoded_tag
+  assign uid = section_id | append: '-moment-' | append: card_index
+
+  assign title = title | default: '' | strip
+  assign filter_tag = tag | default: title
+  assign filter_tag = filter_tag | strip
+
+  assign has_image = false
+  if card_image != blank
+    assign has_image = true
   endif
 
-  assign tag_handle = tag | handleize
-  assign mo_entry = shop.metaobjects.moment_tag[tag_handle]
-  assign mo_image = mo_entry.image.value
-  assign has_image = false
-  if mo_image != blank
-    assign has_image = true
+  assign card_url = routes.all_products_collection_url
+  if filter_tag != blank
+    assign tag_handle = filter_tag | handleize
+    assign card_url = card_url | append: '/' | append: tag_handle
   endif
 -%}
 {%- unless skip_styles -%}
@@ -54,20 +55,20 @@
             {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
             <img
               srcset="
-                {%- if mo_image.width >= 165 -%}{{ mo_image | image_url: width: 165 }} 165w,{%- endif -%}
-                {%- if mo_image.width >= 360 -%}{{ mo_image | image_url: width: 360 }} 360w,{%- endif -%}
-                {%- if mo_image.width >= 533 -%}{{ mo_image | image_url: width: 533 }} 533w,{%- endif -%}
-                {%- if mo_image.width >= 720 -%}{{ mo_image | image_url: width: 720 }} 720w,{%- endif -%}
-                {%- if mo_image.width >= 940 -%}{{ mo_image | image_url: width: 940 }} 940w,{%- endif -%}
-                {{ mo_image | image_url }} {{ mo_image.width }}w
+                {%- if card_image.width >= 165 -%}{{ card_image | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if card_image.width >= 360 -%}{{ card_image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if card_image.width >= 533 -%}{{ card_image | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if card_image.width >= 720 -%}{{ card_image | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if card_image.width >= 940 -%}{{ card_image | image_url: width: 940 }} 940w,{%- endif -%}
+                {{ card_image | image_url }} {{ card_image.width }}w
               "
-              src="{{ mo_image | image_url: width: 533 }}"
+              src="{{ card_image | image_url: width: 533 }}"
               sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-              alt="{{ mo_image.alt | default: tag | escape }}"
+              alt="{{ card_image.alt | default: title | escape }}"
               class="motion-reduce"
               {% if lazy_load %}loading="lazy"{% endif %}
-              width="{{ mo_image.width }}"
-              height="{{ mo_image.height }}"
+              width="{{ card_image.width }}"
+              height="{{ card_image.height }}"
             >
             {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
           </div>
@@ -85,12 +86,12 @@
         <div class="card__information">
           <h3 class="card__heading">
             <a
-              href="{{ tag_url }}"
+              href="{{ card_url }}"
               id="StandardCardNoMediaLink-{{ uid }}"
               class="full-unstyled-link card__heading-link"
-              aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}"
+              aria-label="{{ title | escape }}"
             >
-              <span class="card__heading-line card__heading-line--title">{{ tag | upcase }}</span>
+              <span class="card__heading-line card__heading-line--title">{{ title | upcase }}</span>
               <span class="card__heading-line card__heading-line--price"></span>
             </a>
           </h3>
@@ -99,8 +100,8 @@
       </div>
       <div class="card-hover-info">
         <h3 class="card-hover-info__title">
-          <a href="{{ tag_url }}" class="full-unstyled-link" aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}">
-            {{ tag | upcase }}
+          <a href="{{ card_url }}" class="full-unstyled-link" aria-label="{{ title | escape }}">
+            {{ title | upcase }}
           </a>
         </h3>
         <p class="card-hover-info__price"></p>
@@ -116,12 +117,12 @@
           {% endif %}
         >
           <a
-            href="{{ tag_url }}"
+            href="{{ card_url }}"
             id="CardLink-{{ uid }}"
             class="full-unstyled-link card__heading-link"
-            aria-label="{{ 'sections.moments_grid.tag_card_link' | t: tag: tag }}"
+            aria-label="{{ title | escape }}"
           >
-            <span class="card__heading-line card__heading-line--title">{{ tag | upcase }}</span>
+            <span class="card__heading-line card__heading-line--title">{{ title | upcase }}</span>
             <span class="card__heading-line card__heading-line--price"></span>
           </a>
         </h3>
