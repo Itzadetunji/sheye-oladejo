@@ -7,6 +7,7 @@
  * - was 3-up (span-2) → 2 per row; 3rd in each trio (5n+3) full width
  * - was 2-up (span-3) → 1 per row
  * - lone first-of-cycle span-2 at end of list (5n+1:last-child) → full width
+ * - single product → same width as one slot in a 2-up row (half row), one row
  */
 @media screen and (max-width: 989px) {
 	/* Flex-wrap: avoid justify-content:center on flex rows (breaks alternating rhythm).
@@ -28,13 +29,6 @@
 		flex: 0 0 100% !important;
 	}
 
-	/* Single product (or lone span-2) should not stay half-width */
-	.product-grid--alternating-3-2 .grid__item--span-2:only-child {
-		width: 100% !important;
-		max-width: 100% !important;
-		flex: 0 0 100% !important;
-	}
-
 	/* First item of a new 5-cycle when it is the last grid item (e.g. 6th, 11th product) */
 	.product-grid--alternating-3-2
 	.grid__item--span-2:nth-child(5n + 1):last-child {
@@ -47,6 +41,13 @@
 		width: 100% !important;
 		max-width: 100% !important;
 		flex: 0 0 100% !important;
+	}
+
+	/* Single product: same width as one cell in the 2-up rows, one row */
+	.product-grid--alternating-3-2 .grid__item:only-child {
+		width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		flex: 0 0 calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
 	}
 }
 
@@ -73,9 +74,9 @@
 		grid-column: span 3;
 	}
 
-	/* One product in the grid: span full width instead of 2/6 columns */
-	.product-grid--alternating-3-2 .grid__item--span-2:only-child {
-		grid-column: 1 / -1;
+	/* Single product: half row (2-column rhythm), one grid row */
+	.product-grid--alternating-3-2 .grid__item:only-child {
+		grid-column: span 3;
 	}
 
 	.product-grid--alternating-3-2 {
