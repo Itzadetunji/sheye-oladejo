@@ -8,8 +8,13 @@
   <span aria-hidden="true"> / </span>
 
   {%- if template_type == 'product' and product != blank -%}
-    {%- if product.collections.first != blank -%}
-      <a href="{{ product.collections.first.url }}">{{ product.collections.first.title | escape }}</a>
+    {%- comment -%}
+      Only show a collection crumb when the customer arrived from that collection
+      (`collection` is set). Using `product.collections.first` adds misleading crumbs
+      (e.g. Frontpage / "Home page") for direct product URLs like /products/book-consultation.
+    {%- endcomment -%}
+    {%- if collection != blank -%}
+      <a href="{{ collection.url }}">{{ collection.title | escape }}</a>
       <span aria-hidden="true"> / </span>
     {%- endif -%}
     <span>{{ product.title | escape }}</span>

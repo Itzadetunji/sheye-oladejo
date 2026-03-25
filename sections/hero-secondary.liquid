@@ -19,7 +19,9 @@
 
 {%- liquid
   assign hero_inner_layout = section.settings.inner_layout | default: 'theme'
-  if collection != blank
+  if product != blank
+    assign breadcrumb_template_type = 'product'
+  elsif collection != blank
     assign breadcrumb_template_type = 'collection'
   elsif page != blank
     assign breadcrumb_template_type = 'page'
@@ -37,6 +39,7 @@
   {%- endif -%}
   {% render 'breadcrumbs',
     template_type: breadcrumb_template_type,
+    product: product,
     collection: collection,
     page: page,
     current_title: section.settings.heading,
