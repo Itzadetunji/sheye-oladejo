@@ -72,6 +72,12 @@
     margin: 0 auto;
     display: grid;
     gap: 0;
+    padding-top: 0;
+    padding-bottom: 128px;
+  }
+
+  .book-consultation-{{ section.id }} .about-founder__inner.page-width {
+    padding-block: 128px;
   }
 
   .book-consultation-{{ section.id }}__image-wrap {
@@ -178,7 +184,7 @@
 
     .book-consultation-{{ section.id }}__intro-group {
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      align-items: start;
+      align-items: stretch;
     }
   }
 
