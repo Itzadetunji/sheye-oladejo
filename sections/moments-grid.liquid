@@ -1,7 +1,6 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-moment-card.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'moment-card-carousel.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -90,46 +89,8 @@
     {%- endif -%}
 
     {%- liquid
-      assign src_collections = section.settings.source_collections
-      assign legacy_collection = section.settings.collection
-      assign auto_collection = collections['all']
-      assign link_collection = src_collections.first | default: legacy_collection | default: auto_collection
-    -%}
-
-    {%- liquid
-      assign all_tags_string = ''
-      assign all_tags_lookup = '|'
-
-      if src_collections != blank and src_collections.size > 0
-        for coll in src_collections
-          for t in coll.all_tags
-            assign t_marker = '|' | append: t | append: '|'
-            unless all_tags_lookup contains t_marker
-              assign all_tags_lookup = all_tags_lookup | append: t | append: '|'
-              if all_tags_string != ''
-                assign all_tags_string = all_tags_string | append: '|||'
-              endif
-              assign all_tags_string = all_tags_string | append: t
-            endunless
-          endfor
-        endfor
-      elsif legacy_collection != blank
-        for t in legacy_collection.all_tags
-          if all_tags_string != ''
-            assign all_tags_string = all_tags_string | append: '|||'
-          endif
-          assign all_tags_string = all_tags_string | append: t
-        endfor
-      else
-        for t in auto_collection.all_tags
-          if all_tags_string != ''
-            assign all_tags_string = all_tags_string | append: '|||'
-          endif
-          assign all_tags_string = all_tags_string | append: t
-        endfor
-      endif
-
-      assign unique_tags = all_tags_string | split: '|||'
+      assign moments_collection = collections['moments']
+      assign unique_tags = moments_collection.all_tags
     -%}
 
     {%- if unique_tags.size == 0 -%}
@@ -173,9 +134,7 @@
               >
                 {% render 'moment-tag-card',
                   tag: tag,
-                  link_collection: link_collection,
-                  source_collections: src_collections,
-                  fallback_collection: legacy_collection,
+                  link_collection: moments_collection,
                   section_id: section.id,
                   tag_index: forloop.index,
                   lazy_load: lazy_load,
@@ -197,19 +156,6 @@
   "class": "section",
   "disabled_on": { "groups": ["header", "footer"] },
   "settings": [
-    {
-      "type": "collection_list",
-      "id": "source_collections",
-      "label": "Collections",
-      "limit": 20,
-      "info": "Pick one or more collections. Every unique product tag across these collections becomes a card."
-    },
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Fallback collection",
-      "info": "Used when Collections above is empty."
-    },
     {
       "type": "text",
       "id": "heading",

@@ -59,9 +59,18 @@
               data-moment-carousel-prev
               aria-controls="MomentCarouselViewport--{{ uid }}"
               aria-label="{{ 'general.slider.previous_slide' | t }}"
-              {% unless show_carousel_nav %}hidden{% endunless %}
+              {% unless show_carousel_nav %}
+                hidden
+              {% endunless %}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/>
               </svg>
             </button>
@@ -89,7 +98,9 @@
                         sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                         alt="{{ media.alt | default: product.title | escape }}"
                         class="motion-reduce"
-                        {% if lazy_load and moment_first_img == false %}loading="lazy"{% endif %}
+                        {% if lazy_load and moment_first_img == false %}
+                          loading="lazy"
+                        {% endif %}
                         width="{{ media.width }}"
                         height="{{ media.height }}"
                       >
@@ -106,9 +117,18 @@
               data-moment-carousel-next
               aria-controls="MomentCarouselViewport--{{ uid }}"
               aria-label="{{ 'general.slider.next_slide' | t }}"
-              {% unless show_carousel_nav %}hidden{% endunless %}
+              {% unless show_carousel_nav %}
+                hidden
+              {% endunless %}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/>
               </svg>
             </button>
