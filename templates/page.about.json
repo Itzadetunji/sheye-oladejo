@@ -9,13 +9,6 @@
 				"padding_bottom": 12
 			}
 		},
-		"main": {
-			"type": "main-page",
-			"settings": {
-				"padding_top": 48,
-				"padding_bottom": 100
-			}
-		},
 		"about_brand": {
 			"type": "about-brand",
 			"settings": {
@@ -130,7 +123,6 @@
 	},
 	"order": [
 		"hero",
-		"main",
 		"about_brand",
 		"about_founder",
 		"about_products",
