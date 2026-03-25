@@ -15,29 +15,10 @@
 {%- endstyle -%}
 
 <div class="page-width page-width--narrow section-{{ section.id }}-padding main-page">
-  {%- if section.settings.tagline != blank -%}
-    <p class="main-page__tagline{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      {{ section.settings.tagline | escape }}
-    </p>
-  {%- endif -%}
   <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}
   </div>
 </div>
-
-<style>
-  .main-page__tagline {
-    text-align: center;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin: 0 0 2rem;
-    font-family: var(--font-heading-family);
-    font-size: clamp(1.5rem, 5vw, 2.75rem);
-    line-height: 1.2;
-    color: rgb(var(--color-foreground));
-  }
-</style>
 
 {% schema %}
 {
@@ -45,12 +26,6 @@
   "tag": "section",
   "class": "section",
   "settings": [
-    {
-      "type": "text",
-      "id": "tagline",
-      "label": "Tagline",
-      "default": "TIMELESS FEMINITY, SCULPTERED IN COUTURE."
-    },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"

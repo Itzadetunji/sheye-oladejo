@@ -27,6 +27,38 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  .template-index #Banner-{{ section.id }} {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+
+  .template-index #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content {
+    min-height: 100svh;
+    min-height: 100dvh;
+    opacity: 0;
+    transform: translateY(1.2rem);
+    animation: banner-content-fade-in 0.8s ease-out 0.2s forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .template-index #Banner-{{ section.id }}:not(.banner--mobile-bottom) .banner__content {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  @keyframes banner-content-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -115,14 +147,14 @@
       }}
     </div>
   {%- endif -%}
-  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div class="banner__content banner__content--{{ section.settings.desktop_content_position }}">
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'brand_logo' -%}
             <div class="banner__brand-logo" {{ block.shopify_attributes }}>
               <img
-                src="{{ 'brand/logo-text-and-tagline-illustration.svg' | asset_url }}"
+                src="{{ 'brand/logo-white-text-and-tagline-illustration.svg' | asset_url }}"
                 alt="{{ shop.name | escape }}"
                 class="banner__brand-logo-img banner__brand-logo-img--desktop"
                 width="400"
@@ -130,7 +162,7 @@
                 loading="eager"
               >
               <img
-                src="{{ 'brand/logo.svg' | asset_url }}"
+                src="{{ 'brand/logo-white.svg' | asset_url }}"
                 alt="{{ shop.name | escape }}"
                 class="banner__brand-logo-img banner__brand-logo-img--mobile"
                 width="400"
