@@ -51,39 +51,63 @@
       "blocks": {
         "ac_l1": {
           "type": "left_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-11.webp"
+          }
         },
         "left_carousel_slide_CYznEC": {
           "type": "left_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-35.webp"
+          }
         },
         "ac_l2": {
           "type": "left_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-21.webp"
+          }
         },
         "ac_l3": {
           "type": "left_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-7.webp"
+          }
         },
         "ac_l4": {
           "type": "left_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-5.webp"
+          }
         },
         "ac_r1": {
           "type": "right_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/ejire-2-professional-64.webp"
+          }
         },
         "ac_r2": {
           "type": "right_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/ejire-2-professional-75.webp"
+          }
         },
         "ac_r3": {
           "type": "right_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/ejire-2-professional-12.webp"
+          }
         },
         "ac_r4": {
           "type": "right_carousel_slide",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/ejire-2-professional-71.webp"
+          }
+        },
+        "right_carousel_slide_tJhU6z": {
+          "type": "right_carousel_slide",
+          "settings": {
+            "image": "shopify://shop_images/ejire-2-professional-9.webp"
+          }
         }
       },
       "block_order": [
@@ -95,7 +119,8 @@
         "ac_r1",
         "ac_r2",
         "ac_r3",
-        "ac_r4"
+        "ac_r4",
+        "right_carousel_slide_tJhU6z"
       ],
       "settings": {
         "section_heading": "Book appointment or couture",
