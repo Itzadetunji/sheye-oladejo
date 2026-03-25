@@ -8,151 +8,162 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
-		"image_banner": {
-			"type": "image-banner",
-			"blocks": {
-				"brand_logo": {
-					"type": "brand_logo",
-					"settings": {}
-				},
-				"button": {
-					"type": "buttons",
-					"settings": {
-						"button_label_1": "Explore",
-						"button_link_1": "shopify://collections/",
-						"button_style_secondary_1": true,
-						"button_label_2": "",
-						"button_link_2": "",
-						"button_style_secondary_2": false
-					}
-				}
-			},
-			"block_order": ["brand_logo", "button"],
-			"settings": {
-				"image_overlay_opacity": 40,
-				"image_height": "large",
-				"desktop_content_position": "middle-center",
-				"show_text_box": false,
-				"image_behavior": "none",
-				"desktop_content_alignment": "center",
-				"color_scheme": "scheme-3",
-				"mobile_content_alignment": "center",
-				"stack_images_on_mobile": false,
-				"show_text_below": false
-			}
-		},
-		"featured_collection": {
-			"type": "featured-collection",
-			"settings": {
-				"title": "Featured products",
-				"heading_size": "h2",
-				"description": "",
-				"show_description": false,
-				"description_style": "body",
-				"collection": "all",
-				"products_to_show": 8,
-				"columns_desktop": 4,
-				"color_scheme": "scheme-1",
-				"full_width": false,
-				"show_view_all": true,
-				"view_all_style": "solid",
-				"enable_desktop_slider": false,
-				"swipe_on_mobile": false,
-				"image_ratio": "adapt",
-				"image_shape": "default",
-				"show_secondary_image": true,
-				"show_vendor": false,
-				"show_rating": false,
-				"quick_add": "none",
-				"columns_mobile": "2",
-				"padding_top": 128,
-				"padding_bottom": 128
-			}
-		},
-		"book_appointment_or_couture": {
-			"type": "appointment-couture",
-			"blocks": {
-				"ac_l1": {
-					"type": "left_carousel_slide",
-					"settings": {}
-				},
-				"ac_l2": {
-					"type": "left_carousel_slide",
-					"settings": {}
-				},
-				"ac_l3": {
-					"type": "left_carousel_slide",
-					"settings": {}
-				},
-				"ac_l4": {
-					"type": "left_carousel_slide",
-					"settings": {}
-				},
-				"ac_r1": {
-					"type": "right_carousel_slide",
-					"settings": {}
-				},
-				"ac_r2": {
-					"type": "right_carousel_slide",
-					"settings": {}
-				},
-				"ac_r3": {
-					"type": "right_carousel_slide",
-					"settings": {}
-				},
-				"ac_r4": {
-					"type": "right_carousel_slide",
-					"settings": {}
-				}
-			},
-			"block_order": [
-				"ac_l1",
-				"ac_l2",
-				"ac_l3",
-				"ac_l4",
-				"ac_r1",
-				"ac_r2",
-				"ac_r3",
-				"ac_r4"
-			],
-			"settings": {
-				"section_heading": "Book appointment or couture",
-				"image_left": "",
-				"left_button_link": "/shop",
-				"image_right": "",
-				"right_button_link": "/book-consultation",
-				"background_color": "#f6f6f6"
-			}
-		},
-		"latest_collection": {
-			"type": "latest-collection",
-			"settings": {
-				"title": "Latest Collection",
-				"heading_size": "h2",
-				"description": "",
-				"show_description": false,
-				"description_style": "body",
-				"collection": "all",
-				"full_width": false,
-				"show_view_all": true,
-				"view_all_style": "solid",
-				"color_scheme": "scheme-1",
-				"image_ratio": "adapt",
-				"image_shape": "default",
-				"show_secondary_image": true,
-				"show_vendor": false,
-				"show_rating": false,
-				"quick_add": "none",
-				"padding_top": 128,
-				"padding_bottom": 128
-			}
-		}
-	},
-	"order": [
-		"image_banner",
-		"book_appointment_or_couture",
-		"latest_collection",
-		"featured_collection"
-	]
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "brand_logo": {
+          "type": "brand_logo",
+          "settings": {}
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Explore",
+            "button_link_1": "shopify://collections/",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "brand_logo",
+        "button"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/ejire-2-professional-28.webp",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "book_appointment_or_couture": {
+      "type": "appointment-couture",
+      "blocks": {
+        "ac_l1": {
+          "type": "left_carousel_slide",
+          "settings": {}
+        },
+        "left_carousel_slide_CYznEC": {
+          "type": "left_carousel_slide",
+          "settings": {}
+        },
+        "ac_l2": {
+          "type": "left_carousel_slide",
+          "settings": {}
+        },
+        "ac_l3": {
+          "type": "left_carousel_slide",
+          "settings": {}
+        },
+        "ac_l4": {
+          "type": "left_carousel_slide",
+          "settings": {}
+        },
+        "ac_r1": {
+          "type": "right_carousel_slide",
+          "settings": {}
+        },
+        "ac_r2": {
+          "type": "right_carousel_slide",
+          "settings": {}
+        },
+        "ac_r3": {
+          "type": "right_carousel_slide",
+          "settings": {}
+        },
+        "ac_r4": {
+          "type": "right_carousel_slide",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "ac_l1",
+        "left_carousel_slide_CYznEC",
+        "ac_l2",
+        "ac_l3",
+        "ac_l4",
+        "ac_r1",
+        "ac_r2",
+        "ac_r3",
+        "ac_r4"
+      ],
+      "settings": {
+        "section_heading": "Book appointment or couture",
+        "image_left": "shopify://shop_images/couture-image-13.webp",
+        "left_button_text": "COUTURE",
+        "left_button_link": "/shop",
+        "image_right": "shopify://shop_images/ejire-2-professional-69.webp",
+        "right_button_text": "READY TO WEAR",
+        "right_button_link": "/book-consultation",
+        "background_color": "#f6f6f6"
+      }
+    },
+    "latest_collection": {
+      "type": "latest-collection",
+      "settings": {
+        "collection": "all",
+        "title": "Latest Collection",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "padding_top": 128,
+        "padding_bottom": 128
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 128,
+        "padding_bottom": 128
+      }
+    }
+  },
+  "order": [
+    "image_banner",
+    "book_appointment_or_couture",
+    "latest_collection",
+    "featured_collection"
+  ]
 }
