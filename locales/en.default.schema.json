@@ -1261,6 +1261,9 @@
         }
       },
       "blocks": {
+        "brand_logo": {
+          "name": "Brand logo"
+        },
         "heading": {
           "name": "Heading",
           "settings": {
@@ -1300,7 +1303,7 @@
             "button_label_1": {
               "label": "Label",
               "info": "Leave blank to hide",
-              "default": "Button label"
+              "default": "Explore"
             },
             "button_link_1": {
               "label": "Link"

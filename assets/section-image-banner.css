@@ -448,6 +448,39 @@
 	}
 }
 
+.banner__brand-logo {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.banner__brand-logo-img {
+	height: auto;
+	max-width: 100%;
+}
+
+.banner__brand-logo-img--desktop {
+	display: none;
+	max-width: min(42rem, 85vw);
+	max-height: min(70vh, 52rem);
+}
+
+.banner__brand-logo-img--mobile {
+	display: block;
+	width: auto;
+	height: 160px;
+}
+
+@media screen and (min-width: 750px) {
+	.banner__brand-logo-img--desktop {
+		display: block;
+	}
+
+	.banner__brand-logo-img--mobile {
+		display: none;
+	}
+}
+
 .banner__heading {
 	margin-bottom: 0;
 	text-transform: uppercase;

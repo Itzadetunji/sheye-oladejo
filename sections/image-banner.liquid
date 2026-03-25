@@ -119,6 +119,25 @@
     <div class="banner__box content-container content-container--full-width-mobile color-{{ section.settings.color_scheme }} gradient">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
+          {%- when 'brand_logo' -%}
+            <div class="banner__brand-logo" {{ block.shopify_attributes }}>
+              <img
+                src="{{ 'brand/logo-text-and-tagline-illustration.svg' | asset_url }}"
+                alt="{{ shop.name | escape }}"
+                class="banner__brand-logo-img banner__brand-logo-img--desktop"
+                width="400"
+                height="512"
+                loading="eager"
+              >
+              <img
+                src="{{ 'brand/logo.svg' | asset_url }}"
+                alt="{{ shop.name | escape }}"
+                class="banner__brand-logo-img banner__brand-logo-img--mobile"
+                width="400"
+                height="1143"
+                loading="eager"
+              >
+            </div>
           {%- when 'heading' -%}
             <h2
               class="banner__heading inline-richtext {{ block.settings.heading_size }}"
@@ -362,6 +381,12 @@
   ],
   "blocks": [
     {
+      "type": "brand_logo",
+      "name": "t:sections.image-banner.blocks.brand_logo.name",
+      "limit": 1,
+      "settings": []
+    },
+    {
       "type": "heading",
       "name": "t:sections.image-banner.blocks.heading.name",
       "limit": 1,
@@ -492,10 +517,7 @@
       "name": "t:sections.image-banner.presets.name",
       "blocks": [
         {
-          "type": "heading"
-        },
-        {
-          "type": "text"
+          "type": "brand_logo"
         },
         {
           "type": "buttons"

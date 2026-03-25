@@ -12,17 +12,14 @@
 		"image_banner": {
 			"type": "image-banner",
 			"blocks": {
-				"heading": {
-					"type": "heading",
-					"settings": {
-						"heading": "TIMELESS FEMININITY SCULPTERED IN COUTURE.",
-						"heading_size": "h0"
-					}
+				"brand_logo": {
+					"type": "brand_logo",
+					"settings": {}
 				},
 				"button": {
 					"type": "buttons",
 					"settings": {
-						"button_label_1": "Shop all",
+						"button_label_1": "Explore",
 						"button_link_1": "shopify://collections/all",
 						"button_style_secondary_1": true,
 						"button_label_2": "",
@@ -31,11 +28,11 @@
 					}
 				}
 			},
-			"block_order": ["heading", "button"],
+			"block_order": ["brand_logo", "button"],
 			"settings": {
 				"image_overlay_opacity": 40,
 				"image_height": "large",
-				"desktop_content_position": "bottom-center",
+				"desktop_content_position": "middle-center",
 				"show_text_box": false,
 				"image_behavior": "none",
 				"desktop_content_alignment": "center",
