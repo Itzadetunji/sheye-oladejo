@@ -1,0 +1,89 @@
+{%- style -%}
+  .callout-banner-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .callout-banner-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign banner_text = section.settings.text | strip
+  if banner_text == blank
+    assign banner_text = 'Feel the Magic in Every Conversation'
+  endif
+-%}
+
+<section class="callout-banner callout-banner-{{ section.id }}">
+  <div class="callout-banner__inner">
+    <h2 class="callout-banner__heading">
+      {{ banner_text | escape }}
+    </h2>
+  </div>
+</section>
+
+<style>
+  .callout-banner__inner {
+    min-height: 12rem;
+    background: {{ settings.color_accent_porcelain | default: '#F3EDE8' }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+  .callout-banner__heading {
+    margin: 0;
+    font-size: clamp(1.9rem, 4.3vw, 3.5rem);
+    font-family: "Times New Roman", Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    line-height: 1.2;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Callout banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Feel the Magic in Every Conversation"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Callout banner"
+    }
+  ]
+}
+{% endschema %}
