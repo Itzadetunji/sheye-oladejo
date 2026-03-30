@@ -89,36 +89,36 @@
 				}
 			},
 			"block_order": ["image_1", "image_2"]
-		},
-		"featured_products_grid": {
-			"type": "collection-featured-products",
-			"settings": {
-				"title": "Featured products",
-				"heading_size": "h2",
-				"description": "",
-				"show_description": false,
-				"description_style": "body",
-				"full_width": false,
-				"show_view_all": true,
-				"view_all_style": "solid",
-				"color_scheme": "scheme-1",
-				"image_ratio": "adapt",
-				"image_shape": "default",
-				"show_secondary_image": true,
-				"show_vendor": false,
-				"show_rating": false,
-				"quick_add": "none",
-				"padding_top": 64,
-				"padding_bottom": 64
-			}
 		}
+		// "featured_products_grid": {
+		// 	"type": "collection-featured-products",
+		// 	"settings": {
+		// 		"title": "Featured products",
+		// 		"heading_size": "h2",
+		// 		"description": "",
+		// 		"show_description": false,
+		// 		"description_style": "body",
+		// 		"full_width": false,
+		// 		"show_view_all": true,
+		// 		"view_all_style": "solid",
+		// 		"color_scheme": "scheme-1",
+		// 		"image_ratio": "adapt",
+		// 		"image_shape": "default",
+		// 		"show_secondary_image": true,
+		// 		"show_vendor": false,
+		// 		"show_rating": false,
+		// 		"quick_add": "none",
+		// 		"padding_top": 64,
+		// 		"padding_bottom": 64
+		// 	}
+		// }
 	},
 	"order": [
 		"hero",
 		"about_founder",
 		"image_grid",
 		"callout_banner",
-		"image_grid_two",
-		"featured_products_grid"
+		"image_grid_two"
+		// "featured_products_grid"
 	]
 }
