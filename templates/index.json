@@ -33,7 +33,7 @@
         "button"
       ],
       "settings": {
-        "image": "shopify://shop_images/ejire-2-professional-28.webp",
+        "image": "shopify://shop_images/ejire-2-hero.png",
         "image_overlay_opacity": 40,
         "image_height": "large",
         "image_behavior": "none",

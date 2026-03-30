@@ -81,13 +81,19 @@
 {%- style -%}
   .book-appointment-or-couture--{{ section.id }} {
     --book-appointment-bg: {{ section.settings.background_color }};
-    padding-block: 128px;
+    padding-bottom: 128px;
   }
 
   .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 4rem;
+  }
+
+  @media screen and (min-width: 640px) {
+    .book-appointment-or-couture__grid {
+     gap: 0 !important;
+    }
   }
 
   .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__tile {
@@ -125,11 +131,18 @@
     border-color: #333;
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 639px) {
     .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn {
       padding: 0.8rem 1.2rem;
       font-size: 1rem;
       min-height: auto;
+    }
+  }
+
+  @media screen and (max-width: 1023px) {
+    .book-appointment-or-couture--{{ section.id }} > .page-width {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
   }
 
@@ -156,7 +169,7 @@
     display: block;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__grid {
       grid-template-columns: 1fr 1fr;
     }
@@ -206,21 +219,19 @@
     display: flex;
     flex-direction: column;
     align-self: stretch;
+    aspect-ratio: 3 / 4;
   }
 
   .appointment-couture-carousel__media {
     position: relative;
     width: 100%;
-    max-width: min(100%, 480px);
+    {% comment %} max-width: min(100%, 480px); {% endcomment %}
     margin-inline: auto;
-    aspect-ratio: 3 / 4;
-    max-height: 720px;
-    min-height: 0;
-    height: auto;
     border-radius: 0.25rem;
     flex-shrink: 0;
     overflow: hidden;
     background: rgba(var(--color-foreground), 0.04);
+    height: 100%;
   }
 
   .appointment-couture-carousel__media .appointment-couture-carousel__img {
@@ -266,7 +277,7 @@
   }
 
   /* ≤1024px: one slide; arrows overlaid; full-width media (no carousel padding / media bg) */
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     .appointment-couture-carousel {
       position: relative;
       display: block;
@@ -284,8 +295,7 @@
     }
 
     .appointment-couture-carousel__media {
-      max-width: min(100%, 480px);
-      max-height: 720px;
+      {% comment %} max-width: min(100%, 480px); {% endcomment %}
       border-radius: 0;
       background: transparent;
     }
@@ -297,6 +307,12 @@
       z-index: 2;
       flex: none;
       align-self: auto;
+    }
+
+    .appointment-couture-carousel__btn svg,
+    .appointment-couture-carousel__btn svg path {
+      color: #fff;
+      stroke: #fff;
     }
 
     .appointment-couture-carousel__btn--prev {
