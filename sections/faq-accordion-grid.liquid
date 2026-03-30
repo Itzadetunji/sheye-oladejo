@@ -7,50 +7,54 @@
 
 <section class="faq-grid faq-grid-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="faq-grid__inner page-width">
-    {%- if section.settings.heading != blank -%}
-      <h1 class="faq-grid__heading">{{ section.settings.heading | escape }}</h1>
-    {%- endif -%}
-
     <ul class="faq-grid__list" role="list">
       {%- if section.blocks.size > 0 -%}
+        {%- assign faq_item_index = 0 -%}
         {%- for block in section.blocks -%}
-          {%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: forloop.index -%}
-          <li class="faq-grid__item" {{ block.shopify_attributes }}>
-            <input
-              id="{{ item_id }}"
-              class="faq-grid__input"
-              type="radio"
-              name="faq-{{ section.id }}"
-              {% if section.settings.open_first and forloop.first %}
-                checked
-              {% endif %}
-            >
-
-            <label for="{{ item_id }}" class="faq-grid__question-row">
-              <p class="faq-grid__question">{{ block.settings.question | escape }}</p>
-              <svg
-                class="faq-grid__icon faq-grid__icon--chevron"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="none"
-                aria-hidden="true"
+          {%- if block.type == 'section_heading' -%}
+            <li class="faq-grid__section-heading" {{ block.shopify_attributes }}>
+              <h2 class="faq-grid__section-title">{{ block.settings.title | escape }}</h2>
+            </li>
+          {%- elsif block.type == 'item' -%}
+            {%- assign faq_item_index = faq_item_index | plus: 1 -%}
+            {%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+            <li class="faq-grid__item" {{ block.shopify_attributes }}>
+              <input
+                id="{{ item_id }}"
+                class="faq-grid__input"
+                type="radio"
+                name="faq-{{ section.id }}"
+                {% if section.settings.open_first and faq_item_index == 1 %}
+                  checked
+                {% endif %}
               >
-                <path
-                  d="M5 8l5 5 5-5"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </label>
 
-            <div class="faq-grid__answer-wrap">
-              <div class="faq-grid__answer rte">
-                {{ block.settings.answer }}
+              <label for="{{ item_id }}" class="faq-grid__question-row">
+                <p class="faq-grid__question">{{ block.settings.question | escape }}</p>
+                <svg
+                  class="faq-grid__icon faq-grid__icon--chevron"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 8l5 5 5-5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </label>
+
+              <div class="faq-grid__answer-wrap">
+                <div class="faq-grid__answer rte">
+                  {{ block.settings.answer | escape | newline_to_br }}
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          {%- endif -%}
         {%- endfor -%}
       {%- else -%}
         {%- comment -%} Default FAQ content (from section liquid) when no blocks are added {%- endcomment -%}
@@ -147,6 +151,24 @@
     padding: 2rem 0;
     list-style: none;
   }
+  .faq-grid__section-heading {
+    list-style: none;
+    margin: 0;
+    padding: 2.5rem 0 1rem;
+    border-bottom: none;
+  }
+  .faq-grid__section-heading:first-child {
+    padding-top: 0;
+  }
+  .faq-grid__section-title {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
   .faq-grid__item {
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.2);
   }
@@ -231,6 +253,17 @@
   ],
   "blocks": [
     {
+      "type": "section_heading",
+      "name": "Section heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        }
+      ]
+    },
+    {
       "type": "item",
       "name": "FAQ item",
       "settings": [
@@ -240,7 +273,7 @@
           "label": "Question"
         },
         {
-          "type": "richtext",
+          "type": "textarea",
           "id": "answer",
           "label": "Answer"
         }
