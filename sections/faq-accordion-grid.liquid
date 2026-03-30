@@ -13,75 +13,59 @@
 
     <ul class="faq-grid__list" role="list">
       {%- if section.blocks.size > 0 -%}
-        {%- assign faq_item_index = 0 -%}
         {%- for block in section.blocks -%}
-          {%- if block.type == 'section_heading' -%}
-            <li class="faq-grid__section-heading" {{ block.shopify_attributes }}>
-              <h2 class="faq-grid__section-title">{{ block.settings.title | escape }}</h2>
-            </li>
-          {%- else -%}
-            {%- assign faq_item_index = faq_item_index | plus: 1 -%}
-            {%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
-            <li class="faq-grid__item" {{ block.shopify_attributes }}>
-              <input
-                id="{{ item_id }}"
-                class="faq-grid__input"
-                type="radio"
-                name="faq-{{ section.id }}"
-                {% if section.settings.open_first and faq_item_index == 1 %}
-                  checked
-                {% endif %}
+          {%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: forloop.index -%}
+          <li class="faq-grid__item" {{ block.shopify_attributes }}>
+            <input
+              id="{{ item_id }}"
+              class="faq-grid__input"
+              type="radio"
+              name="faq-{{ section.id }}"
+              {% if section.settings.open_first and forloop.first %}
+                checked
+              {% endif %}
+            >
+
+            <label for="{{ item_id }}" class="faq-grid__question-row">
+              <p class="faq-grid__question">{{ block.settings.question | escape }}</p>
+              <svg
+                class="faq-grid__icon faq-grid__icon--chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
               >
+                <path
+                  d="M5 8l5 5 5-5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </label>
 
-              <label for="{{ item_id }}" class="faq-grid__question-row">
-                <p class="faq-grid__question">{{ block.settings.question | escape }}</p>
-                <svg
-                  class="faq-grid__icon faq-grid__icon--chevron"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M5 8l5 5 5-5"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </label>
-
-              <div class="faq-grid__answer-wrap">
-                <div class="faq-grid__answer rte">
-                  {{ block.settings.answer | escape | newline_to_br }}
-                </div>
+            <div class="faq-grid__answer-wrap">
+              <div class="faq-grid__answer rte">
+                {{ block.settings.answer }}
               </div>
-            </li>
-          {%- endif -%}
+            </div>
+          </li>
         {%- endfor -%}
       {%- else -%}
-        {%- comment -%} Fallback when no blocks: matches Website FAQs copy; add blocks in theme editor for full sections. {%- endcomment -%}
-        {%- assign default_faq_1_q = 'What is the difference between the Couture and Ready-to-Wear collections?' -%}
-        {%- capture default_faq_1_a -%}Our Couture offering is made-to-measure, designed for bridal, occasion wear, and custom pieces created to your exact vision and measurements.
-
-Our Ready-to-Wear collection is designed for immediate purchase, offering refined, thoughtfully constructed pieces for everyday and occasion dressing, with the same attention to detail and finish.{%- endcapture -%}
-        {%- assign default_faq_2_q = 'Can I shop both brands on this website?' -%}
-        {%- assign default_faq_2_a = 'Yes. This platform brings together both our couture and ready-to-wear offerings in one seamless experience.' -%}
-        {%- assign default_faq_3_q = 'Do you offer custom designs?' -%}
-        {%- assign default_faq_3_a = 'Yes. Custom and bespoke services are available under SheyeOladejo. You can book a consultation directly through our website.' -%}
-        {%- assign default_faq_4_q = 'How do I place an order?' -%}
-        {%- capture default_faq_4_a -%}Ready-to-wear pieces can be purchased directly online.
-
-For custom or bridal orders, you will need to book a consultation before production begins.{%- endcapture -%}
-        {%- assign default_faq_5_q = 'How long does production take?' -%}
-        {%- capture default_faq_5_a -%}Production timelines vary depending on the piece:
-
-• Ready-to-wear: Immediate or within a few days
-• Custom pieces: Typically 2–6 weeks
-• Bridal: Timelines will be communicated during consultation{%- endcapture -%}
-        {%- assign default_faq_6_q = 'Do you ship internationally?' -%}
-        {%- assign default_faq_6_a = 'Yes. We deliver within Nigeria and to international locations including the US, UK, and beyond.' -%}
+        {%- comment -%} Default FAQ content (from section liquid) when no blocks are added {%- endcomment -%}
+        {%- assign default_faq_1_q = 'Do you offer international shipping?' -%}
+        {%- capture default_faq_1_a -%}<p>Yes, we ship worldwide! Shipping costs will be added at checkout. We also offer discounts and promotions throughout the year, so keep an eye out for exclusive deals.</p><p><strong>Delivery times:</strong></p><ul><li>Lagos: 5-7 working days after payment confirmation.</li><li>International: 7-10 working days.</li></ul><p><strong>Custom orders:</strong></p><ul><li>Local: 7-10 working days.</li><li>International: 10-15 working days.</li></ul><p><strong>Express orders:</strong> For express orders, please email us to confirm availability before proceeding.</p>{%- endcapture -%}
+        {%- assign default_faq_2_q = 'What is your payment policy?' -%}
+        {%- capture default_faq_2_a -%}<ul><li>Orders are processed only after payment confirmation.</li><li>We accept bank transfers to our Naira, UK, US, and EUR accounts, as well as credit/debit card payments.</li></ul><p><strong>Bank account details:</strong></p><ul><li>NGN Account: SheyeOladejo Global Ventures, GTBANK, 0228230011</li><li>USD Account: SheyeOladejo Global Ventures, GTBANK, 0547249536</li><li>EUR Account: SheyeOladejo Global Ventures, GTBANK, 0547250358</li><li>GBP Account: SheyeOladejo Global Ventures, GTBANK, 0547250341</li></ul>{%- endcapture -%}
+        {%- assign default_faq_3_q = 'Are your pieces true to size?' -%}
+        {%- capture default_faq_3_a -%}<p>Some styles may run True-to-size / Run-Large / Run-Small. Please check product description or product specific size guide if there may be style specific size variation or you can also call customer care for sizing assistance.</p>{%- endcapture -%}
+        {%- assign default_faq_4_q = 'Do you offer alterations for custom orders?' -%}
+        {%- capture default_faq_4_a -%}<p>We highly recommend custom size clients to visit our studio for a fitting. If you can't make it, you can send us images or videos for a virtual fitting. Additional costs for custom order alterations are determined at drop-off.</p>{%- endcapture -%}
+        {%- assign default_faq_5_q = 'What is your return policy?' -%}
+        {%- capture default_faq_5_a -%}<p>We accept exchanges and offer store credit for full-priced items in good condition, returned within 5 working days of receipt.</p><ul><li>Customers bear the delivery cost for exchanges. Delivery charges are refundable only for faulty goods.</li><li>Refunds for damaged merchandise are processed within 3 business days.</li><li>All custom sizing sales are final.</li><li>All sales items are final.</li><li>Alterations for items approved after fittings are at the client's cost.</li></ul>{%- endcapture -%}
+        {%- assign default_faq_6_q = 'What is your delivery policy?' -%}
+        {%- capture default_faq_6_a -%}<p><strong>Processing time:</strong> Orders are processed within 1-2 business days. During sales and high-volume periods, processing may take 3-4 days.</p><p><strong>Shipping rates:</strong> Calculated at checkout based on your delivery location.</p><p><strong>Pre-order items:</strong> Processing begins on the date indicated in the product description.</p><p><strong>Dispatch notification:</strong> If you haven't received a dispatch notification within the specified time, email us at info@sheyeoladejo.com with your order number.</p><p><strong>Item not delivered?</strong></p><ul><li>Allow an extra 2-3 days before contacting us as packages may be delayed by the courier.</li><li>Refunds are not issued for lost packages, but items will be resent if a package cannot be traced.</li></ul><p><strong>Customs and duties:</strong> Duties and taxes are the customer's responsibility and vary by country.</p><p><strong>Pickups:</strong> Our Lagos office is open for pickups. We recommend this option for urgent orders.</p>{%- endcapture -%}
         {%- for i in (1..6) -%}
           {%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: i -%}
           <li class="faq-grid__item">
@@ -123,19 +107,19 @@ For custom or bridal orders, you will need to book a consultation before product
             </label>
             <div class="faq-grid__answer-wrap">
               <div class="faq-grid__answer rte">
-                {%- case i -%}
+                {% case i -%}
                   {%- when 1 -%}
-                    {{ default_faq_1_a | escape | newline_to_br }}
+                    {{- default_faq_1_a -}}
                   {%- when 2 -%}
-                    {{ default_faq_2_a | escape | newline_to_br }}
+                    {{- default_faq_2_a -}}
                   {%- when 3 -%}
-                    {{ default_faq_3_a | escape | newline_to_br }}
+                    {{- default_faq_3_a -}}
                   {%- when 4 -%}
-                    {{ default_faq_4_a | escape | newline_to_br }}
+                    {{- default_faq_4_a -}}
                   {%- when 5 -%}
-                    {{ default_faq_5_a | escape | newline_to_br }}
+                    {{- default_faq_5_a -}}
                   {%- when 6 -%}
-                    {{ default_faq_6_a | escape | newline_to_br }}
+                    {{- default_faq_6_a -}}
                 {%- endcase %}
               </div>
             </div>
@@ -162,24 +146,6 @@ For custom or bridal orders, you will need to book a consultation before product
     margin: 0;
     padding: 2rem 0;
     list-style: none;
-  }
-  .faq-grid__section-heading {
-    list-style: none;
-    margin: 0;
-    padding: 2.5rem 0 1rem;
-    border-bottom: none;
-  }
-  .faq-grid__section-heading:first-child {
-    padding-top: 0;
-  }
-  .faq-grid__section-title {
-    margin: 0;
-    font-family: var(--font-heading-family);
-    font-size: clamp(1rem, 2.5vw, 1.15rem);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgb(var(--color-foreground));
   }
   .faq-grid__item {
     border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.2);
@@ -265,17 +231,6 @@ For custom or bridal orders, you will need to book a consultation before product
   ],
   "blocks": [
     {
-      "type": "section_heading",
-      "name": "Section heading",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        }
-      ]
-    },
-    {
       "type": "item",
       "name": "FAQ item",
       "settings": [
@@ -285,10 +240,9 @@ For custom or bridal orders, you will need to book a consultation before product
           "label": "Question"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "answer",
-          "label": "Answer",
-          "info": "Plain text. Separate paragraphs with a blank line. Line breaks within a paragraph are preserved."
+          "label": "Answer"
         }
       ]
     }

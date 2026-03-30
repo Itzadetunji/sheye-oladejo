@@ -19,6 +19,7 @@
 
 {%- liquid
   assign hero_inner_layout = section.settings.inner_layout | default: 'theme'
+  assign resolved_heading = section.settings.heading | strip
   if product != blank
     assign breadcrumb_template_type = 'product'
   elsif collection != blank
@@ -27,6 +28,17 @@
     assign breadcrumb_template_type = 'page'
   else
     assign breadcrumb_template_type = 'collection'
+  endif
+  if resolved_heading == blank
+    if collection != blank
+      assign resolved_heading = collection.title
+    elsif page != blank
+      assign resolved_heading = page.title
+    elsif product != blank
+      assign resolved_heading = product.title
+    else
+      assign resolved_heading = 'A STORY OF SOLIDARITY'
+    endif
   endif
 -%}
 
@@ -42,7 +54,7 @@
     product: product,
     collection: collection,
     page: page,
-    current_title: section.settings.heading,
+    current_title: resolved_heading,
     class: 'breadcrumbs breadcrumbs--hero-secondary'
   %}
   {%- if hero_inner_layout != 'page' -%}
@@ -92,7 +104,7 @@
 
     <div class="hero-secondary__content">
       <h1 id="hero-secondary-heading-{{ section.id }}" class="hero-secondary__heading">
-        {{ section.settings.heading | default: 'A STORY OF SOLIDARITY' | escape }}
+        {{ resolved_heading | escape }}
       </h1>
     </div>
   </section>

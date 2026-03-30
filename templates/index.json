@@ -20,7 +20,7 @@
           "type": "buttons",
           "settings": {
             "button_label_1": "Explore",
-            "button_link_1": "shopify://collections/",
+            "button_link_1": "/collections/all",
             "button_style_secondary_1": true,
             "button_label_2": "",
             "button_link_2": "",
@@ -126,10 +126,10 @@
         "section_heading": "Book appointment or couture",
         "image_left": "shopify://shop_images/couture-image-13.webp",
         "left_button_text": "COUTURE",
-        "left_button_link": "/shop",
+        "left_button_link": "/book-consultation",
         "image_right": "shopify://shop_images/ejire-2-professional-69.webp",
         "right_button_text": "READY TO WEAR",
-        "right_button_link": "/book-consultation",
+        "right_button_link": "/collections/all",
         "background_color": "#f6f6f6"
       }
     },

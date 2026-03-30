@@ -1,5 +1,14 @@
 {
   "sections": {
+    "hero": {
+      "type": "hero-secondary",
+      "settings": {
+        "heading": "PAYMENT POLICY",
+        "inner_layout": "page",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "main": {
       "type": "policy-content",
       "settings": {
@@ -7,8 +16,103 @@
         "color_scheme": "scheme-1",
         "padding_top": 128,
         "padding_bottom": 128
-      }
+      },
+      "blocks": {
+        "overview": {
+          "type": "content",
+          "settings": {
+            "title": "Overview",
+            "content": "At SheyeOladejo, every order is confirmed with intention. All payments must be completed and verified before production or dispatch begins."
+          }
+        },
+        "accepted_methods": {
+          "type": "content",
+          "settings": {
+            "title": "Accepted Payment Methods",
+            "content": "We offer secure and flexible payment options to serve our global clientele:\nDebit and Credit Card payments\nBank Transfers (NGN, USD, GBP, EUR accounts)\nAll available payment options will be displayed at checkout."
+          }
+        },
+        "payment_confirmation": {
+          "type": "content",
+          "settings": {
+            "title": "Payment Confirmation",
+            "content": "Orders are processed only after full payment has been successfully received and confirmed.\nFor card payments, confirmation is typically immediate\nFor bank transfers, processing begins once payment is verified\nDelays in payment confirmation may affect production or delivery timelines."
+          }
+        },
+        "ready_to_wear": {
+          "type": "content",
+          "settings": {
+            "title": "Ready-to-Wear Orders",
+            "content": "All ready-to-wear purchases require full payment at checkout.\nOrders are prepared for dispatch only after payment confirmation."
+          }
+        },
+        "couture_custom": {
+          "type": "content",
+          "settings": {
+            "title": "Couture & Custom Orders",
+            "content": "Due to the nature of bespoke production:\nA deposit or full payment is required before work begins\nPayment structure will be communicated during consultation\nProduction will not commence until the agreed payment has been received."
+          }
+        },
+        "currency_international": {
+          "type": "content",
+          "settings": {
+            "title": "Currency & International Payments",
+            "content": "We accept payments in multiple currencies through our international accounts:\nNigerian Naira (NGN)\nUS Dollars (USD)\nBritish Pounds (GBP)\nEuros (EUR)\nCurrency conversion rates may be applied by your payment provider."
+          }
+        },
+        "verification_security": {
+          "type": "content",
+          "settings": {
+            "title": "Payment Verification & Security",
+            "content": "For security purposes, all payments may be subject to verification.\nSheyeOladejo reserves the right to:\nRequest additional confirmation for certain transactions\nDecline or cancel orders flagged as high-risk\nThis is part of our commitment to protecting both the brand and our clients."
+          }
+        },
+        "failed_incomplete": {
+          "type": "content",
+          "settings": {
+            "title": "Failed or Incomplete Payments",
+            "content": "Orders with incomplete or failed payments will not be processed.\nIf a payment issue occurs:\nThe order will remain pending until resolved\nItems are not reserved until payment is confirmed"
+          }
+        },
+        "refund_policy": {
+          "type": "content",
+          "settings": {
+            "title": "Refund Policy",
+            "content": "SheyeOladejo does not offer cash refunds.\nWhere applicable:\nEligible returns are issued as store credit\nCustom, couture, and made-to-measure orders are non-refundable\nThis aligns with the nature of our production and design process."
+          }
+        },
+        "chargebacks_disputes": {
+          "type": "content",
+          "settings": {
+            "title": "Chargebacks & Disputes",
+            "content": "Initiating a chargeback without first contacting the Brand may delay resolution.\nWe encourage clients to reach out directly so we can resolve concerns with care and clarity."
+          }
+        },
+        "final_note": {
+          "type": "content",
+          "settings": {
+            "title": "Final Note",
+            "content": "Every transaction is part of a considered experience. We encourage clients to confirm sizing, timelines, and order details before completing payment.\nFor guidance, our team is available via WhatsApp prior to purchase."
+          }
+        }
+      },
+      "block_order": [
+        "overview",
+        "accepted_methods",
+        "payment_confirmation",
+        "ready_to_wear",
+        "couture_custom",
+        "currency_international",
+        "verification_security",
+        "failed_incomplete",
+        "refund_policy",
+        "chargebacks_disputes",
+        "final_note"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "hero",
+    "main"
+  ]
 }

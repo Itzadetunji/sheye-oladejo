@@ -1,5 +1,14 @@
 {
   "sections": {
+    "hero": {
+      "type": "hero-secondary",
+      "settings": {
+        "heading": "PRIVACY POLICY",
+        "inner_layout": "page",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
     "main": {
       "type": "policy-content",
       "settings": {
@@ -7,8 +16,119 @@
         "color_scheme": "scheme-1",
         "padding_top": 128,
         "padding_bottom": 128
-      }
+      },
+      "blocks": {
+        "overview": {
+          "type": "content",
+          "settings": {
+            "title": "Overview",
+            "content": "At SheyeOladejo, your privacy is treated with the same care as our craftsmanship. This policy outlines how we collect, use, and protect your personal information when you interact with our website and services.\nBy using our platform, you consent to the collection and use of your information as outlined below."
+          }
+        },
+        "information_we_collect": {
+          "type": "content",
+          "settings": {
+            "title": "Information We Collect",
+            "content": "We collect only what is necessary to serve you with clarity and precision."
+          }
+        },
+        "information_you_provide": {
+          "type": "content",
+          "settings": {
+            "title": "Information You Provide",
+            "content": "Name\nEmail address\nPhone number\nBilling and delivery address\nOrder and measurement details (for custom pieces)"
+          }
+        },
+        "automatically_collected_info": {
+          "type": "content",
+          "settings": {
+            "title": "Automatically Collected Information",
+            "content": "When you browse our website, we may collect:\nDevice type, browser, and IP address\nPages viewed and interactions\nLocation and usage data\nThis helps us improve performance, security, and your experience."
+          }
+        },
+        "how_we_use_info": {
+          "type": "content",
+          "settings": {
+            "title": "How We Use Your Information",
+            "content": "Your information is used to deliver a seamless and considered experience:\nTo process and fulfill orders\nTo communicate with you about your purchases\nTo provide client support\nTo improve our website and services\nTo send relevant updates, collections, and offers (where consent is given)\nWe may also use data to prevent fraud and ensure platform security."
+          }
+        },
+        "sharing_info": {
+          "type": "content",
+          "settings": {
+            "title": "Sharing of Information",
+            "content": "We do not sell your personal information.\nYour data may be shared only where necessary with:\nPayment processors\nDelivery partners\nService providers supporting our operations\nInformation may also be disclosed where required by law or to protect the Brand."
+          }
+        },
+        "cookies_tracking": {
+          "type": "content",
+          "settings": {
+            "title": "Cookies & Tracking",
+            "content": "We use cookies and similar technologies to:\nEnhance your browsing experience\nUnderstand site usage\nPersonalize content and offers\nYou may disable cookies through your browser settings, though this may affect site functionality."
+          }
+        },
+        "data_retention": {
+          "type": "content",
+          "settings": {
+            "title": "Data Retention",
+            "content": "Your information is retained only for as long as necessary to:\nFulfill orders\nMaintain records\nComply with legal obligations\nWhen no longer required, your data is securely deleted or anonymized."
+          }
+        },
+        "data_security": {
+          "type": "content",
+          "settings": {
+            "title": "Data Security",
+            "content": "We implement appropriate technical and organizational measures to protect your information.\nThis includes secure systems and encryption protocols where applicable.\nWhile we take every precaution, no system is entirely immune to risk."
+          }
+        },
+        "your_rights": {
+          "type": "content",
+          "settings": {
+            "title": "Your Rights",
+            "content": "Under applicable data protection laws, you have the right to:\nAccess your personal data\nRequest corrections\nRequest deletion of your data\nWithdraw consent for marketing communications\nObject to certain types of data processing\nRequests will be handled promptly and in accordance with legal requirements."
+          }
+        },
+        "intl_data_transfers": {
+          "type": "content",
+          "settings": {
+            "title": "International Data Transfers",
+            "content": "As a global brand, your data may be processed outside your country of residence.\nWhere this occurs, appropriate safeguards are applied to ensure your information remains protected."
+          }
+        },
+        "third_party_links": {
+          "type": "content",
+          "settings": {
+            "title": "Third-Party Links",
+            "content": "Our website may contain links to external platforms.\nWe are not responsible for the privacy practices of third-party websites and encourage you to review their policies separately."
+          }
+        },
+        "updates": {
+          "type": "content",
+          "settings": {
+            "title": "Updates to This Policy",
+            "content": "This policy may be updated periodically to reflect changes in our operations or legal requirements.\nContinued use of the website constitutes acceptance of any updates."
+          }
+        }
+      },
+      "block_order": [
+        "overview",
+        "information_we_collect",
+        "information_you_provide",
+        "automatically_collected_info",
+        "how_we_use_info",
+        "sharing_info",
+        "cookies_tracking",
+        "data_retention",
+        "data_security",
+        "your_rights",
+        "intl_data_transfers",
+        "third_party_links",
+        "updates"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "hero",
+    "main"
+  ]
 }
