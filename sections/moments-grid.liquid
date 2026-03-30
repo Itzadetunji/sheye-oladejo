@@ -169,6 +169,16 @@
         <div class="moments-grid__empty center">
           <p>No valid image fields found. Add keys in section setting "Moment field keys".</p>
         </div>
+      {%- elsif section.settings.show_view_more -%}
+        <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <a
+            href="{{ section.settings.view_more_link | default: '/collections/all' }}"
+            class="{% if section.settings.view_more_style == 'link' %}link underlined-link{% elsif section.settings.view_more_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+            aria-label="{{ section.settings.view_more_label | default: 'View all' | escape }}"
+          >
+            {{ section.settings.view_more_label | default: 'View all' | escape }}
+          </a>
+        </div>
       {%- endif -%}
     {%- endif -%}
   </div>
@@ -218,6 +228,38 @@
       "default": 24,
       "label": "Maximum tag cards",
       "info": "Limits how many tag cards are shown."
+    },
+    {
+      "type": "header",
+      "content": "View all button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show view all button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_more_label",
+      "label": "Button label",
+      "default": "View More"
+    },
+    {
+      "type": "url",
+      "id": "view_more_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "view_more_style",
+      "label": "Button style",
+      "options": [
+        { "value": "link", "label": "Text link" },
+        { "value": "solid", "label": "Solid button" },
+        { "value": "outline", "label": "Outline button" }
+      ],
+      "default": "solid"
     },
     {
       "type": "color_scheme",

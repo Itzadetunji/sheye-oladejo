@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -37,7 +28,220 @@
         "heading": "FAQs",
         "open_first": false,
         "color_scheme": "scheme-1"
-      }
+      },
+      "blocks": {
+        "heading_0": {
+          "type": "section_heading",
+          "settings": {
+            "title": "BRAND & OFFERING"
+          }
+        },
+        "faq_1": {
+          "type": "item",
+          "settings": {
+            "question": "What is the difference between the Couture and Ready-to-Wear collections?",
+            "answer": "Our Couture offering is made-to-measure, designed for bridal, occasion wear, and custom pieces created to your exact vision and measurements.\n\nOur Ready-to-Wear collection is designed for immediate purchase, offering refined, thoughtfully constructed pieces for everyday and occasion dressing, with the same attention to detail and finish."
+          }
+        },
+        "faq_2": {
+          "type": "item",
+          "settings": {
+            "question": "Can I shop both brands on this website?",
+            "answer": "Yes. This platform brings together both our couture and ready-to-wear offerings in one seamless experience."
+          }
+        },
+        "faq_3": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer custom designs?",
+            "answer": "Yes. Custom and bespoke services are available under SheyeOladejo. You can book a consultation directly through our website."
+          }
+        },
+        "heading_4": {
+          "type": "section_heading",
+          "settings": {
+            "title": "ORDERING & PRODUCTION"
+          }
+        },
+        "faq_5": {
+          "type": "item",
+          "settings": {
+            "question": "How do I place an order?",
+            "answer": "Ready-to-wear pieces can be purchased directly online.\n\nFor custom or bridal orders, you will need to book a consultation before production begins."
+          }
+        },
+        "faq_6": {
+          "type": "item",
+          "settings": {
+            "question": "How long does production take?",
+            "answer": "Production timelines vary depending on the piece:<ul><li>Ready-to-wear: Immediate or within a few days</li><li>Custom pieces: Typically 2-6 weeks</li><li>Bridal: Timelines will be communicated during consultation</li></ul>"
+          }
+        },
+        "faq_7": {
+          "type": "item",
+          "settings": {
+            "question": "Can I request adjustments to a ready-to-wear piece?",
+            "answer": "Minor adjustments may be accommodated depending on the design. Please contact us before placing your order."
+          }
+        },
+        "heading_8": {
+          "type": "section_heading",
+          "settings": {
+            "title": "SIZING & FIT"
+          }
+        },
+        "faq_9": {
+          "type": "item",
+          "settings": {
+            "question": "How do I choose my size?",
+            "answer": "Each product includes a size guide. We recommend comparing your measurements carefully before ordering."
+          }
+        },
+        "faq_10": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer made-to-measure for ready-to-wear?",
+            "answer": "Select pieces may be available in extended sizing or made-to-measure options. Please inquire before purchase."
+          }
+        },
+        "heading_11": {
+          "type": "section_heading",
+          "settings": {
+            "title": "SHIPPING & DELIVERY"
+          }
+        },
+        "faq_12": {
+          "type": "item",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes. We deliver within Nigeria and to international locations including the US, UK, and beyond."
+          }
+        },
+        "faq_13": {
+          "type": "item",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "Delivery timelines depend on your location:<ul><li>Lagos: 1-3 working days</li><li>Outside Lagos: 3-7 working days</li><li>International: 5-10 working days</li></ul>"
+          }
+        },
+        "faq_14": {
+          "type": "item",
+          "settings": {
+            "question": "How much is shipping?",
+            "answer": "Shipping costs are calculated at checkout based on your location and order size."
+          }
+        },
+        "heading_15": {
+          "type": "section_heading",
+          "settings": {
+            "title": "RETURNS & EXCHANGES"
+          }
+        },
+        "faq_16": {
+          "type": "item",
+          "settings": {
+            "question": "Do you accept returns or exchanges?",
+            "answer": "Due to the nature of our pieces:<ul><li>Ready-to-wear items may be eligible for exchange under specific conditions</li><li>Custom and bridal pieces are non-returnable</li></ul>"
+          }
+        },
+        "faq_17": {
+          "type": "item",
+          "settings": {
+            "question": "What if my item doesn't fit?",
+            "answer": "We recommend reaching out to our team. Where possible, we will guide you on alterations or adjustments."
+          }
+        },
+        "faq_18": {
+          "type": "item",
+          "settings": {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept secure online payments via card, bank transfer, and other available payment gateways."
+          }
+        },
+        "faq_19": {
+          "type": "item",
+          "settings": {
+            "question": "Can I pay in installments for custom or bridal pieces?",
+            "answer": "Yes. Structured payment plans may be available for custom and bridal orders."
+          }
+        },
+        "heading_20": {
+          "type": "section_heading",
+          "settings": {
+            "title": "CLIENT EXPERIENCE"
+          }
+        },
+        "faq_21": {
+          "type": "item",
+          "settings": {
+            "question": "Can I speak to someone before placing an order?",
+            "answer": "Yes. Our team is available via WhatsApp and email to assist you with any inquiries. Email: info@sheyeoladejo.com WhatsApp: +2348123456789"
+          }
+        },
+        "faq_22": {
+          "type": "item",
+          "settings": {
+            "question": "Do you offer styling guidance?",
+            "answer": "Yes. We provide styling support to help you select pieces that align with your needs and occasions."
+          }
+        },
+        "faq_23": {
+          "type": "item",
+          "settings": {
+            "question": "How do I care for my garment?",
+            "answer": "Care instructions are provided with each piece. We recommend professional dry cleaning for most garments."
+          }
+        },
+        "heading_24": {
+          "type": "section_heading",
+          "settings": {
+            "title": "BRAND EXPERIENCE"
+          }
+        },
+        "faq_25": {
+          "type": "item",
+          "settings": {
+            "question": "Where are your pieces made?",
+            "answer": "All our pieces are designed and produced with a strong focus on craftsmanship, quality, and attention to detail."
+          }
+        },
+        "faq_26": {
+          "type": "item",
+          "settings": {
+            "question": "What makes your brand different?",
+            "answer": "Our work is rooted in intentional design, refined craftsmanship, and a deep understanding of the modern woman. Every piece is created to feel as good as it looks."
+          }
+        }
+      },
+      "block_order": [
+        "heading_0",
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "heading_4",
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "heading_8",
+        "faq_9",
+        "faq_10",
+        "heading_11",
+        "faq_12",
+        "faq_13",
+        "faq_14",
+        "heading_15",
+        "faq_16",
+        "faq_17",
+        "faq_18",
+        "faq_19",
+        "heading_20",
+        "faq_21",
+        "faq_22",
+        "faq_23",
+        "heading_24",
+        "faq_25",
+        "faq_26"
+      ]
     }
   },
   "order": [
