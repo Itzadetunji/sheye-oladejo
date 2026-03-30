@@ -1,5 +1,12 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+{%- liquid
+  assign callout_heading = section.settings.callout_text | strip
+  if callout_heading == blank
+    assign callout_heading = 'Feel the Magic in Every Conversation'
+  endif
+-%}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -278,7 +285,7 @@
 
   <div class="book-consultation-{{ section.id }}__callout">
     <h2 class="book-consultation-{{ section.id }}__callout-heading">
-      {{ section.settings.callout_text | escape }}
+      {{ callout_heading | escape }}
     </h2>
   </div>
 

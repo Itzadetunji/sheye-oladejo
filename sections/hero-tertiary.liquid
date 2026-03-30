@@ -1,0 +1,232 @@
+{%- assign primary_dark = settings.color_primary | default: '#1D1D1B' -%}
+{%- style -%}
+  .hero-tertiary-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 768px) {
+    .hero-tertiary-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .hero-tertiary-{{ section.id }} .hero-tertiary__heading {
+    color: {{ primary_dark }};
+  }
+{%- endstyle -%}
+
+{{ 'component-breadcrumbs.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hero_inner_layout = section.settings.inner_layout | default: 'theme'
+  assign resolved_heading = section.settings.heading | strip
+  if product != blank
+    assign breadcrumb_template_type = 'product'
+  elsif collection != blank
+    assign breadcrumb_template_type = 'collection'
+  elsif page != blank
+    assign breadcrumb_template_type = 'page'
+  else
+    assign breadcrumb_template_type = 'collection'
+  endif
+  if resolved_heading == blank
+    if collection != blank
+      assign resolved_heading = collection.title
+    elsif page != blank
+      assign resolved_heading = page.title
+    elsif product != blank
+      assign resolved_heading = product.title
+    else
+      assign resolved_heading = 'A STORY OF SOLIDARITY'
+    endif
+  endif
+-%}
+
+<div class="hero-tertiary__section hero-tertiary-{{ section.id }}">
+  {%- if hero_inner_layout == 'page' -%}
+    <div class="hero-tertiary__page-shell">
+      <div class="hero-tertiary__page-inner">
+  {%- else -%}
+    <div class="page-width">
+  {%- endif -%}
+  {%- if section.settings.show_breadcrumbs -%}
+    {% render 'breadcrumbs',
+      template_type: breadcrumb_template_type,
+      product: product,
+      collection: collection,
+      page: page,
+      current_title: resolved_heading,
+      class: 'breadcrumbs breadcrumbs--hero-tertiary'
+    %}
+  {%- endif -%}
+
+  <section class="hero-tertiary" aria-labelledby="hero-tertiary-heading-{{ section.id }}">
+    <div class="hero-tertiary__media">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1920
+          | image_tag: loading: 'eager', class: 'hero-tertiary__image', sizes: '100vw', widths: '750, 1100, 1500, 1920'
+        }}
+      {%- else -%}
+        <div class="hero-tertiary__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="hero-tertiary__content">
+      <h1 id="hero-tertiary-heading-{{ section.id }}" class="hero-tertiary__heading">
+        {{ resolved_heading | escape }}
+      </h1>
+    </div>
+  </section>
+
+  {%- if hero_inner_layout == 'page' -%}
+    </div>
+    </div>
+  {%- else -%}
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+  .hero-tertiary__page-inner {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media screen and (min-width: 768px) {
+    .hero-tertiary__page-inner {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  .hero-tertiary__page-inner .breadcrumbs {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .hero-tertiary__section {
+    width: 100%;
+  }
+  .hero-tertiary {
+    position: relative;
+    min-height: 100svh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-tertiary__media {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-tertiary__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-tertiary__placeholder,
+  .hero-tertiary__placeholder .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .hero-tertiary__placeholder .placeholder-svg {
+    object-fit: cover;
+    opacity: 0.35;
+  }
+  .hero-tertiary__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .hero-tertiary__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero tertiary",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A STORY OF SOLIDARITY"
+    },
+    {
+      "type": "select",
+      "id": "inner_layout",
+      "label": "Content width",
+      "options": [
+        {
+          "value": "theme",
+          "label": "Theme default (page width)"
+        },
+        {
+          "value": "page",
+          "label": "Page hero (max 1440px, padded)"
+        }
+      ],
+      "default": "theme"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 128,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero tertiary"
+    }
+  ]
+}
+{% endschema %}

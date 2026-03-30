@@ -8,19 +8,85 @@
  */
 {
   "sections": {
-    "main": {
+    "hero": {
+      "type": "hero-tertiary",
+      "settings": {
+        "heading": "",
+        "inner_layout": "page",
+        "show_breadcrumbs": false,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "about_founder": {
+      "type": "about-founder",
+      "settings": {
+        "heading": "A STORY OF SOLIDARITY",
+        "body": "OluwaSheye Oladejo founded SheyeOladejo with a vision of creating a more equitable future, where craftsmanship, personal connection, and sustainability are at the heart of every piece.\n\nSince its founding, we have been dedicated to offering exceptional quality and a personalized experience for every client.\n\nDiscover more about our story and values.",
+        "color_scheme": "scheme-1",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "image_grid": {
       "type": "collection-1-boca-magic",
       "settings": {
-        "hero_title": "Boca Magic",
-        "intro_heading": "Boca Magic",
-        "intro_body_1": "The Boca Magic Collection comes alive with music, laughter, and pulsating dance steps, inspired by the vibrant neighborhood of La Boca in Buenos Aires.",
-        "intro_body_2": "Designed to inspire fresh confidence in women, this collection reflects bright colors, romantic energy, and spontaneous delight.",
-        "callout_text": "Feel the Magic in Every Piece with Boca",
-        "canvas_color": "#b7ac9f",
-        "text_color": "#1e1e1e",
-        "muted_text_color": "#4a4a4a"
-      }
+        "color_scheme": "scheme-1",
+        "desktop_columns": "3",
+        "padding_top": 48,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/couture-image-11.webp"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/couture-image-12.webp"
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/couture-image-16.webp"
+          }
+        }
+      },
+      "block_order": ["image_1", "image_2", "image_3"]
+    },
+    "image_grid_two": {
+      "type": "collection-1-boca-magic",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "desktop_columns": "2",
+        "padding_top": 0,
+        "padding_bottom": 48
+      },
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/couture-image-16.webp"
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/couture-image-11.webp"
+          }
+        }
+      },
+      "block_order": ["image_1", "image_2"]
     }
   },
-  "order": ["main"]
+  "order": [
+    "hero",
+    "about_founder",
+    "image_grid",
+    "image_grid_two"
+  ]
 }
