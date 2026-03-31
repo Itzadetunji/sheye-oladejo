@@ -1,131 +1,153 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-	"sections": {
-		"hero": {
-			"type": "hero-secondary",
-			"settings": {
-				"heading": "ABOUT",
-				"inner_layout": "page",
-				"padding_top": 36,
-				"padding_bottom": 12
-			}
-		},
-		"about_brand": {
-			"type": "about-brand",
-			"settings": {
-				"heading": "OUR CREATIVE STORY",
-				"quote": "SheyeOladejo is, above all, a story of life and the lives of those who write it. A collective community, an eternal co-creation, and a deep understanding that nothing is possible without one another, to improve all that can be and offer you the most beautiful pieces.",
-				"attribution": "OluwaSheye Oladejo — Founder of SheyeOladejo",
-				"color_scheme": "scheme-1",
-				"padding_top": 100,
-				"padding_bottom": 100
-			}
-		},
-		"about_founder": {
-			"type": "about-founder",
-			"settings": {
-				"heading": "A STORY OF SOLIDARITY",
-				"body": "OluwaSheye Oladejo founded SheyeOladejo with a vision of creating a more equitable future, where craftsmanship, personal connection, and sustainability are at the heart of every piece.\n\nSince its founding, we have been dedicated to offering exceptional quality and a personalized experience for every client.\n\nDiscover more about our story and values.",
-				"color_scheme": "scheme-1",
-				"padding_top": 100,
-				"padding_bottom": 100
-			}
-		},
-		"about_products": {
-			"type": "about-products",
-			"blocks": {
-				"img_1": {
-					"type": "image",
-					"settings": {}
-				},
-				"tagline": {
-					"type": "tagline",
-					"settings": {}
-				},
-				"img_2": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_3": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_4": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_5": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_6": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_7": {
-					"type": "image",
-					"settings": {}
-				},
-				"img_8": {
-					"type": "image",
-					"settings": {}
-				}
-			},
-			"block_order": [
-				"img_1",
-				"tagline",
-				"img_2",
-				"img_3",
-				"img_4",
-				"img_5",
-				"img_6",
-				"img_7",
-				"img_8"
-			],
-			"settings": {
-				"color_scheme": "scheme-1",
-				"padding_top": 100,
-				"padding_bottom": 100
-			}
-		},
-		"about_values": {
-			"type": "about-values",
-			"blocks": {
-				"v1": {
-					"type": "value",
-					"settings": {
-						"title": "Exquisite Craftsmanship",
-						"text": "Every garment at Sheye Oladejo is a testament to our commitment to quality and artistry. We source the finest fabrics and embellishments from around the world, ensuring that each piece is a work of art. Our team of experienced designers and craftsmen utilize traditional couture techniques alongside innovative methods to create garments that are both timeless and contemporary."
-					}
-				},
-				"v2": {
-					"type": "value",
-					"settings": {
-						"title": "Personalized Experience",
-						"text": "We pride ourselves on offering a personalized and intimate experience for our clients. From the initial design consultation to the final fitting, we are dedicated to ensuring that your journey with us is exceptional. Our commitment to personalized service means that every client receives individual attention, creating an experience that is as memorable as the garment itself."
-					}
-				},
-				"v3": {
-					"type": "value",
-					"settings": {
-						"title": "Sustainability and Ethics",
-						"text": "At Sheye Oladejo, we are committed to sustainable and ethical fashion practices. We strive to minimize our environmental footprint by using eco-friendly materials and sustainable production methods. Our dedication to ethical practices ensures that every garment is created with respect for both people and the planet."
-					}
-				}
-			},
-			"block_order": ["v1", "v2", "v3"],
-			"settings": {
-				"heading": "OUR CORE VALUES",
-				"color_scheme": "scheme-1",
-				"padding_top": 100,
-				"padding_bottom": 100
-			}
-		}
-	},
-	"order": [
-		"hero",
-		"about_brand",
-		"about_founder",
-		"about_products",
-		"about_values"
-	]
+  "sections": {
+    "hero": {
+      "type": "hero-secondary",
+      "settings": {
+        "heading": "ABOUT",
+        "inner_layout": "page",
+        "video_url": "",
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "about_founder": {
+      "type": "about-founder",
+      "settings": {
+        "heading": "ABOUT US",
+        "body": "At SheyeOladejo, We believe that fashion is a powerful tool of self-expression, capable of telling stories and creating amazing connections. That is why we are the pinnacle of sophistication and personalised luxury. \n\nEstablished in 2016, Our brand is dedicated to creating breathtaking bridal and bespoke garments that celebrate individuality and timeless elegance. We are known for our attention to details, innovative use of fabrics and our commitment to craftsmanship.",
+        "image": "shopify://shop_images/ejire-2-professional-2.webp",
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "about_brand": {
+      "type": "about-brand",
+      "settings": {
+        "heading": "ABOUT THE FOUNDER",
+        "quote": "With a background in computer engineering from Obafemi Awolowo University and an MBA in view from Lagos Business School, Oluwaseye’s journey into fashion grew from a lifelong love for creation, inspired by making handmade pieces and a desire for unique styles.\n\nThis passion led to SheyeOladejo and Scqueeze, celebrating everyday elegance. Inspired by travel and nature, her work has earned features and showcases, while she remains committed to helping women feel confident, seen, and beautiful.",
+        "attribution": "OluwaSheye Oladejo — Founder of SheyeOladejo",
+        "image": "shopify://shop_images/ejire-2-professional-17.webp",
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "about_products": {
+      "type": "about-products",
+      "blocks": {
+        "img_1": {
+          "type": "image",
+          "settings": {}
+        },
+        "tagline": {
+          "type": "tagline",
+          "settings": {
+            "quote": "",
+            "heading": "TIMELESS FEMINITY, SCULPTERED IN COUTURE.",
+            "subheading": "",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "img_2": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_3": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_4": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_5": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_6": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_7": {
+          "type": "image",
+          "settings": {}
+        },
+        "img_8": {
+          "type": "image",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "img_1",
+        "tagline",
+        "img_2",
+        "img_3",
+        "img_4",
+        "img_5",
+        "img_6",
+        "img_7",
+        "img_8"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "about_values": {
+      "type": "about-values",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "title": "Exquisite Craftsmanship",
+            "text": "Every garment at Sheye Oladejo is a testament to our commitment to quality and artistry. We source the finest fabrics and embellishments from around the world, ensuring that each piece is a work of art. Our team of experienced designers and craftsmen utilize traditional couture techniques alongside innovative methods to create garments that are both timeless and contemporary."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "title": "Personalized Experience",
+            "text": "We pride ourselves on offering a personalized and intimate experience for our clients. From the initial design consultation to the final fitting, we are dedicated to ensuring that your journey with us is exceptional. Our commitment to personalized service means that every client receives individual attention, creating an experience that is as memorable as the garment itself."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "title": "Sustainability and Ethics",
+            "text": "At Sheye Oladejo, we are committed to sustainable and ethical fashion practices. We strive to minimize our environmental footprint by using eco-friendly materials and sustainable production methods. Our dedication to ethical practices ensures that every garment is created with respect for both people and the planet."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "settings": {
+        "heading": "OUR CORE VALUES",
+        "color_scheme": "scheme-1",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "about_founder",
+    "about_brand",
+    "about_products",
+    "about_values"
+  ]
 }

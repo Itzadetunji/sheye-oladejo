@@ -32,7 +32,7 @@
           "type": "nav_link",
           "settings": {
             "label": "READY TO WEAR",
-            "link": "/shop"
+            "link": "shopify://collections/all"
           }
         },
         "nav_moments": {
