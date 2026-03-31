@@ -93,8 +93,17 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
-          <a href="{{ card_product.url }}" class="card__media full-unstyled-link{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}" aria-label="{{ card_product.title | escape }}">
-            <div class="media media--transparent media--hover-effect{% if show_secondary_image and card_product.media.size > 1 %} card__media-inner{% endif %}"{% if show_secondary_image and card_product.media.size > 1 %} data-image-cycle{% endif %}>
+          <a
+            href="{{ card_product.url }}"
+            class="card__media full-unstyled-link{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+            aria-label="{{ card_product.title | escape }}"
+          >
+            <div
+              class="media media--transparent media--hover-effect{% if show_secondary_image and card_product.media.size > 1 %} card__media-inner{% endif %}"
+              {% if show_secondary_image and card_product.media.size > 1 %}
+                data-image-cycle
+              {% endif %}
+            >
               {%- if skip_skeleton -%}
                 {% comment %} Simple image display (like card-collection) - no skeleton, images show immediately {% endcomment %}
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
@@ -109,16 +118,23 @@
                     {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
                   "
                   src="{{ card_product.featured_media | image_url: width: 533 }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                   alt="{{ card_product.featured_media.alt | escape }}"
                   class="motion-reduce"
-                  {% unless lazy_load == false %}loading="lazy"{% endunless %}
+                  {% unless lazy_load == false %}
+                    loading="lazy"
+                  {% endunless %}
                   width="{{ card_product.featured_media.width }}"
                   height="{{ card_product.featured_media.height }}"
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
               {%- else -%}
-                <div class="card__media-inner{% if lazy_load == false %} card__media--loaded{% endif %}"{% if show_secondary_image and card_product.media.size > 1 %} data-image-cycle{% endif %}>
+                <div
+                  class="card__media-inner{% if lazy_load == false %} card__media--loaded{% endif %}"
+                  {% if show_secondary_image and card_product.media.size > 1 %}
+                    data-image-cycle
+                  {% endif %}
+                >
                   <div class="card__media-skeleton" aria-hidden="true"></div>
                   {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                   <img
@@ -133,10 +149,12 @@
                       {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
                     "
                     src="{{ card_product.featured_media | image_url: width: 533 }}"
-                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                     alt="{{ card_product.featured_media.alt | escape }}"
                     class="motion-reduce"
-                    {% unless lazy_load == false %}loading="lazy"{% endunless %}
+                    {% unless lazy_load == false %}
+                      loading="lazy"
+                    {% endunless %}
                     width="{{ card_product.featured_media.width }}"
                     height="{{ card_product.featured_media.height }}"
                   >
@@ -156,7 +174,7 @@
                             {{ media | image_url }} {{ media.width }}w
                           "
                           src="{{ media | image_url: width: 533 }}"
-                          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                           alt="{{ media.alt | escape }}"
                           class="motion-reduce"
                           loading="lazy"
@@ -584,7 +602,7 @@
                                   {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
                                 "
                                 src="{{ card_product.featured_media | image_url: width: 533 }}"
-                                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                 alt="{{ card_product.featured_media.alt | escape }}"
                                 class="motion-reduce"
                                 {% unless lazy_load == false %}

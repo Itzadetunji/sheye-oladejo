@@ -12,14 +12,16 @@
       </a>
     </div>
 
-    <div class="Clean_Size_Chart"></div>
+    <span class="product__meta-lg-only">
+      <div class="Clean_Size_Chart"></div>
+    </span>
   </div>
   <div class="product__meta-links-contact-share">
     <div class="product__meta-links-row">
       <span class="svg-wrapper">{{- 'icon-chat-bubble.svg' | inline_asset_content -}}</span>
       <a href="{{ contact_link }}">{{ settings.product_meta_contact_text | default: 'Have a Question? Ask Us!' }}</a>
     </div>
-    <div class="product__meta-share">
+    <div class="product__meta-share product__meta-lg-only">
       <a
         href="{{ canonical_url | default: request.origin | append: request.path }}"
         class="product__meta-share-trigger"
@@ -98,6 +100,14 @@
     </div>
   </div>
 </div>
+
+<style>
+  @media screen and (max-width: 1023px) {
+    .product__meta-lg-only {
+      display: none !important;
+    }
+  }
+</style>
 
 <script>
   (() => {

@@ -12,7 +12,7 @@ if (!customElements.get("media-gallery")) {
 						"[data-gallery-overlay-nav]",
 					),
 				};
-				this.mql = window.matchMedia("(min-width: 750px)");
+				this.mql = window.matchMedia("(min-width: 768px)");
 				this.autoplayDelay = 5000;
 
 				if (this.elements.viewer) {

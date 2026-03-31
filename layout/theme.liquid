@@ -254,7 +254,7 @@
         font-weight: var(--font-body-weight);
       }
 
-      @media screen and (min-width: 750px) {
+      @media screen and (min-width: 768px) {
         body {
           font-size: 1rem;
         }
@@ -302,7 +302,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}{% if template.name == 'index' %} template-index{% endif %}{% if template.name == 'page' and template.suffix == 'about' %} template-about{% endif %}{% if template.name == 'collection' %} template-collection{% endif %}">

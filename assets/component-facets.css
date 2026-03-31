@@ -13,7 +13,7 @@
 	overflow-y: auto;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.facets-container > * + * {
 		margin-top: 0;
 	}
@@ -243,7 +243,7 @@
 	line-height: calc(var(--font-heading-scale) * 1.2rem);
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 768px) {
 	.facets__and-helptext {
 		font-size: calc(var(--font-heading-scale) * 1.3rem);
 		line-height: calc(var(--font-heading-scale) * 1.3rem);
@@ -1303,7 +1303,7 @@ input.mobile-facets__checkbox {
 	width: 1.8rem;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.facets-vertical {
 		display: flex;
 	}
@@ -1424,7 +1424,7 @@ input.mobile-facets__checkbox {
 	}
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 768px) and (max-width: 989px) {
 	.facets-vertical .active-facets__button {
 		padding: 1rem;
 		margin-bottom: 0;

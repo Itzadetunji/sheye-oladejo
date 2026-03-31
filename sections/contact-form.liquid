@@ -6,7 +6,7 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -69,7 +69,9 @@
       {%- endif -%}
       <div class="contact-custom__fields contact-custom__fields--split">
         <div class="contact-custom__field">
-          <label class="visually-hidden" for="ContactForm-firstname">{{ section.settings.first_name_label | escape }}</label>
+          <label class="visually-hidden" for="ContactForm-firstname">
+            {{- section.settings.first_name_label | escape -}}
+          </label>
           <input
             class="contact-custom__input"
             autocomplete="given-name"
@@ -81,7 +83,9 @@
           >
         </div>
         <div class="contact-custom__field">
-          <label class="visually-hidden" for="ContactForm-lastname">{{ section.settings.last_name_label | escape }}</label>
+          <label class="visually-hidden" for="ContactForm-lastname">
+            {{- section.settings.last_name_label | escape -}}
+          </label>
           <input
             class="contact-custom__input"
             autocomplete="family-name"
@@ -195,7 +199,7 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .contact-custom__fields--split {
       grid-template-columns: 1fr 1fr;
       gap: 1rem;

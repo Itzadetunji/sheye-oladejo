@@ -8,7 +8,7 @@
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -25,7 +25,7 @@
     justify-content: flex-start;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     #main-list-collections-{{ section.id }} .product-grid {
       justify-content: center;
     }
@@ -37,14 +37,14 @@
     text-align: left;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     #main-list-collections-{{ section.id }} .card__heading,
     #main-list-collections-{{ section.id }} .card__heading a {
       text-align: center;
     }
   }
 
-  /* When mobile columns = 2: full-width single column below 750px (card aspect ratio from image_ratio) */
+  /* When mobile columns = 2: full-width single column below 768px (card aspect ratio from image_ratio) */
   {% if section.settings.columns_mobile == '2' %}
     @media screen and (max-width: 749px) {
       #main-list-collections-{{ section.id }} .product-grid .grid__item {
