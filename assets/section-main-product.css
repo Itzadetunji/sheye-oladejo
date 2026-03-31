@@ -47,7 +47,7 @@ product-info {
 	padding-left: 0;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product__column-sticky {
 		display: block;
 		position: sticky;
@@ -89,23 +89,23 @@ product-info {
 }
 
 .product--large {
-	padding: 0 2.5rem;
+	/* padding: 0 2.5rem; */
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product--large {
-		padding: 0 1rem;
+		/* padding: 0 1rem; */
 	}
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.product--large:not(.product--no-media) .product__media-wrapper {
 		max-width: 65%;
 		width: calc(65% - var(--grid-desktop-horizontal-spacing) / 2);
 	}
 
 	.product--large:not(.product--no-media) .product__info-wrapper {
-		padding: 0 0 0 4rem;
+		padding: 0 0 0 1rem;
 		max-width: 35%;
 		width: calc(35% - var(--grid-desktop-horizontal-spacing) / 2);
 	}
@@ -615,13 +615,13 @@ a.product__text {
 	display: none;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product__info-container .shopify-payment-button {
 		margin-top: 1.6rem;
 	}
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product__info-container > .product-quantity-wrapper {
 		display: block;
 		width: 100%;
@@ -671,7 +671,7 @@ a.product__text {
 	display: none;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product__info-container {
 		max-width: 60rem;
 	}
@@ -870,7 +870,7 @@ a.product__text {
 	object-fit: contain;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product__media-list {
 		margin-left: 0;
 		margin-bottom: 3rem;
@@ -904,7 +904,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product__media-wrapper .product-media-gallery__viewer > .slider-buttons {
 		display: none;
 	}
@@ -957,7 +957,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
 	.product__media-list .product__media-item:first-child {
 		padding-left: 0;
 	}
@@ -1008,7 +1008,7 @@ a.product__text {
 	border: 0.1rem solid rgba(var(--color-foreground), 0.1);
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.grid__item.product__media-item--full {
 		width: 100%;
 	}
@@ -1056,7 +1056,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.product--stacked .product__media-item {
 		max-width: calc(50% - var(--grid-desktop-horizontal-spacing) / 2);
 	}
@@ -1175,7 +1175,7 @@ a.product__text {
 	display: none;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product-media-modal__content {
 		padding-bottom: 2rem;
 	}
@@ -1193,7 +1193,7 @@ a.product__text {
 	}
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product-media-modal__dialog {
 		align-items: flex-start;
 	}
@@ -1278,7 +1278,7 @@ a.product__text {
 	width: 100%;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product-media-modal__content {
 		padding: 2rem 11rem;
 	}
@@ -1297,7 +1297,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.product-media-modal__content {
 		padding: 2rem 11rem;
 	}
@@ -1387,7 +1387,7 @@ a.product__text {
 		rgba(var(--color-shadow), var(--popup-shadow-opacity));
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product-popup-modal__content {
 		padding-right: 1.5rem;
 		margin-top: 10rem;
@@ -1404,7 +1404,7 @@ a.product__text {
 	max-width: 100%;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product-popup-modal__content table {
 		display: block;
 		max-width: fit-content;
@@ -1452,7 +1452,7 @@ a.product__text {
 	width: 100%;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product-popup-modal__content-info > * {
 		max-height: 100%;
 	}
@@ -1499,7 +1499,7 @@ a.product__text {
 	content: none;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product--stacked .thumbnail-list {
 		display: none;
 	}
@@ -1514,7 +1514,7 @@ a.product__text {
 	display: none;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.thumbnail-list {
 		grid-template-columns: repeat(4, 1fr);
 	}
@@ -1528,7 +1528,7 @@ a.product__text {
 	}
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product__media-item {
 		display: flex;
 		align-items: center;
@@ -1555,7 +1555,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product__media-wrapper
 		.slider-mobile-gutter.product-media-gallery__viewer
 		.slider-button {
@@ -1670,7 +1670,7 @@ a.product__text {
 	}
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product__media-zoom-hover,
 	.product__media-icon--hover {
 		display: flex;
@@ -1733,7 +1733,7 @@ a.product__text {
 	top: calc(0.4rem + var(--media-border-width));
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product:not(.product--small) .thumbnail__badge {
 		height: 3rem;
 		width: 3rem;
@@ -1921,7 +1921,7 @@ a.product__text {
 	padding-top: min(var(--constrained-height), var(--ratio-percent));
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.product-media-container.media-fit-cover {
 		display: flex;
 		align-self: stretch;
@@ -1933,7 +1933,7 @@ a.product__text {
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product-media-container {
 		max-width: 100%;
 	}
@@ -1965,7 +1965,7 @@ a.product__text {
 	position: relative;
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.product-media-container
 		.product__modal-opener:not(.product__modal-opener--image) {
 		display: none;

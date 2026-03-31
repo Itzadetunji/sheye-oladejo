@@ -13,7 +13,7 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -94,32 +94,50 @@
 
     {%- assign same_collection = product.collections.first -%}
     {%- assign same_collection_total = 0 -%}
-    {%- assign use_best_sellers = false -%}
+    {%- assign use_fallback_collection = false -%}
 
     {%- if same_collection != blank -%}
       {%- assign same_collection_total = same_collection.all_products_count | minus: 1 -%}
-      {%- if same_collection_total == 1 and section.settings.best_sellers_collection != blank -%}
-        {%- assign use_best_sellers = true -%}
+      {%- if same_collection_total <= 0 -%}
+        {%- assign use_fallback_collection = true -%}
       {%- endif -%}
+    {%- else -%}
+      {%- assign use_fallback_collection = true -%}
     {%- endif -%}
 
-    {%- if use_best_sellers -%}
+    {%- if use_fallback_collection -%}
       {%- assign source_collection = section.settings.best_sellers_collection -%}
+      {%- if source_collection == blank -%}
+        {%- assign source_collection = collections['all'] -%}
+      {%- endif -%}
     {%- else -%}
       {%- assign source_collection = same_collection -%}
     {%- endif -%}
 
     {%- if source_collection != blank -%}
-      {%- assign source_total = source_collection.all_products_count -%}
-      {%- assign source_to_show = 3 -%}
-      {%- if source_total < source_to_show -%}
-        {%- assign source_to_show = source_total -%}
+      {%- if use_fallback_collection -%}
+        {%- assign source_to_show = 3 -%}
+      {%- else -%}
+        {%- assign source_to_show = section.settings.products_to_show | plus: 0 -%}
+        {%- if source_to_show < 1 -%}
+          {%- assign source_to_show = 1 -%}
+        {%- endif -%}
       {%- endif -%}
 
-      {%- if source_to_show > 0 -%}
+      {%- assign source_items_available = 0 -%}
+      {%- for collection_product in source_collection.products -%}
+        {%- if collection_product.id != product.id -%}
+          {%- assign source_items_available = source_items_available | plus: 1 -%}
+          {%- if source_items_available >= source_to_show -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if source_to_show > 0 and source_items_available > 0 -%}
         <div class="related-products__block related-products__block--collection">
           <h2 class="related-products__heading related-products__heading--center inline-richtext {{ section.settings.heading_size }}">
-            {{ section.settings.heading }}
+            {% if use_fallback_collection %}WHAT OTHERS LOVE{% else %}{{ section.settings.heading }}{% endif %}
           </h2>
           <div class="related-products__collection-grid">
             <ul
@@ -148,8 +166,8 @@
             </ul>
           </div>
           <div class="related-products__collection-cta">
-            <a href="{{ source_collection.url }}" class="button">
-              View Full Collection
+            <a href="{% if use_fallback_collection %}/collections/all{% else %}{{ source_collection.url }}{% endif %}" class="button">
+              {% if use_fallback_collection %}View more{% else %}View Full Collection{% endif %}
             </a>
           </div>
         </div>

@@ -202,7 +202,7 @@
 	text-align: left;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.grid--6-col-desktop .card__content quick-add-bulk .quantity {
 		width: auto;
 	}
@@ -227,7 +227,7 @@
 	}
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.grid--2-col-tablet-down .card__content quick-add-bulk .quantity__button {
 		width: calc(3.5rem / var(--font-body-scale));
 	}
@@ -267,7 +267,7 @@
 	margin-top: 0;
 }
 
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
 	.card-information quantity-popover .quantity__rules ~ volume-pricing {
 		margin-top: 0;
 	}
@@ -277,7 +277,7 @@
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.card__information {
 		padding-bottom: 1.7rem;
 		padding-top: 1.7rem;
@@ -386,7 +386,7 @@
 	box-shadow: none;
 }
 
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 768px) {
 	.card--horizontal .card__heading,
 	.card--horizontal .price__container .price-item,
 	.card--horizontal__quick-add {
@@ -444,7 +444,7 @@
 	outline: 0;
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.card .media.media--hover-effect > img:only-child,
 	.card-wrapper .media.media--hover-effect > img:only-child {
 		transition: transform var(--duration-long) ease;
@@ -596,7 +596,7 @@
 }
 
 /* Below desktop breakpoint: card + image use full grid column width (tablet 750–989 included) */
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1023px) {
 	.product-card-wrapper {
 		width: 100%;
 		max-width: 100%;
@@ -638,7 +638,7 @@
 }
 
 /* Stacked product: name on first line, price on second (mobile); "NAME — PRICE" on desktop */
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 767px) {
 	.card--stacked-product .card__heading-link {
 		display: flex;
 		flex-direction: column;
@@ -665,7 +665,7 @@
 	}
 }
 
-@media screen and (min-width: 750px) {
+@media screen and (min-width: 768px) {
 	.card--stacked-product .card__heading-link {
 		display: inline;
 	}
@@ -684,13 +684,13 @@
 	padding: 0;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
 	.card--stacked-product > .card__content .card__information {
 		text-align: center;
 	}
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1024px) {
 	.card--stacked-product .card__inner {
 		align-items: center;
 	}
