@@ -47,7 +47,9 @@
       "blocks": {
         "img_1": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-3.webp"
+          }
         },
         "tagline": {
           "type": "tagline",
@@ -65,27 +67,39 @@
         },
         "img_3": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-5.webp"
+          }
         },
         "img_4": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-11.webp"
+          }
         },
         "img_5": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-21.webp"
+          }
         },
         "img_6": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-33.webp"
+          }
         },
         "img_7": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-13.webp"
+          }
         },
         "img_8": {
           "type": "image",
-          "settings": {}
+          "settings": {
+            "image": "shopify://shop_images/couture-image-19.webp"
+          }
         }
       },
       "block_order": [

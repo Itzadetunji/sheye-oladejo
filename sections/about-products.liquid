@@ -36,7 +36,11 @@
           {%- assign block = blocks[idx] -%}
           {%- if block.type == 'image' -%}
             <div class="about-products__cell about-products__cell--img" {{ block.shopify_attributes }}>
-              {%- render 'about-products-image', block: block -%}
+              {%- if i == 0 -%}
+                {%- render 'about-products-image', block: block, image_class: 'about-products__cell_1_img' -%}
+              {%- else -%}
+                {%- render 'about-products-image', block: block -%}
+              {%- endif -%}
             </div>
           {%- endif -%}
         {%- endfor -%}
@@ -190,6 +194,11 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    object-position: center top;
+  }
+
+  .about-products__cell_1_img {
+    object-position: center 30%;
   }
 
   .about-products__cell--tagline {

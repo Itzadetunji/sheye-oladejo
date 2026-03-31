@@ -1,13 +1,17 @@
-{%- comment -%} Renders image or placeholder for about-products block. Expects: block (image block) {%- endcomment -%}
+{%- comment -%} Renders image or placeholder for about-products block. Expects: block (image block), optional image_class {%- endcomment -%}
+{%- assign image_classes = 'about-products__img' -%}
+{%- if image_class != blank -%}
+  {%- assign image_classes = image_classes | append: ' ' | append: image_class -%}
+{%- endif -%}
 {%- if block.settings.image != blank -%}
   {{
     block.settings.image
     | image_url: width: 600
-    | image_tag: loading: 'lazy', class: 'about-products__img', sizes: '(min-width: 990px) 25vw, 50vw'
+    | image_tag: loading: 'lazy', class: image_classes, sizes: '(min-width: 990px) 25vw, 50vw'
   }}
 {%- else -%}
   <img
-    class="about-products__img"
+    class="{{ image_classes }}"
     src="https://picsum.photos/seed/about{{ block.id }}/500/500"
     alt=""
     width="500"

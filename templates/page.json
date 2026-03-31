@@ -8,16 +8,17 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "main": {
-      "type": "main-page",
-      "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
-      }
-    }
-  },
-  "order": [
-    "main"
-  ]
+	"sections": {
+		"hero": {
+			"type": "hero-secondary",
+			"settings": {
+				"heading": "ABOUT",
+				"inner_layout": "page",
+				"video_url": "",
+				"padding_top": 36,
+				"padding_bottom": 12
+			}
+		}
+	},
+	"order": ["hero"]
 }
