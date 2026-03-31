@@ -12,6 +12,8 @@
     "logo": "shopify://shop_images/text-logo.svg",
     "logo_width": 90,
     "favicon": "shopify://shop_images/Sheye_Logo_Big_White_Background.png",
+    "color_primary": "#1D1D1B",
+    "color_accent_porcelain": "#F3EDE8",
     "type_header_font": "red_hat_display_n4",
     "heading_scale": 100,
     "type_body_font": "red_hat_display_n4",

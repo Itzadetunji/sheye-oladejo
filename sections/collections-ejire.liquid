@@ -4,12 +4,12 @@
   ul {
     margin-block-start: 0
   }
-    .collection-1-boca-{{ section.id }} {
+    .collection-ejire-{{ section.id }} {
       padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
     @media screen and (min-width: 768px) {
-      .collection-1-boca-{{ section.id }} {
+      .collection-ejire-{{ section.id }} {
         padding-top: {{ section.settings.padding_top }}px;
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
@@ -19,6 +19,16 @@
 {%- liquid
   assign desktop_columns = section.settings.desktop_columns | default: 3 | plus: 0
   assign featured_collection = section.settings.collection
+  assign featured_collection_handle = section.settings.collection.handle | default: section.settings.collection
+  if featured_collection != blank and featured_collection.products == blank and featured_collection_handle != blank
+    assign featured_collection = collections[featured_collection_handle]
+  endif
+  if featured_collection == blank and featured_collection_handle != blank
+    assign featured_collection = collections[featured_collection_handle]
+  endif
+  if featured_collection == blank
+    assign featured_collection = collections.ejire
+  endif
   assign products_to_show = section.settings.products_to_show | default: 5 | plus: 0
   if products_to_show < 1
     assign products_to_show = 1
@@ -42,10 +52,10 @@
   endif
 -%}
 
-<section class="collection-1-boca collection-1-boca-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+<section class="collection-ejire collection-ejire-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
   <div class="page-width">
     <ul
-      class="collection-1-boca__grid grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--1-col-tablet-down {{ desktop_grid_class }}"
+      class="collection-ejire__grid grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--1-col-tablet-down {{ desktop_grid_class }}"
       role="list"
     >
       {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
@@ -55,7 +65,7 @@
           {%- if forloop.index > 2 -%}
             {%- assign lazy_load = true -%}
           {%- endif -%}
-          <li class="collection-1-boca__item grid__item">
+          <li class="collection-ejire__item grid__item">
             {% render 'card-product',
               card_product: product,
               media_aspect_ratio: 'adapt',
@@ -74,7 +84,7 @@
         {%- endfor -%}
       {%- elsif section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
-          <li class="collection-1-boca__item grid__item" {{ block.shopify_attributes }}>
+          <li class="collection-ejire__item grid__item" {{ block.shopify_attributes }}>
             <div class="card-wrapper product-card-wrapper underline-links-hover">
               <div class="card card--{{ settings.card_style }} card--media{% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %} card--stacked-product">
                 <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}">
@@ -86,12 +96,12 @@
                           | image_url: width: 960
                           | image_tag:
                             loading: 'lazy',
-                            class: 'collection-1-boca__image motion-reduce',
+                            class: 'collection-ejire__image motion-reduce',
                             sizes: image_sizes,
                             widths: '375, 550, 750, 960, 1200'
                         }}
                       {%- else -%}
-                        <div class="collection-1-boca__placeholder">
+                        <div class="collection-ejire__placeholder">
                           {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
                         </div>
                       {%- endif -%}
@@ -104,13 +114,13 @@
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..desktop_columns) -%}
-          <li class="collection-1-boca__item grid__item">
+          <li class="collection-ejire__item grid__item">
             <div class="card-wrapper product-card-wrapper underline-links-hover">
               <div class="card card--{{ settings.card_style }} card--media{% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %} card--stacked-product">
                 <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}">
                   <div class="card__media">
                     <div class="media media--transparent media--hover-effect">
-                      <div class="collection-1-boca__placeholder">
+                      <div class="collection-ejire__placeholder">
                         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       </div>
                     </div>
@@ -126,49 +136,49 @@
 </section>
 
 <style>
-  .collection-1-boca__grid {
+  .collection-ejire__grid {
     margin-bottom: 0;
   }
-  .collection-1-boca__image,
-  .collection-1-boca__placeholder,
-  .collection-1-boca__placeholder .placeholder-svg {
+  .collection-ejire__image,
+  .collection-ejire__placeholder,
+  .collection-ejire__placeholder .placeholder-svg {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
   }
-  .collection-1-boca__placeholder .placeholder-svg {
+  .collection-ejire__placeholder .placeholder-svg {
     opacity: 0.3;
   }
-  .collection-1-boca__item .card__inner .card__media {
+  .collection-ejire__item .card__inner .card__media {
     aspect-ratio: 3 / 4;
   }
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .product-card-wrapper,
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .card--stacked-product,
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .card__inner,
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .card__inner .card__media {
+  .collection-ejire-{{ section.id }} .collection-ejire__item .product-card-wrapper,
+  .collection-ejire-{{ section.id }} .collection-ejire__item .card--stacked-product,
+  .collection-ejire-{{ section.id }} .collection-ejire__item .card__inner,
+  .collection-ejire-{{ section.id }} .collection-ejire__item .card__inner .card__media {
     width: 100%;
     max-width: 100%;
   }
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .card--stacked-product .card__inner {
+  .collection-ejire-{{ section.id }} .collection-ejire__item .card--stacked-product .card__inner {
     align-items: stretch;
   }
-  .collection-1-boca-{{ section.id }} .collection-1-boca__item .card--stacked-product .card__inner .card__media {
+  .collection-ejire-{{ section.id }} .collection-ejire__item .card--stacked-product .card__inner .card__media {
     margin-left: 0;
     margin-right: 0;
   }
   @media screen and (max-width: 639px) {
-    .collection-1-boca-{{ section.id }} .collection-1-boca__grid .grid__item {
+    .collection-ejire-{{ section.id }} .collection-ejire__grid .grid__item {
       width: 100%;
     }
   }
   @media screen and (min-width: 640px) and (max-width: 1023px) {
-    .collection-1-boca-{{ section.id }} .collection-1-boca__grid .grid__item {
+    .collection-ejire-{{ section.id }} .collection-ejire__grid .grid__item {
       width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2);
     }
   }
   @media screen and (min-width: 1024px) {
-    .collection-1-boca-{{ section.id }} .collection-1-boca__grid .grid__item {
+    .collection-ejire-{{ section.id }} .collection-ejire__grid .grid__item {
       width: calc({% if desktop_columns == 3 %}33.33% - var(--grid-desktop-horizontal-spacing) * 2 / 3{% else %}50% - var(--grid-desktop-horizontal-spacing) / 2{% endif %});
     }
   }

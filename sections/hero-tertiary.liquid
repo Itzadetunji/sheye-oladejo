@@ -1,4 +1,8 @@
 {%- assign primary_dark = settings.color_primary | default: '#1D1D1B' -%}
+{%- assign hero_heading_color = primary_dark -%}
+{%- if section.settings.heading_text_color == 'white' -%}
+  {%- assign hero_heading_color = '#FFFFFF' -%}
+{%- endif -%}
 {%- style -%}
   .hero-tertiary-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -11,7 +15,7 @@
     }
   }
   .hero-tertiary-{{ section.id }} .hero-tertiary__heading {
-    color: {{ primary_dark }};
+    color: {{ hero_heading_color }};
   }
 {%- endstyle -%}
 
@@ -91,18 +95,18 @@
 </div>
 
 <style>
-  .hero-tertiary__page-inner {
-    max-width: 1440px;
+  .hero-tertiary__page-shell {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
-  @media screen and (min-width: 768px) {
-    .hero-tertiary__page-inner {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
-    }
+  .hero-tertiary__page-inner {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-tertiary__section > .page-width {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
   }
   .hero-tertiary__page-inner .breadcrumbs {
     padding-left: 0;
@@ -170,6 +174,22 @@
       "id": "heading",
       "label": "Heading",
       "default": "A STORY OF SOLIDARITY"
+    },
+    {
+      "type": "select",
+      "id": "heading_text_color",
+      "label": "Heading text color",
+      "options": [
+        {
+          "value": "theme",
+          "label": "Theme primary"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ],
+      "default": "theme"
     },
     {
       "type": "select",

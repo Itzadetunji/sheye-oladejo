@@ -8,72 +8,89 @@
  * ------------------------------------------------------------
  */
 {
-	"name": "t:sections.header.name",
-	"type": "header",
-	"sections": {
-		"header": {
-			"type": "header",
-			"blocks": {
-				"nav_home": {
-					"type": "nav_link",
-					"settings": {
-						"label": "HOME",
-						"link": "/"
-					}
-				},
-				"nav_couture": {
-					"type": "nav_link",
-					"settings": {
-						"label": "COUTURE",
-						"link": "/book-consultation"
-					}
-				},
-				"nav_ready_to_wear": {
-					"type": "nav_link",
-					"settings": {
-						"label": "READY TO WEAR",
-						"link": "/shop"
-					}
-				},
-				"nav_moments": {
-					"type": "nav_link",
-					"settings": {
-						"label": "MOMENTS",
-						"link": "/moments"
-					}
-				},
-				"nav_about": {
-					"type": "nav_link",
-					"settings": {
-						"label": "ABOUT",
-						"link": "/about"
-					}
-				}
-			},
-			"block_order": [
-				"nav_home",
-				"nav_couture",
-				"nav_ready_to_wear",
-				"nav_moments",
-				"nav_about"
-			],
-			"settings": {
-				"logo_position": "middle-left",
-				"mobile_logo_position": "center",
-				"menu": "main-menu",
-				"menu_type_desktop": "mega",
-				"sticky_header_type": "always",
-				"show_line_separator": true,
-				"color_scheme": "scheme-1",
-				"menu_color_scheme": "scheme-1",
-				"enable_country_selector": true,
-				"enable_language_selector": true,
-				"enable_customer_avatar": true,
-				"margin_bottom": 0,
-				"padding_top": 20,
-				"padding_bottom": 20
-			}
-		}
-	},
-	"order": ["header"]
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "blocks": {
+        "nav_home": {
+          "type": "nav_link",
+          "settings": {
+            "label": "HOME",
+            "link": "/"
+          }
+        },
+        "nav_couture": {
+          "type": "nav_link",
+          "settings": {
+            "label": "COUTURE",
+            "link": "/book-consultation"
+          }
+        },
+        "nav_ready_to_wear": {
+          "type": "nav_link",
+          "settings": {
+            "label": "READY TO WEAR",
+            "link": "/shop"
+          }
+        },
+        "nav_moments": {
+          "type": "nav_link",
+          "settings": {
+            "label": "MOMENTS",
+            "link": "/moments"
+          }
+        },
+        "nav_about": {
+          "type": "nav_link",
+          "settings": {
+            "label": "ABOUT",
+            "link": "/about"
+          }
+        },
+        "nav_link_PMgMpn": {
+          "type": "nav_link",
+          "settings": {
+            "label": "COLLECTIONS",
+            "link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "nav_home",
+        "nav_couture",
+        "nav_ready_to_wear",
+        "nav_moments",
+        "nav_about",
+        "nav_link_PMgMpn"
+      ],
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "mega",
+        "sticky_header_type": "always",
+        "show_line_separator": true,
+        "show_expanded_ui": true,
+        "expanded_heading": "DISCOVER",
+        "header_background": "#ffffff",
+        "nav_hover_background": "#1d1d1b",
+        "nav_hover_text": "#ffffff",
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": [
+    "header"
+  ]
 }

@@ -138,43 +138,45 @@
           {%- endform -%}
         {%- endif -%}
 
-        <div class="footer-custom__locale">
-          <p class="footer-custom__subheading">Change Delivery Country</p>
-          {%- if localization.available_countries.size > 1 -%}
-            <localization-form>
-              {%- form 'localization',
-                id: 'FooterCountryForm',
-                class: 'localization-form footer-custom__localization-form'
-              -%}
-                <div>
-                  <h2 class="visually-hidden" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                  {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-                </div>
-              {%- endform -%}
-            </localization-form>
-          {%- else -%}
-            <p class="footer-custom__text">{{ localization.country.name | default: 'United States' }}</p>
-          {%- endif -%}
+        {% comment %}
+          <div class="footer-custom__locale">
+            <p class="footer-custom__subheading">Change Delivery Country</p>
+            {%- if localization.available_countries.size > 1 -%}
+              <localization-form>
+                {%- form 'localization',
+                  id: 'FooterCountryForm',
+                  class: 'localization-form footer-custom__localization-form'
+                -%}
+                  <div>
+                    <h2 class="visually-hidden" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                    {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- else -%}
+              <p class="footer-custom__text">{{ localization.country.name | default: 'United States' }}</p>
+            {%- endif -%}
 
-          <p class="footer-custom__subheading" style="margin-top: 1rem;">Change Language</p>
-          {%- if localization.available_languages.size > 1 -%}
-            <localization-form>
-              {%- form 'localization',
-                id: 'FooterLanguageForm',
-                class: 'localization-form footer-custom__localization-form'
-              -%}
-                <div>
-                  <h2 class="visually-hidden" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2>
-                  {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-                </div>
-              {%- endform -%}
-            </localization-form>
-          {%- else -%}
-            <p class="footer-custom__text">
-              {{ localization.language.endonym_name | capitalize | default: 'English' }}
-            </p>
-          {%- endif -%}
-        </div>
+            <p class="footer-custom__subheading" style="margin-top: 1rem;">Change Language</p>
+            {%- if localization.available_languages.size > 1 -%}
+              <localization-form>
+                {%- form 'localization',
+                  id: 'FooterLanguageForm',
+                  class: 'localization-form footer-custom__localization-form'
+                -%}
+                  <div>
+                    <h2 class="visually-hidden" id="FooterLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                    {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+                  </div>
+                {%- endform -%}
+              </localization-form>
+            {%- else -%}
+              <p class="footer-custom__text">
+                {{ localization.language.endonym_name | capitalize | default: 'English' }}
+              </p>
+            {%- endif -%}
+          </div>
+        {% endcomment %}
       </div>
     </div>
   </div>
