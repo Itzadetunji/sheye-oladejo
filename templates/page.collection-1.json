@@ -29,7 +29,7 @@
 			}
 		},
 		"image_grid": {
-			"type": "collection-1-boca-magic",
+			"type": "collections-ejire",
 			"settings": {
 				"color_scheme": "scheme-1",
 				"desktop_columns": "3",
@@ -67,7 +67,7 @@
 			}
 		},
 		"image_grid_two": {
-			"type": "collection-1-boca-magic",
+			"type": "collections-ejire",
 			"settings": {
 				"color_scheme": "scheme-1",
 				"desktop_columns": "2",

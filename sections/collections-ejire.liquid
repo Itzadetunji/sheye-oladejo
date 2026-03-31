@@ -18,6 +18,14 @@
 
 {%- liquid
   assign desktop_columns = section.settings.desktop_columns | default: 3 | plus: 0
+  assign featured_collection = section.settings.collection
+  assign products_to_show = section.settings.products_to_show | default: 5 | plus: 0
+  if products_to_show < 1
+    assign products_to_show = 1
+  endif
+  if products_to_show > 12
+    assign products_to_show = 12
+  endif
   if desktop_columns < 2
     assign desktop_columns = 2
   endif
@@ -40,7 +48,31 @@
       class="collection-1-boca__grid grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--1-col-tablet-down {{ desktop_grid_class }}"
       role="list"
     >
-      {%- if section.blocks.size > 0 -%}
+      {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
+        {%- assign skip_card_product_styles = false -%}
+        {%- for product in featured_collection.products limit: products_to_show -%}
+          {%- assign lazy_load = false -%}
+          {%- if forloop.index > 2 -%}
+            {%- assign lazy_load = true -%}
+          {%- endif -%}
+          <li class="collection-1-boca__item grid__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: 'adapt',
+              image_shape: 'default',
+              lazy_load: lazy_load,
+              show_secondary_image: true,
+              show_vendor: false,
+              show_rating: false,
+              skip_styles: skip_card_product_styles,
+              section_id: section.id,
+              quick_add: 'none',
+              skip_skeleton: true
+            %}
+          </li>
+          {%- assign skip_card_product_styles = true -%}
+        {%- endfor -%}
+      {%- elsif section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
           <li class="collection-1-boca__item grid__item" {{ block.shopify_attributes }}>
             <div class="card-wrapper product-card-wrapper underline-links-hover">
@@ -148,6 +180,21 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Select a collection to show products from. Leave empty to use image blocks below."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 5
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
