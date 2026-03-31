@@ -48,7 +48,7 @@
               loading: 'lazy',
               class: 'about-brand__image',
               widths: '400, 550, 700, 900',
-              sizes: '(min-width: 990px) 50vw, 100vw'
+              sizes: '(min-width: 1024px) 50vw, 100vw'
           }}
         {%- else -%}
           <div class="about-brand__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
@@ -80,7 +80,7 @@
     flex: 1 1 100%;
     min-width: 0;
   }
-  @media screen and (min-width: 990px) {
+  @media screen and (min-width: 1024px) {
     .about-brand__grid {
       flex-wrap: nowrap;
       gap: 4rem;
