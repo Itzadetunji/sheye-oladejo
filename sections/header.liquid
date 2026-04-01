@@ -83,6 +83,10 @@
     text-transform: uppercase;
     padding: 0;
   }
+  #shopify-section-{{ section.id }} .header__inline-menu--custom .header__menu-item[aria-current='page'],
+  #shopify-section-{{ section.id }} .menu-drawer__menu-item[aria-current='page'] {
+    font-weight: 900;
+  }
   #shopify-section-{{ section.id }} .header__icons {
     display: inline-flex;
     align-items: center;
@@ -382,11 +386,13 @@
         {%- if nav_link_blocks.size > 0 -%}
           {%- for block in nav_link_blocks -%}
             {%- if block.settings.label != blank -%}
+              {%- assign nav_link_url = block.settings.link | default: '' | split: '?' | first -%}
               <li {{ block.shopify_attributes }}>
                 <a
                   href="{{ block.settings.link | default: '#' }}"
                   class="header__menu-item list-menu__item link link--text focus-inset"
                   data-menu-key="{{ block.id }}"
+                  {% if nav_link_url != blank and request.path == nav_link_url %}aria-current="page"{% endif %}
                 >
                   <span>{{ block.settings.label | escape }}</span>
                 </a>

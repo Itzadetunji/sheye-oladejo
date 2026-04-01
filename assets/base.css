@@ -866,6 +866,32 @@ summary::-webkit-details-marker {
 	margin-top: 0;
 }
 
+.collection__title h2,
+.collection__title h1 {
+	font-size: 2rem;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.collection--empty .title-wrapper {
+	margin-top: 10rem;
+	margin-bottom: 15rem;
+}
+.collection__title--desktop-slider .title {
+	margin-bottom: 2.5rem;
+}
+
+.collection__title.title-wrapper--self-padded-tablet-down {
+	padding: 0 5rem;
+}
+
+.collection__title.title-wrapper {
+	margin-bottom: 5rem;
+}
+.collection__title .title:not(:only-child) {
+	margin-bottom: 1rem;
+}
+
 .subtitle {
 	font-size: 1.125rem;
 	line-height: calc(1 + 0.8 / var(--font-body-scale));
