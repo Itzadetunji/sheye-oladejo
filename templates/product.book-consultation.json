@@ -23,8 +23,10 @@
       "type": "main-product-book-consultation",
       "settings": {
         "intro_video": "shopify://files/videos/couture-video-1.webm",
-        "gallery_video_1": "shopify://files/videos/couture-video-1.webm",
-        "gallery_video_2": "shopify://files/videos/couture-video-1.webm",
+        "video_gallery_title": "FEMININITY CUSTOMIZED",
+        "video_gallery_heading_size": "h2",
+        "gallery_video_1": "shopify://files/videos/couture-video-2.webm",
+        "gallery_video_2": "shopify://files/videos/couture-video-3.webm",
         "gallery_video_3": "shopify://files/videos/couture-video-1.webm",
         "callout_text": "Feel the Magic in Every Conversation",
         "cluster_image_left": "shopify://shop_images/couture-image-11.webp",

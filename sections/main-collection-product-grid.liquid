@@ -62,6 +62,15 @@
   #shopify-section-{{ section.id }} .product-grid .ratio {
     --ratio-percent: 133.333% !important;
   }
+
+  /* Hide pagination for JS infinite scroll, keep fallback for no-JS */
+  #shopify-section-{{ section.id }} .pagination-wrapper {
+    display: none;
+  }
+
+  .no-js #shopify-section-{{ section.id }} .pagination-wrapper {
+    display: block;
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
@@ -128,6 +137,7 @@
     <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'collection-infinite-scroll.js' | asset_url }}" defer="defer"></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
@@ -239,10 +249,10 @@
     {
       "type": "range",
       "id": "products_per_page",
-      "min": 8,
-      "max": 36,
-      "step": 4,
-      "default": 16,
+      "min": 5,
+      "max": 5,
+      "step": 1,
+      "default": 5,
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
     {

@@ -107,6 +107,8 @@ class FacetFiltersForm extends HTMLElement {
     if (typeof initCardImageSkeleton === 'function') {
       initCardImageSkeleton();
     }
+
+    document.dispatchEvent(new CustomEvent('collection:facets-updated'));
   }
 
   static renderProductCount(html) {
