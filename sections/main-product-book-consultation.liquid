@@ -125,16 +125,21 @@
 
   .book-consultation-{{ section.id }}__intro {
     text-align: left;
-    padding: clamp(2.2rem, 6vw, 5.5rem) clamp(1.8rem, 5vw, 4rem);
-    min-height: clamp(22rem, 54vw, 38rem);
+    padding: 2rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
+  @media screen and (min-width: 768px) {
+    .book-consultation-{{ section.id }}__intro {
+      padding: 4rem;
+    }
+  }
+
   .book-consultation-{{ section.id }}__title {
     margin: 0 0 1.5rem;
-    font-size: 2rem;
+    font-size: 4rem 0;
     line-height: 1.05;
     font-weight: 500;
     letter-spacing: 0.01em;
