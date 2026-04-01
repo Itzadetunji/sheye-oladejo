@@ -29,10 +29,6 @@ class CollectionInfiniteScroll {
 		if (!this.nextUrl) return;
 
 		this.cacheExistingItemKeys();
-		if (this.isAllProductsCollectionPage()) {
-			this.ensureLoadingIndicator();
-			this.setLoadingState(false);
-		}
 
 		const pag = this.gridContainer.querySelector(".pagination-wrapper");
 		if (pag) pag.style.display = "none";
@@ -54,66 +50,8 @@ class CollectionInfiniteScroll {
 
 		if (this.rafId) cancelAnimationFrame(this.rafId);
 		this.rafId = 0;
-		this.removeLoadingIndicator();
 		this.isLoading = false;
 		this.nextUrl = null;
-	}
-
-	ensureLoadingIndicator() {
-		if (!this.gridContainer || this.loadingIndicator) return;
-
-		const indicator = document.createElement("div");
-		indicator.className = "collection-infinite-scroll-loader";
-		indicator.setAttribute("role", "status");
-		indicator.setAttribute("aria-live", "polite");
-		indicator.setAttribute("aria-hidden", "true");
-		indicator.innerHTML =
-			'<span class="collection-infinite-scroll-loader__dot" aria-hidden="true"></span><span class="collection-infinite-scroll-loader__text">Loading more products...</span>';
-
-		indicator.style.display = "none";
-		indicator.style.alignItems = "center";
-		indicator.style.justifyContent = "center";
-		indicator.style.gap = "0.7rem";
-		indicator.style.padding = "1.2rem 0";
-		indicator.style.fontSize = "0.95rem";
-		indicator.style.color = "rgba(var(--color-foreground), 0.75)";
-
-		this.grid.insertAdjacentElement("afterend", indicator);
-		this.loadingIndicator = indicator;
-
-		const dot = indicator.querySelector(".collection-infinite-scroll-loader__dot");
-		if (dot) {
-			dot.style.width = "0.7rem";
-			dot.style.height = "0.7rem";
-			dot.style.borderRadius = "999px";
-			dot.style.background = "rgb(var(--color-foreground))";
-			dot.style.opacity = "0.45";
-			dot.style.animation = "collectionLoaderPulse 1s ease-in-out infinite";
-		}
-
-		if (!document.getElementById("collection-infinite-scroll-loader-style")) {
-			const style = document.createElement("style");
-			style.id = "collection-infinite-scroll-loader-style";
-			style.textContent =
-				"@keyframes collectionLoaderPulse { 0% { opacity: 0.25; transform: scale(0.85); } 50% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0.25; transform: scale(0.85); } }";
-			document.head.appendChild(style);
-		}
-	}
-
-	setLoadingState(isVisible) {
-		if (!this.loadingIndicator) return;
-		this.loadingIndicator.style.display = isVisible ? "flex" : "none";
-		this.loadingIndicator.setAttribute("aria-hidden", isVisible ? "false" : "true");
-	}
-
-	removeLoadingIndicator() {
-		if (!this.loadingIndicator) return;
-		this.loadingIndicator.remove();
-		this.loadingIndicator = null;
-	}
-
-	isAllProductsCollectionPage() {
-		return /\/collections\/all(?:$|[/?#])/.test(window.location.pathname);
 	}
 
 	extractNextUrl() {
@@ -204,7 +142,6 @@ class CollectionInfiniteScroll {
 		const urlToFetch = this.nextUrl;
 		this.isLoading = true;
 		this.lastLoadAt = Date.now();
-		this.setLoadingState(true);
 
 		try {
 			const response = await fetch(this.buildSectionUrl(urlToFetch));
@@ -259,7 +196,6 @@ class CollectionInfiniteScroll {
 			console.error("Infinite scroll error:", error);
 			// Keep nextUrl so scrolling can retry on transient network failures.
 		} finally {
-			this.setLoadingState(false);
 			this.isLoading = false;
 
 			if (!this.nextUrl) {
