@@ -49,6 +49,13 @@
 		max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
 		flex: 0 0 calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
 	}
+
+	/* Exactly two items: span-3 is 50% desktop; here keep 2-per-row on tablet (not full-width) */
+	.product-grid--alternating-3-2.product-grid--two-items .grid__item {
+		width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		max-width: calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+		flex: 0 0 calc(50% - var(--grid-mobile-horizontal-spacing) / 2) !important;
+	}
 }
 
 /* Alternating 3-2 row layout for collections/all */
@@ -79,6 +86,11 @@
 		grid-column: span 3;
 	}
 
+	/* Exactly two items: full-width row as 2 columns (not 3-up) */
+	.product-grid--alternating-3-2.product-grid--two-items .grid__item {
+		grid-column: span 3;
+	}
+
 	.product-grid--alternating-3-2 {
 		margin-left: 0;
 	}
@@ -95,6 +107,13 @@
 	.collection .grid__item:only-child {
 		flex: 0 0 100%;
 		max-width: 100%;
+	}
+
+	/* Two items: one per row on small mobile */
+	.product-grid--alternating-3-2.product-grid--two-items .grid__item {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: 0 0 100% !important;
 	}
 }
 

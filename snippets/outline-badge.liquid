@@ -1,0 +1,48 @@
+{% comment %}
+  Compact outline-style label (matches .button.button--secondary). For use on cards and elsewhere.
+
+  Pass either:
+  - translation_key: {String} Theme translation key (recommended — | t is applied inside this snippet; render tags do not reliably evaluate | t in params)
+  Or:
+  - text: {String} Raw label (when not using a translation key)
+
+  Optional:
+  - id: {String} id for aria-labelledby
+  - layout: {String} 'overlay' (absolute corners) | 'inline' (flow with content, e.g. PDP price)
+  - position: {String} 'top-right' | 'bottom-left' when layout is overlay (default: 'top-right')
+  - class: {String} Extra classes on the element
+  - uppercase: {Boolean} Uppercase the label after translation (default: false)
+{% endcomment %}
+{%- liquid
+  if translation_key != blank
+    assign display_text = translation_key | t
+  elsif text != blank
+    assign display_text = text
+  else
+    assign display_text = ''
+  endif
+
+  if uppercase
+    assign display_text = display_text | upcase
+  endif
+
+  assign layout_mode = layout | default: 'overlay'
+  if layout_mode == 'inline'
+    assign position_class = 'outline-badge--inline'
+  else
+    assign badge_position = position | default: 'top-right'
+    assign position_class = 'outline-badge--top-right'
+    if badge_position == 'bottom-left'
+      assign position_class = 'outline-badge--bottom-left'
+    endif
+  endif
+-%}
+<div
+  {% if id != blank %}
+    id="{{ id }}"
+  {% endif %}
+  class="outline-badge button button--secondary {{ position_class }}{% if class != blank %} {{ class }}{% endif %}"
+  role="status"
+>
+  {{- display_text -}}
+</div>

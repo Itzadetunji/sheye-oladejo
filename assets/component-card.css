@@ -90,9 +90,9 @@
 	border-bottom-left-radius: 0;
 }
 
-.card--standard.card--text {
-	background-color: transparent;
-}
+/* .card--standard.card--text {
+	background-color: white;
+} */
 
 .card-information {
 	text-align: var(--text-alignment);
@@ -505,7 +505,7 @@
 .card--standard:not(.card--horizontal) > .card__content .card__badge,
 .card--standard.card--text.article-card > .card__content .card__information,
 .card--standard > .card__content .card__caption {
-	display: none;
+	/* display: none; */
 }
 
 .card--standard:not(.card--horizontal) .placeholder-svg {

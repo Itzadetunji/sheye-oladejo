@@ -12,6 +12,9 @@
   Usage:
   {% render 'price', product: product %}
 {% endcomment %}
+{%- if show_badges -%}
+  {{ 'component-outline-badge.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 {%- liquid
   if use_variant
     assign target = product.selected_or_first_available_variant
@@ -31,7 +34,7 @@
   assign money_price_max = price_max | money
 
   assign use_currency_code = settings.currency_code_enabled
-  if show_currency_code != nil
+  if show_currency_code != null
     assign use_currency_code = show_currency_code
   endif
 
@@ -115,17 +118,25 @@
         </span>
       </div>
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
-        {% render 'unit-price', price: product.selected_or_first_available_variant.unit_price, measurement: product.selected_or_first_available_variant.unit_price_measurement %}
+        {% render 'unit-price',
+          price: product.selected_or_first_available_variant.unit_price,
+          measurement: product.selected_or_first_available_variant.unit_price_measurement
+        %}
       {%- endif -%}
     </div>
     {%- if show_badges -%}
-      <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
+      <div class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
         {{ 'products.product.on_sale' | t }}
-      </span>
+      </div>
 
-      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
-        {{ 'products.product.sold_out' | t }}
-      </span>
+      <div class="price__badge-sold-out">
+        {% render 'outline-badge',
+          translation_key: 'products.product.sold_out',
+          uppercase: true,
+          layout: 'inline',
+          class: 'price__outline-badge'
+        %}
+      </div>
     {%- endif -%}
   </div>
 {% endunless %}

@@ -1,62 +1,39 @@
 .video-gallery-component__title {
-  text-align: center;
-  text-transform: uppercase;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .video-gallery-component__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
 }
 
 .video-gallery-component__card {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
-  border: 1px solid rgba(var(--color-foreground), 0.12);
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
+	position: relative;
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	overflow: hidden;
+	border: none;
+	background: transparent;
+	padding: 0;
+	cursor: pointer;
 }
 
 .video-gallery-component__card.is-active {
-  border-color: rgba(var(--color-foreground), 0.45);
+	border: none;
 }
 
-.video-gallery-component__card video {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  object-position: center;
+.video-gallery-component__card video {	 width: 100%;	 height: 100%;	 display: block;	 object-fit: cover;	 object-position: center;
 }
 
-.video-gallery-component__placeholder {
-  width: 100%;
-  height: 100%;
-  background: rgba(var(--color-foreground), 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.video-gallery-component__placeholder {	 width: 100%;	 height: 100%;	 background: rgba(var(--color-foreground), 0.06);	 display: flex;	 align-items: center;	 justify-content: center;
 }
 
-@media screen and (min-width: 768px) {
-  .video-gallery-component__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .video-gallery-component__grid .video-gallery-component__card:last-child {
-    grid-column: 1 / -1;
-  }
+@media screen and (min-width: 768px) {	 .video-gallery-component__grid {		 grid-template-columns: repeat(2, minmax(0, 1fr));	 }
+	 .video-gallery-component__grid .video-gallery-component__card:last-child {		 grid-column: 1 / -1;	 }
 }
 
-@media screen and (min-width: 1024px) {
-  .video-gallery-component__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .video-gallery-component__grid .video-gallery-component__card:last-child {
-    grid-column: auto;
-  }
+@media screen and (min-width: 1024px) {	 .video-gallery-component__grid {		 grid-template-columns: repeat(3, minmax(0, 1fr));	 }
+	 .video-gallery-component__grid .video-gallery-component__card:last-child {		 grid-column: auto;	 }
 }

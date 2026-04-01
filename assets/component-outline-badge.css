@@ -1,0 +1,73 @@
+/* Reusable outline label — pairs with snippets/outline-badge.liquid */
+
+/* Uses .button / .button--secondary for typography tokens only — not real <button> chrome */
+.outline-badge.button {
+	min-width: auto;
+	min-height: auto;
+	padding: 0.5rem;
+	font-size: 0.75rem;
+	text-transform: capitalize;
+	box-shadow: none;
+	background-color: transparent;
+	border: 0.1rem solid rgba(var(--color-foreground), 0.45);
+	border-radius: var(--buttons-radius);
+	position: relative;
+	z-index: 0;
+}
+
+/* Remove Dawn .button layered ::before / ::after (shadow + faux border) — badges are not real buttons */
+.outline-badge.button::before,
+.outline-badge.button::after {
+	content: none;
+	display: none;
+	box-shadow: none;
+}
+
+/* Beat .button:not([disabled]):hover::after and focus rules from base.css */
+.outline-badge.button:not([disabled]):hover::before,
+.outline-badge.button:not([disabled]):hover::after,
+.outline-badge.button:focus::before,
+.outline-badge.button:focus::after,
+.outline-badge.button:focus-visible::before,
+.outline-badge.button:focus-visible::after,
+.outline-badge.button.focused::before,
+.outline-badge.button.focused::after {
+	content: none;
+	display: none;
+	box-shadow: none;
+}
+
+/* Default: absolutely positioned on cards */
+.outline-badge.button:not(.outline-badge--inline) {
+	position: absolute;
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* Inline (e.g. product page price row): no absolute positioning — avoids border/layout affecting siblings */
+.outline-badge.button.outline-badge--inline {
+	position: static;
+	display: inline-block;
+	vertical-align: middle;
+	pointer-events: auto;
+	z-index: auto;
+}
+
+.outline-badge--top-right {
+	top: 2rem;
+	right: 2rem;
+	left: auto;
+	bottom: auto;
+}
+
+.outline-badge--bottom-left {
+	left: 2rem;
+	bottom: 2rem;
+	top: auto;
+	right: auto;
+}
+
+/* Containing block for overlays on product cards */
+.card--stacked-product .card__inner {
+	position: relative;
+}
