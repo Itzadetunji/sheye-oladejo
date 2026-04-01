@@ -72,11 +72,10 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign products_limit = 3
+  assign products_limit = section.settings.products_to_show | default: 5
   assign products_to_display = section.settings.collection.all_products_count
   if products_to_display > products_limit
     assign products_to_display = products_limit
-    assign more_in_collection = true
   endif
 -%}
 
@@ -153,7 +152,7 @@
             {%- assign skip_card_product_styles = true -%}
           {%- endfor -%}
         {%- else -%}
-          {%- for i in (1..3) -%}
+          {%- for i in (1..products_limit) -%}
             {% assign cycle_index = forloop.index0 | modulo: 5 %}
             {% if cycle_index == 3 or cycle_index == 4 %}
               {% assign span_class = 'grid__item--span-3' %}
@@ -192,10 +191,11 @@
       </ul>
     </div>
 
-    {%- if section.settings.show_view_all and more_in_collection -%}
+    {%- if section.settings.show_view_all -%}
       <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- assign view_all_url = section.settings.view_all_link | default: section.settings.collection.url -%}
         <a
-          href="{{ section.settings.collection.url }}"
+          href="{{ view_all_url }}"
           class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
           aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
         >
@@ -226,7 +226,16 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "info": "Shows 3 products from the collection. Same alternating layout as the main collection grid (3 per row, then 2 per row). On small screens, 3-up rows become 2 per row; 2-up rows become 1 per row."
+      "info": "Shows products from the collection in an alternating layout (3 per row, then 2 per row). On small screens, 3-up rows become 2 per row; 2-up rows become 1 per row."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 3,
+      "label": "Products to show"
     },
     {
       "type": "header",
@@ -338,6 +347,12 @@
       "id": "view_all_label",
       "label": "View all button label",
       "default": "View all"
+    },
+    {
+      "type": "text",
+      "id": "view_all_link",
+      "label": "View all button link",
+      "default": "/collections/all"
     },
     {
       "type": "color_scheme",

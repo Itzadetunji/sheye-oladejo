@@ -34,6 +34,7 @@
     },
     "collection-section-2": {
       "type": "collection-about-row",
+      "disabled": true,
       "settings": {
         "heading": "A story of solidarity",
         "body": "Add description for this destination page.",
@@ -46,6 +47,7 @@
     },
     "collection-section-3": {
       "type": "collection-about-row",
+      "disabled": true,
       "settings": {
         "heading": "A story of solidarity",
         "body": "Add description for this destination page.",
@@ -58,6 +60,7 @@
     },
     "collection-section-4": {
       "type": "collection-about-row",
+      "disabled": true,
       "settings": {
         "heading": "A story of solidarity",
         "body": "Add description for this destination page.",
