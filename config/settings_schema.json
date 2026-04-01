@@ -21,7 +21,7 @@
 				"min": 50,
 				"max": 300,
 				"step": 10,
-				"default": 100,
+				"default": 80,
 				"unit": "px",
 				"label": "t:settings_schema.logo.settings.logo_width.label"
 			},
@@ -181,8 +181,8 @@
 				"type": "range",
 				"id": "heading_scale",
 				"min": 100,
-				"max": 150,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.typography.settings.heading_scale.label",
 				"default": 100
@@ -201,8 +201,8 @@
 				"type": "range",
 				"id": "body_scale",
 				"min": 100,
-				"max": 130,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.typography.settings.body_scale.label",
 				"default": 100
@@ -226,7 +226,7 @@
 				"type": "range",
 				"id": "spacing_sections",
 				"min": 0,
-				"max": 100,
+				"max": 128,
 				"step": 4,
 				"unit": "px",
 				"label": "t:settings_schema.layout.settings.spacing_sections.label",
@@ -315,11 +315,11 @@
 				"type": "range",
 				"id": "buttons_border_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 100
+				"default": 80
 			},
 			{
 				"type": "range",
@@ -339,8 +339,8 @@
 				"type": "range",
 				"id": "buttons_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -370,7 +370,7 @@
 				"id": "buttons_shadow_blur",
 				"min": 0,
 				"max": 20,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -403,10 +403,10 @@
 				"id": "variant_pills_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 55
+				"default": 52
 			},
 			{
 				"type": "range",
@@ -426,8 +426,8 @@
 				"type": "range",
 				"id": "variant_pills_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -457,7 +457,7 @@
 				"id": "variant_pills_shadow_blur",
 				"min": 0,
 				"max": 20,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -486,10 +486,10 @@
 				"id": "inputs_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 55
+				"default": 52
 			},
 			{
 				"type": "range",
@@ -509,8 +509,8 @@
 				"type": "range",
 				"id": "inputs_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -540,7 +540,7 @@
 				"id": "inputs_shadow_blur",
 				"min": 0,
 				"max": 20,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -621,7 +621,7 @@
 				"id": "card_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -644,11 +644,11 @@
 				"type": "range",
 				"id": "card_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 10
+				"default": 8
 			},
 			{
 				"type": "range",
@@ -675,7 +675,7 @@
 				"id": "card_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -756,7 +756,7 @@
 				"id": "collection_card_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -779,11 +779,11 @@
 				"type": "range",
 				"id": "collection_card_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 10
+				"default": 8
 			},
 			{
 				"type": "range",
@@ -810,7 +810,7 @@
 				"id": "collection_card_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -891,7 +891,7 @@
 				"id": "blog_card_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -914,11 +914,11 @@
 				"type": "range",
 				"id": "blog_card_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 10
+				"default": 8
 			},
 			{
 				"type": "range",
@@ -945,7 +945,7 @@
 				"id": "blog_card_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -974,7 +974,7 @@
 				"id": "text_boxes_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -997,8 +997,8 @@
 				"type": "range",
 				"id": "text_boxes_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -1028,7 +1028,7 @@
 				"id": "text_boxes_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -1057,10 +1057,10 @@
 				"id": "media_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 5
+				"default": 4
 			},
 			{
 				"type": "range",
@@ -1080,8 +1080,8 @@
 				"type": "range",
 				"id": "media_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -1111,7 +1111,7 @@
 				"id": "media_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -1144,10 +1144,10 @@
 				"id": "popup_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 10
+				"default": 8
 			},
 			{
 				"type": "range",
@@ -1168,7 +1168,7 @@
 				"id": "popup_shadow_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -1198,7 +1198,7 @@
 				"id": "popup_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -1227,10 +1227,10 @@
 				"id": "drawer_border_opacity",
 				"min": 0,
 				"max": 100,
-				"step": 5,
+				"step": 1,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
-				"default": 10
+				"default": 8
 			},
 			{
 				"type": "header",
@@ -1240,8 +1240,8 @@
 				"type": "range",
 				"id": "drawer_shadow_opacity",
 				"min": 0,
-				"max": 100,
-				"step": 5,
+				"max": 128,
+				"step": 4,
 				"unit": "%",
 				"label": "t:settings_schema.global.settings.opacity.label",
 				"default": 0
@@ -1271,7 +1271,7 @@
 				"id": "drawer_shadow_blur",
 				"min": 0,
 				"max": 40,
-				"step": 5,
+				"step": 1,
 				"unit": "px",
 				"label": "t:settings_schema.global.settings.blur.label",
 				"default": 0
@@ -1354,10 +1354,10 @@
 			{
 				"type": "range",
 				"id": "brand_image_width",
-				"min": 50,
-				"max": 550,
+				"min": 40,
+				"max": 520,
 				"step": 5,
-				"default": 100,
+				"default": 80,
 				"unit": "px",
 				"label": "t:settings_schema.brand_information.settings.brand_image_width.label"
 			}
