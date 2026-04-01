@@ -96,7 +96,7 @@
     overflow: hidden;
   }
 
-  .book-consultation-{{ section.id }}__image-wrap .book-consultation-{{ section.id }}__image-img {
+  .book-consultation-{{ section.id }}__image-wrap .book-consultation-{{ section.id }}__intro-video {
     position: absolute;
     inset: 0;
     display: block;
@@ -211,16 +211,17 @@
   <div class="page-width">
     <div class="book-consultation-{{ section.id }}__intro-group">
       <div class="book-consultation-{{ section.id }}__image-wrap">
-        {%- if section.settings.image != blank -%}
-          {%- assign image_class = 'book-consultation-' | append: section.id | append: '__image-img' -%}
+        {%- if section.settings.intro_video != blank -%}
           {{
-            section.settings.image
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: image_class,
-              widths: '400, 550, 700, 900',
-              sizes: '(min-width: 1024px) 50vw, 100vw'
+            section.settings.intro_video
+            | video_tag:
+              class: 'book-consultation-' | append: section.id | append: '__intro-video',
+              image_size: '900x',
+              autoplay: true,
+              loop: true,
+              muted: true,
+              controls: false,
+              playsinline: true
           }}
         {%- else -%}
           <div class="book-consultation-{{ section.id }}__image-placeholder">
@@ -336,9 +337,9 @@
   "class": "section",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Left column image"
+      "type": "video",
+      "id": "intro_video",
+      "label": "Left column video"
     },
     {
       "type": "text",
