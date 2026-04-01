@@ -121,6 +121,16 @@
 				"padding_top": 48,
 				"padding_bottom": 48
 			}
+		},
+		"check_this_out": {
+			"type": "ejire-video-gallery",
+			"settings": {
+				"video_gallery_title": "CHECK THIS OUT",
+				"video_gallery_heading_size": "h2",
+				"color_scheme": "scheme-1",
+				"padding_top": 48,
+				"padding_bottom": 48
+			}
 		}
 	},
 	"order": [
@@ -129,6 +139,7 @@
 		"image_grid",
 		"callout_banner",
 		"image_grid_two",
-		"pick_your_favorite"
+		"pick_your_favorite",
+		"check_this_out"
 	]
 }

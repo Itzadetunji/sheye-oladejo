@@ -1,0 +1,116 @@
+{{ 'component-video-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-gallery-component.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .ejire-video-gallery-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .ejire-video-gallery-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="ejire-video-gallery-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  {% render 'video-gallery-component',
+    title: section.settings.video_gallery_title,
+    heading_size: section.settings.video_gallery_heading_size,
+    video_1: section.settings.gallery_video_1,
+    video_2: section.settings.gallery_video_2,
+    video_3: section.settings.gallery_video_3
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "Ejire video gallery",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "video_gallery_title",
+      "label": "Heading",
+      "default": "CHECK THIS OUT"
+    },
+    {
+      "type": "select",
+      "id": "video_gallery_heading_size",
+      "label": "Heading size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        },
+        {
+          "value": "hxl",
+          "label": "Extra large"
+        },
+        {
+          "value": "hxxl",
+          "label": "Extra extra large"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_1",
+      "label": "Gallery video 1"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_2",
+      "label": "Gallery video 2"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_3",
+      "label": "Gallery video 3"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ejire video gallery"
+    }
+  ]
+}
+{% endschema %}

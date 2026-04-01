@@ -136,9 +136,17 @@
 
       {%- if source_to_show > 0 and source_items_available > 0 -%}
         <div class="related-products__block related-products__block--collection">
-          <h2 class="related-products__heading related-products__heading--center inline-richtext {{ section.settings.heading_size }}">
-            {% if use_fallback_collection %}WHAT OTHERS LOVE{% else %}{{ section.settings.heading }}{% endif %}
-          </h2>
+          {%- liquid
+            assign collection_heading = section.settings.heading
+            if use_fallback_collection
+              assign collection_heading = 'WHAT OTHERS LOVE'
+            endif
+          -%}
+          <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+            <h2 class="title inline-richtext related-products__heading related-products__heading--center {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              {{ collection_heading }}
+            </h2>
+          </div>
           <div class="related-products__collection-grid">
             <ul
               class="grid product-grid contains-card contains-card--product grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
