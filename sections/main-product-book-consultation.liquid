@@ -212,10 +212,11 @@
     <div class="book-consultation-{{ section.id }}__intro-group">
       <div class="book-consultation-{{ section.id }}__image-wrap">
         {%- if section.settings.intro_video != blank -%}
+          {%- assign intro_video_class = 'book-consultation-' | append: section.id | append: '__intro-video' -%}
           {{
             section.settings.intro_video
             | video_tag:
-              class: 'book-consultation-' | append: section.id | append: '__intro-video',
+              class: intro_video_class,
               image_size: '900x',
               autoplay: true,
               loop: true,
