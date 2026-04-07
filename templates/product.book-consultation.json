@@ -256,11 +256,18 @@
         "open_first": false,
         "color_scheme": "scheme-1"
       }
+    },
+    "shop-couture": {
+      "type": "latest-collection",
+      "settings": {
+        "title": "SHOP COUTURE"
+      }
     }
   },
   "order": [
     "hero",
     "main",
-    "consultation-faq"
+    "consultation-faq",
+    "shop-couture"
   ]
 }

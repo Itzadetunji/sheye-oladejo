@@ -170,6 +170,11 @@
         "type": "shopify://apps/clean-size-charts/blocks/core/feed2801-552f-4e8f-ba1f-32ba9fe8a8f0",
         "disabled": false,
         "settings": {}
+      },
+      "776302416715791028": {
+        "type": "shopify://apps/bucks/blocks/app-embed/4f0a9b06-9da4-4a49-b378-2de9d23a3af3",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
