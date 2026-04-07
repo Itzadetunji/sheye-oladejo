@@ -36,7 +36,15 @@
         "padding_bottom": 128
       }
     },
-    "consultation-faq": {
+    
+    "shop-couture": {
+      "type": "latest-collection",
+      "settings": {
+        "collection": "couture",
+        "title": "SHOP COUTURE",
+        "view_all_link": "/collections/couture"
+      }
+    },"consultation-faq": {
       "type": "faq-accordion-grid",
       "blocks": {
         "heading_0": {
@@ -257,12 +265,6 @@
         "color_scheme": "scheme-1"
       }
     },
-    "shop-couture": {
-      "type": "latest-collection",
-      "settings": {
-        "title": "SHOP COUTURE"
-      }
-    }
   },
   "order": [
     "hero",
