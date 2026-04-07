@@ -1,4 +1,7 @@
-<div class="video-gallery-component{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" data-video-gallery-component>
+<div
+  class="video-gallery-component{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}"
+  data-video-gallery-component
+>
   <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
     {%- if title != blank -%}
       <h2 class="title inline-richtext video-gallery-component__title {{ heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -28,6 +31,7 @@
           data-video-card
           data-video-index="{{ forloop.index0 }}"
           aria-label="{{ card_label }}{{ i }}"
+          aria-pressed="false"
         >
           {%- if card_video != blank -%}
             {{
@@ -40,6 +44,13 @@
                 controls: false,
                 playsinline: true
             }}
+            <span class="video-gallery-component__toggle" aria-hidden="true">
+              <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--play"></span>
+              <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--pause">
+                <span></span>
+                <span></span>
+              </span>
+            </span>
           {%- else -%}
             <div class="video-gallery-component__placeholder">
               {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}

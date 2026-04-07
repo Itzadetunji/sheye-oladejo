@@ -1,0 +1,393 @@
+{%- assign faq_item_index = 0 -%}
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">OUR OFFERING</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input
+    id="{{ item_id }}"
+    class="faq-grid__input"
+    type="radio"
+    name="faq-{{ section.id }}"
+    {% if section.settings.open_first and faq_item_index == 1 %}
+      checked
+    {% endif %}
+  >
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">What is the difference between the Couture and Ready-to-Wear collections?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Our Couture offering is made-to-measure, designed for bridal, occasion wear, and custom pieces created to your exact vision and measurements.</p>
+      <p>Our Ready-to-Wear collection is designed for immediate purchase, offering refined, thoughtfully constructed pieces for everyday and occasion dressing, with the same attention to detail and finish.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Can I shop both brands on this website?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. This platform brings together both our couture and ready-to-wear offerings in one seamless experience.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Do you offer custom designs?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. Custom and bespoke services are available under SheyeOladejo. You can book a consultation directly through our website.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">ORDERING &amp; PRODUCTION</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How do I place an order?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Ready-to-wear pieces can be purchased directly online.</p>
+      <p>For custom or bridal orders, you will need to book a consultation before production begins.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How long does production take?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Production timelines vary depending on the piece:</p>
+      <ul>
+        <li>Ready-to-wear: Immediate or within a few days</li>
+        <li>Custom pieces: Typically 2-6 weeks</li>
+        <li>Bridal: Timelines will be communicated during consultation</li>
+      </ul>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Can I request adjustments to a ready-to-wear piece?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Minor adjustments may be accommodated depending on the design. Please contact us before placing your order.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">SIZING &amp; FIT</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How do I choose my size?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Each product includes a size guide. We recommend comparing your measurements carefully before ordering.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Do you offer made-to-measure for ready-to-wear?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Select pieces may be available in extended sizing or made-to-measure options. Please inquire before purchase.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">SHIPPING &amp; DELIVERY</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Do you ship internationally?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. We deliver within Nigeria and to international locations including the US, UK, and beyond.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How long does delivery take?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Delivery timelines depend on your location:</p>
+      <ul>
+        <li>Lagos: 1-3 working days</li>
+        <li>Outside Lagos: 3-7 working days</li>
+        <li>International: 5-10 working days</li>
+      </ul>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How much is shipping?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Shipping costs are calculated at checkout based on your location and order size.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">RETURNS &amp; EXCHANGES</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Do you accept returns or exchanges?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Due to the nature of our pieces:</p>
+      <ul>
+        <li>Ready-to-wear items may be eligible for exchange under specific conditions</li>
+        <li>Custom and bridal pieces are non-returnable</li>
+      </ul>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">What if my item does not fit?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>We recommend reaching out to our team. Where possible, we will guide you on alterations or adjustments.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">What payment methods do you accept?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>We accept secure online payments via card, bank transfer, and other available payment gateways.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Can I pay in installments for custom or bridal pieces?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. Structured payment plans may be available for custom and bridal orders.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">SERVICE &amp; STYLING</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Can I speak to someone before placing an order?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. Our team is available via WhatsApp and email to assist you with any inquiries. Email: info@sheyeoladejo.com WhatsApp: +2348123456789</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Do you offer styling guidance?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Yes. We provide styling support to help you select pieces that align with your needs and occasions.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">How do I care for my garment?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Care instructions are provided with each piece. We recommend professional dry cleaning for most garments.</p>
+    </div>
+  </div>
+</li>
+
+<li class="faq-grid__section-heading">
+  <h2 class="faq-grid__section-title">OUR CRAFT</h2>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">Where are your pieces made?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>All our pieces are designed and produced with a strong focus on craftsmanship, quality, and attention to detail.</p>
+    </div>
+  </div>
+</li>
+
+{%- assign faq_item_index = faq_item_index | plus: 1 -%}
+{%- assign item_id = 'faq-item-' | append: section.id | append: '-' | append: faq_item_index -%}
+<li class="faq-grid__item">
+  <input id="{{ item_id }}" class="faq-grid__input" type="radio" name="faq-{{ section.id }}">
+  <label for="{{ item_id }}" class="faq-grid__question-row">
+    <p class="faq-grid__question">What makes your brand different?</p>
+    <svg class="faq-grid__icon faq-grid__icon--chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </label>
+  <div class="faq-grid__answer-wrap">
+    <div class="faq-grid__answer rte">
+      <p>Our work is rooted in intentional design, refined craftsmanship, and a deep understanding of the modern woman. Every piece is created to feel as good as it looks.</p>
+    </div>
+  </div>
+</li>

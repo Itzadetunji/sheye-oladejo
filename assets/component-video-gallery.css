@@ -32,6 +32,78 @@
 	object-position: center;
 }
 
+.video-gallery-component__toggle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 5.2rem;
+	height: 5.2rem;
+	border-radius: 50%;
+	background: rgba(var(--color-background), 0.72);
+	color: rgb(var(--color-foreground));
+	display: grid;
+	place-items: center;
+	backdrop-filter: blur(2px);
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.2s ease,
+		visibility 0.2s ease,
+		transform 0.2s ease,
+		background 0.2s ease;
+	z-index: 2;
+}
+
+.video-gallery-component__card:hover .video-gallery-component__toggle,
+.video-gallery-component__card:focus-visible .video-gallery-component__toggle {
+	opacity: 1;
+	visibility: visible;
+	transform: translate(-50%, -50%) scale(1.05);
+	background: rgba(var(--color-background), 0.82);
+}
+
+.video-gallery-component__toggle-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: opacity 0.16s ease;
+}
+
+.video-gallery-component__toggle-icon--play {
+	width: 0;
+	height: 0;
+	border-top: 0.85rem solid transparent;
+	border-bottom: 0.85rem solid transparent;
+	border-left: 1.25rem solid currentColor;
+	margin-left: 0.2rem;
+	opacity: 1;
+}
+
+.video-gallery-component__toggle-icon--pause {
+	display: inline-flex;
+	gap: 0.35rem;
+	opacity: 0;
+}
+
+.video-gallery-component__toggle-icon--pause span {
+	display: block;
+	width: 0.42rem;
+	height: 1.6rem;
+	background: currentColor;
+	border-radius: 0.1rem;
+}
+
+.video-gallery-component__card.is-playing .video-gallery-component__toggle-icon--play {
+	opacity: 0;
+}
+
+.video-gallery-component__card.is-playing .video-gallery-component__toggle-icon--pause {
+	opacity: 1;
+}
+
 .video-gallery-component__placeholder {
 	width: 100%;
 	height: 100%;

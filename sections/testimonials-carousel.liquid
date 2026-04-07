@@ -1,0 +1,315 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} isolate gradient">
+  <section
+    class="testimonials-carousel section-{{ section.id }}-padding"
+    id="testimonials-carousel-{{ section.id }}"
+    data-testimonials-carousel
+  >
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+      {%- if section.settings.title != blank -%}
+        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.title }}
+        </h2>
+      {%- endif -%}
+    </div>
+
+    <div class="page-width">
+      <div class="testimonials-carousel__shell">
+        <button
+          type="button"
+          class="testimonials-carousel__arrow testimonials-carousel__arrow--prev"
+          aria-label="Previous testimonial"
+          data-testimonial-prev
+        >
+          <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
+
+        <div class="testimonials-carousel__viewport" aria-live="polite">
+          <div class="testimonials-carousel__track" data-testimonial-track>
+            {%- for block in section.blocks -%}
+              <article
+                class="testimonials-carousel__slide"
+                data-testimonial-slide
+                {{ block.shopify_attributes }}
+              >
+                <h3 class="testimonials-carousel__name">{{ block.settings.name | escape }}</h3>
+                <span class="testimonials-carousel__divider" aria-hidden="true"></span>
+                <div class="testimonials-carousel__quote rte">
+                  {{ block.settings.quote | escape | newline_to_br }}
+                </div>
+              </article>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="testimonials-carousel__arrow testimonials-carousel__arrow--next"
+          aria-label="Next testimonial"
+          data-testimonial-next
+        >
+          <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__shell {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 5.2rem;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__viewport {
+    overflow: hidden;
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__track {
+    display: flex;
+    transition: transform 0.35s ease;
+    will-change: transform;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__slide {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__name {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__divider {
+    display: block;
+    width: 3.6rem;
+    height: 0.1rem;
+    background: rgba(var(--color-foreground), 0.6);
+    margin: 2.8rem auto 3.6rem;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__quote {
+    max-width: 70ch;
+    margin: 0 auto;
+    color: rgba(var(--color-foreground), 0.9);
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__quote p {
+    margin: 0;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.4rem;
+    height: 4.4rem;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(var(--color-background), 0.88);
+    color: rgb(var(--color-foreground));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow--prev {
+    left: 0;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow--next {
+    right: 0;
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow--prev .svg-wrapper {
+    transform: rotate(90deg);
+  }
+
+  #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow--next .svg-wrapper {
+    transform: rotate(-90deg);
+  }
+
+  @media screen and (max-width: 749px) {
+    #testimonials-carousel-{{ section.id }} .testimonials-carousel__shell {
+      padding: 0 3.8rem;
+    }
+
+    #testimonials-carousel-{{ section.id }} .testimonials-carousel__arrow {
+      width: 3.6rem;
+      height: 3.6rem;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    if (window.__testimonialsCarouselBound) return;
+    window.__testimonialsCarouselBound = true;
+
+    const initCarousel = (root) => {
+      if (!root || root.dataset.initialized === 'true') return;
+
+      const track = root.querySelector('[data-testimonial-track]');
+      const slides = Array.prototype.slice.call(root.querySelectorAll('[data-testimonial-slide]'));
+      const prevButton = root.querySelector('[data-testimonial-prev]');
+      const nextButton = root.querySelector('[data-testimonial-next]');
+
+      if (!track || !prevButton || !nextButton || slides.length === 0) {
+        root.dataset.initialized = 'true';
+        return;
+      }
+
+      let index = 0;
+
+      const render = () => {
+        track.style.transform = 'translateX(-' + index * 100 + '%)';
+      };
+
+      if (slides.length < 2) {
+        prevButton.setAttribute('hidden', '');
+        nextButton.setAttribute('hidden', '');
+        render();
+        root.dataset.initialized = 'true';
+        return;
+      }
+
+      prevButton.removeAttribute('hidden');
+      nextButton.removeAttribute('hidden');
+
+      prevButton.addEventListener('click', () => {
+        index = (index - 1 + slides.length) % slides.length;
+        render();
+      });
+
+      nextButton.addEventListener('click', () => {
+        index = (index + 1) % slides.length;
+        render();
+      });
+
+      render();
+      root.dataset.initialized = 'true';
+    };
+
+    const initIn = (container) => {
+      if (!container) return;
+      if (container.matches && container.matches('[data-testimonials-carousel]')) {
+        initCarousel(container);
+      }
+      const roots = container.querySelectorAll ? container.querySelectorAll('[data-testimonials-carousel]') : [];
+      for (let i = 0; i < roots.length; i += 1) {
+        initCarousel(roots[i]);
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () {
+        initIn(document);
+      });
+    } else {
+      initIn(document);
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      initIn(event.target);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Testimonials carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "CUSTOMERS WORD"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Mira Yaache" },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "From a sketch to a dream come true! I highly recommend Sheye Oladejo for all your fabulous dress needs."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials carousel",
+      "blocks": [{ "type": "testimonial" }, { "type": "testimonial" }]
+    }
+  ]
+}
+{% endschema %}
