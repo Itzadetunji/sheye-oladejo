@@ -34,6 +34,7 @@
   assign money_price_max = price_max | money
   assign has_low_stock_variant = false
   assign is_preorder_product = false
+  assign show_preorder_badge = false
   assign show_final_pieces_badge = false
 
   assign use_currency_code = settings.currency_code_enabled
@@ -73,6 +74,10 @@
     endif
   endfor
 
+  if available and is_preorder_product
+    assign show_preorder_badge = true
+  endif
+
   if available and has_low_stock_variant and is_preorder_product == false
     assign show_final_pieces_badge = true
   endif
@@ -86,6 +91,7 @@
       {%- if available == false %} price--sold-out{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
+      {%- if show_preorder_badge %} price--preorder{% endif -%}
       {%- if show_final_pieces_badge %} price--final-pieces{% endif -%}
       {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
@@ -171,6 +177,15 @@
       <div class="price__badge-final-pieces">
         {% render 'outline-badge',
           text: 'FINAL PIECES',
+          uppercase: true,
+          layout: 'inline',
+          class: 'price__outline-badge'
+        %}
+      </div>
+
+      <div class="price__badge-preorder">
+        {% render 'outline-badge',
+          text: 'PREORDER',
           uppercase: true,
           layout: 'inline',
           class: 'price__outline-badge'
