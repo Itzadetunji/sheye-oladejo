@@ -417,22 +417,33 @@ if (!customElements.get("product-info")) {
 					max: this.quantityInput.dataset.max
 						? parseInt(this.quantityInput.dataset.max)
 						: null,
+					variantAvailable:
+						this.quantityInput.dataset.variantAvailable !== "false",
 					step: this.quantityInput.step ? parseInt(this.quantityInput.step) : 1,
 				};
 
 				let min = data.min;
-				const max = data.max === null ? data.max : data.max - data.cartQuantity;
+				const max = data.max === null ? null : Math.max(data.max - data.cartQuantity, 0);
 				if (max !== null) min = Math.min(min, max);
 				if (data.cartQuantity >= data.min) min = Math.min(min, data.step);
+				const shouldDisableQuantity = !data.variantAvailable || (max !== null && max <= 0);
+				const shouldHideQuantity = shouldDisableQuantity;
 
 				this.quantityInput.min = min;
 
-				if (max) {
+				if (max !== null) {
 					this.quantityInput.max = max;
 				} else {
 					this.quantityInput.removeAttribute("max");
 				}
-				this.quantityInput.value = min;
+				this.quantityInput.value = shouldDisableQuantity ? 0 : min;
+				this.quantityInput.toggleAttribute("disabled", shouldDisableQuantity);
+				this.quantityForm.classList.toggle("hidden", shouldHideQuantity);
+				this.quantityForm
+					.querySelectorAll(".quantity__button")
+					.forEach((button) => {
+						button.toggleAttribute("disabled", shouldDisableQuantity);
+					});
 
 				publish(PUB_SUB_EVENTS.quantityUpdate, undefined);
 			}
@@ -465,7 +476,6 @@ if (!customElements.get("product-info")) {
 
 			updateQuantityRules(sectionId, html) {
 				if (!this.quantityInput) return;
-				this.setQuantityBoundries();
 
 				const quantityFormUpdated = html.getElementById(
 					`Quantity-Form-${sectionId}`,
@@ -484,6 +494,7 @@ if (!customElements.get("product-info")) {
 							"data-cart-quantity",
 							"data-min",
 							"data-max",
+							"data-variant-available",
 							"step",
 						];
 						for (let attribute of attributes) {
@@ -513,6 +524,8 @@ if (!customElements.get("product-info")) {
 						}
 					}
 				}
+
+				this.setQuantityBoundries();
 			}
 
 			get productForm() {
