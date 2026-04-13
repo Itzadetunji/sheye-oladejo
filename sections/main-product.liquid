@@ -325,9 +325,7 @@
               {%- when 'quantity_selector' -%}
                 {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}
                 {% # theme-check-disable %}
-                {%- assign cart_qty = cart
-                  | item_count_for_variant: product.selected_or_first_available_variant.id
-                -%}
+                {%- assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id -%}
                 {% # theme-check-enable %}
                 {%- liquid
                   assign selected_variant = product.selected_or_first_available_variant

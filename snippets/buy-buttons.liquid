@@ -27,12 +27,34 @@
         assign quantity_rule_soldout = true
       endif
 
-      assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-        assign show_dynamic_checkout = true
+      assign quantity_available = true
+      if product.selected_or_first_available_variant.inventory_management == 'shopify' and product.selected_or_first_available_variant.inventory_quantity <= 0
+        assign quantity_available = false
       endif
-      if product.selected_or_first_available_variant.available == false or quantity_rule_soldout
-        assign show_dynamic_checkout = false
+
+      assign has_inventory_for_dynamic_checkout = false
+      if product.selected_or_first_available_variant != null and product.selected_or_first_available_variant.inventory_quantity > 0
+        assign has_inventory_for_dynamic_checkout = true
+      endif
+
+      assign is_preorder = false
+      if product.selected_or_first_available_variant.inventory_policy == 'continue'
+        assign is_preorder = true
+      endif
+
+      assign show_dynamic_checkout = false
+      assign can_render_dynamic_checkout = false
+      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
+        assign can_render_dynamic_checkout = true
+      endif
+
+      assign hide_buy_now_button = false
+      if product.selected_or_first_available_variant.available == false or quantity_rule_soldout or quantity_available == false or is_preorder or has_inventory_for_dynamic_checkout == false
+        assign hide_buy_now_button = true
+      endif
+
+      if can_render_dynamic_checkout and hide_buy_now_button == false
+        assign show_dynamic_checkout = true
       endif
     -%}
 
@@ -73,12 +95,14 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
-        <div class="product-form__buttons product-form__buttons--row">
+        <div class="product-form__buttons product-form__buttons--row{% if is_preorder %} product-form__buttons--column{% endif %}">
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
             class="product-form__submit addtocart-button button button--full-width button-medium {% if show_dynamic_checkout %}button--secondary dynamic-checkout-enabled{% else %}button--primary{% endif %}"
+            data-hide-buy-now="{{ hide_buy_now_button }}"
+            data-is-preorder="{{ is_preorder }}"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null

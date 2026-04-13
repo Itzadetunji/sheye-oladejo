@@ -26,6 +26,7 @@ if (!customElements.get("product-info")) {
 				);
 
 				this.initQuantityHandlers();
+				this.syncDynamicCheckoutVisibilityFromCurrentState();
 				this.dispatchEvent(
 					new CustomEvent("product-info:loaded", { bubbles: true }),
 				);
@@ -65,6 +66,7 @@ if (!customElements.get("product-info")) {
 				);
 				this.postProcessHtmlCallbacks.push((newNode) => {
 					window?.Shopify?.PaymentButton?.init();
+					this.syncDynamicCheckoutVisibilityFromCurrentState();
 					window?.ProductModel?.loadShopifyXR();
 				});
 			}
@@ -253,6 +255,7 @@ if (!customElements.get("product-info")) {
 							?.hasAttribute("disabled") ?? true,
 						window.variantStrings.soldOut,
 					);
+					this.syncDynamicCheckoutVisibility(html);
 
 					publish(PUB_SUB_EVENTS.variantChange, {
 						data: {
@@ -291,6 +294,16 @@ if (!customElements.get("product-info")) {
 				this.productForm?.toggleSubmitButton(
 					true,
 					window.variantStrings.unavailable,
+				);
+				this.querySelectorAll(".product-form__buttons").forEach((buttonsRow) => {
+					buttonsRow.classList.remove("product-form__buttons--column");
+				});
+				this.querySelectorAll(
+					".product-form__dynamic-checkout, .shopify-payment-button",
+				).forEach(
+					(dynamicCheckout) => {
+						dynamicCheckout.classList.add("hidden");
+					},
 				);
 
 				const selectors = [
@@ -423,10 +436,12 @@ if (!customElements.get("product-info")) {
 				};
 
 				let min = data.min;
-				const max = data.max === null ? null : Math.max(data.max - data.cartQuantity, 0);
+				const max =
+					data.max === null ? null : Math.max(data.max - data.cartQuantity, 0);
 				if (max !== null) min = Math.min(min, max);
 				if (data.cartQuantity >= data.min) min = Math.min(min, data.step);
-				const shouldDisableQuantity = !data.variantAvailable || (max !== null && max <= 0);
+				const shouldDisableQuantity =
+					!data.variantAvailable || (max !== null && max <= 0);
 				const shouldHideQuantity = shouldDisableQuantity;
 
 				this.quantityInput.min = min;
@@ -446,6 +461,86 @@ if (!customElements.get("product-info")) {
 					});
 
 				publish(PUB_SUB_EVENTS.quantityUpdate, undefined);
+			}
+
+			getDynamicCheckoutElement(buttonsRow) {
+				return buttonsRow?.querySelector(
+					".product-form__dynamic-checkout, .shopify-payment-button",
+				);
+			}
+
+			applyDynamicCheckoutState(
+				currentSubmitButton,
+				hideBuyNow,
+				isPreorder,
+				attempt = 0,
+			) {
+				const buttonsRow = currentSubmitButton.closest(".product-form__buttons");
+				buttonsRow?.classList.toggle("product-form__buttons--column", isPreorder);
+				const dynamicCheckout = this.getDynamicCheckoutElement(buttonsRow);
+
+				if (dynamicCheckout) {
+					dynamicCheckout.classList.toggle("hidden", hideBuyNow);
+					dynamicCheckout.toggleAttribute("hidden", hideBuyNow);
+					dynamicCheckout.style.display = hideBuyNow ? "none" : "";
+				} else if (attempt < 5) {
+					setTimeout(() => {
+						this.applyDynamicCheckoutState(
+							currentSubmitButton,
+							hideBuyNow,
+							isPreorder,
+							attempt + 1,
+						);
+					}, 120);
+				}
+
+				const shouldShowDynamicCheckout = !!dynamicCheckout && !hideBuyNow;
+				currentSubmitButton.classList.toggle(
+					"dynamic-checkout-enabled",
+					shouldShowDynamicCheckout,
+				);
+				currentSubmitButton.classList.toggle(
+					"button--secondary",
+					shouldShowDynamicCheckout,
+				);
+				currentSubmitButton.classList.toggle(
+					"button--primary",
+					!shouldShowDynamicCheckout,
+				);
+			}
+
+			syncDynamicCheckoutVisibilityFromCurrentState() {
+				const currentSubmitButton = this.querySelector(
+					`#ProductSubmitButton-${this.dataset.section}`,
+				);
+				if (!currentSubmitButton) return;
+
+				const hideBuyNow = currentSubmitButton.dataset.hideBuyNow === "true";
+				const isPreorder = currentSubmitButton.dataset.isPreorder === "true";
+				this.applyDynamicCheckoutState(
+					currentSubmitButton,
+					hideBuyNow,
+					isPreorder,
+				);
+			}
+
+			syncDynamicCheckoutVisibility(html) {
+				const submitButtonId = `ProductSubmitButton-${this.sectionId}`;
+				const updatedSubmitButton = html.getElementById(submitButtonId);
+				const currentSubmitButton = this.querySelector(
+					`#ProductSubmitButton-${this.dataset.section}`,
+				);
+				if (!updatedSubmitButton || !currentSubmitButton) return;
+
+				const hideBuyNow = updatedSubmitButton.dataset.hideBuyNow === "true";
+				const isPreorder = updatedSubmitButton.dataset.isPreorder === "true";
+				currentSubmitButton.dataset.hideBuyNow = hideBuyNow ? "true" : "false";
+				currentSubmitButton.dataset.isPreorder = isPreorder ? "true" : "false";
+				this.applyDynamicCheckoutState(
+					currentSubmitButton,
+					hideBuyNow,
+					isPreorder,
+				);
 			}
 
 			fetchQuantityRules() {
