@@ -32,6 +32,9 @@
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
+  assign has_low_stock_variant = false
+  assign is_preorder_product = false
+  assign show_final_pieces_badge = false
 
   assign use_currency_code = settings.currency_code_enabled
   if show_currency_code != null
@@ -47,6 +50,32 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
+  assign product_title_downcase = product.title | downcase
+  if product_title_downcase contains 'preorder'
+    assign is_preorder_product = true
+  endif
+
+  if is_preorder_product == false
+    for selling_plan_group in product.selling_plan_groups
+      assign selling_plan_group_name_downcase = selling_plan_group.name | downcase
+      if selling_plan_group_name_downcase contains 'preorder'
+        assign is_preorder_product = true
+        break
+      endif
+    endfor
+  endif
+
+  for variant in product.variants
+    if variant.available and variant.inventory_management != blank and variant.inventory_quantity != blank and variant.inventory_quantity < 5
+      assign has_low_stock_variant = true
+      break
+    endif
+  endfor
+
+  if available and has_low_stock_variant and is_preorder_product == false
+    assign show_final_pieces_badge = true
+  endif
 -%}
 
 {%- unless target == null and placeholder == null -%}
@@ -57,6 +86,7 @@
       {%- if available == false %} price--sold-out{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
+      {%- if show_final_pieces_badge %} price--final-pieces{% endif -%}
       {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
     "
@@ -132,6 +162,15 @@
       <div class="price__badge-sold-out">
         {% render 'outline-badge',
           translation_key: 'products.product.sold_out',
+          uppercase: true,
+          layout: 'inline',
+          class: 'price__outline-badge'
+        %}
+      </div>
+
+      <div class="price__badge-final-pieces">
+        {% render 'outline-badge',
+          text: 'FINAL PIECES',
           uppercase: true,
           layout: 'inline',
           class: 'price__outline-badge'

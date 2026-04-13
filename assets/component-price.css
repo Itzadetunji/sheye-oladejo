@@ -58,6 +58,7 @@
 .price__availability,
 .price .price__badge-sale,
 .price .price__badge-sold-out,
+.price .price__badge-final-pieces,
 .price--on-sale .price__regular,
 .price--on-sale .price__availability {
 	display: none;
@@ -65,6 +66,7 @@
 
 .price--sold-out .price__badge-sold-out,
 .price--on-sale .price__badge-sale,
+.price--final-pieces .price__badge-final-pieces,
 .volume-pricing--sale-badge .price__badge-sale {
 	display: inline-block;
 }
