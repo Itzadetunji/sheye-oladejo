@@ -37,36 +37,36 @@
     }
   }
 
-  #latest-collection-{{ section.id }} .collection__title {
+  #collection-grid-{{ section.id }} .collection__title {
     text-align: center;
     text-transform: uppercase;
   }
 
-  #latest-collection-{{ section.id }} .product-grid {
+  #collection-grid-{{ section.id }} .product-grid {
     justify-content: flex-start;
   }
 
   @media screen and (min-width: 768px) {
-    #latest-collection-{{ section.id }} .product-grid {
+    #collection-grid-{{ section.id }} .product-grid {
       justify-content: center;
     }
   }
 
-  #latest-collection-{{ section.id }} .card__heading,
-  #latest-collection-{{ section.id }} .card__heading a {
+  #collection-grid-{{ section.id }} .card__heading,
+  #collection-grid-{{ section.id }} .card__heading a {
     text-transform: uppercase;
     text-align: left;
   }
 
   @media screen and (min-width: 768px) {
-    #latest-collection-{{ section.id }} .card__heading,
-    #latest-collection-{{ section.id }} .card__heading a {
+    #collection-grid-{{ section.id }} .card__heading,
+    #collection-grid-{{ section.id }} .card__heading a {
       text-align: center;
     }
   }
 
   /* 3:4 image frame (width:height); images use object-fit cover from card styles */
-  #latest-collection-{{ section.id }} .product-grid .ratio {
+  #collection-grid-{{ section.id }} .product-grid .ratio {
     --ratio-percent: 133.333% !important;
   }
 {%- endstyle -%}
@@ -116,7 +116,7 @@
         assign source_collection = selected_collection
         assign source_mode = 'configured'
       else
-        assign source_collection = collections['all']
+        assign source_collection = collections.all
         assign source_mode = 'latest'
       endif
     endif
@@ -124,7 +124,7 @@
 
   assign source_products = blank
   if source_mode == 'latest'
-    assign source_products = collections['all'].products | sort: 'created_at' | reverse
+    assign source_products = collections.all.products | sort: 'created_at' | reverse
   elsif source_collection != blank
     assign source_products = source_collection.products
   endif
@@ -135,7 +135,7 @@
 >
   <div
     class="collection{% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ section.id }}-padding{% if section.settings.full_width %} collection--full-width{% endif %}"
-    id="latest-collection-{{ section.id }}"
+    id="collection-grid-{{ section.id }}"
     data-id="{{ section.id }}"
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">

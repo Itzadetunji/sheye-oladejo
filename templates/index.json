@@ -8,235 +8,232 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "brand_logo": {
-          "type": "brand_logo",
-          "settings": {}
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Explore",
-            "button_link_1": "/collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "brand_logo",
-        "button"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/ejire-2-hero.png",
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
-    "book_appointment_or_couture": {
-      "type": "appointment-couture",
-      "blocks": {
-        "ac_l1": {
-          "type": "left_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/couture-image-11.webp"
-          }
-        },
-        "left_carousel_slide_CYznEC": {
-          "type": "left_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/couture-image-35.webp"
-          }
-        },
-        "ac_l2": {
-          "type": "left_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/couture-image-21.webp"
-          }
-        },
-        "ac_l3": {
-          "type": "left_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/couture-image-7.webp"
-          }
-        },
-        "ac_l4": {
-          "type": "left_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/couture-image-5.webp"
-          }
-        },
-        "ac_r1": {
-          "type": "right_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-64.webp"
-          }
-        },
-        "ac_r2": {
-          "type": "right_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-75.webp"
-          }
-        },
-        "ac_r3": {
-          "type": "right_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-12.webp"
-          }
-        },
-        "ac_r4": {
-          "type": "right_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-71.webp"
-          }
-        },
-        "right_carousel_slide_tJhU6z": {
-          "type": "right_carousel_slide",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-9.webp"
-          }
-        }
-      },
-      "block_order": [
-        "ac_l1",
-        "left_carousel_slide_CYznEC",
-        "ac_l2",
-        "ac_l3",
-        "ac_l4",
-        "ac_r1",
-        "ac_r2",
-        "ac_r3",
-        "ac_r4",
-        "right_carousel_slide_tJhU6z"
-      ],
-      "settings": {
-        "section_heading": "Book appointment or couture",
-        "image_left": "shopify://shop_images/couture-image-13.webp",
-        "left_button_text": "COUTURE",
-        "left_button_link": "/book-consultation",
-        "image_right": "shopify://shop_images/ejire-2-professional-69.webp",
-        "right_button_text": "READY TO WEAR",
-        "right_button_link": "/collections/all",
-        "background_color": "#f6f6f6"
-      }
-    },
-    "latest_collection": {
-      "type": "latest-collection",
-      "settings": {
-        "collection": "ejire-products",
-        "products_to_show": 3,
-        "title": "Latest Collection",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "view_all_label": "Explore",
-        "view_all_link": "/collections/ejire",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "testimonials_carousel": {
-      "type": "testimonials-carousel",
-      "blocks": {
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {
-            "name": "Mira Yaache",
-            "quote": "From a sketch to a dream come true! I highly recommend Sheye Oladejo for all your fabulous dress needs. Their entire team was professional, communicated constantly and delivered beyond my expectations. The in person fitting went smoothly and I needed very minor alterations which speaks to the high quality and precision of their craftsmanship. Worth every penny and more, you will be in great hands with this expert and talented designer brand! The best of Africa!"
-          }
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {
-            "name": "Tomilade Adepoju",
-            "quote": "I had such a great experience with SheyeOladejo! They made me the most beautiful dress for my mother's 65th birthday party and I was in awe! They are so professional, so timely and the dress fit PERFECTLY with no need for alterations. They were very thorough during the video session for us to take measurements. I am very excited to have them make another dress for me!"
-          }
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {
-            "name": "Ifeoluwani Ojo",
-            "quote": "I had a great experience with the team from planning stage to fittings. And I extremely loved my outfit. I looked snatched just the way I imagined."
-          }
-        },
-        "testimonial_4": {
-          "type": "testimonial",
-          "settings": {
-            "name": "Stella Chioma",
-            "quote": "Distance does not matter as I got my measurements done virtually by very professional staff. Received my outfit and it was a perfect fit. Absolutely gorgeous and beautiful. Thank you SheyeOladejo"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3",
-        "testimonial_4"
-      ],
-      "settings": {
-        "title": "CUSTOMER'S WORD",
-        "heading_size": "h2",
-        "color_scheme": "scheme-1",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "featured_collection": {
-      "type": "latest-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 5,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "view_all_label": "View more",
-        "view_all_link": "/collections/all",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    }
-  },
-  "order": [
-    "image_banner",
-    "book_appointment_or_couture",
-    "latest_collection",
-    "testimonials_carousel",
-    "featured_collection"
-  ]
+	"sections": {
+		"image_banner": {
+			"type": "image-banner",
+			"blocks": {
+				"brand_logo": {
+					"type": "brand_logo",
+					"settings": {}
+				},
+				"button": {
+					"type": "buttons",
+					"settings": {
+						"button_label_1": "Explore",
+						"button_link_1": "/collections/all",
+						"button_style_secondary_1": true,
+						"button_label_2": "",
+						"button_link_2": "",
+						"button_style_secondary_2": false
+					}
+				}
+			},
+			"block_order": ["brand_logo", "button"],
+			"settings": {
+				"image": "shopify://shop_images/ejire-2-hero.png",
+				"image_overlay_opacity": 40,
+				"image_height": "large",
+				"image_behavior": "none",
+				"desktop_content_position": "middle-center",
+				"desktop_content_alignment": "center",
+				"show_text_box": false,
+				"color_scheme": "scheme-3",
+				"stack_images_on_mobile": false,
+				"mobile_content_alignment": "center",
+				"show_text_below": false
+			}
+		},
+		"book_appointment_or_couture": {
+			"type": "appointment-couture",
+			"blocks": {
+				"ac_l1": {
+					"type": "left_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/couture-image-11.webp"
+					}
+				},
+				"left_carousel_slide_CYznEC": {
+					"type": "left_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/couture-image-35.webp"
+					}
+				},
+				"ac_l2": {
+					"type": "left_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/couture-image-21.webp"
+					}
+				},
+				"ac_l3": {
+					"type": "left_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/couture-image-7.webp"
+					}
+				},
+				"ac_l4": {
+					"type": "left_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/couture-image-5.webp"
+					}
+				},
+				"ac_r1": {
+					"type": "right_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-64.webp"
+					}
+				},
+				"ac_r2": {
+					"type": "right_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-75.webp"
+					}
+				},
+				"ac_r3": {
+					"type": "right_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-12.webp"
+					}
+				},
+				"ac_r4": {
+					"type": "right_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-71.webp"
+					}
+				},
+				"right_carousel_slide_tJhU6z": {
+					"type": "right_carousel_slide",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-9.webp"
+					}
+				}
+			},
+			"block_order": [
+				"ac_l1",
+				"left_carousel_slide_CYznEC",
+				"ac_l2",
+				"ac_l3",
+				"ac_l4",
+				"ac_r1",
+				"ac_r2",
+				"ac_r3",
+				"ac_r4",
+				"right_carousel_slide_tJhU6z"
+			],
+			"settings": {
+				"section_heading": "Book appointment or couture",
+				"image_left": "shopify://shop_images/couture-image-13.webp",
+				"left_button_text": "COUTURE",
+				"left_button_link": "/book-consultation",
+				"image_right": "shopify://shop_images/ejire-2-professional-69.webp",
+				"right_button_text": "READY TO WEAR",
+				"right_button_link": "/collections/all",
+				"background_color": "#f6f6f6"
+			}
+		},
+		"latest_collection": {
+			"type": "collection-grid",
+			"settings": {
+				"collection": "ejire-products",
+				"products_to_show": 3,
+				"title": "Latest Collection",
+				"heading_size": "h2",
+				"description": "",
+				"show_description": false,
+				"description_style": "body",
+				"full_width": false,
+				"show_view_all": true,
+				"view_all_style": "solid",
+				"view_all_label": "Explore",
+				"view_all_link": "/collections/ejire",
+				"color_scheme": "scheme-1",
+				"image_ratio": "adapt",
+				"image_shape": "default",
+				"show_secondary_image": true,
+				"show_vendor": false,
+				"show_rating": false,
+				"quick_add": "none",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"testimonials_carousel": {
+			"type": "testimonials-carousel",
+			"blocks": {
+				"testimonial_1": {
+					"type": "testimonial",
+					"settings": {
+						"name": "Mira Yaache",
+						"quote": "From a sketch to a dream come true! I highly recommend Sheye Oladejo for all your fabulous dress needs. Their entire team was professional, communicated constantly and delivered beyond my expectations. The in person fitting went smoothly and I needed very minor alterations which speaks to the high quality and precision of their craftsmanship. Worth every penny and more, you will be in great hands with this expert and talented designer brand! The best of Africa!"
+					}
+				},
+				"testimonial_2": {
+					"type": "testimonial",
+					"settings": {
+						"name": "Tomilade Adepoju",
+						"quote": "I had such a great experience with SheyeOladejo! They made me the most beautiful dress for my mother's 65th birthday party and I was in awe! They are so professional, so timely and the dress fit PERFECTLY with no need for alterations. They were very thorough during the video session for us to take measurements. I am very excited to have them make another dress for me!"
+					}
+				},
+				"testimonial_3": {
+					"type": "testimonial",
+					"settings": {
+						"name": "Ifeoluwani Ojo",
+						"quote": "I had a great experience with the team from planning stage to fittings. And I extremely loved my outfit. I looked snatched just the way I imagined."
+					}
+				},
+				"testimonial_4": {
+					"type": "testimonial",
+					"settings": {
+						"name": "Stella Chioma",
+						"quote": "Distance does not matter as I got my measurements done virtually by very professional staff. Received my outfit and it was a perfect fit. Absolutely gorgeous and beautiful. Thank you SheyeOladejo"
+					}
+				}
+			},
+			"block_order": [
+				"testimonial_1",
+				"testimonial_2",
+				"testimonial_3",
+				"testimonial_4"
+			],
+			"settings": {
+				"title": "CUSTOMER'S WORD",
+				"heading_size": "h2",
+				"color_scheme": "scheme-1",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"featured_collection": {
+			"type": "collection-grid",
+			"settings": {
+				"collection": "all",
+				"products_to_show": 5,
+				"title": "Featured products",
+				"heading_size": "h2",
+				"description": "",
+				"show_description": false,
+				"description_style": "body",
+				"full_width": false,
+				"show_view_all": true,
+				"view_all_style": "solid",
+				"view_all_label": "View more",
+				"view_all_link": "/collections/all",
+				"color_scheme": "scheme-1",
+				"image_ratio": "adapt",
+				"image_shape": "default",
+				"show_secondary_image": true,
+				"show_vendor": false,
+				"show_rating": false,
+				"quick_add": "none",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		}
+	},
+	"order": [
+		"image_banner",
+		"book_appointment_or_couture",
+		"latest_collection",
+		"testimonials_carousel",
+		"featured_collection"
+	]
 }

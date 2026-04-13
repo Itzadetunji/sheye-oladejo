@@ -8,150 +8,143 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "hero": {
-      "type": "hero-tertiary",
-      "settings": {
-        "heading": "EJIRE",
-        "heading_text_color": "white",
-        "inner_layout": "page",
-        "show_breadcrumbs": false,
-        "image": "shopify://shop_images/ejire-2-hero.png",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "about_founder": {
-      "type": "about-founder",
-      "settings": {
-        "heading": "EJIRE",
-        "body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",
-        "image": "shopify://shop_images/ejire-2-professional-34.webp",
-        "color_scheme": "scheme-1",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "image_grid": {
-      "type": "collections-ejire",
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-8.webp"
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-47.webp"
-          }
-        },
-        "image_3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-1.webp"
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2",
-        "image_3"
-      ],
-      "settings": {
-        "collection": "ejire",
-        "products_to_show": 3,
-        "color_scheme": "scheme-1",
-        "desktop_columns": "3",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "callout_banner": {
-      "type": "callout-banner",
-      "settings": {
-        "text": "Express Feminiity With Attention",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
-    "image_grid_two": {
-      "type": "collections-ejire",
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-33.webp"
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ejire-2-professional-12.webp"
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2"
-      ],
-      "settings": {
-        "collection": "ejire",
-        "products_to_show": 2,
-        "color_scheme": "scheme-1",
-        "desktop_columns": "2",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "pick_your_favorite": {
-      "type": "latest-collection",
-      "settings": {
-        "collection": "ejire-products",
-        "products_to_show": 3,
-        "title": "PICK YOUR FAVORITE",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "view_all_label": "VIEW MORE",
-        "view_all_link": "/collections/all",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    },
-    "check_this_out": {
-      "type": "ejire-video-gallery",
-      "settings": {
-        "video_gallery_title": "CHECK THIS OUT",
-        "video_gallery_heading_size": "h2",
-        "gallery_video_1": "shopify://files/videos/ejire-2-video-4.webm",
-        "gallery_video_2": "shopify://files/videos/ejire-2-video-5.webm",
-        "gallery_video_3": "shopify://files/videos/ejire-2-video-2.webm",
-        "color_scheme": "scheme-1",
-        "padding_top": 128,
-        "padding_bottom": 128
-      }
-    }
-  },
-  "order": [
-    "hero",
-    "about_founder",
-    "image_grid",
-    "callout_banner",
-    "image_grid_two",
-    "pick_your_favorite",
-    "check_this_out"
-  ]
+	"sections": {
+		"hero": {
+			"type": "hero-tertiary",
+			"settings": {
+				"heading": "EJIRE",
+				"heading_text_color": "white",
+				"inner_layout": "page",
+				"show_breadcrumbs": false,
+				"image": "shopify://shop_images/ejire-2-hero.png",
+				"padding_top": 0,
+				"padding_bottom": 0
+			}
+		},
+		"about_founder": {
+			"type": "about-founder",
+			"settings": {
+				"heading": "EJIRE",
+				"body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",
+				"image": "shopify://shop_images/ejire-2-professional-34.webp",
+				"color_scheme": "scheme-1",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"image_grid": {
+			"type": "collections-ejire",
+			"blocks": {
+				"image_1": {
+					"type": "image",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-8.webp"
+					}
+				},
+				"image_2": {
+					"type": "image",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-47.webp"
+					}
+				},
+				"image_3": {
+					"type": "image",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-1.webp"
+					}
+				}
+			},
+			"block_order": ["image_1", "image_2", "image_3"],
+			"settings": {
+				"collection": "ejire",
+				"products_to_show": 3,
+				"color_scheme": "scheme-1",
+				"desktop_columns": "3",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"callout_banner": {
+			"type": "callout-banner",
+			"settings": {
+				"text": "Express Feminiity With Attention",
+				"padding_top": 0,
+				"padding_bottom": 0
+			}
+		},
+		"image_grid_two": {
+			"type": "collections-ejire",
+			"blocks": {
+				"image_1": {
+					"type": "image",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-33.webp"
+					}
+				},
+				"image_2": {
+					"type": "image",
+					"settings": {
+						"image": "shopify://shop_images/ejire-2-professional-12.webp"
+					}
+				}
+			},
+			"block_order": ["image_1", "image_2"],
+			"settings": {
+				"collection": "ejire",
+				"products_to_show": 2,
+				"color_scheme": "scheme-1",
+				"desktop_columns": "2",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"pick_your_favorite": {
+			"type": "collection-grid",
+			"settings": {
+				"collection": "ejire-products",
+				"products_to_show": 3,
+				"title": "PICK YOUR FAVORITE",
+				"heading_size": "h2",
+				"description": "",
+				"show_description": false,
+				"description_style": "body",
+				"full_width": false,
+				"show_view_all": true,
+				"view_all_style": "solid",
+				"view_all_label": "VIEW MORE",
+				"view_all_link": "/collections/all",
+				"color_scheme": "scheme-1",
+				"image_ratio": "adapt",
+				"image_shape": "default",
+				"show_secondary_image": true,
+				"show_vendor": false,
+				"show_rating": false,
+				"quick_add": "none",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		},
+		"check_this_out": {
+			"type": "ejire-video-gallery",
+			"settings": {
+				"video_gallery_title": "CHECK THIS OUT",
+				"video_gallery_heading_size": "h2",
+				"gallery_video_1": "shopify://files/videos/ejire-2-video-4.webm",
+				"gallery_video_2": "shopify://files/videos/ejire-2-video-5.webm",
+				"gallery_video_3": "shopify://files/videos/ejire-2-video-2.webm",
+				"color_scheme": "scheme-1",
+				"padding_top": 128,
+				"padding_bottom": 128
+			}
+		}
+	},
+	"order": [
+		"hero",
+		"about_founder",
+		"image_grid",
+		"callout_banner",
+		"image_grid_two",
+		"pick_your_favorite",
+		"check_this_out"
+	]
 }

@@ -38,6 +38,14 @@
     assign available_color_names_string = ''
     assign available_color_variant_ids_string = ''
     assign available_color_count = 0
+    assign has_low_stock_variant = false
+    assign is_preorder_product = false
+
+    assign product_title_downcase = card_product.title | downcase
+    if product_title_downcase contains 'preorder'
+      assign is_preorder_product = true
+    endif
+
     if card_product.featured_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
     elsif card_product.featured_media and media_aspect_ratio == 'adapt'
@@ -75,7 +83,30 @@
         endif
       endfor
     endif
+
+    for variant in card_product.variants
+      if variant.available and variant.inventory_management != blank and variant.inventory_quantity != blank and variant.inventory_quantity < 5
+        assign has_low_stock_variant = true
+        break
+      endif
+    endfor
+
+    if is_preorder_product == false
+      for selling_plan_group in card_product.selling_plan_groups
+        assign selling_plan_group_name_downcase = selling_plan_group.name | downcase
+        if selling_plan_group_name_downcase contains 'preorder'
+          assign is_preorder_product = true
+          break
+        endif
+      endfor
+    endif
   -%}
+
+  <script>
+    console.log('card_product', {
+      id: {{ card_product | json }},
+    });
+  </script>
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="
@@ -197,6 +228,20 @@
               id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
               position: 'top-right'
             %}
+          {%- elsif is_preorder_product -%}
+            {%
+              render 'outline-badge',
+              text: 'PREORDER',
+              id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+              position: 'top-right'
+            %}
+          {%- elsif has_low_stock_variant -%}
+            {%
+              render 'outline-badge',
+              text: 'FINAL PIECES',
+              id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+              position: 'top-right'
+            %}
           {%- endif -%}
         {%- endif -%}
         <div class="card__content">
@@ -224,6 +269,20 @@
                 render 'outline-badge',
                 translation_key: 'products.product.sold_out',
                 uppercase: true,
+                id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- elsif is_preorder_product and card_product.featured_media == null -%}
+              {%
+                render 'outline-badge',
+                text: 'PREORDER',
+                id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- elsif has_low_stock_variant and card_product.featured_media == null -%}
+              {%
+                render 'outline-badge',
+                text: 'FINAL PIECES',
                 id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
                 position: 'top-right'
               %}
