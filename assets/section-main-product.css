@@ -547,10 +547,13 @@ a.product__text {
 
 .product__info-container .product-form__buttons--row .product-form__submit,
 .product__info-container .product-form__buttons--row .shopify-payment-button,
-.product__info-container .product-form__buttons--row .product-form__dynamic-checkout,
+.product__info-container
+	.product-form__buttons--row
+	.product-form__dynamic-checkout,
 .product-form__buttons.product-form__buttons--row .product-form__submit,
 .product-form__buttons.product-form__buttons--row .shopify-payment-button,
-.product-form__buttons.product-form__buttons--row .product-form__dynamic-checkout {
+.product-form__buttons.product-form__buttons--row
+	.product-form__dynamic-checkout {
 	flex: 1 1 calc(50% - 0.5rem);
 	min-width: 0;
 	max-width: calc(50% - 0.5rem);
@@ -582,7 +585,8 @@ a.product__text {
 	width: 100%;
 }
 
-.product__info-container .product-form__buttons--row.product-form__buttons--column,
+.product__info-container
+	.product-form__buttons--row.product-form__buttons--column,
 .product-form__buttons.product-form__buttons--row.product-form__buttons--column {
 	flex-direction: column;
 	align-items: stretch;

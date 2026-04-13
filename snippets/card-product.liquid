@@ -190,7 +190,8 @@
             </div>
           </a>
           {%- if card_product.available == false -%}
-            {% render 'outline-badge',
+            {%
+              render 'outline-badge',
               translation_key: 'products.product.sold_out',
               uppercase: true,
               id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
@@ -218,8 +219,9 @@
             </h3>
           </div>
           <div class="card__badge {{ settings.badge_position }}">
-            {%- if card_product.available == false and card_product.featured_media == nil -%}
-              {% render 'outline-badge',
+            {%- if card_product.available == false and card_product.featured_media == null -%}
+              {%
+                render 'outline-badge',
                 translation_key: 'products.product.sold_out',
                 uppercase: true,
                 id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,

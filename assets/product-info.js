@@ -295,16 +295,16 @@ if (!customElements.get("product-info")) {
 					true,
 					window.variantStrings.unavailable,
 				);
-				this.querySelectorAll(".product-form__buttons").forEach((buttonsRow) => {
-					buttonsRow.classList.remove("product-form__buttons--column");
-				});
-				this.querySelectorAll(
-					".product-form__dynamic-checkout, .shopify-payment-button",
-				).forEach(
-					(dynamicCheckout) => {
-						dynamicCheckout.classList.add("hidden");
+				this.querySelectorAll(".product-form__buttons").forEach(
+					(buttonsRow) => {
+						buttonsRow.classList.remove("product-form__buttons--column");
 					},
 				);
+				this.querySelectorAll(
+					".product-form__dynamic-checkout, .shopify-payment-button",
+				).forEach((dynamicCheckout) => {
+					dynamicCheckout.classList.add("hidden");
+				});
 
 				const selectors = [
 					"price",
@@ -475,8 +475,13 @@ if (!customElements.get("product-info")) {
 				isPreorder,
 				attempt = 0,
 			) {
-				const buttonsRow = currentSubmitButton.closest(".product-form__buttons");
-				buttonsRow?.classList.toggle("product-form__buttons--column", isPreorder);
+				const buttonsRow = currentSubmitButton.closest(
+					".product-form__buttons",
+				);
+				buttonsRow?.classList.toggle(
+					"product-form__buttons--column",
+					isPreorder,
+				);
 				const dynamicCheckout = this.getDynamicCheckoutElement(buttonsRow);
 
 				if (dynamicCheckout) {
