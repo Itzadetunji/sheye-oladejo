@@ -48,7 +48,7 @@
   aria-labelledby="row-content-card-heading-{{ section.id }}"
 >
   {% render 'row-content-card',
-    image: section.settings.image,
+    image: section.settings.featured_collection.image,
     heading: section.settings.heading,
     body: section.settings.body,
     link: section.settings.link,
@@ -105,11 +105,6 @@
       "type": "textarea",
       "id": "body",
       "label": "Description"
-    },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
     },
     {
       "type": "url",
