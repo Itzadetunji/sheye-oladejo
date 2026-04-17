@@ -1,0 +1,207 @@
+{%- comment -%}
+  Shared product grid + title block (same markup as sections/featured-collection.liquid).
+  Required: section_id, product_collection. Pass remaining options from the parent section.
+{%- endcomment -%}
+{%- liquid
+  assign fc_section_id = section_id
+  assign fc_collection = product_collection
+  assign fc_products_limit = products_to_show | default: 4 | plus: 0
+  if fc_products_limit > 25
+    assign fc_products_limit = 25
+  elsif fc_products_limit < 2
+    assign fc_products_limit = 2
+  endif
+
+  assign fc_more_in_collection = false
+  if fc_collection != blank and fc_collection.all_products_count > fc_products_limit
+    assign fc_more_in_collection = true
+  endif
+
+  assign fc_use_alternating = use_alternating_layout | default: true
+  assign fc_show_mobile_slider = show_mobile_slider | default: false
+  assign fc_show_desktop_slider = show_desktop_slider | default: false
+
+  assign fc_columns_mobile = columns_mobile | default: '2'
+  assign fc_columns_desktop = columns_desktop | default: 4 | plus: 0
+
+  assign fc_color_scheme = color_scheme | default: 'scheme-1'
+  assign fc_heading_size = heading_size | default: 'h1'
+  assign fc_description_style = description_style | default: 'body'
+  assign fc_image_ratio = image_ratio | default: 'adapt'
+  assign fc_image_shape = image_shape | default: 'default'
+  assign fc_quick_add = quick_add | default: 'none'
+  assign fc_full_width = full_width | default: false
+  assign fc_show_description = show_description | default: false
+  assign fc_show_secondary_image = show_secondary_image | default: false
+  assign fc_show_vendor = show_vendor | default: false
+  assign fc_show_rating = show_rating | default: false
+  assign fc_show_view_all = show_view_all | default: true
+  assign fc_view_all_style = view_all_style | default: 'solid'
+  assign fc_pad_top = padding_top | default: 36
+  assign fc_pad_bottom = padding_bottom | default: 36
+-%}
+
+{%- style -%}
+  .section-{{ fc_section_id }}-padding {
+    padding-top: {{ fc_pad_top }}px;
+    padding-bottom: {{ fc_pad_bottom }}px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .section-{{ fc_section_id }}-padding {
+      padding-top: {{ fc_pad_top }}px;
+      padding-bottom: {{ fc_pad_bottom }}px;
+    }
+  }
+
+  #collection-{{ fc_section_id }} .collection__title {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #collection-{{ fc_section_id }} .product-grid {
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 990px) {
+    #collection-{{ fc_section_id }} .product-grid {
+      justify-content: center;
+    }
+  }
+
+  #collection-{{ fc_section_id }} .card__heading,
+  #collection-{{ fc_section_id }} .card__heading a {
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 768px) {
+    #collection-{{ fc_section_id }} .card__heading,
+    #collection-{{ fc_section_id }} .card__heading a {
+      text-align: center;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ fc_color_scheme }} isolate gradient">
+  <div
+    class="collection{% if fc_quick_add == 'bulk' %} collection-quick-add-bulk{% endif %} section-{{ fc_section_id }}-padding{% if fc_full_width %} collection--full-width{% endif %}"
+    id="collection-{{ fc_section_id }}"
+    data-id="{{ fc_section_id }}"
+  >
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if fc_show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if fc_show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+      {%- if title != blank -%}
+        <h2 class="title inline-richtext {{ fc_heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ title }}
+        </h2>
+      {%- endif -%}
+      {%- if description != blank
+        or fc_show_description
+        and fc_collection != blank
+        and fc_collection.description != empty
+      -%}
+        <div class="collection__description {{ fc_description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- if fc_show_description -%}
+            {{ fc_collection.description }}
+          {%- else -%}
+            {{ description -}}
+          {%- endif %}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="page-width">
+      <ul
+        id="Slider-{{ fc_section_id }}"
+        data-id="{{ fc_section_id }}"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--{{ fc_columns_desktop }}-col-desktop{% if fc_collection == blank %} grid--2-col-tablet-down{% else %} grid--{{ fc_columns_mobile }}-col-tablet-down{% endif %}{% if fc_use_alternating %} product-grid--alternating-3-2{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        role="list"
+      >
+        {% assign skip_card_product_styles = false %}
+
+        {%- if fc_collection != blank and fc_collection.products.size > 0 -%}
+          {%- for product in fc_collection.products limit: fc_products_limit -%}
+            {% assign lazy_load = false %}
+            {% if forloop.index > 2 %}
+              {% assign lazy_load = true %}
+            {% endif %}
+            {% assign span_class = '' %}
+            {% if fc_use_alternating %}
+              {% assign cycle_index = forloop.index0 | modulo: 5 %}
+              {% if cycle_index == 3 or cycle_index == 4 %}
+                {% assign span_class = 'grid__item--span-3' %}
+              {% else %}
+                {% assign span_class = 'grid__item--span-2' %}
+              {% endif %}
+            {% endif %}
+            <li
+              class="grid__item {{ span_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: fc_image_ratio,
+                image_shape: fc_image_shape,
+                lazy_load: lazy_load,
+                show_secondary_image: fc_show_secondary_image,
+                show_vendor: fc_show_vendor,
+                show_rating: fc_show_rating,
+                skip_styles: skip_card_product_styles,
+                section_id: fc_section_id,
+                quick_add: fc_quick_add,
+                skip_skeleton: true
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..fc_columns_desktop) -%}
+            <li
+              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {% liquid
+                assign ridx = forloop.rindex
+                case ridx
+                  when 5
+                    assign ridx = 1
+                  when 6
+                    assign ridx = 2
+                endcase
+              %}
+              {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
+              {% render 'card-product',
+                show_vendor: fc_show_vendor,
+                media_aspect_ratio: fc_image_ratio,
+                image_shape: fc_image_shape,
+                lazy_load: false,
+                placeholder_image: placeholder_image
+              %}
+            </li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </div>
+
+    {%- if fc_show_view_all and fc_more_in_collection -%}
+      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <a
+          href="{{ fc_collection.url }}"
+          class="{% if fc_view_all_style == 'link' %}link underlined-link{% elsif fc_view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: fc_collection.title | escape }}"
+        >
+          {{ 'sections.featured_collection.view_all' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+    {% if fc_image_shape == 'arch' %}
+      {{ 'mask-arch.svg' | inline_asset_content }}
+    {%- endif -%}
+  </div>
+</div>

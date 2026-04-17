@@ -11,7 +11,7 @@
 {%- liquid
   assign uid = unique_id | default: 'card'
   assign heading_id = 'row-content-card-heading-' | append: uid
-  assign heading_out = heading | default: 'A STORY OF SOLIDARITY'
+  assign heading_out = heading
 -%}
 <div class="row-content-card about-founder__inner page-width">
   {%- if link != blank -%}
@@ -34,9 +34,11 @@
       {%- endif -%}
     </div>
     <div class="about-founder__text">
-      <h2 id="{{ heading_id }}" class="about-founder__heading">
-        {{ heading_out | escape }}
-      </h2>
+      {%- if heading_out != blank -%}
+        <h2 id="{{ heading_id }}" class="about-founder__heading">
+          {{ heading_out | escape }}
+        </h2>
+      {%- endif -%}
       {%- if body != blank -%}
         <div class="about-founder__body">
           {%- assign lines = body | split: '

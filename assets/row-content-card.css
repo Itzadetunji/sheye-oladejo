@@ -2,6 +2,4 @@
  * Row content card — image + title + description (+ optional full-row link).
  * Base layout/typography live in section-about-founder-shared.css (imported below).
  */
-@import url('section-about-founder-shared.css');
-
-/* Component-specific overrides or extensions go here. */
+@import url("section-about-founder-shared.css");

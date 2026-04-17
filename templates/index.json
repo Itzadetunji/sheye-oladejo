@@ -195,7 +195,7 @@
 				"testimonial_4"
 			],
 			"settings": {
-				"title": "CUSTOMER'S WORD",
+				"title": "TESTIMONIALS",
 				"heading_size": "h2",
 				"color_scheme": "scheme-1",
 				"padding_top": 64,
@@ -233,7 +233,7 @@
 		"image_banner",
 		"book_appointment_or_couture",
 		"latest_collection",
-		"testimonials_carousel",
-		"featured_collection"
+		"featured_collection",
+		"testimonials_carousel"
 	]
 }
