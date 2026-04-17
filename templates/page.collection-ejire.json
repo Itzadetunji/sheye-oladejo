@@ -36,21 +36,21 @@
 			"type": "collections-ejire",
 			"blocks": {
 				"image_1": {
-					"type": "image",
+					"type": "product",
 					"settings": {
-						"image": "shopify://shop_images/ejire-2-professional-8.webp"
+						"product": ""
 					}
 				},
 				"image_2": {
-					"type": "image",
+					"type": "product",
 					"settings": {
-						"image": "shopify://shop_images/ejire-2-professional-47.webp"
+						"product": ""
 					}
 				},
 				"image_3": {
-					"type": "image",
+					"type": "product",
 					"settings": {
-						"image": "shopify://shop_images/ejire-2-professional-1.webp"
+						"product": ""
 					}
 				}
 			},
@@ -76,15 +76,15 @@
 			"type": "collections-ejire",
 			"blocks": {
 				"image_1": {
-					"type": "image",
+					"type": "product",
 					"settings": {
-						"image": "shopify://shop_images/ejire-2-professional-33.webp"
+						"product": ""
 					}
 				},
 				"image_2": {
-					"type": "image",
+					"type": "product",
 					"settings": {
-						"image": "shopify://shop_images/ejire-2-professional-12.webp"
+						"product": ""
 					}
 				}
 			},

@@ -1,0 +1,68 @@
+{{ 'component-video-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-gallery-component.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  .book-consultation-video-gallery-{{ section.id }} {
+    margin: 0 auto;
+    padding-block: 4rem;
+  }
+{%- endstyle -%}
+
+<section class="book-consultation-video-gallery-{{ section.id }}">
+  {% render 'video-gallery-component',
+    title: section.settings.video_gallery_title,
+    heading_size: section.settings.video_gallery_heading_size,
+    video_1: section.settings.gallery_video_1,
+    video_2: section.settings.gallery_video_2,
+    video_3: section.settings.gallery_video_3
+  %}
+</section>
+
+{% schema %}
+{
+  "name": "Consultation videos",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "video_gallery_title",
+      "label": "Video gallery title",
+      "default": "FEMININITY CUSTOMIZED"
+    },
+    {
+      "type": "select",
+      "id": "video_gallery_heading_size",
+      "label": "Video gallery heading size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" },
+        { "value": "hxl", "label": "Extra large" },
+        { "value": "hxxl", "label": "Extra extra large" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_1",
+      "label": "Gallery video 1"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_2",
+      "label": "Gallery video 2"
+    },
+    {
+      "type": "video",
+      "id": "gallery_video_3",
+      "label": "Gallery video 3"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Book consultation video gallery"
+    }
+  ]
+}
+{% endschema %}

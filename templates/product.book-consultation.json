@@ -19,17 +19,32 @@
 			"type": "main-product-book-consultation",
 			"settings": {
 				"intro_video": "shopify://files/videos/couture-video-1.webm",
+				"button_label": "Book now",
+				"padding_top": 64,
+				"padding_bottom": 64
+			}
+		},
+		"consultation-callout": {
+			"type": "book-consultation-callout",
+			"settings": {
+				"callout_text": "Feel the Magic in Every Conversation"
+			}
+		},
+		"consultation-image-cluster": {
+			"type": "book-consult-images",
+			"settings": {
+				"cluster_image_left": "shopify://shop_images/couture-image-11.webp",
+				"cluster_image_right": "shopify://shop_images/couture-image-12.webp"
+			}
+		},
+		"consultation-video-gallery": {
+			"type": "book-consultation-video-gallery",
+			"settings": {
 				"video_gallery_title": "FEMININITY CUSTOMIZED",
 				"video_gallery_heading_size": "h2",
 				"gallery_video_1": "shopify://files/videos/couture-video-2.webm",
 				"gallery_video_2": "shopify://files/videos/couture-video-3.webm",
-				"gallery_video_3": "shopify://files/videos/couture-video-1.webm",
-				"callout_text": "Feel the Magic in Every Conversation",
-				"cluster_image_left": "shopify://shop_images/couture-image-11.webp",
-				"cluster_image_right": "shopify://shop_images/couture-image-12.webp",
-				"button_label": "Book now",
-				"padding_top": 64,
-				"padding_bottom": 64
+				"gallery_video_3": "shopify://files/videos/couture-video-1.webm"
 			}
 		},
 		"consultation-faq": {
@@ -49,5 +64,13 @@
 			}
 		}
 	},
-	"order": ["hero", "main", "consultation-faq", "shop-couture"]
+	"order": [
+		"hero",
+		"consultation-image-cluster",
+		"consultation-video-gallery",
+		"consultation-callout",
+		"main",
+		"shop-couture",
+		"consultation-faq",
+	]
 }

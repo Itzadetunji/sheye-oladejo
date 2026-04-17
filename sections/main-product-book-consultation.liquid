@@ -1,13 +1,4 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-video-gallery.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'video-gallery-component.js' | asset_url }}" defer="defer"></script>
-
-{%- liquid
-  assign callout_heading = section.settings.callout_text | strip
-  if callout_heading == blank
-    assign callout_heading = 'Feel the Magic in Every Conversation'
-  endif
--%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -35,48 +26,6 @@
     background: rgba(var(--color-foreground), 0.06);
   }
 
-  .book-consultation-{{ section.id }}__callout {
-    min-height: 12rem;
-    background: {{ settings.color_accent_porcelain | default: '#F3EDE8' }};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .book-consultation-{{ section.id }}__callout-heading {
-    margin: 0;
-    font-size: clamp(1.9rem, 4.3vw, 3.5rem);
-    font-family: "Times New Roman", Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    color: rgb(var(--color-foreground));
-    line-height: 1.2;
-  }
-
-  .book-consultation-{{ section.id }}__cluster {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .book-consultation-{{ section.id }}__cluster-item {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
-  }
-
-  .book-consultation__cluster-image,
-  .book-consultation__cluster-placeholder {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: top;
-  }
-
   .book-consultation-{{ section.id }}__intro-group {
     max-width: 100%;
     margin: 0 auto;
@@ -84,10 +33,6 @@
     gap: 0;
     padding-top: 0;
     padding-bottom: 64px;
-  }
-
-  .book-consultation-{{ section.id }} .about-founder__inner.page-width {
-    padding-block: 64px;
   }
 
   .book-consultation-{{ section.id }}__image-wrap {
@@ -191,11 +136,6 @@
     color: rgba(var(--color-foreground), 0.7);
   }
 
-  .book-consultation-{{ section.id }}__video-gallery {
-    margin: 0 auto;
-    padding-top: 2rem;
-  }
-
   @media screen and (min-width: 768px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -205,19 +145,6 @@
     .book-consultation-{{ section.id }}__intro-group {
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
       align-items: stretch;
-    }
-
-  }
-
-  @media screen and (min-width: 1024px) {
-    .book-consultation-{{ section.id }}__cluster {
-      flex-direction: row;
-      gap: 2rem;
-      padding: 0;
-    }
-
-    .book-consultation-{{ section.id }}__cluster-item {
-      flex: 1 1 50%;
     }
 
   }
@@ -301,60 +228,6 @@
     </div>
   </div>
 
-  <div class="book-consultation-{{ section.id }}__callout">
-    <h2 class="book-consultation-{{ section.id }}__callout-heading">
-      {{ callout_heading | escape }}
-    </h2>
-  </div>
-
-  <div class="about-founder__inner page-width">
-    <div class="book-consultation-{{ section.id }}__cluster">
-      <div class="book-consultation-{{ section.id }}__cluster-item book-consultation-{{ section.id }}__cluster-item--a">
-        {%- if section.settings.cluster_image_left != blank -%}
-          {{
-            section.settings.cluster_image_left
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: 'book-consultation__cluster-image',
-              widths: '400, 550, 700, 900, 1200',
-              sizes: '(min-width: 1024px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="book-consultation-{{ section.id }}__placeholder">
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg book-consultation__cluster-placeholder' }}
-          </div>
-        {%- endif -%}
-      </div>
-      <div class="book-consultation-{{ section.id }}__cluster-item book-consultation-{{ section.id }}__cluster-item--b">
-        {%- if section.settings.cluster_image_right != blank -%}
-          {{
-            section.settings.cluster_image_right
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: 'book-consultation__cluster-image',
-              widths: '400, 550, 700, 900, 1200',
-              sizes: '(min-width: 1024px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="book-consultation-{{ section.id }}__placeholder">
-            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg book-consultation__cluster-placeholder' }}
-          </div>
-        {%- endif -%}
-      </div>
-    </div>
-  </div>
-
-  <div class="book-consultation-{{ section.id }}__video-gallery">
-    {% render 'video-gallery-component',
-      title: section.settings.video_gallery_title,
-      heading_size: section.settings.video_gallery_heading_size,
-      video_1: section.settings.gallery_video_1,
-      video_2: section.settings.gallery_video_2,
-      video_3: section.settings.gallery_video_3
-    %}
-  </div>
 </section>
 
 {% schema %}
@@ -367,71 +240,6 @@
       "type": "video",
       "id": "intro_video",
       "label": "Left column video"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "video_gallery_title",
-      "label": "Video gallery title",
-      "default": "FEMININITY CUSTOMIZED"
-    },
-    {
-      "type": "select",
-      "id": "video_gallery_heading_size",
-      "label": "Video gallery heading size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "Small"
-        },
-        {
-          "value": "h1",
-          "label": "Medium"
-        },
-        {
-          "value": "h0",
-          "label": "Large"
-        },
-        {
-          "value": "hxl",
-          "label": "Extra large"
-        },
-        {
-          "value": "hxxl",
-          "label": "Extra extra large"
-        }
-      ],
-      "default": "h2"
-    },
-    {
-      "type": "video",
-      "id": "gallery_video_1",
-      "label": "Gallery video 1"
-    },
-    {
-      "type": "video",
-      "id": "gallery_video_2",
-      "label": "Gallery video 2"
-    },
-    {
-      "type": "video",
-      "id": "gallery_video_3",
-      "label": "Gallery video 3"
-    },
-    {
-      "type": "text",
-      "id": "callout_text",
-      "label": "Callout text",
-      "default": "Feel the Magic in Every Conversation"
-    },
-    {
-      "type": "image_picker",
-      "id": "cluster_image_left",
-      "label": "Bottom left image"
-    },
-    {
-      "type": "image_picker",
-      "id": "cluster_image_right",
-      "label": "Bottom right image"
     },
     {
       "type": "text",

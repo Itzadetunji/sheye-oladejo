@@ -1,0 +1,112 @@
+{%- style -%}
+  .book-consultation-cluster-{{ section.id }} {
+    padding-block: 64px;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__cluster-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__image,
+  .book-consultation-cluster-{{ section.id }}__placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__placeholder {
+    background: rgba(var(--color-foreground), 0.06);
+  }
+
+  @media screen and (min-width: 1024px) {
+    .book-consultation-cluster-{{ section.id }}__cluster {
+      flex-direction: row;
+      gap: 2rem;
+      padding: 0;
+    }
+
+    .book-consultation-cluster-{{ section.id }}__cluster-item {
+      flex: 1 1 50%;
+    }
+  }
+{%- endstyle -%}
+
+<section class="book-consultation-cluster-{{ section.id }}">
+  {%- assign cluster_image_class = 'book-consultation-cluster-' | append: section.id | append: '__image' -%}
+  {%- assign cluster_placeholder_class = 'placeholder-svg ' | append: cluster_image_class -%}
+  <div class="about-founder__inner page-width">
+    <div class="book-consultation-cluster-{{ section.id }}__cluster">
+      <div class="book-consultation-cluster-{{ section.id }}__cluster-item">
+        {%- if section.settings.cluster_image_left != blank -%}
+          {{
+            section.settings.cluster_image_left
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              class: cluster_image_class,
+              widths: '400, 550, 700, 900, 1200',
+              sizes: '(min-width: 1024px) 50vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="book-consultation-cluster-{{ section.id }}__placeholder">
+            {{ 'lifestyle-1' | placeholder_svg_tag: cluster_placeholder_class }}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="book-consultation-cluster-{{ section.id }}__cluster-item">
+        {%- if section.settings.cluster_image_right != blank -%}
+          {{
+            section.settings.cluster_image_right
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              class: cluster_image_class,
+              widths: '400, 550, 700, 900, 1200',
+              sizes: '(min-width: 1024px) 50vw, 100vw'
+          }}
+        {%- else -%}
+          <div class="book-consultation-cluster-{{ section.id }}__placeholder">
+            {{ 'lifestyle-2' | placeholder_svg_tag: cluster_placeholder_class }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Consultation images",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "cluster_image_left",
+      "label": "Left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cluster_image_right",
+      "label": "Right image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Book consultation image cluster"
+    }
+  ]
+}
+{% endschema %}

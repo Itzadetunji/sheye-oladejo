@@ -42,13 +42,10 @@
   if desktop_columns > 3
     assign desktop_columns = 3
   endif
+  assign has_selected_products = false
   assign desktop_grid_class = 'grid--3-col-desktop'
   if desktop_columns == 2
     assign desktop_grid_class = 'grid--2-col-desktop'
-  endif
-  assign image_sizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
-  if desktop_columns == 2
-    assign image_sizes = '(min-width: 640px) 50vw, 100vw'
   endif
 -%}
 
@@ -58,7 +55,39 @@
       class="collection-ejire__grid grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--1-col-tablet-down {{ desktop_grid_class }}"
       role="list"
     >
-      {%- if featured_collection != blank and featured_collection.products.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product' and block.settings.product != blank -%}
+          {%- assign has_selected_products = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if has_selected_products -%}
+        {%- assign skip_card_product_styles = false -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'product' and block.settings.product != blank -%}
+            {%- assign lazy_load = false -%}
+            {%- if forloop.index > 2 -%}
+              {%- assign lazy_load = true -%}
+            {%- endif -%}
+            <li class="collection-ejire__item grid__item" {{ block.shopify_attributes }}>
+              {% render 'card-product',
+                card_product: block.settings.product,
+                media_aspect_ratio: 'adapt',
+                image_shape: 'default',
+                lazy_load: lazy_load,
+                show_secondary_image: true,
+                show_vendor: false,
+                show_rating: false,
+                skip_styles: skip_card_product_styles,
+                section_id: section.id,
+                quick_add: 'none',
+                skip_skeleton: true
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- elsif featured_collection != blank and featured_collection.products.size > 0 -%}
         {%- assign skip_card_product_styles = false -%}
         {%- for product in featured_collection.products limit: products_to_show -%}
           {%- assign lazy_load = false -%}
@@ -81,36 +110,6 @@
             %}
           </li>
           {%- assign skip_card_product_styles = true -%}
-        {%- endfor -%}
-      {%- elsif section.blocks.size > 0 -%}
-        {%- for block in section.blocks -%}
-          <li class="collection-ejire__item grid__item" {{ block.shopify_attributes }}>
-            <div class="card-wrapper product-card-wrapper underline-links-hover">
-              <div class="card card--{{ settings.card_style }} card--media{% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %} card--stacked-product">
-                <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}">
-                  <div class="card__media">
-                    <div class="media media--transparent media--hover-effect">
-                      {%- if block.settings.image != blank -%}
-                        {{
-                          block.settings.image
-                          | image_url: width: 960
-                          | image_tag:
-                            loading: 'lazy',
-                            class: 'collection-ejire__image motion-reduce',
-                            sizes: image_sizes,
-                            widths: '375, 550, 750, 960, 1200'
-                        }}
-                      {%- else -%}
-                        <div class="collection-ejire__placeholder">
-                          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..desktop_columns) -%}
@@ -139,7 +138,6 @@
   .collection-ejire__grid {
     margin-bottom: 0;
   }
-  .collection-ejire__image,
   .collection-ejire__placeholder,
   .collection-ejire__placeholder .placeholder-svg {
     width: 100%;
@@ -194,7 +192,7 @@
       "type": "collection",
       "id": "collection",
       "label": "Collection",
-      "info": "Select a collection to show products from. Leave empty to use image blocks below."
+      "info": "Fallback collection used when no product blocks are selected."
     },
     {
       "type": "range",
@@ -254,14 +252,14 @@
   ],
   "blocks": [
     {
-      "type": "image",
-      "name": "Image",
+      "type": "product",
+      "name": "Product",
       "limit": 12,
       "settings": [
         {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
+          "type": "product",
+          "id": "product",
+          "label": "Product"
         }
       ]
     }
@@ -269,7 +267,7 @@
   "presets": [
     {
       "name": "Collection 1 grid",
-      "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }]
+      "blocks": [{ "type": "product" }, { "type": "product" }, { "type": "product" }]
     }
   ]
 }
