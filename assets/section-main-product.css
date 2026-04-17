@@ -302,7 +302,7 @@ product-info {
 }
 
 .product__text {
-	margin-bottom: 0;
+	margin-block: 1rem;
 }
 
 a.product__text {

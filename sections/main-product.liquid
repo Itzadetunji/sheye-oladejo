@@ -32,6 +32,10 @@
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
 
+    #price-{{ section.id }} {
+      margin-bottom: 1rem;
+    }
+
     @media screen and (min-width: 768px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -92,11 +96,17 @@
               {%- when '@app' -%}
                 {% render block %}
               {%- when 'text' -%}
+                {%- liquid
+                  assign short_description = product.metafields.custom.short_description.value
+                  if short_description == blank
+                    assign short_description = product.metafields.custom.short_description
+                  endif
+                -%}
                 <p
                   class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                   {{ block.shopify_attributes }}
                 >
-                  {{- block.settings.text -}}
+                  {{- short_description | default: block.settings.text -}}
                 </p>
               {%- when 'title' -%}
                 <div class="product__title" {{ block.shopify_attributes }}>

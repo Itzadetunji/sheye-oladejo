@@ -36,6 +36,7 @@
   assign is_preorder_product = false
   assign show_preorder_badge = false
   assign show_final_pieces_badge = false
+  assign sale_badge_text = ''
 
   assign use_currency_code = settings.currency_code_enabled
   if show_currency_code != null
@@ -80,6 +81,10 @@
 
   if available and has_low_stock_variant and is_preorder_product == false
     assign show_final_pieces_badge = true
+  endif
+
+  if compare_at_price > price and compare_at_price > 0
+    assign sale_badge_text = compare_at_price | minus: price | times: 100.0 | divided_by: compare_at_price | round | append: '% OFF'
   endif
 -%}
 
@@ -161,8 +166,8 @@
       {%- endif -%}
     </div>
     {%- if show_badges -%}
-      <div class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
-        {{ 'products.product.on_sale' | t }}
+      <div class="price__badge-sale">
+        {% render 'outline-badge', text: sale_badge_text, layout: 'inline', class: 'price__outline-badge' %}
       </div>
 
       <div class="price__badge-sold-out">
