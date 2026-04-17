@@ -10,12 +10,9 @@
 {
   "sections": {
     "hero": {
-      "type": "hero-secondary",
+      "type": "page-breadcrumbs",
       "settings": {
-        "heading": "FREQUENTLY ASKED QUESTIONS",
-        "inner_layout": "page",
-        "padding_top": 36,
-        "padding_bottom": 12
+        "color_scheme": "scheme-1"
       }
     },
     "main": {

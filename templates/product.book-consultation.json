@@ -10,13 +10,9 @@
 {
 	"sections": {
 		"hero": {
-			"type": "hero-secondary",
+			"type": "page-breadcrumbs",
 			"settings": {
-				"heading": "BOOK A CONSULTATION",
-				"inner_layout": "page",
-				"video_url": "",
-				"padding_top": 64,
-				"padding_bottom": 64
+				"color_scheme": "scheme-1"
 			}
 		},
 		"main": {

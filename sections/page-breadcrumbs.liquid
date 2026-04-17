@@ -1,0 +1,68 @@
+{{ 'component-breadcrumbs.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .page-breadcrumbs-{{ section.id }} {
+    padding-top: 4rem;
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign resolved_heading = section.settings.heading | strip
+  if product != blank
+    assign breadcrumb_template_type = 'product'
+  elsif collection != blank
+    assign breadcrumb_template_type = 'collection'
+  elsif page != blank
+    assign breadcrumb_template_type = 'page'
+  else
+    assign breadcrumb_template_type = 'collection'
+  endif
+  if resolved_heading == blank
+    if collection != blank
+      assign resolved_heading = collection.title
+    elsif page != blank
+      assign resolved_heading = page.title
+    elsif product != blank
+      assign resolved_heading = product.title
+    endif
+  endif
+-%}
+
+<div
+  class="page-breadcrumbs color-{{ section.settings.color_scheme }} gradient page-breadcrumbs-{{ section.id }}"
+>
+  <div class="page-width">
+    {% render 'breadcrumbs',
+      template_type: breadcrumb_template_type,
+      product: product,
+      collection: collection,
+      page: page,
+      current_title: resolved_heading,
+      class: 'breadcrumbs breadcrumbs--hero-secondary'
+    %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page breadcrumbs",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Breadcrumb fallback label",
+      "info": "Used for the last segment when the template has no page, collection, or product context (for example the collections list). Otherwise the page or collection title is used."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [{ "name": "Page breadcrumbs" }]
+}
+{% endschema %}

@@ -10,13 +10,10 @@
 {
 	"sections": {
 		"collection_hero": {
-			"type": "hero-secondary",
+			"type": "page-breadcrumbs",
 			"settings": {
 				"heading": "COLLECTIONS",
-				"inner_layout": "theme",
-				"video_url": "",
-				"padding_top": 64,
-				"padding_bottom": 64
+				"color_scheme": "scheme-1"
 			}
 		},
 		"collection-section-1": {

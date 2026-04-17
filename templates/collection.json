@@ -10,13 +10,9 @@
 {
 	"sections": {
 		"hero": {
-			"type": "hero-secondary",
+			"type": "page-breadcrumbs",
 			"settings": {
-				"heading": "SHOP",
-				"inner_layout": "page",
-				"video_url": "",
-				"padding_top": 36,
-				"padding_bottom": 12
+				"color_scheme": "scheme-1"
 			}
 		},
 		"product-grid": {
