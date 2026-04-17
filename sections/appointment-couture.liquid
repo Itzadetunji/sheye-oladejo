@@ -5,6 +5,8 @@
   assign right_carousel_blocks = section.blocks | where: 'type', 'right_carousel_slide'
   assign carousel_left_uid = section.id | append: '-left'
   assign carousel_right_uid = section.id | append: '-right'
+  assign left_carousel_delay_ms = 3000
+  assign right_carousel_delay_ms = 3600
 -%}
 
 <section
@@ -13,67 +15,27 @@
 >
   <div class="page-width">
     <div class="book-appointment-or-couture__grid">
-      <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--left">
-        <div class="book-appointment-or-couture__hero">
-          {%- if section.settings.image_left != blank -%}
-            {{
-              section.settings.image_left
-              | image_url: width: 1200
-              | image_tag:
-                loading: 'lazy',
-                class: 'book-appointment-or-couture__img',
-                sizes: '50vw',
-                widths: '375, 550, 750, 1100, 1200'
-            }}
-          {%- else -%}
-            <div class="book-appointment-or-couture__placeholder">
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-          <a
-            href="{{ section.settings.left_button_link | default: '/shop' }}"
-            class="book-appointment-or-couture__btn button"
-          >
-            {{ section.settings.left_button_text | default: 'BESPOKE SERVICES' | escape }}
-          </a>
-        </div>
-        {%- render 'appointment-couture-carousel',
-          slides: left_carousel_blocks,
-          carousel_uid: carousel_left_uid,
-          interval_ms: 2000
-        -%}
-      </div>
+      {%- render 'appointment-couture-carousel',
+        slides: left_carousel_blocks,
+        carousel_uid: carousel_left_uid,
+        button_text: section.settings.left_button_text,
+        button_link: section.settings.left_button_link,
+        default_button_text: 'BESPOKE SERVICES',
+        default_button_link: '/shop',
+        fallback_image: section.settings.image_left,
+        interval_ms: left_carousel_delay_ms
+      -%}
 
-      <div class="book-appointment-or-couture__tile book-appointment-or-couture__tile--right">
-        <div class="book-appointment-or-couture__hero">
-          {%- if section.settings.image_right != blank -%}
-            {{
-              section.settings.image_right
-              | image_url: width: 1200
-              | image_tag:
-                loading: 'lazy',
-                class: 'book-appointment-or-couture__img',
-                sizes: '50vw',
-                widths: '375, 550, 750, 1100, 1200'
-            }}
-          {%- else -%}
-            <div class="book-appointment-or-couture__placeholder">
-              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-          <a
-            href="{{ section.settings.right_button_link | default: '/book-consultation' }}"
-            class="book-appointment-or-couture__btn button"
-          >
-            {{ section.settings.right_button_text | default: 'BRIDAL COUTURE' | escape }}
-          </a>
-        </div>
-        {%- render 'appointment-couture-carousel',
-          slides: right_carousel_blocks,
-          carousel_uid: carousel_right_uid,
-          interval_ms: 3000
-        -%}
-      </div>
+      {%- render 'appointment-couture-carousel',
+        slides: right_carousel_blocks,
+        carousel_uid: carousel_right_uid,
+        button_text: section.settings.right_button_text,
+        button_link: section.settings.right_button_link,
+        default_button_text: 'BRIDAL COUTURE',
+        default_button_link: '/book-consultation',
+        fallback_image: section.settings.image_right,
+        interval_ms: right_carousel_delay_ms
+      -%}
     </div>
   </div>
 </section>
@@ -87,14 +49,9 @@
   .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 2rem;
   }
 
-  @media screen and (min-width: 640px) {
-    .book-appointment-or-couture__grid {
-     gap: 0 !important;
-    }
-  }
 
   .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__tile {
     display: flex;
@@ -103,15 +60,34 @@
     min-height: 0;
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__hero {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel {
     position: relative;
     width: 100%;
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__viewport {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.55s ease;
+    will-change: transform;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__slide {
+    position: relative;
+    flex: 0 0 100%;
+    height: 100%;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__btn {
     position: absolute;
     bottom: 1.5rem;
     left: 50%;
@@ -125,14 +101,21 @@
     border-color: #000;
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn:hover {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__hitarea {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__btn:hover {
     background-color: #333;
     color: #fff;
     border-color: #333;
   }
 
   @media screen and (max-width: 639px) {
-    .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__btn {
+    .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__btn {
       padding: 0.8rem 1.2rem;
       font-size: 1rem;
       min-height: auto;
@@ -146,7 +129,7 @@
     }
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__img {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -155,13 +138,13 @@
     inset: 0;
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__placeholder {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__placeholder {
     position: absolute;
     inset: 0;
     background: rgba(255, 255, 255, 0.12);
   }
 
-  .book-appointment-or-couture--{{ section.id }} .book-appointment-or-couture__placeholder .placeholder-svg {
+  .book-appointment-or-couture--{{ section.id }} .appointment-couture-carousel__placeholder .placeholder-svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -176,154 +159,6 @@
 
   }
 {%- endstyle -%}
-
-<style>
-  /* Shared carousel (both cards) — flex row: prev | viewport | next; gap 1rem */
-  .appointment-couture-carousel {
-    width: 100%;
-    flex: 1 1 auto;
-    min-height: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-
-  .appointment-couture-carousel__viewport {
-    container-type: inline-size;
-    container-name: appointment-couture-carousel;
-    flex: 1 1 auto;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .appointment-couture-carousel__track {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 1rem;
-    flex: 1 1 auto;
-    transition: transform 0.35s ease;
-    will-change: transform;
-  }
-
-  /* Desktop: 2 slides per view (width = carousel viewport via cqi) */
-  .appointment-couture-carousel__slide {
-    flex: 0 0 calc((100cqi - 1rem) / 2);
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    aspect-ratio: 3 / 4;
-  }
-
-  .appointment-couture-carousel__media {
-    position: relative;
-    width: 100%;
-    {% comment %} max-width: min(100%, 480px); {% endcomment %}
-    margin-inline: auto;
-    border-radius: 0.25rem;
-    flex-shrink: 0;
-    overflow: hidden;
-    background: rgba(var(--color-foreground), 0.04);
-    height: 100%;
-  }
-
-  .appointment-couture-carousel__media .appointment-couture-carousel__img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .appointment-couture-carousel__media .appointment-couture-carousel__placeholder-svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .appointment-couture-carousel__btn {
-    flex: 0 0 auto;
-    align-self: center;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    padding: 0.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background: transparent;
-    color: rgb(var(--color-foreground));
-    border-radius: 0;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-
-  .appointment-couture-carousel__btn:hover:not(:disabled) {
-    opacity: 0.65;
-  }
-
-  .appointment-couture-carousel__btn:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-  }
-
-  /* ≤1024px: one slide; arrows overlaid; full-width media (no carousel padding / media bg) */
-  @media screen and (max-width: 1023px) {
-    .appointment-couture-carousel {
-      position: relative;
-      display: block;
-      padding: 0;
-      gap: 0;
-    }
-
-    .appointment-couture-carousel__viewport {
-      width: 100%;
-      flex: none;
-    }
-
-    .appointment-couture-carousel__slide {
-      flex: 0 0 100cqi;
-    }
-
-    .appointment-couture-carousel__media {
-      {% comment %} max-width: min(100%, 480px); {% endcomment %}
-      border-radius: 0;
-      background: transparent;
-    }
-
-    .appointment-couture-carousel__btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      flex: none;
-      align-self: auto;
-    }
-
-    .appointment-couture-carousel__btn svg,
-    .appointment-couture-carousel__btn svg path {
-      color: #fff;
-      stroke: #fff;
-    }
-
-    .appointment-couture-carousel__btn--prev {
-      left: 0.25rem;
-    }
-
-    .appointment-couture-carousel__btn--next {
-      right: 0.25rem;
-    }
-  }
-</style>
 
 {% schema %}
 {
@@ -383,6 +218,7 @@
     {
       "type": "left_carousel_slide",
       "name": "Left carousel slide",
+      "limit": 5,
       "settings": [
         {
           "type": "image_picker",
@@ -394,6 +230,7 @@
     {
       "type": "right_carousel_slide",
       "name": "Right carousel slide",
+      "limit": 5,
       "settings": [
         {
           "type": "image_picker",

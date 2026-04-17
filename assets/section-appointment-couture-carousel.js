@@ -1,176 +1,107 @@
 /**
- * Carousel for appointment-couture: flex-positioned arrows; 1 slide on mobile, 2 on desktop.
- * Autoplay with per-root interval; infinite loop when navigation is shown.
+ * Single-image slider carousel for appointment-couture tiles.
+ * One slide is visible at a time and rotates every 3s by default.
  */
-(function () {
-  /** 1 slide per view at this width and below; 2 slides above */
-  var SINGLE_SLIDE_MQ = '(max-width: 1024px)';
+(() => {
+	function clearCarouselTimer(root) {
+		if (root._appointmentSliderCarouselTimer) {
+			clearTimeout(root._appointmentSliderCarouselTimer);
+			root._appointmentSliderCarouselTimer = null;
+		}
+	}
 
-  function clearCarouselTimers(root) {
-    if (root._appointmentCarouselTimer) {
-      clearInterval(root._appointmentCarouselTimer);
-      root._appointmentCarouselTimer = null;
-    }
-  }
+	function clearCarouselClone(track) {
+		if (!track) return;
+		track.querySelectorAll('[data-carousel-clone="true"]').forEach((node) => {
+			node.remove();
+		});
+	}
 
-  function getPerView() {
-    return window.matchMedia(SINGLE_SLIDE_MQ).matches ? 1 : 2;
-  }
+	function initCarousel(root) {
+		clearCarouselTimer(root);
 
-  function detachCarouselListeners(root) {
-    if (root._appointmentCarouselResizeHandler) {
-      window.removeEventListener('resize', root._appointmentCarouselResizeHandler);
-      root._appointmentCarouselResizeHandler = null;
-    }
-    if (root._appointmentCarouselMql && root._appointmentCarouselOnMql) {
-      root._appointmentCarouselMql.removeEventListener('change', root._appointmentCarouselOnMql);
-      root._appointmentCarouselMql = null;
-      root._appointmentCarouselOnMql = null;
-    }
-    if (root._appointmentCarouselHoverPause) {
-      root.removeEventListener('mouseenter', root._appointmentCarouselHoverPause);
-      root.removeEventListener('mouseleave', root._appointmentCarouselHoverResume);
-      root._appointmentCarouselHoverPause = null;
-      root._appointmentCarouselHoverResume = null;
-    }
-  }
+		var track = root.querySelector("[data-carousel-track]");
+		if (!track) return;
 
-  function initCarousel(root) {
-    clearCarouselTimers(root);
-    detachCarouselListeners(root);
+		clearCarouselClone(track);
 
-    var viewport = root.querySelector('[data-carousel-viewport]');
-    var track = root.querySelector('[data-carousel-track]');
-    var slides = track ? Array.from(track.querySelectorAll('[data-carousel-slide]')) : [];
-    var prev = root.querySelector('[data-carousel-prev]');
-    var next = root.querySelector('[data-carousel-next]');
+		var slides = Array.from(track.querySelectorAll("[data-carousel-slide]"));
+		if (!track || slides.length <= 1) return;
 
-    if (!viewport || !track || slides.length === 0) {
-      if (prev) prev.hidden = true;
-      if (next) next.hidden = true;
-      return;
-    }
+		var intervalMs =
+			parseInt(root.getAttribute("data-carousel-interval"), 10) || 3000;
+		var totalSlides = slides.length;
+		var currentIndex = 0;
 
-    function getMaxIndex() {
-      var pv = getPerView();
-      return Math.max(0, slides.length - pv);
-    }
+		var firstClone = slides[0].cloneNode(true);
+		firstClone.setAttribute("data-carousel-clone", "true");
+		firstClone.removeAttribute("id");
+		track.appendChild(firstClone);
 
-    function shouldHideNav() {
-      return slides.length <= getPerView();
-    }
+		function setTransition(enabled) {
+			track.style.transition = enabled ? "transform 0.55s ease" : "none";
+		}
 
-    function setNavHidden(hidden) {
-      if (prev) prev.hidden = hidden;
-      if (next) next.hidden = hidden;
-    }
+		function moveToSlide(nextIndex, withTransition) {
+			currentIndex = nextIndex;
+			setTransition(withTransition !== false);
+			track.style.transform = "translate3d(" + -currentIndex * 100 + "%, 0, 0)";
+		}
 
-    var intervalMs = parseInt(root.getAttribute('data-carousel-interval'), 10) || 3000;
+		function showNext() {
+			moveToSlide(currentIndex + 1, true);
+			track.addEventListener(
+				"transitionend",
+				function onSlideTransitionDone() {
+					if (currentIndex === totalSlides) {
+						moveToSlide(0, false);
+					}
+					scheduleNext();
+				},
+				{ once: true },
+			);
+		}
 
-    var index = 0;
+		function scheduleNext() {
+			clearCarouselTimer(root);
+			root._appointmentSliderCarouselTimer = setTimeout(showNext, intervalMs);
+		}
 
-    function slideStepWidth() {
-      if (slides.length < 2) return 0;
-      return slides[1].offsetLeft - slides[0].offsetLeft;
-    }
+		root.addEventListener("mouseenter", () => {
+			clearCarouselTimer(root);
+		});
 
-    function update() {
-      if (shouldHideNav()) return;
-      var maxIdx = getMaxIndex();
-      if (index > maxIdx) index = maxIdx;
-      var step = slideStepWidth();
-      track.style.transform = 'translate3d(' + -index * step + 'px, 0, 0)';
-      if (prev) prev.disabled = false;
-      if (next) next.disabled = false;
-    }
+		root.addEventListener("mouseleave", () => {
+			scheduleNext();
+		});
 
-    function startAutoplay() {
-      clearCarouselTimers(root);
-      if (shouldHideNav()) return;
-      root._appointmentCarouselTimer = setInterval(function () {
-        var maxIdx = getMaxIndex();
-        index = index >= maxIdx ? 0 : index + 1;
-        update();
-      }, intervalMs);
-    }
+		moveToSlide(0, false);
+		scheduleNext();
+	}
 
-    function syncState() {
-      if (shouldHideNav()) {
-        clearCarouselTimers(root);
-        setNavHidden(true);
-        index = 0;
-        track.style.transform = '';
-        return;
-      }
-      setNavHidden(false);
-      index = Math.min(index, getMaxIndex());
-      update();
-      startAutoplay();
-    }
+	function initAll() {
+		document
+			.querySelectorAll("[data-appointment-slider-carousel]")
+			.forEach(initCarousel);
+	}
 
-    function onPrevClick() {
-      if (shouldHideNav()) return;
-      var maxIdx = getMaxIndex();
-      index = index <= 0 ? maxIdx : index - 1;
-      update();
-      startAutoplay();
-    }
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initAll);
+	} else {
+		initAll();
+	}
 
-    function onNextClick() {
-      if (shouldHideNav()) return;
-      var maxIdx = getMaxIndex();
-      index = index >= maxIdx ? 0 : index + 1;
-      update();
-      startAutoplay();
-    }
+	document.addEventListener("shopify:section:load", (event) => {
+		if (!event.target.querySelectorAll) return;
+		event.target
+			.querySelectorAll("[data-appointment-slider-carousel]")
+			.forEach(initCarousel);
+	});
 
-    if (prev) prev.addEventListener('click', onPrevClick);
-    if (next) next.addEventListener('click', onNextClick);
-
-    root._appointmentCarouselResizeHandler = function () {
-      syncState();
-    };
-    window.addEventListener('resize', root._appointmentCarouselResizeHandler, { passive: true });
-
-    root._appointmentCarouselMql = window.matchMedia(SINGLE_SLIDE_MQ);
-    root._appointmentCarouselOnMql = syncState;
-    root._appointmentCarouselMql.addEventListener('change', root._appointmentCarouselOnMql);
-
-    /** Pause autoplay while hovering carousel (slides, viewport, or arrows); resume on leave */
-    root._appointmentCarouselHoverPause = function () {
-      clearCarouselTimers(root);
-    };
-    root._appointmentCarouselHoverResume = function () {
-      if (shouldHideNav()) return;
-      startAutoplay();
-    };
-    root.addEventListener('mouseenter', root._appointmentCarouselHoverPause);
-    root.addEventListener('mouseleave', root._appointmentCarouselHoverResume);
-
-    syncState();
-  }
-
-  function initAll() {
-    document.querySelectorAll('[data-appointment-carousel]').forEach(initCarousel);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAll);
-  } else {
-    initAll();
-  }
-
-  document.addEventListener('shopify:section:load', function (e) {
-    if (e.target.querySelector && e.target.querySelector('[data-appointment-carousel]')) {
-      e.target.querySelectorAll('[data-appointment-carousel]').forEach(initCarousel);
-    }
-  });
-
-  document.addEventListener('shopify:section:unload', function (e) {
-    if (!e.target.querySelectorAll) return;
-    e.target.querySelectorAll('[data-appointment-carousel]').forEach(function (root) {
-      clearCarouselTimers(root);
-      detachCarouselListeners(root);
-    });
-  });
+	document.addEventListener("shopify:section:unload", (event) => {
+		if (!event.target.querySelectorAll) return;
+		event.target
+			.querySelectorAll("[data-appointment-slider-carousel]")
+			.forEach(clearCarouselTimer);
+	});
 })();
