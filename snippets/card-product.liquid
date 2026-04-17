@@ -223,13 +223,6 @@
               id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
               position: 'top-right'
             %}
-          {%- elsif is_preorder_product -%}
-            {%
-              render 'outline-badge',
-              text: 'PREORDER',
-              id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
-              position: 'top-right'
-            %}
           {%- elsif has_low_stock_variant -%}
             {%
               render 'outline-badge',
