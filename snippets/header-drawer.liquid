@@ -30,7 +30,9 @@
                         id="HeaderDrawer-nav-{{ block.id }}"
                         href="{{ block.settings.link | default: '#' }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if request.path == block.settings.link %} menu-drawer__menu-item--active{% endif %}"
-                        {% if request.path == block.settings.link %}aria-current="page"{% endif %}
+                        {% if request.path == block.settings.link %}
+                          aria-current="page"
+                        {% endif %}
                         {{ block.shopify_attributes }}
                       >
                         {{ block.settings.label | escape }}
@@ -134,22 +136,22 @@
                                 </li>
                               {%- endfor -%}
                             </ul>
+                          </div>
                         </div>
-                      </div>
                       </details>
-                  {%- else -%}
-                    <a
-                      id="HeaderDrawer-{{ link.handle }}"
-                      href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
-                      {% if link.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
-                      {{ link.title | escape }}
-                    </a>
-                  {%- endif -%}
-                </li>
+                    {%- else -%}
+                      <a
+                        id="HeaderDrawer-{{ link.handle }}"
+                        href="{{ link.url }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                        {% if link.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ link.title | escape }}
+                      </a>
+                    {%- endif -%}
+                  </li>
                 {%- endfor -%}
               {%- endif -%}
             </ul>
@@ -187,18 +189,20 @@
             {%- endif -%}
             {%- if localization.available_countries or localization.available_languages -%}
               <div class="menu-drawer__localization header-localization">
-                {%- if localization.available_countries and localization.available_countries.size > 1 -%}
-                  <localization-form>
-                    {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
-                      <div>
-                        <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
-                          {{ 'localization.country_label' | t }}
-                        </h2>
-                        {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
-                      </div>
-                    {%- endform -%}
-                  </localization-form>
-                {% endif %}
+                {% comment %}
+                  {%- if localization.available_countries and localization.available_countries.size > 1 -%}
+                    <localization-form>
+                      {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                        <div>
+                          <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                            {{ 'localization.country_label' | t }}
+                          </h2>
+                          {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                        </div>
+                      {%- endform -%}
+                    </localization-form>
+                  {% endif %}
+                {% endcomment %}
 
                 {%- if localization.available_languages and localization.available_languages.size > 1 -%}
                   <localization-form>

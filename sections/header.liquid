@@ -392,7 +392,9 @@
                   href="{{ block.settings.link | default: '#' }}"
                   class="header__menu-item list-menu__item link link--text focus-inset"
                   data-menu-key="{{ block.id }}"
-                  {% if nav_link_url != blank and request.path == nav_link_url %}aria-current="page"{% endif %}
+                  {% if nav_link_url != blank and request.path == nav_link_url %}
+                    aria-current="page"
+                  {% endif %}
                 >
                   <span>{{ block.settings.label | escape }}</span>
                 </a>
@@ -438,16 +440,18 @@
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
-            {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {% endif %}
+        {% comment %}
+          {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+            <localization-form class="small-hide medium-hide" data-prevent-hide>
+              {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
+                <div>
+                  <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                  {%- render 'country-localization', localPosition: 'HeaderCountry' -%}
+                </div>
+              {%- endform -%}
+            </localization-form>
+          {% endif %}
+        {% endcomment %}
 
         {%- if section.settings.enable_country_selector
           and localization.available_countries.size > 1

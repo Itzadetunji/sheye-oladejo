@@ -137,16 +137,18 @@
       {%- endif -%}
     {%- endif -%}
     <div class="localization-wrapper">
-      {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-        <localization-form class="small-hide medium-hide">
-          {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
-            <div>
-              <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
-              {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
-            </div>
-          {%- endform -%}
-        </localization-form>
-      {% endif %}
+      {% comment %}
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form class="small-hide medium-hide">
+            {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {% endif %}
+      {% endcomment %}
 
       {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
         <localization-form class="small-hide medium-hide">
@@ -186,13 +188,13 @@
       "unit": "s",
       "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
       "default": 5
-    },    
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
-    },  
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",
@@ -205,8 +207,8 @@
     },
     {
       "type": "paragraph",
-         "content": "t:sections.announcement-bar.settings.paragraph.content"
-    },             
+      "content": "t:sections.announcement-bar.settings.paragraph.content"
+    },
     {
       "type": "checkbox",
       "id": "show_social",
