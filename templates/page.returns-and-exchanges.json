@@ -1,102 +1,99 @@
 {
-  "sections": {
-    "hero": {
-      "type": "hero-secondary",
-      "settings": {
-        "heading": "RETURNS & EXCHANGES",
-        "inner_layout": "page",
-        "padding_top": 36,
-        "padding_bottom": 12
-      }
-    },
-    "main": {
-      "type": "policy-content",
-      "settings": {
-        "policy_type": "returns_and_exchanges",
-        "color_scheme": "scheme-1",
-        "padding_top": 128,
-        "padding_bottom": 128
-      },
-      "blocks": {
-        "overview": {
-          "type": "content",
-          "settings": {
-            "title": "Overview",
-            "content": "Every SheyeOladejo piece is created with intention, precision, and care. Our returns policy is structured to preserve the integrity of our garments while ensuring a considered client experience."
-          }
-        },
-        "ready_to_wear": {
-          "type": "content",
-          "settings": {
-            "title": "Ready-to-Wear",
-            "content": "We offer exchanges or store credit on full-priced ready-to-wear items under the following conditions:\n• Requests must be made within 5 working days of delivery\n• Items must be unworn, unaltered, and in original condition, free from stains or damage\n• All tags and original packaging must be intact\nOnce approved, you will receive:\n• An exchange (subject to availability), or\n• Store credit for future purchases\nRefunds are not offered."
-          }
-        },
-        "couture_custom": {
-          "type": "content",
-          "settings": {
-            "title": "Couture & Custom Orders",
-            "content": "All couture, bridal, and custom-made pieces are final sale.\nThis includes:\n• Bespoke bridal garments\n• Custom occasion wear\n• Made-to-measure pieces\n• Any item altered or approved during fittings\nDue to their personalized nature, these pieces are not eligible for returns, exchanges, or refunds."
-          }
-        },
-        "sale_discounted": {
-          "type": "content",
-          "settings": {
-            "title": "Sale & Discounted Items",
-            "content": "All items purchased on sale or at a discounted rate are final sale and are not eligible for return or exchange."
-          }
-        },
-        "damaged_incorrect": {
-          "type": "content",
-          "settings": {
-            "title": "Damaged, Defective, or Incorrect Items",
-            "content": "If your order arrives damaged, defective, or incorrect:\n• Contact us within 48 hours of delivery\n• Provide clear images and your order details\nOnce verified, we will:\n• Repair, replace, or exchange the item, or\n• Issue store credit where applicable\nDelivery charges are only refundable in cases of faulty items."
-          }
-        },
-        "return_process": {
-          "type": "content",
-          "settings": {
-            "title": "Return Process",
-            "content": "To request a return or exchange:\n• Contact our team via email or WhatsApp with your order details\n• Wait for confirmation and return instructions\n• Return the item to our processing unit\nPlease note:\n• Return shipping costs are the responsibility of the client\n• Items remain the client's responsibility until received and confirmed by us\n• Exchanges are processed only after returned items are received and approved."
-          }
-        },
-        "processing_timeline": {
-          "type": "content",
-          "settings": {
-            "title": "Processing Timeline",
-            "content": "Returns are inspected within 1-3 working days of receipt.\nApproved exchanges or store credits are processed shortly after."
-          }
-        },
-        "alterations": {
-          "type": "content",
-          "settings": {
-            "title": "Alterations",
-            "content": "• Adjustments and alterations may be offered at an additional cost\n• Any item approved after fittings and returned for changes will incur alteration fees"
-          }
-        },
-        "final_note": {
-          "type": "content",
-          "settings": {
-            "title": "Final Note",
-            "content": "We encourage all clients to review sizing, product details, and consult with our team before purchase.\nEach piece is designed to align with you. We are here to guide that decision with clarity and care."
-          }
-        }
-      },
-      "block_order": [
-        "overview",
-        "ready_to_wear",
-        "couture_custom",
-        "sale_discounted",
-        "damaged_incorrect",
-        "return_process",
-        "processing_timeline",
-        "alterations",
-        "final_note"
-      ]
-    }
-  },
-  "order": [
-    "hero",
-    "main"
-  ]
+	"sections": {
+		"hero": {
+			"type": "hero-secondary",
+			"settings": {
+				"heading": "RETURNS & EXCHANGES",
+				"inner_layout": "page",
+				"padding_top": 36,
+				"padding_bottom": 12
+			}
+		},
+		"main": {
+			"type": "policy-content",
+			"settings": {
+				"policy_type": "returns_and_exchanges",
+				"color_scheme": "scheme-1",
+				"padding_top": 64,
+				"padding_bottom": 64
+			},
+			"blocks": {
+				"overview": {
+					"type": "content",
+					"settings": {
+						"title": "Overview",
+						"content": "Every SheyeOladejo piece is created with intention, precision, and care. Our returns policy is structured to preserve the integrity of our garments while ensuring a considered client experience."
+					}
+				},
+				"ready_to_wear": {
+					"type": "content",
+					"settings": {
+						"title": "Ready-to-Wear",
+						"content": "We offer exchanges or store credit on full-priced ready-to-wear items under the following conditions:\n• Requests must be made within 5 working days of delivery\n• Items must be unworn, unaltered, and in original condition, free from stains or damage\n• All tags and original packaging must be intact\nOnce approved, you will receive:\n• An exchange (subject to availability), or\n• Store credit for future purchases\nRefunds are not offered."
+					}
+				},
+				"couture_custom": {
+					"type": "content",
+					"settings": {
+						"title": "Couture & Custom Orders",
+						"content": "All couture, bridal, and custom-made pieces are final sale.\nThis includes:\n• Bespoke bridal garments\n• Custom occasion wear\n• Made-to-measure pieces\n• Any item altered or approved during fittings\nDue to their personalized nature, these pieces are not eligible for returns, exchanges, or refunds."
+					}
+				},
+				"sale_discounted": {
+					"type": "content",
+					"settings": {
+						"title": "Sale & Discounted Items",
+						"content": "All items purchased on sale or at a discounted rate are final sale and are not eligible for return or exchange."
+					}
+				},
+				"damaged_incorrect": {
+					"type": "content",
+					"settings": {
+						"title": "Damaged, Defective, or Incorrect Items",
+						"content": "If your order arrives damaged, defective, or incorrect:\n• Contact us within 48 hours of delivery\n• Provide clear images and your order details\nOnce verified, we will:\n• Repair, replace, or exchange the item, or\n• Issue store credit where applicable\nDelivery charges are only refundable in cases of faulty items."
+					}
+				},
+				"return_process": {
+					"type": "content",
+					"settings": {
+						"title": "Return Process",
+						"content": "To request a return or exchange:\n• Contact our team via email or WhatsApp with your order details\n• Wait for confirmation and return instructions\n• Return the item to our processing unit\nPlease note:\n• Return shipping costs are the responsibility of the client\n• Items remain the client's responsibility until received and confirmed by us\n• Exchanges are processed only after returned items are received and approved."
+					}
+				},
+				"processing_timeline": {
+					"type": "content",
+					"settings": {
+						"title": "Processing Timeline",
+						"content": "Returns are inspected within 1-3 working days of receipt.\nApproved exchanges or store credits are processed shortly after."
+					}
+				},
+				"alterations": {
+					"type": "content",
+					"settings": {
+						"title": "Alterations",
+						"content": "• Adjustments and alterations may be offered at an additional cost\n• Any item approved after fittings and returned for changes will incur alteration fees"
+					}
+				},
+				"final_note": {
+					"type": "content",
+					"settings": {
+						"title": "Final Note",
+						"content": "We encourage all clients to review sizing, product details, and consult with our team before purchase.\nEach piece is designed to align with you. We are here to guide that decision with clarity and care."
+					}
+				}
+			},
+			"block_order": [
+				"overview",
+				"ready_to_wear",
+				"couture_custom",
+				"sale_discounted",
+				"damaged_incorrect",
+				"return_process",
+				"processing_timeline",
+				"alterations",
+				"final_note"
+			]
+		}
+	},
+	"order": ["hero", "main"]
 }

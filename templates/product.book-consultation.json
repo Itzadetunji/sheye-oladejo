@@ -32,8 +32,8 @@
 				"cluster_image_left": "shopify://shop_images/couture-image-11.webp",
 				"cluster_image_right": "shopify://shop_images/couture-image-12.webp",
 				"button_label": "Book now",
-				"padding_top": 128,
-				"padding_bottom": 128
+				"padding_top": 64,
+				"padding_bottom": 64
 			}
 		},
 		"consultation-faq": {
