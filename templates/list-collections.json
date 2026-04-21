@@ -16,7 +16,7 @@
         "color_scheme": "scheme-1"
       }
     },
-    "collection-section-1": {
+    "ejire-collection-section": {
       "type": "collection-about-row",
       "settings": {
         "heading": "EJIRE",
@@ -47,51 +47,42 @@
         "featured_padding_bottom": 64
       }
     },
-    "collection-section-2": {
+    "ejire-2-collection-section": {
       "type": "collection-about-row",
-      "disabled": true,
+      "disabled": false,
       "settings": {
-        "heading": "A story of solidarity",
-        "body": "Add description for this destination page.",
-        "link": "/collections/collection-2",
+        "heading": "EJIRE",
+        "body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",
+        "link": "/collections/ejire",
         "reverse_layout": true,
         "color_scheme": "scheme-1",
         "padding_top": 64,
-        "padding_bottom": 64
+        "padding_bottom": 64,
+        "featured_collection": "ejire-products",
+        "featured_products_to_show": 3,
+        "featured_heading_size": "h2",
+        "featured_show_description": false,
+        "featured_description_style": "body",
+        "featured_columns_desktop": 3,
+        "featured_full_width": false,
+        "featured_show_view_all": true,
+        "featured_view_all_style": "outline",
+        "featured_color_scheme": "scheme-1",
+        "featured_image_ratio": "portrait",
+        "featured_image_shape": "default",
+        "featured_show_secondary_image": true,
+        "featured_show_vendor": false,
+        "featured_show_rating": false,
+        "featured_quick_add": "none",
+        "featured_columns_mobile": "2",
+        "featured_padding_top": 36,
+        "featured_padding_bottom": 64
       }
     },
-    "collection-section-3": {
-      "type": "collection-about-row",
-      "disabled": true,
-      "settings": {
-        "heading": "A story of solidarity",
-        "body": "Add description for this destination page.",
-        "link": "/collections/collection-3",
-        "reverse_layout": false,
-        "color_scheme": "scheme-1",
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    },
-    "collection-section-4": {
-      "type": "collection-about-row",
-      "disabled": true,
-      "settings": {
-        "heading": "A story of solidarity",
-        "body": "Add description for this destination page.",
-        "link": "/collections/collection-4",
-        "reverse_layout": true,
-        "color_scheme": "scheme-1",
-        "padding_top": 64,
-        "padding_bottom": 64
-      }
-    }
   },
   "order": [
     "collection_hero",
-    "collection-section-1",
-    "collection-section-2",
-    "collection-section-3",
-    "collection-section-4"
+    "ejire-collection-section",
+    "ejire-2-collection-section",
   ]
 }
