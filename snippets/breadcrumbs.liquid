@@ -19,9 +19,49 @@
     {%- endif -%}
     <span>{{ product.title | escape }}</span>
   {%- elsif template_type == 'collection' and collection != blank -%}
+    {%- liquid
+      assign breadcrumb_tags = current_tags
+      assign breadcrumb_collection_title = collection.title
+      assign request_path = request.path | default: ''
+      assign path_collection_handle = ''
+      assign collection_path_parts = blank
+
+      if request_path contains '/collections/'
+        assign collection_path = request_path | split: '/collections/' | last
+        assign collection_path_parts = collection_path | split: '/'
+        assign path_collection_handle = collection_path_parts.first
+      endif
+
+      if path_collection_handle == 'all'
+        assign breadcrumb_collection_title = 'Products'
+      endif
+
+      if breadcrumb_tags == blank and path_collection_handle == 'all' and collection_path_parts.size > 1
+        assign tag_path = ''
+        for path_part in collection_path_parts offset: 1
+          if path_part != blank
+            if tag_path == blank
+              assign tag_path = path_part
+            else
+              assign tag_path = tag_path | append: '/' | append: path_part
+            endif
+          endif
+        endfor
+
+        if tag_path != blank
+          assign breadcrumb_tags = tag_path | split: '+'
+        endif
+      endif
+    -%}
     <a href="{{ routes.collections_url }}">Collections</a>
     <span aria-hidden="true"> / </span>
-    <span>{{ collection.title | escape }}</span>
+    {%- if breadcrumb_tags != blank -%}
+      <a href="{{ collection.url }}">{{ breadcrumb_collection_title | escape }}</a>
+      <span aria-hidden="true"> / </span>
+      <span>{{ breadcrumb_tags | join: ' + ' | replace: '-', ' ' | replace: '_', ' ' | escape }}</span>
+    {%- else -%}
+      <span>{{ breadcrumb_collection_title | escape }}</span>
+    {%- endif -%}
   {%- elsif page != blank -%}
     <span>{{ page.title | escape }}</span>
   {%- elsif current_title != blank -%}
