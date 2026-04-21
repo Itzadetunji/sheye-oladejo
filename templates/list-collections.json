@@ -21,14 +21,16 @@
       "settings": {
         "heading": "ÈJÌRÉ",
         "body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",
-        "link": "/collections/ejire",
+        "link": "shopify://collections/ejire-products",
         "reverse_layout": false,
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64,
         "featured_collection": "ejire-products",
         "featured_products_to_show": 3,
+        "featured_title": "",
         "featured_heading_size": "h2",
+        "featured_description": "",
         "featured_show_description": false,
         "featured_description_style": "body",
         "featured_columns_desktop": 3,
@@ -49,18 +51,19 @@
     },
     "ejire-2-collection-section": {
       "type": "collection-about-row",
-      "disabled": false,
       "settings": {
         "heading": "ÈJÌRÉ 2.0",
         "body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",
-        "link": "/collections/ejire",
+        "link": "shopify://collections/ejire-copy",
         "reverse_layout": true,
         "color_scheme": "scheme-1",
         "padding_top": 64,
         "padding_bottom": 64,
-        "featured_collection": "ejire-products",
+        "featured_collection": "ejire-copy",
         "featured_products_to_show": 3,
+        "featured_title": "",
         "featured_heading_size": "h2",
+        "featured_description": "",
         "featured_show_description": false,
         "featured_description_style": "body",
         "featured_columns_desktop": 3,
@@ -78,11 +81,11 @@
         "featured_padding_top": 36,
         "featured_padding_bottom": 64
       }
-    },
+    }
   },
   "order": [
     "collection_hero",
     "ejire-collection-section",
-    "ejire-2-collection-section",
+    "ejire-2-collection-section"
   ]
 }

@@ -623,18 +623,7 @@
 				"header_layout": {
 					"content": "Layout"
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"columns_desktop": {
 					"label": "Columns"
 				},
@@ -804,18 +793,7 @@
 				"header": {
 					"content": "Product card"
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"show_secondary_image": {
 					"label": "Show second image on hover"
 				},
@@ -1802,18 +1780,7 @@
 				"enable_sorting": {
 					"label": "Sorting"
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"show_secondary_image": {
 					"label": "Show second image on hover"
 				},
@@ -1872,18 +1839,7 @@
 						"label": "Product count, low to high"
 					}
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"header_mobile": {
 					"content": "Mobile layout"
 				},
@@ -2252,16 +2208,7 @@
 						"product_card": {
 							"heading": "Product card"
 						},
-						"image_ratio": {
-							"label": "Image ratio",
-							"options": {
-								"option_1": "Portrait",
-								"option_2": "Square"
-							}
-						},
-						"enable_quick_add": {
-							"label": "Quick add"
-						}
+					
 					}
 				},
 				"icon_with_text": {
@@ -2430,18 +2377,7 @@
 						"label": "2"
 					}
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"show_secondary_image": {
 					"label": "Show second image on hover"
 				},
@@ -2806,18 +2742,7 @@
 				"header__2": {
 					"content": "Product card"
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Portrait"
-					},
-					"options__3": {
-						"label": "Square"
-					}
-				},
+				
 				"show_secondary_image": {
 					"label": "Show second image on hover"
 				},
@@ -3219,18 +3144,7 @@
 				"image": {
 					"label": "Image"
 				},
-				"image_ratio": {
-					"label": "Image ratio",
-					"options__1": {
-						"label": "Adapt to image"
-					},
-					"options__2": {
-						"label": "Small"
-					},
-					"options__3": {
-						"label": "Large"
-					}
-				},
+				
 				"desktop_layout": {
 					"label": "Placement",
 					"options__1": {
