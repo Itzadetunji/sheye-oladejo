@@ -718,10 +718,6 @@ a.product__text {
 	margin-bottom: 0.5rem;
 }
 
-.product .price__container {
-	margin-bottom: 0.5rem;
-}
-
 .product .price dl {
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
@@ -809,6 +805,16 @@ a.product__text {
 
 .product-form__buttons {
 	max-width: 44rem;
+}
+
+.product-buy-buttons .restock-rocket-preorder-description {
+	display: none !important;
+}
+
+.price.price--large.price--final-pieces.price--show-badge {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .product--no-media .product__info-container > modal-opener {

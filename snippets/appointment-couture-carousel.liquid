@@ -3,8 +3,12 @@
 
   Accepts:
     - slides: blocks for the carousel (up to 5 from section schema)
+    - image_1..image_5: direct images (optional alternative to slides)
     - carousel_uid: unique id suffix
     - interval_ms: autoplay interval in ms (defaults to 3000)
+    - carousel_class: extra root classes (optional)
+    - image_class: extra class for image tags (optional)
+    - show_cta: render CTA overlays when true (default: true)
     - button_text: CTA text
     - button_link: CTA URL
     - default_button_text: fallback CTA text
@@ -13,17 +17,53 @@
 {% endcomment %}
 
 {%- assign interval_ms = interval_ms | default: 3000 -%}
+{%- assign show_cta_enabled = true -%}
+{%- if show_cta == false -%}
+  {%- assign show_cta_enabled = false -%}
+{%- endif -%}
 {%- assign cta_text = button_text | default: default_button_text -%}
 {%- assign cta_link = button_link | default: default_button_link -%}
+{%- assign has_cta = false -%}
+{%- if show_cta_enabled and cta_text != blank and cta_link != blank -%}
+  {%- assign has_cta = true -%}
+{%- endif -%}
 {%- assign has_slides = false -%}
 {%- if slides != blank and slides.size > 0 -%}
   {%- assign has_slides = true -%}
 {%- endif -%}
+{%- assign image_count = 0 -%}
+{%- if image_1 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
+{%- if image_2 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
+{%- if image_3 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
+{%- if image_4 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
+{%- if image_5 != blank -%}{%- assign image_count = image_count | plus: 1 -%}{%- endif -%}
+{%- assign has_images = false -%}
+{%- if image_count > 0 -%}
+  {%- assign has_images = true -%}
+{%- endif -%}
+{%- assign image_class_name = 'appointment-couture-carousel__img' -%}
+{%- if image_class != blank -%}
+  {%- assign image_class_name = image_class_name | append: ' ' | append: image_class -%}
+{%- endif -%}
+{%- assign root_class = 'book-appointment-or-couture__hero appointment-couture-carousel' -%}
+{%- if carousel_class != blank -%}
+  {%- assign root_class = root_class | append: ' ' | append: carousel_class -%}
+{%- endif -%}
+{%- assign slide_count = 0 -%}
+{%- if has_slides -%}
+  {%- assign slide_count = slides.size -%}
+{%- elsif has_images -%}
+  {%- assign slide_count = image_count -%}
+{%- elsif fallback_image != blank -%}
+  {%- assign slide_count = 1 -%}
+{%- endif -%}
 
 <div
-  class="book-appointment-or-couture__hero appointment-couture-carousel"
-  data-appointment-slider-carousel
-  data-carousel-interval="{{ interval_ms }}"
+  class="{{ root_class }}"
+  {% if slide_count > 1 %}
+    data-appointment-slider-carousel
+    data-carousel-interval="{{ interval_ms }}"
+  {% endif %}
   id="AppointmentSliderCarousel--{{ carousel_uid }}"
 >
   <div class="appointment-couture-carousel__viewport" aria-live="off">
@@ -38,7 +78,7 @@
                 | image_url: width: 1200
                 | image_tag:
                   loading: 'lazy',
-                  class: 'appointment-couture-carousel__img',
+                  class: image_class_name,
                   sizes: '50vw',
                   widths: '375, 550, 750, 1100, 1200'
               }}
@@ -64,7 +104,21 @@
               | image_url: width: 1200
               | image_tag:
                 loading: 'lazy',
-                class: 'appointment-couture-carousel__img',
+                  class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          {%- elsif has_images -%}
+            {{
+              image_1
+              | default: image_2
+              | default: image_3
+              | default: image_4
+              | default: image_5
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
                 sizes: '50vw',
                 widths: '375, 550, 750, 1100, 1200'
             }}
@@ -74,17 +128,85 @@
             </div>
           {%- endif -%}
         </div>
+      {%- elsif has_images -%}
+        {%- if image_1 != blank -%}
+          <div class="appointment-couture-carousel__slide" data-carousel-slide>
+            {{
+              image_1
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          </div>
+        {%- endif -%}
+        {%- if image_2 != blank -%}
+          <div class="appointment-couture-carousel__slide" data-carousel-slide>
+            {{
+              image_2
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          </div>
+        {%- endif -%}
+        {%- if image_3 != blank -%}
+          <div class="appointment-couture-carousel__slide" data-carousel-slide>
+            {{
+              image_3
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          </div>
+        {%- endif -%}
+        {%- if image_4 != blank -%}
+          <div class="appointment-couture-carousel__slide" data-carousel-slide>
+            {{
+              image_4
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          </div>
+        {%- endif -%}
+        {%- if image_5 != blank -%}
+          <div class="appointment-couture-carousel__slide" data-carousel-slide>
+            {{
+              image_5
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          </div>
+        {%- endif -%}
       {%- endif -%}
     </div>
   </div>
 
-  <a
-    href="{{ cta_link }}"
-    class="appointment-couture-carousel__hitarea"
-    aria-label="{{ cta_text | escape }}"
-  ></a>
+  {%- if has_cta -%}
+    <a
+      href="{{ cta_link }}"
+      class="appointment-couture-carousel__hitarea"
+      aria-label="{{ cta_text | escape }}"
+    ></a>
 
-  <a href="{{ cta_link }}" class="appointment-couture-carousel__btn button">
-    {{ cta_text | escape }}
-  </a>
+    <a href="{{ cta_link }}" class="appointment-couture-carousel__btn button">
+      {{ cta_text | escape }}
+    </a>
+  {%- endif -%}
 </div>

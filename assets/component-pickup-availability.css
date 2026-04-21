@@ -92,7 +92,7 @@ pickup-availability-drawer[open] {
 }
 
 .pickup-availability-header .icon {
-  width: 2rem;
+  width: 1.5rem;
 }
 
 .pickup-availability-drawer-button {
@@ -101,9 +101,8 @@ pickup-availability-drawer[open] {
   color: rgb(var(--color-foreground));
   cursor: pointer;
   display: block;
-  height: 4.4rem;
-  padding: 1.2rem;
-  width: 4.4rem;
+  height: 2rem;
+  width: 2rem;
 }
 
 .pickup-availability-drawer-button:hover {

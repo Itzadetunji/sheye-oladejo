@@ -1,3 +1,5 @@
+<script src="{{ 'section-appointment-couture-carousel.js' | asset_url }}" defer="defer"></script>
+
 {%- style -%}
   .book-consultation-cluster-{{ section.id }} {
     padding-block: 64px;
@@ -16,17 +18,66 @@
     overflow: hidden;
   }
 
-  .book-consultation-cluster-{{ section.id }}__image,
-  .book-consultation-cluster-{{ section.id }}__placeholder {
+  .book-consultation-cluster-{{ section.id }}__carousel {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    object-position: top;
   }
 
-  .book-consultation-cluster-{{ section.id }}__placeholder {
-    background: rgba(var(--color-foreground), 0.06);
+  .book-consultation-cluster-{{ section.id }}__carousel .appointment-couture-carousel__viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__carousel .appointment-couture-carousel__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__carousel .appointment-couture-carousel__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__cluster-item .book-appointment-or-couture__hero.appointment-couture-carousel {
+    width: 100%;
+    height: 100%;
+  }
+
+  .book-consultation-cluster-{{ section.id }} .appointment-couture-carousel__viewport,
+  .book-consultation-cluster-{{ section.id }} .appointment-couture-carousel__track,
+  .book-consultation-cluster-{{ section.id }} .appointment-couture-carousel__slide {
+    height: 100%;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__carousel .appointment-couture-carousel__img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  .book-consultation-cluster-{{ section.id }}__carousel .appointment-couture-carousel__placeholder {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .book-consultation-cluster-{{ section.id }}__carousel
+    .appointment-couture-carousel__placeholder
+    .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    display: block;
   }
 
   @media screen and (min-width: 1024px) {
@@ -42,45 +93,44 @@
   }
 {%- endstyle -%}
 
-<section class="book-consultation-cluster-{{ section.id }}">
-  {%- assign cluster_image_class = 'book-consultation-cluster-' | append: section.id | append: '__image' -%}
-  {%- assign cluster_placeholder_class = 'placeholder-svg ' | append: cluster_image_class -%}
+{%- liquid
+  assign cluster_carousel_class = 'book-consultation-cluster-' | append: section.id | append: '__carousel'
+  assign cluster_image_class = 'book-consultation-cluster-' | append: section.id | append: '__image'
+-%}
+
+<section
+  class="book-consultation-cluster-{{ section.id }}"
+  data-carousel-class="{{ cluster_carousel_class }}"
+  data-image-class="{{ cluster_image_class }}"
+>
   <div class="about-founder__inner page-width">
     <div class="book-consultation-cluster-{{ section.id }}__cluster">
       <div class="book-consultation-cluster-{{ section.id }}__cluster-item">
-        {%- if section.settings.cluster_image_left != blank -%}
-          {{
-            section.settings.cluster_image_left
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: cluster_image_class,
-              widths: '400, 550, 700, 900, 1200',
-              sizes: '(min-width: 1024px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="book-consultation-cluster-{{ section.id }}__placeholder">
-            {{ 'lifestyle-1' | placeholder_svg_tag: cluster_placeholder_class }}
-          </div>
-        {%- endif -%}
+        {%-
+          render 'appointment-couture-carousel',
+          carousel_uid: section.id | append: '-left',
+          carousel_class: cluster_carousel_class,
+          image_class: cluster_image_class,
+          show_cta: false,
+          image_1: section.settings.cluster_image_left,
+          image_2: section.settings.cluster_image_left_2,
+          image_3: section.settings.cluster_image_left_3,
+          fallback_image: section.settings.cluster_image_left
+        -%}
       </div>
 
       <div class="book-consultation-cluster-{{ section.id }}__cluster-item">
-        {%- if section.settings.cluster_image_right != blank -%}
-          {{
-            section.settings.cluster_image_right
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              class: cluster_image_class,
-              widths: '400, 550, 700, 900, 1200',
-              sizes: '(min-width: 1024px) 50vw, 100vw'
-          }}
-        {%- else -%}
-          <div class="book-consultation-cluster-{{ section.id }}__placeholder">
-            {{ 'lifestyle-2' | placeholder_svg_tag: cluster_placeholder_class }}
-          </div>
-        {%- endif -%}
+        {%-
+          render 'appointment-couture-carousel',
+          carousel_uid: section.id | append: '-right',
+          carousel_class: cluster_carousel_class,
+          image_class: cluster_image_class,
+          show_cta: false,
+          image_1: section.settings.cluster_image_right,
+          image_2: section.settings.cluster_image_right_2,
+          image_3: section.settings.cluster_image_right_3,
+          fallback_image: section.settings.cluster_image_right
+        -%}
       </div>
     </div>
   </div>
@@ -99,8 +149,28 @@
     },
     {
       "type": "image_picker",
+      "id": "cluster_image_left_2",
+      "label": "Left image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "cluster_image_left_3",
+      "label": "Left image 3"
+    },
+    {
+      "type": "image_picker",
       "id": "cluster_image_right",
       "label": "Right image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cluster_image_right_2",
+      "label": "Right image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "cluster_image_right_3",
+      "label": "Right image 3"
     }
   ],
   "presets": [

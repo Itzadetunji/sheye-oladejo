@@ -13,6 +13,7 @@
 	border-radius: var(--buttons-radius);
 	position: relative;
 	z-index: 0;
+	cursor: default;
 }
 
 /* Remove Dawn .button layered ::before / ::after (shadow + faux border) — badges are not real buttons */
@@ -75,4 +76,10 @@
 /* Containing block for overlays on product cards */
 .card--stacked-product .card__inner {
 	position: relative;
+}
+
+@media screen and (max-width: 639px) {
+	.card--stacked-product .outline-badge.button:not(.outline-badge--inline) {
+		display: none;
+	}
 }
