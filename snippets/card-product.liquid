@@ -17,6 +17,7 @@
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
   - skip_skeleton: {Boolean} Skip skeleton loader, show image directly (like card-collection). Default: false (optional)
+  - collection_mode: {Boolean} Show second product image as primary image. Default: false (optional)
 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
@@ -40,16 +41,29 @@
     assign available_color_count = 0
     assign has_low_stock_variant = false
     assign is_preorder_product = false
+    assign collection_mode_enabled = false
+    assign primary_media = card_product.featured_media
+
+    if collection_mode
+      assign collection_mode_enabled = true
+    endif
+
+    if collection_mode_enabled and card_product.media.size > 1
+      assign collection_media_candidate = card_product.media[1]
+      if collection_media_candidate.media_type == 'image'
+        assign primary_media = collection_media_candidate
+      endif
+    endif
 
     assign product_title_downcase = card_product.title | downcase
     if product_title_downcase contains 'preorder'
       assign is_preorder_product = true
     endif
 
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
+    if primary_media and media_aspect_ratio == 'portrait'
       assign ratio = 0.8
-    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
-      assign ratio = card_product.featured_media.aspect_ratio
+    elsif primary_media and media_aspect_ratio == 'adapt'
+      assign ratio = primary_media.aspect_ratio
     endif
     if ratio == 0 or ratio == null
       assign ratio = 1
@@ -136,23 +150,23 @@
                 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                 <img
                   srcset="
-                    {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                    {%- if primary_media.width >= 165 -%}{{ primary_media | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if primary_media.width >= 360 -%}{{ primary_media | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if primary_media.width >= 533 -%}{{ primary_media | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if primary_media.width >= 720 -%}{{ primary_media | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if primary_media.width >= 940 -%}{{ primary_media | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if primary_media.width >= 1066 -%}{{ primary_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ primary_media | image_url }} {{ primary_media.width }}w
                   "
-                  src="{{ card_product.featured_media | image_url: width: 533 }}"
+                  src="{{ primary_media | image_url: width: 533 }}"
                   sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ card_product.featured_media.alt | escape }}"
+                  alt="{{ primary_media.alt | escape }}"
                   class="motion-reduce"
                   {% unless lazy_load == false %}
                     loading="lazy"
                   {% endunless %}
-                  width="{{ card_product.featured_media.width }}"
-                  height="{{ card_product.featured_media.height }}"
+                  width="{{ primary_media.width }}"
+                  height="{{ primary_media.height }}"
                 >
                 {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
               {%- else -%}
@@ -167,29 +181,29 @@
                   <img
                     class="card__media-img"
                     srcset="
-                      {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                      {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                      {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                      {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                      {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                      {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                      {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+                      {%- if primary_media.width >= 165 -%}{{ primary_media | image_url: width: 165 }} 165w,{%- endif -%}
+                      {%- if primary_media.width >= 360 -%}{{ primary_media | image_url: width: 360 }} 360w,{%- endif -%}
+                      {%- if primary_media.width >= 533 -%}{{ primary_media | image_url: width: 533 }} 533w,{%- endif -%}
+                      {%- if primary_media.width >= 720 -%}{{ primary_media | image_url: width: 720 }} 720w,{%- endif -%}
+                      {%- if primary_media.width >= 940 -%}{{ primary_media | image_url: width: 940 }} 940w,{%- endif -%}
+                      {%- if primary_media.width >= 1066 -%}{{ primary_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                      {{ primary_media | image_url }} {{ primary_media.width }}w
                     "
-                    src="{{ card_product.featured_media | image_url: width: 533 }}"
+                    src="{{ primary_media | image_url: width: 533 }}"
                     sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 768px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt="{{ card_product.featured_media.alt | escape }}"
+                    alt="{{ primary_media.alt | escape }}"
                     class="motion-reduce"
                     {% unless lazy_load == false %}
                       loading="lazy"
                     {% endunless %}
-                    width="{{ card_product.featured_media.width }}"
-                    height="{{ card_product.featured_media.height }}"
+                    width="{{ primary_media.width }}"
+                    height="{{ primary_media.height }}"
                   >
                   {% comment %}theme-check-enable ImgLazyLoading{% endcomment %}
 
                   {%- if show_secondary_image -%}
-                    {%- for media in card_product.media offset: 1 -%}
-                      {%- if media.media_type == 'image' -%}
+                    {%- for media in card_product.media -%}
+                      {%- if media.media_type == 'image' and media.id != primary_media.id -%}
                         <img
                           srcset="
                             {%- if media.width >= 165 -%}{{ media | image_url: width: 165 }} 165w,{%- endif -%}
@@ -283,13 +297,6 @@
                 id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
                 position: 'top-right'
               %}
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span
-                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-              >
-                {{- 'products.product.on_sale' | t -}}
-              </span>
             {%- endif -%}
           </div>
         </div>
@@ -734,16 +741,7 @@
             </div>
           {% endif %}
         {% endif %}
-        <div class="card__badge {{ settings.badge_position }}">
-          {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
-            <span
-              id="Badge-{{ section_id }}-{{ card_product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-            >
-              {{- 'products.product.on_sale' | t -}}
-            </span>
-          {%- endif -%}
-        </div>
+        <div class="card__badge {{ settings.badge_position }}"></div>
       </div>
     </div>
   </div>
