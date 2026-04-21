@@ -16,9 +16,11 @@
   aria-labelledby="about-values-heading-{{ section.id }}"
 >
   <div class="about-values__inner page-width">
-    <h2 id="about-values-heading-{{ section.id }}" class="about-values__heading">
-      {{ section.settings.heading | default: 'OUR CORE VALUES' | escape }}
-    </h2>
+    <div class="collection__title title-wrapper title-wrapper--no-top-margin">
+      <h2 class="title inline-richtext related-products__heading related-products__heading--center {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ section.settings.heading | default: 'OUR CORE VALUES' | escape }}
+      </h2>
+    </div>
     <div class="about-values__grid">
       {%- for block in section.blocks -%}
         <div class="about-values__column" {{ block.shopify_attributes }}>
@@ -53,17 +55,6 @@
       padding-left: 2.5rem;
       padding-right: 2.5rem;
     }
-  }
-  .about-values__heading {
-    font-family: var(--font-heading-family);
-    font-size: clamp(1.4rem, 5vw, 2.2rem);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgb(var(--color-foreground));
-    text-align: center;
-    margin: 0 0 2.5rem;
-    line-height: 1.2;
   }
   .about-values__grid {
     display: grid;
