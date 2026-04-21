@@ -54,6 +54,12 @@
       {{ body_font_bold_italic | font_face: font_display: 'swap' }}
       {{ settings.type_header_font | font_face: font_display: 'swap' }}
 
+      @font-face {
+        font-family: 'Wonderful Script';
+        src: url('{{ 'wonderful_script.otf' | asset_url }}') format('opentype');
+        font-display: swap;
+      }
+
       {% for scheme in settings.color_schemes -%}
         {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
         {% if forloop.index == 1 -%}
@@ -114,6 +120,7 @@
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
+        --font-wonderful-script: 'Wonderful Script', cursive;
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -258,6 +265,10 @@
         body {
           font-size: 1rem;
         }
+      }
+
+      .font-wonderful-script {
+        font-family: var(--font-wonderful-script);
       }
     {% endstyle %}
 

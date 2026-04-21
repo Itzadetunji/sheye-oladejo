@@ -38,9 +38,11 @@
       }
     },
     "consultation-callout": {
-      "type": "book-consultation-callout",
+      "type": "callout-banner",
       "settings": {
-        "callout_text": "Feel the Magic in Every Conversation"
+        "text": "Feel the Magic in Every Conversation",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "main": {
