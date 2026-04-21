@@ -1,10 +1,13 @@
 <button
   type="button"
-  class="video-gallery-component__card"
+  class="video-gallery-component__card{% if card_fill %} video-gallery-component__card--fill{% endif %}"
   data-video-card
   data-video-index="{{ card_index | default: 0 }}"
   aria-label="{{ card_label | default: 'Play gallery video 1' | escape }}"
   aria-pressed="false"
+  {% if card_fill %}
+    style="width: 100%; height: 100%; aspect-ratio: auto; display: flex; align-items: center; justify-content: center;"
+  {% endif %}
   {{ block_attributes }}
 >
   {%- if card_video != blank -%}

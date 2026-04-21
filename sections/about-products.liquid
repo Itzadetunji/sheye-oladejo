@@ -59,6 +59,7 @@
                   card_video: video_block.settings.video,
                   card_label: video_block.settings.label,
                   card_index: 0,
+                  card_fill: true,
                   block_attributes: video_block.shopify_attributes
                 %}
               </div>
@@ -207,6 +208,13 @@
   .about-products__cell--video {
     display: block;
   }
+  .about-products__cell--video .video-gallery-component {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .about-products__cell--video .video-gallery-component__card,
   .about-products__cell--video video,
   .about-products__cell--video .about-products__video-placeholder {
@@ -217,6 +225,7 @@
   }
   .about-products__cell--video video {
     object-fit: cover;
+    object-position: center center;
   }
   @media screen and (max-width: 1023px) {
     .about-products__cell--video {
