@@ -16,6 +16,7 @@
         {%- liquid
           assign card_video = blank
           assign card_label = 'Play gallery video '
+          assign card_aria_label = card_label | append: i
           case i
             when 1
               assign card_video = video_1
@@ -25,38 +26,11 @@
               assign card_video = video_3
           endcase
         -%}
-        <button
-          type="button"
-          class="video-gallery-component__card"
-          data-video-card
-          data-video-index="{{ forloop.index0 }}"
-          aria-label="{{ card_label }}{{ i }}"
-          aria-pressed="false"
-        >
-          {%- if card_video != blank -%}
-            {{
-              card_video
-              | video_tag:
-                image_size: '900x',
-                autoplay: false,
-                loop: false,
-                muted: true,
-                controls: false,
-                playsinline: true
-            }}
-            <span class="video-gallery-component__toggle" aria-hidden="true">
-              <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--play"></span>
-              <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--pause">
-                <span></span>
-                <span></span>
-              </span>
-            </span>
-          {%- else -%}
-            <div class="video-gallery-component__placeholder">
-              {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-        </button>
+        {% render 'video-card',
+          card_video: card_video,
+          card_label: card_aria_label,
+          card_index: forloop.index0
+        %}
       {%- endfor -%}
     </div>
   </div>

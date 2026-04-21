@@ -1,0 +1,33 @@
+<button
+  type="button"
+  class="video-gallery-component__card"
+  data-video-card
+  data-video-index="{{ card_index | default: 0 }}"
+  aria-label="{{ card_label | default: 'Play gallery video 1' | escape }}"
+  aria-pressed="false"
+  {{ block_attributes }}
+>
+  {%- if card_video != blank -%}
+    {{
+      card_video
+      | video_tag:
+        image_size: '900x',
+        autoplay: false,
+        loop: false,
+        muted: true,
+        controls: false,
+        playsinline: true
+    }}
+    <span class="video-gallery-component__toggle" aria-hidden="true">
+      <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--play"></span>
+      <span class="video-gallery-component__toggle-icon video-gallery-component__toggle-icon--pause">
+        <span></span>
+        <span></span>
+      </span>
+    </span>
+  {%- else -%}
+    <div class="video-gallery-component__placeholder">
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+</button>

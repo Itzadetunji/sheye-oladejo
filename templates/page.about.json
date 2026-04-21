@@ -48,13 +48,10 @@
 					}
 				},
 				"tagline": {
-					"type": "tagline",
+					"type": "video",
 					"settings": {
-						"quote": "",
-						"heading": "TIMELESS FEMINITY, SCULPTERED IN COUTURE.",
-						"subheading": "",
-						"button_label": "",
-						"button_link": ""
+						"video": "shopify://files/videos/couture-video-1.webm",
+						"label": "Play gallery video 1"
 					}
 				},
 				"img_2": {

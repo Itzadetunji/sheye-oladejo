@@ -1,3 +1,6 @@
+{{ 'component-video-gallery.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-gallery-component.js' | asset_url }}" defer="defer"></script>
+
 {%- style -%}
   .about-products-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -12,7 +15,6 @@
 {%- endstyle -%}
 
 {%- assign blocks = section.blocks -%}
-{%- assign accent_linen = settings.color_accent_linen | default: '#EDE9CA' -%}
 {%- assign padding_color = settings.color_accent_grey | default: '#D5D0CD' -%}
 
 <section
@@ -46,32 +48,24 @@
         {%- endfor -%}
       </div>
 
-      {%- comment -%} Col 2: 25% (img), 40% (tagline), 30% (img), 38% (img pad) — blocks 2, 1, 4, 7 — tagline in top-middle below first image {%- endcomment -%}
+      {%- comment -%} Col 2: 40% (video), 30% (img), 30% (img pad) — blocks 1, 4, 7 {%- endcomment -%}
       <div class="about-products__col">
-        {%- assign tagline_block = blocks[1] -%}
-        {%- if tagline_block.type == 'tagline' -%}
-          <div
-            class="about-products__cell about-products__cell--tagline"
-            style="background-color: {{ accent_linen }};"
-            {{ tagline_block.shopify_attributes }}
-          >
-            {%- if tagline_block.settings.quote != blank -%}
-              <p class="about-products__tagline-quote">{{ tagline_block.settings.quote | escape }}</p>
-            {%- endif -%}
-            <p class="about-products__tagline-main">
-              {{ tagline_block.settings.heading | default: 'TIMELESS FEMINITY, SCULPTERED IN COUTURE' | escape }}
-            </p>
-            {%- if tagline_block.settings.subheading != blank -%}
-              <p class="about-products__tagline-sub">{{ tagline_block.settings.subheading | escape }}</p>
-            {%- endif -%}
-            {%- if tagline_block.settings.button_label != blank and tagline_block.settings.button_link != blank -%}
-              <a
-                href="{{ tagline_block.settings.button_link }}"
-                class="about-products__tagline-button"
-                aria-label="{{ tagline_block.settings.button_label | escape }}"
-              >
-                <span class="about-products__play-icon" aria-hidden="true">▶</span>
-              </a>
+        {%- assign video_block = blocks[1] -%}
+        {%- if video_block.type == 'video' -%}
+          <div class="about-products__cell about-products__cell--video">
+            {%- if video_block.settings.video != blank -%}
+              <div class="video-gallery-component" data-video-gallery-component>
+                {% render 'video-card',
+                  card_video: video_block.settings.video,
+                  card_label: video_block.settings.label,
+                  card_index: 0,
+                  block_attributes: video_block.shopify_attributes
+                %}
+              </div>
+            {%- else -%}
+              <div class="about-products__video-placeholder">
+                {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
             {%- endif -%}
           </div>
         {%- endif -%}
@@ -210,56 +204,25 @@
     object-position: center 30%;
   }
 
-  .about-products__cell--tagline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1.5rem;
+  .about-products__cell--video {
+    display: block;
+  }
+  .about-products__cell--video .video-gallery-component__card,
+  .about-products__cell--video video,
+  .about-products__cell--video .about-products__video-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+    display: block;
+  }
+  .about-products__cell--video video {
+    object-fit: cover;
   }
   @media screen and (max-width: 1023px) {
-    .about-products__cell--tagline {
+    .about-products__cell--video {
       width: 100%;
       aspect-ratio: 3 / 4;
     }
-  }
-  .about-products__tagline-quote {
-    font-family: var(--font-body-family);
-    font-size: 0.594rem;
-    font-style: italic;
-    color: rgba(var(--color-foreground), 0.85);
-    margin: 0 0 0.5rem;
-  }
-  .about-products__tagline-main {
-    font-family: var(--font-heading-family);
-    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: rgb(var(--color-foreground));
-    margin: 0 0 0.25rem;
-  }
-  .about-products__tagline-sub {
-    font-size: 0.5625rem;
-    letter-spacing: 0.03em;
-    color: rgba(var(--color-foreground), 0.75);
-    margin: 0 0 0.75rem;
-  }
-  .about-products__play-icon {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background: rgb(var(--color-foreground));
-    color: rgb(var(--color-background));
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.625rem;
-  }
-  .about-products__tagline-button {
-    text-decoration: none;
-    margin-top: 0.5rem;
   }
 </style>
 
@@ -314,35 +277,20 @@
       ]
     },
     {
-      "type": "tagline",
-      "name": "Tagline / podcast block",
+      "type": "video",
+      "name": "Video block",
       "limit": 1,
       "settings": [
         {
-          "type": "text",
-          "id": "quote",
-          "label": "Quote (optional)"
+          "type": "video",
+          "id": "video",
+          "label": "Shopify-hosted video"
         },
         {
           "type": "text",
-          "id": "heading",
-          "label": "Tagline",
-          "default": "TIMELESS FEMINITY, SCULPTERED IN COUTURE."
-        },
-        {
-          "type": "text",
-          "id": "subheading",
-          "label": "Subheading (optional)"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "label": "Button label (for accessibility)"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button link"
+          "id": "label",
+          "label": "Aria label",
+          "default": "Play gallery video 1"
         }
       ]
     }
@@ -352,7 +300,7 @@
       "name": "Our products",
       "blocks": [
         { "type": "image" },
-        { "type": "tagline" },
+        { "type": "video" },
         { "type": "image" },
         { "type": "image" },
         { "type": "image" },
