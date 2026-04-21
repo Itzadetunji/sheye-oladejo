@@ -96,38 +96,6 @@
             {%- endif -%}
           </div>
         {%- endfor -%}
-      {%- else -%}
-        <div class="appointment-couture-carousel__slide" data-carousel-slide>
-          {%- if fallback_image != blank -%}
-            {{
-              fallback_image
-              | image_url: width: 1200
-              | image_tag:
-                loading: 'lazy',
-                  class: image_class_name,
-                sizes: '50vw',
-                widths: '375, 550, 750, 1100, 1200'
-            }}
-          {%- elsif has_images -%}
-            {{
-              image_1
-              | default: image_2
-              | default: image_3
-              | default: image_4
-              | default: image_5
-              | image_url: width: 1200
-              | image_tag:
-                loading: 'lazy',
-                class: image_class_name,
-                sizes: '50vw',
-                widths: '375, 550, 750, 1100, 1200'
-            }}
-          {%- else -%}
-            <div class="appointment-couture-carousel__placeholder">
-              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            </div>
-          {%- endif -%}
-        </div>
       {%- elsif has_images -%}
         {%- if image_1 != blank -%}
           <div class="appointment-couture-carousel__slide" data-carousel-slide>
@@ -194,6 +162,24 @@
             }}
           </div>
         {%- endif -%}
+      {%- else -%}
+        <div class="appointment-couture-carousel__slide" data-carousel-slide>
+          {%- if fallback_image != blank -%}
+            {{
+              fallback_image
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                class: image_class_name,
+                sizes: '50vw',
+                widths: '375, 550, 750, 1100, 1200'
+            }}
+          {%- else -%}
+            <div class="appointment-couture-carousel__placeholder">
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            </div>
+          {%- endif -%}
+        </div>
       {%- endif -%}
     </div>
   </div>

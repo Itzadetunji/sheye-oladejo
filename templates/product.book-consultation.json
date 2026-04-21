@@ -8,69 +8,119 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
-		"hero": {
-			"type": "page-breadcrumbs",
-			"settings": {
-				"color_scheme": "scheme-1"
-			}
-		},
-		"main": {
-			"type": "main-product-book-consultation",
-			"settings": {
-				"intro_video": "shopify://files/videos/couture-video-1.webm",
-				"button_label": "Book now",
-				"padding_top": 64,
-				"padding_bottom": 64
-			}
-		},
-		"consultation-callout": {
-			"type": "book-consultation-callout",
-			"settings": {
-				"callout_text": "Feel the Magic in Every Conversation"
-			}
-		},
-		"consultation-image-cluster": {
-			"type": "book-consult-images",
-			"settings": {
-				"cluster_image_left": "shopify://shop_images/couture-image-11.webp",
-				"cluster_image_right": "shopify://shop_images/couture-image-12.webp"
-			}
-		},
-		"consultation-video-gallery": {
-			"type": "book-consultation-video-gallery",
-			"settings": {
-				"video_gallery_title": "FEMININITY CUSTOMIZED",
-				"video_gallery_heading_size": "h2",
-				"gallery_video_1": "shopify://files/videos/couture-video-2.webm",
-				"gallery_video_2": "shopify://files/videos/couture-video-3.webm",
-				"gallery_video_3": "shopify://files/videos/couture-video-1.webm"
-			}
-		},
-		"consultation-faq": {
-			"type": "faq-accordion-grid",
-			"settings": {
-				"heading": "FAQs",
-				"open_first": false,
-				"color_scheme": "scheme-1"
-			}
-		},
-		"shop-couture": {
-			"type": "collection-grid",
-			"settings": {
-				"collection": "couture",
-				"title": "SHOP COUTURE",
-				"view_all_link": "/collections/couture"
-			}
-		}
-	},
-	"order": [
-		"hero",
-		"consultation-image-cluster",
-		"consultation-video-gallery",
-		"consultation-callout",
-		"main",
-		"shop-couture",
-		"consultation-faq",
-	]
+  "sections": {
+    "hero": {
+      "type": "page-breadcrumbs",
+      "settings": {
+        "heading": "",
+        "color_scheme": "scheme-1"
+      }
+    },
+    "consultation-image-cluster": {
+      "type": "book-consult-images",
+      "settings": {
+        "cluster_image_left": "shopify://shop_images/couture-image-11.webp",
+        "cluster_image_left_2": "shopify://shop_images/couture-image-19.webp",
+        "cluster_image_left_3": "shopify://shop_images/couture-image-27.webp",
+        "cluster_image_right": "shopify://shop_images/couture-image-12.webp",
+        "cluster_image_right_2": "shopify://shop_images/couture-image-7.webp",
+        "cluster_image_right_3": "shopify://shop_images/couture-image-15.webp"
+      }
+    },
+    "consultation-video-gallery": {
+      "type": "book-consultation-video-gallery",
+      "settings": {
+        "video_gallery_title": "FEMININITY CUSTOMIZED",
+        "video_gallery_heading_size": "h2",
+        "gallery_video_1": "shopify://files/videos/couture-video-2.webm",
+        "gallery_video_2": "shopify://files/videos/couture-video-3.webm",
+        "gallery_video_3": "shopify://files/videos/couture-video-1.webm"
+      }
+    },
+    "consultation-callout": {
+      "type": "book-consultation-callout",
+      "settings": {
+        "callout_text": "Feel the Magic in Every Conversation"
+      }
+    },
+    "main": {
+      "type": "main-product-book-consultation",
+      "settings": {
+        "intro_video": "shopify://files/videos/couture-video-1.webm",
+        "button_label": "Book now",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "shop-couture": {
+      "type": "collection-grid",
+      "settings": {
+        "collection": "couture",
+        "products_to_show": 3,
+        "title": "SHOP COUTURE",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "view_all_label": "View all",
+        "view_all_link": "/collections/couture",
+        "color_scheme": "",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "collection_mode": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "consultation-faq": {
+      "type": "faq-accordion-grid",
+      "settings": {
+        "heading": "FAQs",
+        "open_first": false,
+        "color_scheme": "scheme-1",
+        "show_offering_heading": true,
+        "show_offering_q1": true,
+        "show_offering_q2": true,
+        "show_offering_q3": true,
+        "show_ordering_heading": true,
+        "show_ordering_q1": true,
+        "show_ordering_q2": true,
+        "show_ordering_q3": true,
+        "show_sizing_heading": true,
+        "show_sizing_q1": true,
+        "show_sizing_q2": true,
+        "show_shipping_heading": true,
+        "show_shipping_q1": true,
+        "show_shipping_q2": true,
+        "show_shipping_q3": true,
+        "show_returns_heading": true,
+        "show_returns_q1": true,
+        "show_returns_q2": true,
+        "show_returns_q3": true,
+        "show_returns_q4": true,
+        "show_service_heading": true,
+        "show_service_q1": true,
+        "show_service_q2": true,
+        "show_service_q3": true,
+        "show_craft_heading": true,
+        "show_craft_q1": true,
+        "show_craft_q2": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "consultation-image-cluster",
+    "consultation-video-gallery",
+    "consultation-callout",
+    "main",
+    "shop-couture",
+    "consultation-faq"
+  ]
 }
