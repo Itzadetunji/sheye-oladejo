@@ -42,6 +42,7 @@
     assign has_low_stock_variant = false
     assign is_preorder_product = false
     assign collection_mode_enabled = false
+    assign collection_mode_white_badge = false
     assign primary_media = card_product.featured_media
 
     if collection_mode
@@ -52,6 +53,7 @@
       assign collection_media_candidate = card_product.media[1]
       if collection_media_candidate.media_type == 'image'
         assign primary_media = collection_media_candidate
+        assign collection_mode_white_badge = true
       endif
     endif
 
@@ -136,7 +138,7 @@
         {%- if card_product.featured_media -%}
           <a
             href="{{ card_product.url }}"
-            class="card__media full-unstyled-link{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+            class="card__media full-unstyled-link{% if collection_mode_white_badge %} card__media--collection-mode{% endif %}{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
             aria-label="{{ card_product.title | escape }}"
           >
             <div
@@ -230,13 +232,24 @@
             </div>
           </a>
           {%- if card_product.available == false -%}
-            {%
-              render 'outline-badge',
-              translation_key: 'products.product.sold_out',
-              uppercase: true,
-              id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
-              position: 'top-right'
-            %}
+            {%- if collection_mode_white_badge -%}
+              {%
+                render 'outline-badge',
+                translation_key: 'products.product.sold_out',
+                uppercase: true,
+                class: 'outline-badge--white',
+                id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- else -%}
+              {%
+                render 'outline-badge',
+                translation_key: 'products.product.sold_out',
+                uppercase: true,
+                id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- endif -%}
             {% comment %}
               {%- elsif is_preorder_product -%}
               {%
@@ -247,12 +260,22 @@
               %}
             {% endcomment %}
           {%- elsif has_low_stock_variant -%}
-            {%
-              render 'outline-badge',
-              text: 'FINAL PIECES',
-              id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
-              position: 'top-right'
-            %}
+            {%- if collection_mode_white_badge -%}
+              {%
+                render 'outline-badge',
+                text: 'FINAL PIECES',
+                class: 'outline-badge--white',
+                id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- else -%}
+              {%
+                render 'outline-badge',
+                text: 'FINAL PIECES',
+                id: 'Badge-' | append: section_id | append: '-' | append: card_product.id,
+                position: 'top-right'
+              %}
+            {%- endif -%}
           {%- endif -%}
         {%- endif -%}
         <div class="card__content">
@@ -276,27 +299,58 @@
           </div>
           <div class="card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false and card_product.featured_media == null -%}
-              {%
-                render 'outline-badge',
-                translation_key: 'products.product.sold_out',
-                uppercase: true,
-                id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
-                position: 'top-right'
-              %}
+              {%- if collection_mode_white_badge -%}
+                {%
+                  render 'outline-badge',
+                  translation_key: 'products.product.sold_out',
+                  uppercase: true,
+                  class: 'outline-badge--white',
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- else -%}
+                {%
+                  render 'outline-badge',
+                  translation_key: 'products.product.sold_out',
+                  uppercase: true,
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- endif -%}
             {%- elsif is_preorder_product and card_product.featured_media == null -%}
-              {%
-                render 'outline-badge',
-                text: 'PREORDER',
-                id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
-                position: 'top-right'
-              %}
+              {%- if collection_mode_white_badge -%}
+                {%
+                  render 'outline-badge',
+                  text: 'PREORDER',
+                  class: 'outline-badge--white',
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- else -%}
+                {%
+                  render 'outline-badge',
+                  text: 'PREORDER',
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- endif -%}
             {%- elsif has_low_stock_variant and card_product.featured_media == null -%}
-              {%
-                render 'outline-badge',
-                text: 'FINAL PIECES',
-                id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
-                position: 'top-right'
-              %}
+              {%- if collection_mode_white_badge -%}
+                {%
+                  render 'outline-badge',
+                  text: 'FINAL PIECES',
+                  class: 'outline-badge--white',
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- else -%}
+                {%
+                  render 'outline-badge',
+                  text: 'FINAL PIECES',
+                  id: 'NoMediaStandardBadge-' | append: section_id | append: '-' | append: card_product.id,
+                  position: 'top-right'
+                %}
+              {%- endif -%}
             {%- endif -%}
           </div>
         </div>

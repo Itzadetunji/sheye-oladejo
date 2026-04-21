@@ -595,6 +595,11 @@
 	object-position: top center;
 }
 
+.card--stacked-product .card__inner .card__media.card__media--collection-mode img {
+	object-fit: cover;
+	object-position: center;
+}
+
 /* Below desktop breakpoint: card + image use full grid column width (tablet 750–989 included) */
 @media screen and (max-width: 1023px) {
 	.product-card-wrapper {

@@ -67,6 +67,11 @@
 	right: auto;
 }
 
+.outline-badge.button.outline-badge--white {
+	color: rgb(var(--color-background));
+	border-color: rgb(var(--color-background));
+}
+
 /* Containing block for overlays on product cards */
 .card--stacked-product .card__inner {
 	position: relative;
