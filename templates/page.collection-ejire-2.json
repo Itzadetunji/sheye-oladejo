@@ -8,11 +8,11 @@
  * ------------------------------------------------------------
  */
 {
-	"sections": {
+  "sections": {
     "hero": {
       "type": "hero-tertiary",
       "settings": {
-        "heading": "EJIRE",
+        "heading": "ÈJÌRÉ 2.0",
         "heading_text_color": "white",
         "inner_layout": "page",
         "show_breadcrumbs": false,
@@ -72,6 +72,8 @@
       "type": "callout-banner",
       "settings": {
         "text": "Express Feminiity With Attention",
+        "heading_font": "wonderful_script",
+        "custom_font_family": "",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -134,9 +136,9 @@
         "view_all_label": "VIEW MORE",
         "view_all_link": "/collections/all",
         "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
+        "collection_mode": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
