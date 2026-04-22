@@ -73,6 +73,7 @@
         image_ratio: section.settings.featured_image_ratio,
         image_shape: section.settings.featured_image_shape,
         show_secondary_image: section.settings.featured_show_secondary_image,
+        collection_mode: section.settings.featured_collection_mode,
         show_vendor: section.settings.featured_show_vendor,
         show_rating: section.settings.featured_show_rating,
         show_view_all: section.settings.featured_show_view_all,
@@ -263,6 +264,12 @@
       "type": "checkbox",
       "id": "featured_show_secondary_image",
       "label": "Show second image on hover",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_collection_mode",
+      "label": "Collection mode",
       "default": false
     },
     {

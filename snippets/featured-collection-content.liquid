@@ -33,6 +33,7 @@
   assign fc_full_width = full_width | default: false
   assign fc_show_description = show_description | default: false
   assign fc_show_secondary_image = show_secondary_image | default: false
+  assign fc_collection_mode = collection_mode | default: false
   assign fc_show_vendor = show_vendor | default: false
   assign fc_show_rating = show_rating | default: false
   assign fc_show_view_all = show_view_all | default: true
@@ -147,6 +148,7 @@
                 image_shape: fc_image_shape,
                 lazy_load: lazy_load,
                 show_secondary_image: fc_show_secondary_image,
+                collection_mode: fc_collection_mode,
                 show_vendor: fc_show_vendor,
                 show_rating: fc_show_rating,
                 skip_styles: skip_card_product_styles,
