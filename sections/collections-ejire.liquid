@@ -76,6 +76,7 @@
                 image_shape: 'default',
                 lazy_load: lazy_load,
                 show_secondary_image: true,
+                collection_mode: section.settings.collection_mode,
                 show_vendor: false,
                 show_rating: false,
                 skip_styles: skip_card_product_styles,
@@ -101,6 +102,7 @@
               image_shape: 'default',
               lazy_load: lazy_load,
               show_secondary_image: true,
+              collection_mode: section.settings.collection_mode,
               show_vendor: false,
               show_rating: false,
               skip_styles: skip_card_product_styles,
@@ -208,6 +210,12 @@
       "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_mode",
+      "default": false,
+      "label": "Collection mode"
     },
     {
       "type": "header",
