@@ -83,3 +83,7 @@
 		display: none;
 	}
 }
+
+.price__outline-badge {
+	white-space: nowrap;
+}

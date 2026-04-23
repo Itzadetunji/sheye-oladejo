@@ -116,6 +116,15 @@
         endif
       endfor
     endif
+
+    assign card_line_show_compare = false
+    if card_product.compare_at_price > card_product.price and card_product.compare_at_price > 0
+      unless card_product.price_varies == false and card_product.compare_at_price_varies
+        assign card_line_show_compare = true
+      endunless
+    endif
+    assign card_line_price_fmt = card_product.price | money
+    assign card_line_compare_fmt = card_product.compare_at_price | money
   -%}
 
   <div class="card-wrapper product-card-wrapper underline-links-hover">
@@ -289,11 +298,28 @@
               <a
                 href="{{ card_product.url }}"
                 id="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }}"
-                class="full-unstyled-link card__heading-link"
+                class="full-unstyled-link card__heading-link{% if card_line_show_compare %} card__heading-link--on-sale{% endif %}"
                 aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ card_product.id }} NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
               >
-                <span class="card__heading-line card__heading-line--title">{{ card_product.title | upcase }}</span>
-                <span class="card__heading-line card__heading-line--price">{{ card_product.price | money }}</span>
+                {%- if card_line_show_compare -%}
+                  <span class="card__heading-line card__heading-line--title">
+                    {{ card_product.title | upcase -}}
+                    <span class="card__heading-sep" aria-hidden="true"> - </span>
+                    <span class="visually-hidden visually-hidden--inline">
+                      {{- 'products.product.price.regular_price' | t -}}
+                    </span>
+                    <s class="card__price-compare card__price-compare--in-title">{{ card_line_compare_fmt }}</s>
+                  </span>
+                  <span class="card__heading-line card__heading-line--price card__heading-line--sale-now">
+                    <span class="visually-hidden visually-hidden--inline">
+                      {{- 'products.product.price.sale_price' | t -}}
+                    </span>
+                    {{- card_line_price_fmt -}}
+                  </span>
+                {%- else -%}
+                  <span class="card__heading-line card__heading-line--title">{{ card_product.title | upcase }}</span>
+                  <span class="card__heading-line card__heading-line--price">{{ card_line_price_fmt }}</span>
+                {%- endif -%}
               </a>
             </h3>
           </div>
@@ -364,7 +390,26 @@
               {{ card_product.title | upcase }}
             </a>
           </h3>
-          <p class="card-hover-info__price">{{ card_product.price | money }}</p>
+          {%- if card_line_show_compare -%}
+            <p class="card-hover-info__price card-hover-info__price--on-sale">
+              <span class="card-hover-info__row1">
+                {{ card_product.title | upcase -}}
+                <span class="card__heading-sep" aria-hidden="true"> - </span>
+                <span class="visually-hidden visually-hidden--inline">
+                  {{- 'products.product.price.regular_price' | t -}}
+                </span>
+                <s class="card__price-compare card__price-compare--in-title">{{ card_line_compare_fmt }}</s>
+              </span>
+              <span class="card-hover-info__row2">
+                <span class="visually-hidden visually-hidden--inline">
+                  {{- 'products.product.price.sale_price' | t -}}
+                </span>
+                {{- card_line_price_fmt -}}
+              </span>
+            </p>
+          {%- else -%}
+            <p class="card-hover-info__price">{{ card_line_price_fmt }}</p>
+          {%- endif -%}
           {%- if available_color_count > 1 -%}
             {%- assign hover_color_names = available_color_names_string | split: '||' -%}
             {%- assign hover_color_variant_ids = available_color_variant_ids_string | split: '||' -%}
@@ -400,11 +445,28 @@
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="full-unstyled-link card__heading-link"
+              class="full-unstyled-link card__heading-link{% if card_line_show_compare %} card__heading-link--on-sale{% endif %}"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
-              <span class="card__heading-line card__heading-line--title">{{ card_product.title | upcase }}</span>
-              <span class="card__heading-line card__heading-line--price">{{ card_product.price | money }}</span>
+              {%- if card_line_show_compare -%}
+                <span class="card__heading-line card__heading-line--title">
+                  {{ card_product.title | upcase -}}
+                  <span class="card__heading-sep" aria-hidden="true"> - </span>
+                  <span class="visually-hidden visually-hidden--inline">
+                    {{- 'products.product.price.regular_price' | t -}}
+                  </span>
+                  <s class="card__price-compare card__price-compare--in-title">{{ card_line_compare_fmt }}</s>
+                </span>
+                <span class="card__heading-line card__heading-line--price card__heading-line--sale-now">
+                  <span class="visually-hidden visually-hidden--inline">
+                    {{- 'products.product.price.sale_price' | t -}}
+                  </span>
+                  {{- card_line_price_fmt -}}
+                </span>
+              {%- else -%}
+                <span class="card__heading-line card__heading-line--title">{{ card_product.title | upcase }}</span>
+                <span class="card__heading-line card__heading-line--price">{{ card_line_price_fmt }}</span>
+              {%- endif -%}
             </a>
           </h3>
           <div class="card-information">

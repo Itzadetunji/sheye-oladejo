@@ -682,6 +682,72 @@
 	.card--stacked-product .card__heading-line--title::after {
 		content: " — ";
 	}
+
+	.card--stacked-product .card__heading-link--on-sale .card__heading-line--title::after {
+		content: none;
+	}
+}
+
+/* Discount layout: first row NAME - compare-at, second row sale price centered */
+.card--stacked-product .card__heading-link--on-sale {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	width: 100%;
+}
+
+.card--stacked-product .card__heading-link--on-sale .card__heading-line--title,
+.card--stacked-product .card__heading-link--on-sale .card__heading-line--price {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+.card--stacked-product .card__heading-line--sale-now {
+	font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+	.card--stacked-product .card__heading-link--on-sale {
+		align-items: flex-start;
+	}
+
+	.card--stacked-product .card__heading-link--on-sale .card__heading-line--title {
+		text-align: left;
+	}
+
+	.card--stacked-product .card__heading-link--on-sale .card__heading-line--sale-now {
+		align-self: flex-start;
+		text-align: left;
+	}
+}
+
+.card--stacked-product .card__price-compare--in-title,
+.card-hover-info__price .card__price-compare--in-title {
+	text-decoration: line-through;
+	color: rgba(var(--color-foreground), 0.75);
+	font-size: 0.9em;
+}
+
+.card-hover-info__price--on-sale {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0.3rem;
+}
+
+.card-hover-info__row2 {
+	display: block;
+	text-align: left;
+	width: 100%;
+	font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+	.card-hover-info__row2 {
+		text-align: center;
+	}
 }
 
 .card--stacked-product > .card__content .card__information {
