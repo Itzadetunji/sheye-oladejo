@@ -1,5 +1,6 @@
 /* Layout primitives for row content card; loaded via assets/row-content-card.css */
 
+.row-content-card-section,
 .about-founder {
 	background-color: rgb(var(--color-background));
 }

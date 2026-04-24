@@ -1,12 +1,12 @@
 {{ 'row-content-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .about-founder-{{ section.id }} {
+  .row-content-card-section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
   @media screen and (min-width: 768px) {
-    .about-founder-{{ section.id }} {
+    .row-content-card-section-{{ section.id }} {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
@@ -14,7 +14,7 @@
 {%- endstyle -%}
 
 <section
-  class="about-founder about-founder-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
+  class="row-content-card-section row-content-card-section-{{ section.id }} color-{{ section.settings.color_scheme }} gradient"
   aria-labelledby="row-content-card-heading-{{ section.id }}"
 >
   {% render 'row-content-card',
@@ -28,7 +28,7 @@
 
 {% schema %}
 {
-  "name": "Meet the founder",
+  "name": "Row content card",
   "tag": "section",
   "class": "section",
   "disabled_on": { "groups": ["header", "footer"] },

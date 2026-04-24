@@ -17,7 +17,7 @@
       }
     },
     "about_founder": {
-      "type": "about-founder",
+      "type": "row-content-card-section",
       "settings": {
         "heading": "ABOUT US",
         "body": "At SheyeOladejo, We believe that fashion is a powerful tool of self-expression, capable of telling stories and creating amazing connections. That is why we are the pinnacle of sophistication and personalised luxury. \n\nEstablished in 2016, Our brand is dedicated to creating breathtaking bridal and bespoke garments that celebrate individuality and timeless elegance. We are known for our attention to details, innovative use of fabrics and our commitment to craftsmanship.",

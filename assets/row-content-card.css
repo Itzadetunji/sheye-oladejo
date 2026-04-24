@@ -3,3 +3,8 @@
  * Base layout/typography live in section-about-founder-shared.css (imported below).
  */
 @import url("section-about-founder-shared.css");
+
+/* Same as .page-width (padding, margin) but cap max width at 1440px */
+.row-content-card-section .row-content-card.page-width {
+	max-width: 1440px;
+}

@@ -22,7 +22,7 @@
       }
     },
     "about_founder": {
-      "type": "about-founder",
+      "type": "row-content-card-section",
       "settings": {
         "heading": "EJIRE",
         "body": "In my latest fashion collection, I drew inspiration from the unique bond shared by twins, a relationship that reflects harmony, contrast, and perfect symmetry. Thus connection is subtly woven into the fabrics and prints, where mirrored patterns and balanced designs symbolise the duality o individuality and unity.\n\n\nEach piece from this collection is a representation of a conversation between two identities, blending together yet distinct, much like twins themselves.\n \n\nThrough this collection, I aim to capture the beauty of their synchrony, and how it translates into a visually captivating, balances aesthetic.",

@@ -202,6 +202,53 @@
 				"padding_bottom": 64
 			}
 		},
+		"featured_infinite_marquee": {
+			"type": "featured-infinite-marquee",
+			"blocks": {
+				"slide_1": {
+					"type": "slide",
+					"settings": {
+						"name": "Mira Yaache",
+						"quote": "From a sketch to a dream come true! I highly recommend Sheye Oladejo for all your fabulous dress needs. Their entire team was professional, communicated constantly and delivered beyond my expectations. The in person fitting went smoothly and I needed very minor alterations which speaks to the high quality and precision of their craftsmanship. Worth every penny and more, you will be in great hands with this expert and talented designer brand! The best of Africa!"
+					}
+				},
+				"slide_2": {
+					"type": "slide",
+					"settings": {
+						"name": "Tomilade Adepoju",
+						"quote": "I had such a great experience with SheyeOladejo! They made me the most beautiful dress for my mother's 65th birthday party and I was in awe! They are so professional, so timely and the dress fit PERFECTLY with no need for alterations. They were very thorough during the video session for us to take measurements. I am very excited to have them make another dress for me!"
+					}
+				},
+				"slide_3": {
+					"type": "slide",
+					"settings": {
+						"name": "Ifeoluwani Ojo",
+						"quote": "I had a great experience with the team from planning stage to fittings. And I extremely loved my outfit. I looked snatched just the way I imagined."
+					}
+				},
+				"slide_4": {
+					"type": "slide",
+					"settings": {
+						"name": "Stella Chioma",
+						"quote": "Distance does not matter as I got my measurements done virtually by very professional staff. Received my outfit and it was a perfect fit. Absolutely gorgeous and beautiful. Thank you SheyeOladejo"
+					}
+				}
+			},
+			"block_order": [
+				"slide_1",
+				"slide_2",
+				"slide_3",
+				"slide_4"
+			],
+			"settings": {
+				"title": "FEATURED",
+				"heading_size": "h2",
+				"speed_px_per_sec": 48,
+				"color_scheme": "scheme-1",
+				"padding_top": 64,
+				"padding_bottom": 64
+			}
+		},
 		"featured_collection": {
 			"type": "collection-grid",
 			"settings": {
@@ -234,6 +281,7 @@
 		"book_appointment_or_couture",
 		"latest_collection",
 		"featured_collection",
-		"testimonials_carousel"
+		"testimonials_carousel",
+		"featured_infinite_marquee"
 	]
 }
