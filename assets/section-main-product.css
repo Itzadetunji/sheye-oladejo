@@ -712,6 +712,12 @@ a.product__text {
 	color: var(--product-meta-text-color);
 }
 
+.product__meta-links-text {
+	font-size: 14px;
+	line-height: inherit;
+	color: var(--product-meta-text-color);
+}
+
 .product__meta-links-contact-share {
 	display: flex;
 	flex-direction: row;

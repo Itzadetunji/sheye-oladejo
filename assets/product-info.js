@@ -325,6 +325,9 @@ if (!customElements.get("product-info")) {
 						"Inventory",
 						({ innerText }) => innerText === "",
 					);
+					updateSourceFromDestination("ShipsFromUs", ({ classList }) =>
+						classList.contains("hidden"),
+					);
 					updateSourceFromDestination("Volume");
 					updateSourceFromDestination("Price-Per-Item", ({ classList }) =>
 						classList.contains("hidden"),
@@ -398,6 +401,7 @@ if (!customElements.get("product-info")) {
 				const selectors = [
 					"price",
 					"Inventory",
+					"ShipsFromUs",
 					"Sku",
 					"Price-Per-Item",
 					"Volume-Note",

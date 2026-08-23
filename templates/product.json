@@ -48,7 +48,7 @@
         "meta_links": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{% render 'product-meta-links' %}"
+            "custom_liquid": "{% render 'product-meta-links', section_id: section.id %}"
           }
         },
         "product_details": {
