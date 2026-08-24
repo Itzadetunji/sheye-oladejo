@@ -2,24 +2,28 @@
 {%- assign contact_link = settings.product_meta_contact_link | default: '/pages/contact' -%}
 {%- assign primary_color = settings.color_primary | default: '#1D1D1B' -%}
 {%- liquid
-  assign ships_from_us_id = section_id | default: section.id | default: product.id
-  assign ships_from_us = product.selected_or_first_available_variant.metafields.custom.this_ships_from_the_us.value
+  assign ships_from_us = product.metafields.custom.ships_from_the_us.value
+  assign ships_from_uk = product.metafields.custom.ships_from_the_uk.value
 -%}
 
 <div class="product__meta-links" style="--product-meta-text-color: {{ primary_color }};">
   {%- comment -%} Desktop / tablet layout (also visible on mobile) {%- endcomment -%}
-  <div
-    class="product__meta-links-contact-share{% unless ships_from_us %} hidden{% endunless %}"
-    id="ShipsFromUs-{{ ships_from_us_id }}"
-    role="status"
-  >
-    {%- if ships_from_us -%}
+  {%- if ships_from_us or ships_from_uk -%}
+    <div class="product__meta-links-contact-share">
       <div class="product__meta-links-row">
         <span class="svg-wrapper">{{- 'icon-truck.svg' | inline_asset_content -}}</span>
-        <span class="product__meta-links-text">Ships from the U.S. 🇺🇸</span>
+        <span class="product__meta-links-text">
+          {%- if ships_from_us and ships_from_uk -%}
+            {{- 'Also ships from the U.K. 🇬🇧 and U.S. 🇺🇸' -}}
+          {%- elsif ships_from_uk -%}
+            {{- 'Also ships from the U.K. 🇬🇧' -}}
+          {%- elsif ships_from_us -%}
+            {{- 'Also ships from the U.S. 🇺🇸' -}}
+          {%- endif -%}
+        </span>
       </div>
-    {%- endif -%}
-  </div>
+    </div>
+  {%- endif -%}
   <div class="product__meta-links-contact-share">
     <div class="product__meta-links-row">
       <span class="svg-wrapper">{{- 'icon-return.svg' | inline_asset_content -}}</span>
